@@ -61,8 +61,8 @@ const Datenschutz = () => {
   return (
     <>
       <Helmet>
-        <title>Datenschutzerklärung - Kammerjäger Schneider</title>
-        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Schneider in ${cityInfo.city}.`} />
+        <title>Datenschutzerklärung - Kammerjäger Hoffmeyer</title>
+        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Hoffmeyer in ${cityInfo.city}.`} />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-gray-50">
@@ -75,7 +75,7 @@ const Datenschutz = () => {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Verantwortlicher</h2>
               <div className="space-y-2">
-                <p>Kammerjäger Schneider</p>
+                <p>Kammerjäger Hoffmeyer</p>
                 <p>Hauptstraße 26–36</p>
                 <p>{cityInfo.city}</p>
                 <p>Deutschland</p>

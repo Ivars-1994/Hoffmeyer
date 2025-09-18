@@ -16,7 +16,7 @@ const Hero = ({ cityName }: HeroProps) => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Kammerjäger Schneider",
+    "name": "Kammerjäger Hoffmeyer",
     "description": `Professionelle Schädlingsbekämpfung mit IHK-zertifizierten Experten in ${cityName}. 24/7 Notdienst verfügbar.`,
     "telephone": PHONE_NUMBER,
     "url": "https://kammerjaeger-adalbert.de",

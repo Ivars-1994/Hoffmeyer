@@ -46,7 +46,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Contact Information */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-[#9b87f5]">Kammerjäger Schneider</h3>
+            <h3 className="text-xl font-bold mb-6 text-[#9b87f5]">Kammerjäger Hoffmeyer</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Phone className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-[#9b87f5]" />
@@ -103,7 +103,7 @@ const Footer = () => {
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm opacity-80 mb-4 md:mb-0">
-              © {currentYear} Kammerjäger Schneider. Alle Rechte vorbehalten.
+              © {currentYear} Kammerjäger Hoffmeyer. Alle Rechte vorbehalten.
             </p>
             <div className="text-sm opacity-80">
               <span>IHK zertifizierte Schädlingsbekämpfung</span>

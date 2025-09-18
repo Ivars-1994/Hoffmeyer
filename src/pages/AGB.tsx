@@ -60,8 +60,8 @@ const AGB = () => {
   return (
     <>
       <Helmet>
-        <title>Allgemeine Geschäftsbedingungen - Kammerjäger Schneider</title>
-        <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Schneider in ${cityInfo.city}.`} />
+        <title>Allgemeine Geschäftsbedingungen - Kammerjäger Hoffmeyer</title>
+        <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Hoffmeyer in ${cityInfo.city}.`} />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-gray-50">
@@ -83,7 +83,7 @@ const AGB = () => {
             <section className="mb-6">
               <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§1 Geltungsbereich</h2>
               <p className="text-gray-700">
-                Diese AGB gelten für alle Verträge über Dienstleistungen im Bereich der Schädlingsbekämpfung, die zwischen Kammerjäger Schneider (nachfolgend „Dienstleister") und Kunden (Verbraucher und Unternehmer) abgeschlossen werden.
+                Diese AGB gelten für alle Verträge über Dienstleistungen im Bereich der Schädlingsbekämpfung, die zwischen Kammerjäger Hoffmeyer (nachfolgend „Dienstleister") und Kunden (Verbraucher und Unternehmer) abgeschlossen werden.
               </p>
             </section>
             
