@@ -185,7 +185,7 @@ const Services = () => {
 
         <div className="mt-16 text-center">
           <p className="text-lg mb-6">
-            Alle Leistungen werden in NRW mit einer <span className="font-semibold text-accent">kostenlosen Anfahrt</span> und einem <span className="font-semibold text-accent">transparenten Preismodell</span> angeboten.
+            Alle Leistungen werden mit einer <span className="font-semibold text-accent">kostenlosen Anfahrt</span> und einem <span className="font-semibold text-accent">transparenten Preismodell</span> angeboten.
           </p>
           <a 
             href="#contact" 
