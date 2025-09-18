@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 14% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 14% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 14% 9%;
+
+    --primary: 222 47% 14%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 222 14% 9%;
+
+    --muted: 210 20% 96.1%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 220 70% 46%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  a[href^="tel:+"]::first-letter {
+    display: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  @media (max-width: 640px) {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .container {
+    @apply px-4 mx-auto;
+  }
+
+  .section {
+    @apply py-12 md:py-16 overflow-hidden;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/80 shadow-md;
+  }
+
+  .section-heading {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight;
+  }
+  
+  .section-subheading {
+    @apply text-base sm:text-lg md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto;
+  }
+
+  .highlight-text {
+    @apply text-accent font-medium;
+  }
+
+  .image-fade-in {
+    @apply transition-opacity duration-700;
+  }
+  
+  /* New animations */
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-subtle-pulse {
+    animation: subtle-pulse 3s ease-in-out infinite;
+  }
+  
+  /* Very subtle and slow animation for the phone button */
+  .animate-very-subtle-pulse {
+    animation: very-subtle-pulse 6s ease-in-out infinite;
+  }
+  
+  /* Ultra slow and extremely subtle animation for phone button */
+  .animate-ultra-slow-pulse {
+    animation: ultra-slow-pulse 10s ease-in-out infinite;
+  }
+  
+  /* Emergency badge pulse animation */
+  .animate-pulse-subtle {
+    animation: pulse-subtle 4s ease-in-out infinite;
+  }
+  
+  @keyframes ultra-slow-pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.12);
+    }
+    50% {
+      transform: scale(1.015);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.18);
+    }
+  }
+  
+  @keyframes very-subtle-pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+      transform: scale(1.03);
+      box-shadow: 0 15px 20px -3px rgba(0, 0, 0, 0.25);
+    }
+  }
+  
+  @keyframes subtle-pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 15px 20px -3px rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  @keyframes pulse-subtle {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+  }
+  
+  .animation-delay-75 {
+    animation-delay: 75ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  /* Slow ping animation for the phone button */
+  .animate-ping-slow {
+    animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  
+  /* Very slow ping animation */
+  .animate-ping-very-slow {
+    animation: ping-very-slow 7s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  
+  @keyframes ping-very-slow {
+    0% {
+      transform: scale(0.98);
+      opacity: 0;
+    }
+    30% {
+      transform: scale(1.03);
+      opacity: 0.2;
+    }
+    70% {
+      transform: scale(1);
+      opacity: 0.15;
+    }
+    100% {
+      transform: scale(1.08);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes ping {
+    0% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    30% {
+      transform: scale(1.05);
+      opacity: 0.3;
+    }
+    70% {
+      transform: scale(1);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(1.15);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Mobile-friendly improvements */
+  @media (max-width: 640px) {
+    .mobile-text-boost {
+      font-size: 110%;
+    }
+
+    .mobile-spacing-boost {
+      margin-bottom: 1.25rem;
+    }
+    
+    .mobile-button-boost {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
+    }
+  }
+}
