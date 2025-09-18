@@ -107,7 +107,7 @@ const Services = () => {
         <div className="max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden shadow-md">
           <AspectRatio ratio={16/9}>
             <img 
-              src="https://www.immoportal.com/sites/default/files/2022-01/kammerjaeger_andreypopov_immoportal.jpg" 
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGr2rSc0DHgeXiFF9XJRzA1D01XvMdTdBPTg&s" 
               alt="Professionelle Schädlingsbekämpfung in Aktion durch zertifizierte Experten" 
               className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
               width="840"
