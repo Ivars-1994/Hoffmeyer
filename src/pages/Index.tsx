@@ -76,7 +76,7 @@ const Index = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-gray-50">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
         <Navbar />
         
         <main className="flex-grow pt-[83px] md:pt-28">

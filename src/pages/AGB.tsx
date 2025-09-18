@@ -64,7 +64,7 @@ const AGB = () => {
         <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Hoffmeyer in ${cityInfo.city}.`} />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-gray-50">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
         <Navbar />
         
         <main className="flex-grow container mx-auto px-4 py-12">
