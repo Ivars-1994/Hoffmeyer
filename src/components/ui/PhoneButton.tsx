@@ -32,15 +32,13 @@ const PhoneButton = ({
         'phone_number': formattedNumber,
         'button_variant': variant
       });
-      
-      // Add a small delay to ensure tracking fires before navigation
-      if (variant !== 'fixed') {
-        e.preventDefault();
-        setTimeout(() => {
-          window.location.href = `tel:${formattedNumber}`;
-        }, 300);
-        return false;
-      }
+    }
+    
+    // Send Google Ads conversion event directly
+    if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+      e.preventDefault();
+      (window as any).gtag_report_conversion(`tel:${formattedNumber}`);
+      return false;
     }
   };
   
