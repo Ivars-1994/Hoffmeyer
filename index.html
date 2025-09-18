@@ -44,6 +44,20 @@
       gtag('js', new Date());
 
       gtag('config', 'AW-17399576460');
+      
+      // Conversion tracking function
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17399576460/phone_call',
+          'event_callback': callback
+        });
+        return false;
+      }
     </script>
 
     <!-- Fingerprint2 - Loaded after page load -->

@@ -50,7 +50,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Phone className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-[#9b87f5]" />
-                <span><a href={`tel:${PHONE_NUMBER}`} aria-label="Anrufen">24/7 Notdienst: {PHONE_NUMBER}</a></span>
+                <span><a href={`tel:${PHONE_NUMBER}`} className="call-link" aria-label="Anrufen">24/7 Notdienst: {PHONE_NUMBER}</a></span>
               </li>
               <li className="flex items-start">
                 <Mail className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-[#9b87f5]" />

@@ -79,7 +79,7 @@ const Datenschutz = () => {
                 <p>Hauptstraße 26–36</p>
                 <p>{cityInfo.city}</p>
                 <p>Deutschland</p>
-                <p>Telefon: <a href="tel:+4915212124199" className="text-[#9b87f5] hover:underline">+49 152 1212 4199</a></p>
+                <p>Telefon: <a href="tel:+4915212124199" className="call-link text-[#9b87f5] hover:underline">+49 152 1212 4199</a></p>
                 <p>E-Mail: <a href="mailto:info.kammerjaegerhoffmeyer.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerhoffmeyer.de</a></p>
               </div>
             </section>
