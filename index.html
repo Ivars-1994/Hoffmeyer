@@ -1,16 +1,10 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <!-- Tracking scripts -->
-    <script type="text/javascript">
-      var script = document.createElement("script");
-      script.async = true; script.type = "text/javascript";
-      var target = 'https://www.clickcease.com/monitor/stat.js';
-      script.src = target; var elem = document.head; elem.appendChild(script);
-    </script>
+    <!-- Tracking scripts - Optimized for performance -->
+    <script async src="https://www.clickcease.com/monitor/stat.js"></script>
+    <script async src="https://www.clickguard.com/pixel?k=9048141"></script>
     <!-- End tracking scripts -->
-
-    <script type="text/javascript" src="https://www.clickguard.com/pixel?k=9048141"></script>
     
     <!-- Google Tag Manager -->
     <script>
@@ -40,17 +34,15 @@
     <meta name="twitter:title" content="Kammerjäger Schneider - Professionelle Schädlingsbekämpfung" />
     <meta name="twitter:description" content="Schnelle & diskrete Schädlingsbekämpfung. 24/7 Notdienst verfügbar." />
 
-    <!-- Google Ads -->
+    <!-- Google Ads - Optimized -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16458367327"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-16458367327');
-    </script>
-
-    <!-- Conversion tracking function -->
-    <script>
+      
+      // Conversion tracking function
       function gtag_report_conversion(url) {
         var callback = function () {
           if (typeof(url) != 'undefined') {
@@ -65,25 +57,32 @@
       }
     </script>
 
-    <!-- Fingerprint2 -->
-    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+    <!-- Fingerprint2 - Loaded after page load -->
     <script>
-      FingerprintJS.load()
-        .then(fp => fp.get())
-        .then(result => {
-          const visitorId = result.visitorId;
-          if (typeof gtag !== 'undefined') {
-            gtag('config', 'AW-16458367327', {
-              'custom_map': {'dimension1': 'fp_visitor_id'}
+      window.addEventListener('load', function() {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js';
+        script.async = true;
+        script.onload = function() {
+          FingerprintJS.load()
+            .then(fp => fp.get())
+            .then(result => {
+              const visitorId = result.visitorId;
+              if (typeof gtag !== 'undefined') {
+                gtag('config', 'AW-16458367327', {
+                  'custom_map': {'dimension1': 'fp_visitor_id'}
+                });
+                gtag('event', 'page_view', {
+                  'fp_visitor_id': visitorId
+                });
+              }
+            })
+            .catch(error => {
+              console.error("Error getting Fingerprint visitor ID:", error);
             });
-            gtag('event', 'page_view', {
-              'fp_visitor_id': visitorId
-            });
-          }
-        })
-        .catch(error => {
-          console.error("Error getting Fingerprint visitor ID:", error);
-        });
+        };
+        document.head.appendChild(script);
+      });
     </script>
   </head>
 
