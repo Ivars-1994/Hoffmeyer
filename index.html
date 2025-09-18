@@ -36,27 +36,14 @@
     <meta name="twitter:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung" />
     <meta name="twitter:description" content="Schnelle & diskrete Schädlingsbekämpfung. 24/7 Notdienst verfügbar." />
 
-    <!-- Google Ads - Optimized -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16458367327"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17399576460"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'AW-16458367327');
-      
-      // Conversion tracking function
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-16458367327/uNzYCJ34_O8ZEOq8hpo9',
-          'event_callback': callback
-        });
-        return false;
-      }
+
+      gtag('config', 'AW-17399576460');
     </script>
 
     <!-- Fingerprint2 - Loaded after page load -->
@@ -71,7 +58,7 @@
             .then(result => {
               const visitorId = result.visitorId;
               if (typeof gtag !== 'undefined') {
-                gtag('config', 'AW-16458367327', {
+                gtag('config', 'AW-17399576460', {
                   'custom_map': {'dimension1': 'fp_visitor_id'}
                 });
                 gtag('event', 'page_view', {
