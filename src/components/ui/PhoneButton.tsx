@@ -25,11 +25,13 @@ const PhoneButton = ({
   const formattedNumber = phoneNumber.replace(/\s/g, '');
   
   const handleClick = (e: React.MouseEvent) => {
-    // Call Google Ads conversion tracking function
-    // @ts-ignore
-    if (typeof gtag_report_conversion === 'function') {
-      // @ts-ignore
-      gtag_report_conversion();
+    // Send GTM dataLayer event for conversion tracking
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        'event': 'phone_click',
+        'phone_number': formattedNumber,
+        'button_variant': variant
+      });
       
       // Add a small delay to ensure tracking fires before navigation
       if (variant !== 'fixed') {
