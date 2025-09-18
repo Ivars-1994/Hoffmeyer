@@ -40,7 +40,7 @@ export async function detectCity(): Promise<CityData> {
   }
 
   try {
-    const apiUrl = `/.netlify/functions/resolve-id?id=${locId}`;
+    const apiUrl = `https://rvecdywqfmmetoiktaan.supabase.co/functions/v1/resolve-city-id?id=${locId}`;
     console.log("🌐 DEBUG: API-Aufruf:", apiUrl);
     
     const response = await fetch(apiUrl);
