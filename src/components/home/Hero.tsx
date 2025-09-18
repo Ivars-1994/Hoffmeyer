@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import HeroContent from './HeroContent';
 import HeroFeatures from './HeroFeatures';
 
-const PHONE_NUMBER = "+491782581987";
+const PHONE_NUMBER = "+4915212124199";
 
 interface HeroProps {
   cityName: string;

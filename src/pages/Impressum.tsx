@@ -8,7 +8,7 @@ import WhatsAppButton from '../components/ui/WhatsAppButton';
 import { useParams, useLocation } from 'react-router-dom';
 import { getCityFromParams } from '../utils/cityDetection';
 
-const PHONE_NUMBER = "+491782581987";
+const PHONE_NUMBER = "+4915212124199";
 const DEFAULT_CITY = "Hagen";
 
 const Impressum = () => {
@@ -85,8 +85,8 @@ const Impressum = () => {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Kontakt</h2>
               <div className="space-y-2">
-                <p>Telefon: <a href="tel:+491782581987" className="text-[#9b87f5] hover:underline">+49 178 2581987</a></p>
-                <p>E-Mail: <a href="mailto:info@kammerjaegerschneider.de" className="text-[#9b87f5] hover:underline">info@kammerjaegerschneider.de</a></p>
+                <p>Telefon: <a href="tel:+4915212124199" className="text-[#9b87f5] hover:underline">+49 152 1212 4199</a></p>
+                <p>E-Mail: <a href="mailto:info@kammerjaegerhoffmeyer.de" className="text-[#9b87f5] hover:underline">info@kammerjaegerhoffmeyer.de</a></p>
               </div>
             </section>
             

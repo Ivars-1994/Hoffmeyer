@@ -17,7 +17,7 @@ import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import { useParams } from 'react-router-dom';
 import SeoKeywords from '../components/seo/SeoKeywords';
 
-const PHONE_NUMBER = "+491782581987";
+const PHONE_NUMBER = "+4915212124199";
 const DEFAULT_CITY = "Ihrer Stadt";
 
 // Erweiterte Liste deutscher Städte für die Erkennung

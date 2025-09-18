@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils';
 import { Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const PHONE_NUMBER = "+491782581987";
-const EMAIL = "info.kammerjaegerschneider@gmail.com";
+const PHONE_NUMBER = "+4915212124199";
+const EMAIL = "info.kammerjaegerhoffmeyer@gmail.com";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

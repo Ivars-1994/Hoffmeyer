@@ -19,8 +19,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-const PHONE_NUMBER = "+491782581987";
-const EMAIL = "info.kammerjaegerschneider@gmail.com";
+const PHONE_NUMBER = "+4915212124199";
+const EMAIL = "info.kammerjaegerhoffmeyer@gmail.com";
 
 // Define the form schema
 const formSchema = z.object({
