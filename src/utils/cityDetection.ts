@@ -54,31 +54,23 @@ export async function detectCity(): Promise<CityData> {
       const isPlz = /^\d{5}$/.test(value);
       
       if (isPlz) {
-        // Direkte PLZ-zu-Stadt Zuordnung für bekannte PLZ
-        const plzToCity: { [key: string]: string } = {
-          "45141": "Essen",
-          "45659": "Recklinghausen", 
-          "45657": "Recklinghausen",
-          "45661": "Recklinghausen",
-          "45892": "Gelsenkirchen",
-          "45699": "Herten",
-          "45891": "Gelsenkirchen",
-          "45881": "Gelsenkirchen",
-          "45886": "Gelsenkirchen",
-          "45883": "Gelsenkirchen",
-          "45899": "Gelsenkirchen",
-          "45897": "Gelsenkirchen"
-        };
+        // PLZ zu Stadt auflösen
+        console.log("🔍 DEBUG: PLZ erkannt, rufe openplzapi.org auf...");
+        const plzApiUrl = `https://openplzapi.org/de/Localities?postalCode=${value}`;
+        const plzResponse = await fetch(plzApiUrl);
+        const plzData = await plzResponse.json();
+        const stadt = plzData?.[0]?.name;
         
-        const stadtName = plzToCity[value] || "Essen"; // Fallback auf Essen
-        const capitalizedCity = stadtName.charAt(0).toUpperCase() + stadtName.slice(1).toLowerCase();
-        const cityData = { name: capitalizedCity, plz: value };
-        console.log("✅ DEBUG: Stadt über PLZ erkannt:", cityData);
-        
-        sessionStorage.setItem("cityName", capitalizedCity);
-        sessionStorage.setItem("cityPlz", value);
-        sessionStorage.setItem("cityData", JSON.stringify(cityData));
-        return cityData;
+        if (stadt) {
+          const capitalizedCity = stadt.charAt(0).toUpperCase() + stadt.slice(1).toLowerCase();
+          const cityData = { name: capitalizedCity, plz: value };
+          console.log("✅ DEBUG: Stadt über PLZ erkannt:", cityData);
+          
+          sessionStorage.setItem("cityName", capitalizedCity);
+          sessionStorage.setItem("cityPlz", value);
+          sessionStorage.setItem("cityData", JSON.stringify(cityData));
+          return cityData;
+        }
       } else {
         // Stadtname direkt
         const capitalizedCity = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
