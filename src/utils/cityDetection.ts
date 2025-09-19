@@ -33,39 +33,83 @@ export async function detectCity(): Promise<CityData> {
     return cityData;
   }
 
-  // Wenn keine kw aber loc_physical_ms/city_id, dann API-Aufruf
+  // Wenn keine kw aber loc_physical_ms/city_id, dann lokale Datei oder API-Aufruf
   if (!locId) {
     console.log("❌ DEBUG: Keine Parameter gefunden");
     return { name: "Ihrer Stadt", plz: "00000" };
   }
 
   try {
-    const apiUrl = `https://rvecdywqfmmetoiktaan.supabase.co/functions/v1/resolve-city-id?id=${locId}`;
-    console.log("🌐 DEBUG: API-Aufruf:", apiUrl);
+    // Erst lokale Datei versuchen
+    console.log("🔍 DEBUG: Versuche lokale stadt_map.json zu laden...");
+    const localResponse = await fetch('/stadt_map.json');
+    const stadtMap = await localResponse.json();
     
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    
-    console.log("📥 DEBUG: API-Antwort:", data);
-    console.log("📥 DEBUG: data.stadt Wert:", data.stadt);
-    console.log("📥 DEBUG: Vollständige Response:", JSON.stringify(data, null, 2));
-
-    if (data.stadt) {
-      // Ersten Buchstaben groß schreiben
-      const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();
-      const realPlz = data.plz || "00000"; // PLZ aus API verwenden
-      const cityData = { name: capitalizedCity, plz: realPlz };
-      console.log("✅ DEBUG: Stadt erkannt:", cityData);
+    const value = stadtMap[locId];
+    if (value) {
+      console.log("✅ DEBUG: Gefundener Wert in lokaler Datei:", value);
       
-      sessionStorage.setItem("cityName", capitalizedCity);
-      sessionStorage.setItem("cityPlz", realPlz);
-      sessionStorage.setItem("cityData", JSON.stringify(cityData));
-      return cityData;
+      // Prüfen ob es eine PLZ ist (5 Ziffern)
+      const isPlz = /^\d{5}$/.test(value);
+      
+      if (isPlz) {
+        // PLZ zu Stadt auflösen
+        console.log("🔍 DEBUG: PLZ erkannt, rufe openplzapi.org auf...");
+        const plzApiUrl = `https://openplzapi.org/de/Localities?postalCode=${value}`;
+        const plzResponse = await fetch(plzApiUrl);
+        const plzData = await plzResponse.json();
+        const stadt = plzData?.[0]?.name;
+        
+        if (stadt) {
+          const capitalizedCity = stadt.charAt(0).toUpperCase() + stadt.slice(1).toLowerCase();
+          const cityData = { name: capitalizedCity, plz: value };
+          console.log("✅ DEBUG: Stadt über PLZ erkannt:", cityData);
+          
+          sessionStorage.setItem("cityName", capitalizedCity);
+          sessionStorage.setItem("cityPlz", value);
+          sessionStorage.setItem("cityData", JSON.stringify(cityData));
+          return cityData;
+        }
+      } else {
+        // Stadtname direkt
+        const capitalizedCity = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        const cityData = { name: capitalizedCity, plz: "00000" };
+        console.log("✅ DEBUG: Stadt direkt erkannt:", cityData);
+        
+        sessionStorage.setItem("cityName", capitalizedCity);
+        sessionStorage.setItem("cityData", JSON.stringify(cityData));
+        return cityData;
+      }
     } else {
-      console.log("❌ DEBUG: Keine Stadt in API-Antwort");
+      console.log("❌ DEBUG: ID nicht in lokaler Datei gefunden");
     }
   } catch (e) {
-    console.error("❌ DEBUG: Fehler bei API-Aufruf:", e);
+    console.log("⚠️ DEBUG: Lokale Datei fehlgeschlagen, versuche Supabase API:", e);
+    
+    // Fallback auf Supabase API
+    try {
+      const apiUrl = `https://rvecdywqfmmetoiktaan.supabase.co/functions/v1/resolve-city-id?id=${locId}`;
+      console.log("🌐 DEBUG: API-Aufruf:", apiUrl);
+      
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      
+      console.log("📥 DEBUG: API-Antwort:", data);
+
+      if (data.stadt) {
+        const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();
+        const realPlz = data.plz || "00000";
+        const cityData = { name: capitalizedCity, plz: realPlz };
+        console.log("✅ DEBUG: Stadt über API erkannt:", cityData);
+        
+        sessionStorage.setItem("cityName", capitalizedCity);
+        sessionStorage.setItem("cityPlz", realPlz);
+        sessionStorage.setItem("cityData", JSON.stringify(cityData));
+        return cityData;
+      }
+    } catch (apiError) {
+      console.error("❌ DEBUG: Auch API-Aufruf fehlgeschlagen:", apiError);
+    }
   }
 
   return { name: "Ihrer Stadt", plz: "00000" };
