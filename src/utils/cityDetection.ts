@@ -7,7 +7,7 @@ export interface CityData {
 export async function detectCity(): Promise<CityData> {
   const urlParams = new URLSearchParams(window.location.search);
   const kw = urlParams.get("kw");
-  const locId = urlParams.get("loc_physical_ms") || urlParams.get("city_id");
+  const locId = urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
 
   console.log("🔍 DEBUG: Stadt-Erkennung startet mit URL:", window.location.search);
   console.log("🔍 DEBUG: kw parameter:", kw);
@@ -118,7 +118,7 @@ export async function detectCity(): Promise<CityData> {
 export function getCityFromParams(): CityData {
   // NICHT aus sessionStorage laden - immer frisch ermitteln
   const urlParams = new URLSearchParams(window.location.search);
-  const hasLocationId = urlParams.get("kw") || urlParams.get("loc_physical_ms") || urlParams.get("city_id");
+  const hasLocationId = urlParams.get("kw") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
   
   if (hasLocationId) {
     // Wenn ID vorhanden, erstmal Platzhalter zurückgeben
