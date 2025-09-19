@@ -41,7 +41,7 @@ const Index = () => {
   // Async Stadt-Erkennung starten
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const hasLocationId = urlParams.get("kw") || urlParams.get("loc_physical_ms") || urlParams.get("city_id");
+    const hasLocationId = urlParams.get("kw") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
     
     if (hasLocationId) {
       detectAndUpdateCity().then(newCityData => {
