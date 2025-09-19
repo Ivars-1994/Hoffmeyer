@@ -9,9 +9,10 @@ export async function detectCity(): Promise<CityData> {
   const kw = urlParams.get("kw");
   const locId = urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
 
-  console.log("🔍 DEBUG: Stadt-Erkennung startet mit URL:", window.location.search);
+  console.log("🔍 DEBUG: Stadt-Erkennung startet mit URL:", window.location.href);
+  console.log("🔍 DEBUG: Search params:", window.location.search);
   console.log("🔍 DEBUG: kw parameter:", kw);
-  console.log("🔍 DEBUG: loc_physical_ms/city_id:", locId);
+  console.log("🔍 DEBUG: loc_physical_ms/city_id/loc:", locId);
 
   // Wenn kw parameter vorhanden ist, Stadt aus dem Suchbegriff extrahieren
   if (kw) {
