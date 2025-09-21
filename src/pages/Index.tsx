@@ -39,8 +39,8 @@ const Index = () => {
   console.log("Search:", window.location.search);
   console.log("Loc ID:", locId);
   
-  // Stadt-Erkennung
-  const [cityData, setCityData] = useState<CityData>({ name: "Ihrer Stadt", plz: "00000" });
+  // Stadt-Erkennung - startet ohne Default um Flackern zu vermeiden
+  const [cityData, setCityData] = useState<CityData | null>(null);
   
   useEffect(() => {
     console.log("=== USEEFFECT LÄUFT ===");
@@ -60,7 +60,17 @@ const Index = () => {
         if (response.ok) {
           const data = await response.json();
           console.log("✅ Netlify Function Response:", data);
-          setCityData({ name: data.stadt, plz: data.plz });
+          const newCityData = { name: data.stadt, plz: data.plz };
+          setCityData(newCityData);
+          
+          // Speichere in sessionStorage für andere Komponenten
+          sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
+          
+          // Dispatch Event für andere Komponenten
+          const event = new CustomEvent('cityDetected', { 
+            detail: newCityData 
+          });
+          window.dispatchEvent(event);
         } else {
           console.log("Netlify Function failed:", response.status);
         }
@@ -73,7 +83,7 @@ const Index = () => {
   }, [locId]);
 
   
-  const cityName = cityData.name;
+  const cityName = cityData?.name || "Ihrer Stadt";
 
   console.log("=== FINALE STADT DATEN ===");
   console.log("City Name:", cityName);

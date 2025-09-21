@@ -14,7 +14,19 @@ const DEFAULT_CITY = "Hagen";
 const Impressum = () => {
   const { city: routeCity } = useParams();
   const location = useLocation();
-  const [cityInfo, setCityInfo] = useState({ city: DEFAULT_CITY });
+  const [cityInfo, setCityInfo] = useState(() => {
+    // Versuche zuerst aus sessionStorage zu laden
+    const stored = sessionStorage.getItem('detectedCityData');
+    if (stored) {
+      try {
+        const data = JSON.parse(stored);
+        return { city: data.name };
+      } catch (e) {
+        console.log('Error parsing stored city data:', e);
+      }
+    }
+    return { city: DEFAULT_CITY };
+  });
   
   useEffect(() => {
     const runCityDetection = async () => {

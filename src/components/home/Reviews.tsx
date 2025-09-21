@@ -52,7 +52,19 @@ const defaultReviews = [
 
 const Reviews = ({ cityName }: ReviewsProps) => {
   const isMobile = useIsMobile();
-  const [cityInfo, setCityInfo] = useState(() => getCityFromParams());
+  
+  // Versuche zuerst aus sessionStorage zu laden, dann getCityFromParams
+  const [cityInfo, setCityInfo] = useState(() => {
+    const stored = sessionStorage.getItem('detectedCityData');
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        console.log('Error parsing stored city data:', e);
+      }
+    }
+    return getCityFromParams();
+  });
   
   // Event Listener für Stadt-Updates
   useEffect(() => {
