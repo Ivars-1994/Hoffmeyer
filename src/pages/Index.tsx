@@ -49,18 +49,42 @@ const Index = () => {
       return;
     }
     
-    // Direkter Test der JSON Daten
-    const testMapping: { [key: string]: string } = {
-      "1004625": "45128" // Essen PLZ
+    // Fallback: Lokale JSON-Daten verwenden wenn Netlify Function nicht verfügbar
+    const cityMapping: { [key: string]: string } = {
+      "1004625": "45128", // Essen
+      "9197571": "44787", // Bochum-Mitte
     };
     
-    if (testMapping[locId]) {
-      console.log("Test-Mapping gefunden:", testMapping[locId]);
-      setCityData({ name: "Essen", plz: testMapping[locId] });
+    if (cityMapping[locId]) {
+      console.log("Fallback-Mapping gefunden:", cityMapping[locId]);
+      
+      // PLZ zu Stadt-Name über API
+      const fetchCityName = async () => {
+        try {
+          const response = await fetch(`https://openplzapi.org/de/Localities?postalCode=${cityMapping[locId]}`);
+          const data = await response.json();
+          const cityName = data?.[0]?.name || "Unbekannte Stadt";
+          
+          console.log("API Response:", data);
+          console.log("Stadt erkannt:", cityName);
+          
+          setCityData({ name: cityName, plz: cityMapping[locId] });
+        } catch (error) {
+          console.error("API Fehler:", error);
+          // Hardcoded Fallback
+          const fallbackNames: { [key: string]: string } = {
+            "45128": "Essen",
+            "44787": "Bochum"
+          };
+          setCityData({ name: fallbackNames[cityMapping[locId]] || "Ihrer Stadt", plz: cityMapping[locId] });
+        }
+      };
+      
+      fetchCityName();
       return;
     }
     
-    // Netlify Function testen
+    // Netlify Function testen (falls verfügbar)
     const testNetlify = async () => {
       try {
         console.log("Teste Netlify Function...");
