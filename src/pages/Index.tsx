@@ -29,61 +29,68 @@ declare global {
 const PHONE_NUMBER = "+4915212124199";
 
 const Index = () => {
-  // Stadt-Erkennung mit verbesserter Logik  
+  // DIREKTER TEST
+  const urlParams = new URLSearchParams(window.location.search);
+  const locId = urlParams.get("loc") || urlParams.get("city_id") || urlParams.get("loc_physical_ms");
+  
+  console.log("=== DIREKTER TEST ===");
+  console.log("URL:", window.location.href);
+  console.log("Search:", window.location.search);
+  console.log("Loc ID:", locId);
+  
+  // Stadt-Erkennung
   const [cityData, setCityData] = useState<CityData>({ name: "Ihrer Stadt", plz: "00000" });
   
-  console.log("🚀 INDEX COMPONENT GERENDERT!");
-  console.log("🚀 CURRENT URL:", window.location.href);
+  useEffect(() => {
+    console.log("=== USEEFFECT LÄUFT ===");
+    
+    if (!locId) {
+      console.log("Keine loc ID gefunden");
+      return;
+    }
+    
+    // Direkter Test der JSON Daten
+    const testMapping: { [key: string]: string } = {
+      "1004625": "45128" // Essen PLZ
+    };
+    
+    if (testMapping[locId]) {
+      console.log("Test-Mapping gefunden:", testMapping[locId]);
+      setCityData({ name: "Essen", plz: testMapping[locId] });
+      return;
+    }
+    
+    // Netlify Function testen
+    const testNetlify = async () => {
+      try {
+        console.log("Teste Netlify Function...");
+        const response = await fetch(`/.netlify/functions/resolve-id?id=${locId}`);
+        console.log("Response status:", response.status);
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Netlify Response:", data);
+          
+          if (data.stadt) {
+            setCityData({ name: data.stadt, plz: data.plz || "00000" });
+          }
+        } else {
+          console.error("Netlify Function failed:", response.status);
+        }
+      } catch (error) {
+        console.error("Netlify Function Error:", error);
+      }
+    };
+    
+    testNetlify();
+  }, [locId]);
+
   
   const cityName = cityData.name;
 
-  // Stadt-Erkennung mit dem integrierten System
-  useEffect(() => {
-    console.log("🔥 INDEX USEEFFECT GESTARTET!");
-    console.log("🔍 Index: Stadt-Erkennung wird ausgeführt...");
-    
-    // Verwende das integrierte Erkennungssystem
-    const runDetection = async () => {
-      try {
-        console.log("🔍 Index: Führe detectAndUpdateCity aus...");
-        const detectedCity = await detectAndUpdateCity();
-        console.log("✅ Index: Stadt erkannt:", detectedCity);
-        
-        setCityData(detectedCity);
-      } catch (error) {
-        console.error("❌ Index: Fehler bei Stadt-Erkennung:", error);
-        setCityData({ name: "Ihrer Stadt", plz: "00000" });
-      }
-    };
-
-    runDetection();
-
-    // Event Listener für Stadt-Updates
-    const handleCityDetected = (event: CustomEvent<CityData>) => {
-      console.log("🔄 Index: City detected event empfangen:", event.detail);
-      setCityData(event.detail);
-    };
-
-    window.addEventListener('cityDetected', handleCityDetected as EventListener);
-    
-    return () => {
-      window.removeEventListener('cityDetected', handleCityDetected as EventListener);
-    };
-  }, []);
-
-  // DOM-Updates nach dem ersten Render
-  useEffect(() => {
-    console.log("🔄 Führe DOM-Updates aus für:", cityData);
-    
-    // Speichere in sessionStorage für andere Komponenten
-    sessionStorage.setItem("detectedCity", cityData.name);
-    sessionStorage.setItem("detectedZip", cityData.plz);
-    
-    // Aktualisiere alle DOM-Elemente mit data-city Attributen
-    updateDynamicCityTags(cityData);
-    
-    console.log("✅ DOM-Updates abgeschlossen");
-  }, [cityData]);
+  console.log("=== FINALE STADT DATEN ===");
+  console.log("City Name:", cityName);
+  console.log("City Data:", cityData);
 
   const pageTitle = `Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung in ${cityName}`;
   const pageDescription = `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
