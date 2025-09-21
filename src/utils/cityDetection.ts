@@ -5,6 +5,9 @@ export interface CityData {
 }
 
 export async function detectCity(): Promise<CityData> {
+  console.log("🚀 DETECTCITY GESTARTET!");
+  console.log("🚀 URL:", window.location.href);
+  
   const urlParams = new URLSearchParams(window.location.search);
   const kw = urlParams.get("kw");
   const locId = urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");

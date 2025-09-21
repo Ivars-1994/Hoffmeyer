@@ -40,6 +40,7 @@ const Index = () => {
 
   // Stadt-Erkennung mit dem integrierten System
   useEffect(() => {
+    console.log("🔥 INDEX USEEFFECT GESTARTET!");
     console.log("🔍 Index: Stadt-Erkennung wird ausgeführt...");
     
     // Verwende das integrierte Erkennungssystem
