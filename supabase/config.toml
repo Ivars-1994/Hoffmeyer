@@ -2,3 +2,6 @@ project_id = "rvecdywqfmmetoiktaan"
 
 [functions.resolve-city-id]
 verify_jwt = false
+
+[functions.update-stadtmap]
+verify_jwt = false
