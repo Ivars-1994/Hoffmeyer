@@ -1,55 +1,77 @@
-const path = require('path');
-const fs = require('fs');
+// netlify/functions/resolve-id.js
+const path = require("path");
+const fs = require("fs");
+
+function corsHeaders() {
+  return {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
 
 exports.handler = async (event) => {
-  const id = event.queryStringParameters?.id;
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 204, headers: corsHeaders(), body: "" };
+  }
+  const headers = corsHeaders();
+
+  const id = event.queryStringParameters?.id?.trim();
   if (!id) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: "ID fehlt" }),
-    };
+    return { statusCode: 400, headers, body: JSON.stringify({ error: "ID fehlt" }) };
   }
 
-  const jsonPath = path.join(__dirname, 'stadt_map_complete.json');
-  let stadtMap = {};
+  // JSON liegt neben der Function (wie bei dir)
+  const jsonPath = path.join(__dirname, "stadt_map_complete.json");
+  let stadtMap;
   try {
-    const rawData = fs.readFileSync(jsonPath, 'utf-8');
-    stadtMap = JSON.parse(rawData);
+    stadtMap = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Fehler beim Lesen der stadt_map.json", details: err.message }),
+      headers,
+      body: JSON.stringify({ error: "Fehler beim Lesen der stadt_map_complete.json", details: err.message }),
     };
   }
 
-  const value = stadtMap[id];
-  if (!value) {
-    return {
-      statusCode: 404,
-      body: JSON.stringify({ error: "Unbekannte ID", id }),
-    };
+  const raw = stadtMap[String(id)];
+  if (!raw) {
+    return { statusCode: 404, headers, body: JSON.stringify({ error: "Unbekannte ID", id }) };
   }
 
-  const apiUrl = `https://openplzapi.org/de/Localities?postalCode=${value}`;
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    const stadt = data?.[0]?.name || null;
-    if (!stadt) {
-      return {
-        statusCode: 404,
-        body: JSON.stringify({ error: "Stadt nicht gefunden", id }),
-      };
+  const val = String(raw).trim();
+
+  // Case A: 5-stellige PLZ
+  const isFiveDigit = /^\d{5}$/.test(val);
+  // Case B: 4-stellig -> führende 0 ergänzen
+  const isFourDigit = /^\d{4}$/.test(val);
+  const plz = isFiveDigit ? val : (isFourDigit ? ("0" + val) : null);
+
+  // Wenn wir eine PLZ haben, versuche OpenPLZ
+  if (plz) {
+    try {
+      const url = `https://openplzapi.org/de/Localities?postalCode=${encodeURIComponent(plz)}`;
+      const resp = await fetch(url);
+      if (!resp.ok) {
+        return { statusCode: resp.status, headers, body: JSON.stringify({ error: "API nicht OK", status: resp.status }) };
+      }
+      const data = await resp.json();
+      const stadt = data?.[0]?.name || null;
+      if (stadt) {
+        return { statusCode: 200, headers, body: JSON.stringify({ id, typ: "plz-lookup", stadt, plz }) };
+      }
+      // Fallback: Keine Stadt gefunden → trotzdem etwas Sinnvolles zurückgeben
+      return { statusCode: 404, headers, body: JSON.stringify({ error: "Stadt nicht gefunden", id, plz }) };
+    } catch (e) {
+      return { statusCode: 502, headers, body: JSON.stringify({ error: "API Fehler", details: String(e) }) };
     }
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ id, typ: "plz-lookup", stadt, plz: value }),
-    };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "API Fehler", details: err.message }),
-    };
   }
+
+  // Case C: kein PLZ-Format -> direkter Name
+  return {
+    statusCode: 200,
+    headers,
+    body: JSON.stringify({ id, typ: "direct-name", stadt: val, plz: null }),
+  };
 };
