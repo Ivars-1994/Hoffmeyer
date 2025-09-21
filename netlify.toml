@@ -11,4 +11,8 @@
   status = 200
 
 [functions]
-included_files = ["netlify/functions/stadt_map_complete.json"]
+  included_files = ["netlify/functions/stadt_map_complete.json"]
+  
+[[functions]]
+  function = "resolve-id"
+  included_files = ["stadt_map_complete.json"]
