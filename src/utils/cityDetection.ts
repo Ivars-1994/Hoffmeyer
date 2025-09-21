@@ -41,76 +41,29 @@ export async function detectCity(): Promise<CityData> {
   }
 
   try {
-    // Erst lokale Datei versuchen
-    console.log("🔍 DEBUG: Versuche lokale stadt_map.json zu laden...");
-    const localResponse = await fetch('/stadt_map.json');
-    const stadtMap = await localResponse.json();
+    // Netlify Function nutzen
+    console.log("🔍 DEBUG: Versuche Netlify Function zu nutzen...");
+    const netlifyUrl = `/.netlify/functions/resolve-id?id=${locId}`;
+    console.log("🌐 DEBUG: Netlify Function URL:", netlifyUrl);
     
-    const value = stadtMap[locId];
-    if (value) {
-      console.log("✅ DEBUG: Gefundener Wert in lokaler Datei:", value);
-      
-      // Prüfen ob es eine PLZ ist (5 Ziffern)
-      const isPlz = /^\d{5}$/.test(value);
-      
-      if (isPlz) {
-        // PLZ zu Stadt auflösen
-        console.log("🔍 DEBUG: PLZ erkannt, rufe openplzapi.org auf...");
-        const plzApiUrl = `https://openplzapi.org/de/Localities?postalCode=${value}`;
-        const plzResponse = await fetch(plzApiUrl);
-        const plzData = await plzResponse.json();
-        const stadt = plzData?.[0]?.name;
-        
-        if (stadt) {
-          const capitalizedCity = stadt.charAt(0).toUpperCase() + stadt.slice(1).toLowerCase();
-          const cityData = { name: capitalizedCity, plz: value };
-          console.log("✅ DEBUG: Stadt über PLZ erkannt:", cityData);
-          
-          sessionStorage.setItem("cityName", capitalizedCity);
-          sessionStorage.setItem("cityPlz", value);
-          sessionStorage.setItem("cityData", JSON.stringify(cityData));
-          return cityData;
-        }
-      } else {
-        // Stadtname direkt
-        const capitalizedCity = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-        const cityData = { name: capitalizedCity, plz: "00000" };
-        console.log("✅ DEBUG: Stadt direkt erkannt:", cityData);
-        
-        sessionStorage.setItem("cityName", capitalizedCity);
-        sessionStorage.setItem("cityData", JSON.stringify(cityData));
-        return cityData;
-      }
-    } else {
-      console.log("❌ DEBUG: ID nicht in lokaler Datei gefunden");
-    }
-  } catch (e) {
-    console.log("⚠️ DEBUG: Lokale Datei fehlgeschlagen, versuche Supabase API:", e);
+    const response = await fetch(netlifyUrl);
+    const data = await response.json();
     
-    // Fallback auf Supabase API
-    try {
-      const apiUrl = `https://rvecdywqfmmetoiktaan.supabase.co/functions/v1/resolve-city-id?id=${locId}`;
-      console.log("🌐 DEBUG: API-Aufruf:", apiUrl);
-      
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      
-      console.log("📥 DEBUG: API-Antwort:", data);
+    console.log("📥 DEBUG: Netlify Function Antwort:", data);
 
-      if (data.stadt) {
-        const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();
-        const realPlz = data.plz || "00000";
-        const cityData = { name: capitalizedCity, plz: realPlz };
-        console.log("✅ DEBUG: Stadt über API erkannt:", cityData);
-        
-        sessionStorage.setItem("cityName", capitalizedCity);
-        sessionStorage.setItem("cityPlz", realPlz);
-        sessionStorage.setItem("cityData", JSON.stringify(cityData));
-        return cityData;
-      }
-    } catch (apiError) {
-      console.error("❌ DEBUG: Auch API-Aufruf fehlgeschlagen:", apiError);
+    if (data.stadt) {
+      const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();
+      const realPlz = data.plz || "00000";
+      const cityData = { name: capitalizedCity, plz: realPlz };
+      console.log("✅ DEBUG: Stadt über Netlify Function erkannt:", cityData);
+      
+      sessionStorage.setItem("cityName", capitalizedCity);
+      sessionStorage.setItem("cityPlz", realPlz);
+      sessionStorage.setItem("cityData", JSON.stringify(cityData));
+      return cityData;
     }
+  } catch (error) {
+    console.error("❌ DEBUG: Netlify Function fehlgeschlagen:", error);
   }
 
   return { name: "Ihrer Stadt", plz: "00000" };
