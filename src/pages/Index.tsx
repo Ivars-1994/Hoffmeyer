@@ -38,17 +38,37 @@ const Index = () => {
   
   const cityName = cityData.name;
 
-  // Async Stadt-Erkennung starten
+  // Stadt-Erkennung mit dem integrierten System
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const hasLocationId = urlParams.get("kw") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
+    console.log("🔍 Index: Stadt-Erkennung wird ausgeführt...");
     
-    if (hasLocationId) {
-      detectAndUpdateCity().then(newCityData => {
-        console.log("🌟 Stadt asynchron erkannt:", newCityData);
-        setCityData(newCityData);
-      });
-    }
+    // Verwende das integrierte Erkennungssystem
+    const runDetection = async () => {
+      try {
+        console.log("🔍 Index: Führe detectAndUpdateCity aus...");
+        const detectedCity = await detectAndUpdateCity();
+        console.log("✅ Index: Stadt erkannt:", detectedCity);
+        
+        setCityData(detectedCity);
+      } catch (error) {
+        console.error("❌ Index: Fehler bei Stadt-Erkennung:", error);
+        setCityData({ name: "Ihrer Stadt", plz: "00000" });
+      }
+    };
+
+    runDetection();
+
+    // Event Listener für Stadt-Updates
+    const handleCityDetected = (event: CustomEvent<CityData>) => {
+      console.log("🔄 Index: City detected event empfangen:", event.detail);
+      setCityData(event.detail);
+    };
+
+    window.addEventListener('cityDetected', handleCityDetected as EventListener);
+    
+    return () => {
+      window.removeEventListener('cityDetected', handleCityDetected as EventListener);
+    };
   }, []);
 
   // DOM-Updates nach dem ersten Render

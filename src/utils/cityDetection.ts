@@ -49,6 +49,14 @@ export async function detectCity(): Promise<CityData> {
     const response = await fetch(netlifyUrl);
     console.log("📡 DEBUG: Response Status:", response.status);
     console.log("📡 DEBUG: Response OK:", response.ok);
+    console.log("📡 DEBUG: Response Headers:", response.headers);
+    
+    if (!response.ok) {
+      console.error("❌ DEBUG: Response not OK, status:", response.status);
+      const errorText = await response.text();
+      console.error("❌ DEBUG: Error response text:", errorText);
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
+    }
     
     const data = await response.json();
     console.log("📥 DEBUG: Netlify Function Antwort:", data);
