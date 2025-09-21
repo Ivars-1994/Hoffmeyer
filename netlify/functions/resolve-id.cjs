@@ -10,7 +10,7 @@ exports.handler = async (event) => {
     };
   }
 
-  const jsonPath = path.join(__dirname, 'stadt_map.json');
+  const jsonPath = path.join(__dirname, 'stadt_map_complete.json');
   let stadtMap = {};
   try {
     const rawData = fs.readFileSync(jsonPath, 'utf-8');

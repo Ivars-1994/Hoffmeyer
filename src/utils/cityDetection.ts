@@ -42,14 +42,18 @@ export async function detectCity(): Promise<CityData> {
 
   try {
     // Netlify Function nutzen
-    console.log("🔍 DEBUG: Versuche Netlify Function zu nutzen...");
+    console.log("🔍 DEBUG: Versuche Netlify Function zu nutzen für ID:", locId);
     const netlifyUrl = `/.netlify/functions/resolve-id?id=${locId}`;
     console.log("🌐 DEBUG: Netlify Function URL:", netlifyUrl);
     
     const response = await fetch(netlifyUrl);
-    const data = await response.json();
+    console.log("📡 DEBUG: Response Status:", response.status);
+    console.log("📡 DEBUG: Response OK:", response.ok);
     
+    const data = await response.json();
     console.log("📥 DEBUG: Netlify Function Antwort:", data);
+    console.log("📥 DEBUG: Response data type:", typeof data);
+    console.log("📥 DEBUG: Response data keys:", Object.keys(data));
 
     if (data.stadt) {
       const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();

@@ -16,6 +16,7 @@ import AboutUs from '../components/home/AboutUs';
 import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import { useParams } from 'react-router-dom';
 import SeoKeywords from '../components/seo/SeoKeywords';
+import { detectAndUpdateCity, CityData } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
 const DEFAULT_CITY = "Ihrer Stadt";
@@ -76,93 +77,51 @@ const cityList = [
 const CityPage = () => {
   const { city } = useParams();
   const [cityName, setCityName] = useState(city || DEFAULT_CITY);
+  const [cityData, setCityData] = useState<CityData>({ name: city || DEFAULT_CITY, plz: "00000" });
   
-  // Stadt-Erkennung mit direkter Analyse der URL
+  // Stadt-Erkennung mit dem integrierten System
   useEffect(() => {
-    const detectCityFromURL = () => {
-      console.log("Stadt-Erkennung in CityPage wird ausgeführt...");
-      
-      // Zuerst die Route-Parameter prüfen
-      if (city) {
-        console.log("Stadt aus Route-Parametern:", city);
-        setCityName(city);
-        return;
-      }
-      
+    console.log("🔍 CityPage: Stadt-Erkennung wird ausgeführt...");
+    
+    // Wenn bereits eine Stadt aus den Route-Parametern da ist
+    if (city) {
+      console.log("✅ CityPage: Stadt aus Route-Parametern:", city);
+      setCityName(city);
+      setCityData({ name: city, plz: "00000" });
+      return;
+    }
+
+    // Verwende das integrierte Erkennungssystem
+    const runDetection = async () => {
       try {
-        // Google Ads Parameter "kw" (keyword) überprüfen
-        const urlParams = new URLSearchParams(window.location.search);
-        const kwParam = urlParams.get('kw');
+        console.log("🔍 CityPage: Führe detectAndUpdateCity aus...");
+        const detectedCity = await detectAndUpdateCity();
+        console.log("✅ CityPage: Stadt erkannt:", detectedCity);
         
-        if (kwParam) {
-          console.log("kw-Parameter gefunden:", kwParam);
-          const decodedKw = decodeURIComponent(kwParam);
-          console.log("Dekodierter kw-Parameter:", decodedKw);
-          
-          // Die Wörter des Parameters aufteilen
-          const words = decodedKw.toLowerCase().split(/\s+/);
-          console.log("Aufgeteilte Wörter:", words);
-          
-          // Jedes Wort mit unserer Städteliste vergleichen
-          for (const city of cityList) {
-            const cityLower = city.toLowerCase();
-            
-            // Prüfen ob Stadt komplett im Parameter enthalten ist
-            if (decodedKw.toLowerCase().includes(cityLower)) {
-              console.log(`Stadt "${city}" im Keyword gefunden!`);
-              setCityName(city);
-              return;
-            }
-            
-            // Einzelwortvergleich für genauere Erkennung
-            for (const word of words) {
-              if (word === cityLower || (word.length > 3 && cityLower.includes(word))) {
-                console.log(`Stadt "${city}" aus Teilwort "${word}" erkannt!`);
-                setCityName(city);
-                return;
-              }
-            }
-          }
-          
-          // Speziell für "bochum" prüfen (da dies in der URL vorkommt)
-          if (decodedKw.toLowerCase().includes("bochum")) {
-            console.log("Bochum explizit erkannt!");
-            setCityName("Bochum");
-            return;
-          }
-        }
-        
-        // Falls kein Parameter gefunden wurde, auch die URL selbst prüfen
-        const fullUrl = window.location.href.toLowerCase();
-        for (const city of cityList) {
-          if (fullUrl.includes(city.toLowerCase())) {
-            console.log(`Stadt "${city}" in der URL gefunden!`);
-            setCityName(city);
-            return;
-          }
-        }
-        
-        // Speziell für "bochum" in der URL prüfen
-        if (fullUrl.includes("bochum")) {
-          console.log("Bochum explizit in der URL erkannt!");
-          setCityName("Bochum");
-          return;
-        }
-        
-        console.log("Keine Stadt erkannt, verwende Standardwert:", DEFAULT_CITY);
+        setCityName(detectedCity.name);
+        setCityData(detectedCity);
       } catch (error) {
-        console.error("Fehler bei der Stadt-Erkennung:", error);
+        console.error("❌ CityPage: Fehler bei Stadt-Erkennung:", error);
+        setCityName(DEFAULT_CITY);
+        setCityData({ name: DEFAULT_CITY, plz: "00000" });
       }
     };
+
+    runDetection();
+
+    // Event Listener für Stadt-Updates
+    const handleCityDetected = (event: CustomEvent<CityData>) => {
+      console.log("🔄 CityPage: City detected event empfangen:", event.detail);
+      setCityName(event.detail.name);
+      setCityData(event.detail);
+    };
+
+    window.addEventListener('cityDetected', handleCityDetected as EventListener);
     
-    // Sofort die Erkennung ausführen
-    detectCityFromURL();
-    
-    // Nach kurzer Verzögerung nochmals (falls Script später lädt)
-    const timeoutId = setTimeout(detectCityFromURL, 500);
-    
-    return () => clearTimeout(timeoutId);
-  }, [city]); // Abhängigkeit von city-Parameter, damit es bei Änderung erneut ausgeführt wird
+    return () => {
+      window.removeEventListener('cityDetected', handleCityDetected as EventListener);
+    };
+  }, [city]);
 
   const pageTitle = `Kammerjäger Adalbert - Professionelle Schädlingsbekämpfung in ${cityName}`;
   const pageDescription = `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
