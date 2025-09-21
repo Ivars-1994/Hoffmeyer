@@ -30,11 +30,10 @@ const PHONE_NUMBER = "+4915212124199";
 
 const Index = () => {
   // Stadt-Erkennung mit verbesserter Logik  
-  const [cityData, setCityData] = useState(() => {
-    const result = getCityFromParams();
-    console.log("🏙️ FINALE STADT-DATEN:", result);
-    return result;
-  });
+  const [cityData, setCityData] = useState<CityData>({ name: "Ihrer Stadt", plz: "00000" });
+  
+  console.log("🚀 INDEX COMPONENT GERENDERT!");
+  console.log("🚀 CURRENT URL:", window.location.href);
   
   const cityName = cityData.name;
 
