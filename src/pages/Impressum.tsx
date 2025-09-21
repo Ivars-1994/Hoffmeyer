@@ -1,80 +1,20 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
-import { useParams, useLocation } from 'react-router-dom';
-import { getCityFromParams } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
-const DEFAULT_CITY = "Hagen";
 
 const Impressum = () => {
-  const { city: routeCity } = useParams();
-  const location = useLocation();
-  const [cityInfo, setCityInfo] = useState(() => {
-    // Versuche zuerst aus sessionStorage zu laden
-    const stored = sessionStorage.getItem('detectedCityData');
-    if (stored) {
-      try {
-        const data = JSON.parse(stored);
-        return { city: data.name };
-      } catch (e) {
-        console.log('Error parsing stored city data:', e);
-      }
-    }
-    return { city: DEFAULT_CITY };
-  });
-  
-  useEffect(() => {
-    const runCityDetection = async () => {
-      console.log("Impressum: Stadt-Erkennung wird ausgeführt...");
-      
-      try {
-        // Erst versuchen, Stadt aus URL-Parametern zu erkennen
-        let detectedCityData = getCityFromParams();
-        console.log("Impressum: Stadt aus URL-Parametern:", detectedCityData);
-        let detectedCity = detectedCityData.name;
-        
-        // Falls keine Stadt aus URL erkannt wurde, prüfe sessionStorage
-        if (detectedCity === "Ihrer Stadt") {
-          const storedCity = sessionStorage.getItem('cityName');
-          if (storedCity && storedCity !== "Ihrer Stadt") {
-            detectedCity = storedCity;
-            console.log("Impressum: Stadt aus sessionStorage übernommen:", detectedCity);
-          }
-        } else {
-          // Stadt in sessionStorage speichern für andere Seiten
-          sessionStorage.setItem('detectedCity', detectedCity);
-        }
-        
-        console.log("Impressum: Finale erkannte Stadt:", detectedCity);
-        
-        setCityInfo({ 
-          city: detectedCity
-        });
-      } catch (error) {
-        console.error("Impressum: Fehler bei der Stadt-Erkennung:", error);
-        setCityInfo({ city: DEFAULT_CITY });
-      }
-    };
-    
-    // Sofort ausführen
-    runCityDetection();
-    
-    // Und nach Verzögerung nochmals
-    const timeoutId = setTimeout(runCityDetection, 500);
-    
-    return () => clearTimeout(timeoutId);
-  }, [routeCity, location]);
 
   return (
     <>
       <Helmet>
         <title>Impressum - Kammerjäger Hoffmeyer</title>
-        <meta name="description" content={`Impressum und rechtliche Informationen zu Kammerjäger Hoffmeyer in ${cityInfo.city}.`} />
+        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Hoffmeyer." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
@@ -89,7 +29,6 @@ const Impressum = () => {
               <div className="space-y-2">
                 <p>Kammerjäger Hoffmeyer</p>
                 <p>Hauptstraße 26–36</p>
-                <p>{cityInfo.city}</p>
                 <p>Deutschland</p>
               </div>
             </section>
