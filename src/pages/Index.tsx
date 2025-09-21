@@ -17,7 +17,8 @@ import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import CityWelcomeBanner from '../components/home/CityWelcomeBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
 import SeoKeywords from '../components/seo/SeoKeywords';
-import { getCityFromParams, updateDynamicCityTags, detectAndUpdateCity, CityData } from '../utils/cityDetection';
+import { CityData } from '../utils/cityDetection';
+import stadtMap from '../data/stadtMap.json';
 
 // Declare gtag as a global function
 declare global {
@@ -49,64 +50,33 @@ const Index = () => {
       return;
     }
     
-    // Fallback: Lokale JSON-Daten verwenden wenn Netlify Function nicht verfügbar
-    const cityMapping: { [key: string]: string } = {
-      "1004625": "45128", // Essen
-      "9197571": "44787", // Bochum-Mitte
-    };
+    // Verwende importierte JSON-Daten
+    const plz = (stadtMap as any)[locId];
+    console.log("JSON Lookup für ID", locId, "=> PLZ:", plz);
     
-    if (cityMapping[locId]) {
-      console.log("Fallback-Mapping gefunden:", cityMapping[locId]);
-      
+    if (plz) {
       // PLZ zu Stadt-Name über API
       const fetchCityName = async () => {
         try {
-          const response = await fetch(`https://openplzapi.org/de/Localities?postalCode=${cityMapping[locId]}`);
+          console.log("Rufe OpenPLZ API auf für PLZ:", plz);
+          const response = await fetch(`https://openplzapi.org/de/Localities?postalCode=${plz}`);
           const data = await response.json();
           const cityName = data?.[0]?.name || "Unbekannte Stadt";
           
-          console.log("API Response:", data);
-          console.log("Stadt erkannt:", cityName);
+          console.log("✅ API Response:", data);
+          console.log("✅ Stadt erkannt:", cityName);
           
-          setCityData({ name: cityName, plz: cityMapping[locId] });
+          setCityData({ name: cityName, plz: plz });
         } catch (error) {
-          console.error("API Fehler:", error);
-          // Hardcoded Fallback
-          const fallbackNames: { [key: string]: string } = {
-            "45128": "Essen",
-            "44787": "Bochum"
-          };
-          setCityData({ name: fallbackNames[cityMapping[locId]] || "Ihrer Stadt", plz: cityMapping[locId] });
+          console.error("❌ API Fehler:", error);
+          setCityData({ name: "Ihrer Stadt", plz: "00000" });
         }
       };
       
       fetchCityName();
-      return;
+    } else {
+      console.log("❌ ID nicht in JSON gefunden:", locId);
     }
-    
-    // Netlify Function testen (falls verfügbar)
-    const testNetlify = async () => {
-      try {
-        console.log("Teste Netlify Function...");
-        const response = await fetch(`/.netlify/functions/resolve-id?id=${locId}`);
-        console.log("Response status:", response.status);
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Netlify Response:", data);
-          
-          if (data.stadt) {
-            setCityData({ name: data.stadt, plz: data.plz || "00000" });
-          }
-        } else {
-          console.error("Netlify Function failed:", response.status);
-        }
-      } catch (error) {
-        console.error("Netlify Function Error:", error);
-      }
-    };
-    
-    testNetlify();
   }, [locId]);
 
   
