@@ -24,44 +24,41 @@ const Impressum = () => {
           <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
             <h1 className="text-3xl font-bold mb-8 text-[#1A1F2C]">Impressum</h1>
             
-            <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Angaben gemäß § 5 TMG</h2>
-              <div className="space-y-2">
-                <p>Kammerjäger Hoffmeyer</p>
-                <p>Hauptstraße 26–36</p>
-                <p>Deutschland</p>
+            <div className="space-y-6 text-gray-700">
+              <div>
+                <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Angaben gemäß § 5 TMG</h2>
+                <div className="space-y-2">
+                  <p>Kammerjäger Hoffmeyer</p>
+                  <p>Hauptstraße 26–36</p>
+                  <p>Deutschland</p>
+                </div>
               </div>
-            </section>
-            
-            <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Kontakt</h2>
-              <div className="space-y-2">
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-[#1A1F2C]">Kontakt</h3>
                 <p>Telefon: <a href="tel:+4915212124199" className="call-link text-[#9b87f5] hover:underline">+49 152 1212 4199</a></p>
                 <p>E-Mail: <a href="mailto:info@kammerjaegerhoffmeyer.de" className="text-[#9b87f5] hover:underline">info@kammerjaegerhoffmeyer.de</a></p>
               </div>
-            </section>
-            
-            <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Haftungsausschluss</h2>
-              <p className="text-gray-700">
-                Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. 
-                Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
-              </p>
-            </section>
-            
-            <section>
-              <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Plattform der EU-Kommission zur Online-Streitbeilegung</h2>
-              <p className="text-gray-700">
-                <a 
-                  href="https://ec.europa.eu/consumers/odr/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-[#9b87f5] hover:underline"
-                >
-                  https://ec.europa.eu/consumers/odr/
-                </a>
-              </p>
-            </section>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-[#1A1F2C]">Haftungsausschluss</h3>
+                <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-[#1A1F2C]">Plattform der EU-Kommission zur Online-Streitbeilegung</h3>
+                <p>
+                  <a 
+                    href="https://ec.europa.eu/consumers/odr/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#9b87f5] hover:underline"
+                  >
+                    https://ec.europa.eu/consumers/odr/
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </main>
         
