@@ -228,7 +228,7 @@ const services = [
     icon: <Bug className="h-10 w-10" />,
     title: "Schabenbekämpfung",
     description: "Professionelle Beseitigung von Schaben und Kakerlaken mit nachhaltigen Bekämpfungsstrategien.",
-    image: "https://www.schaedlingskunde.de/Steckbriefe/htm_Steckbriefe/Blattella-germanica-Foto1.jpg",
+    image: "https://cdn.prod.website-files.com/63fc9915176056538851301e/6410bce93d54ea381456106a_Schaben-beka%CC%88mpfen.jpg",
     alt: "Professionelle Schaben- und Kakerlakenbekämpfung",
     keywords: ["Schabenbekämpfung", "Kakerlaken bekämpfen", "Schädlingsbekämpfung"],
     detailedContent: {
