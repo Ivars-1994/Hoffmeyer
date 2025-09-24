@@ -30,7 +30,6 @@ const Impressum = () => {
                 <div className="space-y-2">
                   <p>Kammerjäger Hoffmeyer</p>
                   <p>Hauptstraße 26–36</p>
-                  <p>45219</p>
                   <p>Deutschland</p>
                 </div>
               </div>
