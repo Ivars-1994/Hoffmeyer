@@ -28,9 +28,10 @@ const Impressum = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Angaben gemäß § 5 TMG</h2>
                 <div className="space-y-2">
-                  <p>All in One</p>
-                  <p>Hunsiepen 22</p>
-                  <p>45259 Essen</p>
+                  <p>Kammerjäger Hoffmeyer</p>
+                  <p>All in One Dienstleistungen</p>
+                  <p>Hauptstraße 26–36</p>
+                  <p>45219 Essen</p>
                   <p>Deutschland</p>
                 </div>
               </div>
