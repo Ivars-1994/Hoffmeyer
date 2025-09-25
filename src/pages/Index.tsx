@@ -1,23 +1,25 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/home/Hero';
-import Services from '../components/home/Services';
-import Certifications from '../components/home/Certifications';
-import Reviews from '../components/home/Reviews';
-import Contact from '../components/home/Contact';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
-import PaymentOptions from '../components/home/PaymentOptions';
 import { Helmet } from 'react-helmet-async';
 import SectionCTA from '../components/ui/SectionCTA';
-import AboutUs from '../components/home/AboutUs';
 import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import CityWelcomeBanner from '../components/home/CityWelcomeBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
 import SeoKeywords from '../components/seo/SeoKeywords';
 import { CityData } from '../utils/cityDetection';
+import { 
+  LazyServices, 
+  LazyCertifications, 
+  LazyReviews, 
+  LazyPaymentOptions, 
+  LazyContact, 
+  LazyAboutUs 
+} from '../components/LazyComponents';
 
 
 // Declare gtag as a global function
@@ -50,11 +52,17 @@ const Index = () => {
       return;
     }
     
-    // Teste Netlify Function direkt
+    // Non-blocking city detection
     const testNetlifyFunction = async () => {
       try {
         console.log("Teste Netlify Function...");
-        const response = await fetch(`/.netlify/functions/resolve-id?id=${locId}`);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+        
+        const response = await fetch(`/.netlify/functions/resolve-id?id=${locId}`, {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
         console.log("Response status:", response.status);
         
         if (response.ok) {
@@ -79,7 +87,8 @@ const Index = () => {
       }
     };
     
-    testNetlifyFunction();
+    // Don't block rendering - run after paint
+    setTimeout(testNetlifyFunction, 100);
   }, [locId]);
 
   
@@ -104,21 +113,41 @@ const Index = () => {
         <Navbar />
         
         <main className="flex-grow pt-[83px] md:pt-28">
+          {/* Critical above-the-fold content loads first */}
           <Hero cityName={cityName} />
           <CityWelcomeBanner cityName={cityName} />
           <MovingLogoBanner />
           <FeaturedImage cityName={cityName} defaultCity="Ihrer Stadt" />
-          <AboutUs />
+          
+          {/* Below-the-fold content is lazy loaded */}
+          <Suspense fallback={<div className="h-20 bg-muted/20 animate-pulse" />}>
+            <LazyAboutUs />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
-          <Services />
+          
+          <Suspense fallback={<div className="h-40 bg-muted/20 animate-pulse" />}>
+            <LazyServices />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
-          <Certifications />
+          
+          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
+            <LazyCertifications />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Professionelle Beratung gewünscht?" />
-          <Reviews cityName={cityName} />
+          
+          <Suspense fallback={<div className="h-40 bg-muted/20 animate-pulse" />}>
+            <LazyReviews cityName={cityName} />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Überzeugt? Kontaktieren Sie uns!" />
-          <PaymentOptions />
+          
+          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
+            <LazyPaymentOptions />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Fragen zu unseren Zahlungsoptionen?" />
-          <Contact />
+          
+          <Suspense fallback={<div className="h-40 bg-muted/20 animate-pulse" />}>
+            <LazyContact />
+          </Suspense>
           <SeoKeywords />
         </main>
         

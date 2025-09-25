@@ -1,11 +1,30 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <!-- Tracking scripts - Optimized for performance -->
-    <script async src="https://www.clickcease.com/monitor/stat.js"></script>
-    <script async src="https://www.clickguard.com/pixel?k=9048141"></script>
-    <script defer type="application/javascript" src="https://pulse.clickguard.com/s/accTOL7eSoDrh/astAsXcywd8mm"></script>
-    <!-- End tracking scripts -->
+    <!-- Critical tracking only - defer non-critical -->
+    <script>
+      // Load tracking scripts after page load
+      window.addEventListener('load', function() {
+        // ClickCease
+        const clickcease = document.createElement('script');
+        clickcease.src = 'https://www.clickcease.com/monitor/stat.js';
+        clickcease.async = true;
+        document.head.appendChild(clickcease);
+        
+        // ClickGuard pixel
+        const clickguard1 = document.createElement('script');
+        clickguard1.src = 'https://www.clickguard.com/pixel?k=9048141';
+        clickguard1.async = true;
+        document.head.appendChild(clickguard1);
+        
+        // ClickGuard pulse
+        const clickguard2 = document.createElement('script');
+        clickguard2.src = 'https://pulse.clickguard.com/s/accTOL7eSoDrh/astAsXcywd8mm';
+        clickguard2.async = true;
+        document.head.appendChild(clickguard2);
+      });
+    </script>
+    <!-- End optimized tracking -->
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -60,9 +79,10 @@
       }
     </script>
 
-    <!-- Fingerprint2 - Loaded after page load -->
+    <!-- Fingerprint2 - Delayed load for better performance -->
     <script>
-      window.addEventListener('load', function() {
+      // Delay fingerprint loading even more to not block critical rendering
+      setTimeout(function() {
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js';
         script.async = true;
@@ -85,7 +105,7 @@
             });
         };
         document.head.appendChild(script);
-      });
+      }, 3000); // Load after 3 seconds
     </script>
   </head>
 
