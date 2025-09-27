@@ -48,28 +48,30 @@ const Index = () => {
   useEffect(() => {
     console.log("=== USEEFFECT LÄUFT ===");
     
-    // Priorität 1: Direkter city Parameter
+    // Priorität 1: Direkter city Parameter (aber nur wenn es eine echte Stadt ist)
     if (cityParam) {
       console.log("✅ Original cityParam:", cityParam);
       
-      // Google Ads Platzhalter abfangen
-      if (cityParam.toLowerCase().includes('location') || cityParam.includes('{') || cityParam.includes('}')) {
-        console.log("⚠️ Google Ads Platzhalter erkannt, überspringe city Parameter");
-        // Fahre mit loc ID Erkennung fort anstatt Fallback
+      // Google Ads Platzhalter abfangen - diese sollen NICHT als Stadt verwendet werden
+      const isGoogleAdsPlaceholder = cityParam.toLowerCase().includes('location') || 
+                                   cityParam.includes('{') || 
+                                   cityParam.includes('}') || 
+                                   cityParam.toLowerCase() === 'locationcity';
+      
+      if (isGoogleAdsPlaceholder) {
+        console.log("⚠️ Google Ads Platzhalter nicht ersetzt:", cityParam, "-> verwende loc ID");
+        // Weiter zu loc ID Erkennung
       } else {
+        // Echte Stadt erkannt
         const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
         const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
         const newCityData = { name: cityName, plz: "00000" };
         
-        console.log("✅ Stadt über city Parameter erkannt:", cityName);
-        console.log("✅ Cleaned cityParam:", cleanedCity);
+        console.log("✅ Echte Stadt über city Parameter erkannt:", cityName);
         setCityData(newCityData);
         
-        // Speichere in sessionStorage
         sessionStorage.setItem('cityName', cityName);
         sessionStorage.setItem('cityData', JSON.stringify(newCityData));
-        
-        // Dispatch Event
         window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
         return;
       }
