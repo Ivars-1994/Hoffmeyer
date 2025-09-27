@@ -101,5 +101,93 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
+    <!-- Smart Location Detection Script -->
+    <script>
+    (function() {
+      // ---- Helper ----
+      function qp(name){
+        const v = new URLSearchParams(location.search).get(name);
+        return v ? v.trim() : "";
+      }
+      function cleanCity(raw){
+        // Erlaubt Buchstaben/Leerzeichen/Bindestrich/Umlaute/ß, max. 40 Zeichen
+        if(!raw) return "";
+        const v = raw.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).replace(/\s+/g," ").trim();
+        return v;
+      }
+      function cleanKw(raw){
+        if(!raw) return "";
+        // Entfernt nur kritische Zeichen; lässt Wörter stehen
+        const v = raw.replace(/[<>"]/g,"").substring(0,80).trim();
+        return v;
+      }
+      function titleCase(s){
+        return s.replace(/\w\S*/g, t => t.charAt(0).toUpperCase()+t.slice(1));
+      }
+
+      // ---- Read params ----
+      const cityParam = cleanCity(qp("city"));
+      const kwParam   = cleanKw(qp("kw"));
+
+      // ---- Build texts ----
+      // Service aus Keyword ableiten (sehr simple Heuristik)
+      // Optional: mappe bekannte Services sauber aus
+      const serviceMap = [
+        {pat:/wesp/i,        label:"Wespennest entfernen"},
+        {pat:/bettwan/i,     label:"Bettwanzen bekämpfen"},
+        {pat:/ratten/i,      label:"Ratten bekämpfen"},
+        {pat:/m(ä|ae)use/i,  label:"Mäuse bekämpfen"},
+        {pat:/ameis/i,       label:"Ameisen bekämpfen"},
+        {pat:/silberfisch/i, label:"Silberfische bekämpfen"},
+        {pat:/marder/i,      label:"Marder vertreiben"},
+        {pat:/floeh|flöhe/i, label:"Flöhe bekämpfen"},
+        {pat:/schaben|kaker/i,label:"Schaben bekämpfen"}
+      ];
+      function inferService(kw){
+        if(!kw) return "";
+        for(const m of serviceMap){ if(m.pat.test(kw)) return m.label; }
+        return ""; // generisch lassen, wenn nix matcht
+      }
+      const service = inferService(kwParam);
+
+      // ---- Apply to DOM ----
+      document.addEventListener("DOMContentLoaded", function(){
+        const h1  = document.getElementById("city-headline");
+        const sub = document.getElementById("service-subline");
+        const cta = document.getElementById("cta-button");
+
+        // H1: bevorzugt "Service in Stadt", sonst "Kammerjäger Stadt"
+        if (h1) {
+          if (cityParam && service) {
+            h1.textContent = `${service} in ${titleCase(cityParam)} – Soforthilfe 24/7`;
+          } else if (cityParam) {
+            h1.textContent = `Kammerjäger ${titleCase(cityParam)} – Soforthilfe 24/7`;
+          }
+          // Falls nichts kommt, bleibt dein Standard-H1 stehen
+        }
+
+        if (sub && cityParam) {
+          sub.textContent = `Schnelle & diskrete Schädlingsbekämpfung in ${titleCase(cityParam)}.`;
+        }
+
+        if (cta) {
+          // Nummer bleibt gleich – Text wird lokalisiert
+          if (cityParam) cta.textContent = `📞 Jetzt anrufen – Hilfe in ${titleCase(cityParam)}`;
+        }
+
+        // Hidden fields für CRM/Analytics
+        const leadCity = document.getElementById("lead-city");
+        const leadKw   = document.getElementById("lead-keyword");
+        if (leadCity && cityParam) leadCity.value = cityParam;
+        if (leadKw   && kwParam)   leadKw.value   = kwParam;
+
+        // Optional: GA4 Event (falls gtag vorhanden)
+        if (window.gtag) {
+          gtag('event', 'lp_localize', { city: cityParam || '(none)', kw: kwParam || '(none)' });
+        }
+      });
+    })();
+    </script>
+    
   </body>
 </html>
