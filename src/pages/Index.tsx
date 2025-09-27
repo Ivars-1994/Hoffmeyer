@@ -32,23 +32,42 @@ declare global {
 const PHONE_NUMBER = "+4915212124199";
 
 const Index = () => {
-  // DIREKTER TEST
+  // Extrahiere URL-Parameter für Stadt-Erkennung
   const urlParams = new URLSearchParams(window.location.search);
+  const cityParam = urlParams.get("city");
   const locId = urlParams.get("loc") || urlParams.get("city_id") || urlParams.get("loc_physical_ms");
   
   console.log("=== DIREKTER TEST ===");
   console.log("URL:", window.location.href);
   console.log("Search:", window.location.search);
+  console.log("City Param:", cityParam);
   console.log("Loc ID:", locId);
   
-  // Stadt-Erkennung - startet ohne Default um Flackern zu vermeiden
   const [cityData, setCityData] = useState<CityData | null>(null);
   
   useEffect(() => {
     console.log("=== USEEFFECT LÄUFT ===");
     
+    // Priorität 1: Direkter city Parameter
+    if (cityParam) {
+      const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
+      const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
+      const newCityData = { name: cityName, plz: "00000" };
+      
+      console.log("✅ Stadt über city Parameter erkannt:", cityName);
+      setCityData(newCityData);
+      
+      // Speichere in sessionStorage
+      sessionStorage.setItem('cityName', cityName);
+      sessionStorage.setItem('cityData', JSON.stringify(newCityData));
+      
+      // Dispatch Event
+      window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
+      return;
+    }
+    
     if (!locId) {
-      console.log("Keine loc ID gefunden");
+      console.log("Keine loc ID oder city Parameter gefunden");
       return;
     }
     
@@ -89,7 +108,7 @@ const Index = () => {
     
     // Don't block rendering - run after paint
     setTimeout(testNetlifyFunction, 100);
-  }, [locId]);
+  }, [cityParam, locId]);
 
   
   const cityName = cityData?.name || "Ihrer Stadt";
