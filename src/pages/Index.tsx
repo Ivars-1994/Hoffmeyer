@@ -55,6 +55,8 @@ const Index = () => {
       const newCityData = { name: cityName, plz: "00000" };
       
       console.log("✅ Stadt über city Parameter erkannt:", cityName);
+      console.log("✅ Original cityParam:", cityParam);
+      console.log("✅ Cleaned cityParam:", cleanedCity);
       setCityData(newCityData);
       
       // Speichere in sessionStorage
