@@ -152,27 +152,34 @@
 
       // ---- Apply to DOM ----
       document.addEventListener("DOMContentLoaded", function(){
-        const h1  = document.getElementById("city-headline");
-        const sub = document.getElementById("service-subline");
-        const cta = document.getElementById("cta-button");
-
-        // H1: bevorzugt "Service in Stadt", sonst "Kammerjäger Stadt"
-        if (h1) {
-          if (cityParam && service) {
-            h1.textContent = `${service} in ${titleCase(cityParam)} – Soforthilfe 24/7`;
-          } else if (cityParam) {
-            h1.textContent = `Kammerjäger ${titleCase(cityParam)} – Soforthilfe 24/7`;
+        // Integration mit unserem React-System über sessionStorage
+        if (cityParam || kwParam) {
+          // City in sessionStorage setzen für React-Komponenten
+          if (cityParam) {
+            sessionStorage.setItem("cityName", titleCase(cityParam));
+            sessionStorage.setItem("cityData", JSON.stringify({
+              name: titleCase(cityParam),
+              plz: "00000"
+            }));
           }
-          // Falls nichts kommt, bleibt dein Standard-H1 stehen
-        }
-
-        if (sub && cityParam) {
-          sub.textContent = `Schnelle & diskrete Schädlingsbekämpfung in ${titleCase(cityParam)}.`;
-        }
-
-        if (cta) {
-          // Nummer bleibt gleich – Text wird lokalisiert
-          if (cityParam) cta.textContent = `📞 Jetzt anrufen – Hilfe in ${titleCase(cityParam)}`;
+          
+          // Service-Info auch speichern
+          if (service) {
+            sessionStorage.setItem("detectedService", service);
+          }
+          if (kwParam) {
+            sessionStorage.setItem("detectedKeyword", kwParam);
+          }
+          
+          // Custom Event für React triggern
+          window.dispatchEvent(new CustomEvent('cityDetected', { 
+            detail: { 
+              name: titleCase(cityParam), 
+              plz: "00000",
+              service: service,
+              keyword: kwParam
+            } 
+          }));
         }
 
         // Hidden fields für CRM/Analytics
