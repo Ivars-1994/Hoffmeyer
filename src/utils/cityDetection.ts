@@ -9,15 +9,30 @@ export async function detectCity(): Promise<CityData> {
   console.log("🚀 URL:", window.location.href);
   
   const urlParams = new URLSearchParams(window.location.search);
+  const cityParam = urlParams.get("city"); // Neuer direkter city Parameter
   const kw = urlParams.get("kw");
   const locId = urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
 
   console.log("🔍 DEBUG: Stadt-Erkennung startet mit URL:", window.location.href);
   console.log("🔍 DEBUG: Search params:", window.location.search);
+  console.log("🔍 DEBUG: city parameter:", cityParam);
   console.log("🔍 DEBUG: kw parameter:", kw);
   console.log("🔍 DEBUG: loc_physical_ms/city_id/loc:", locId);
 
-  // Wenn kw parameter vorhanden ist, Stadt aus dem Suchbegriff extrahieren
+  // Priorität 1: Direkter city Parameter
+  if (cityParam) {
+    const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
+    const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
+    
+    console.log("✅ DEBUG: Stadt über city Parameter:", cityName);
+    
+    const cityData = { name: cityName, plz: "00000" };
+    sessionStorage.setItem("cityName", cityName);
+    sessionStorage.setItem("cityData", JSON.stringify(cityData));
+    return cityData;
+  }
+
+  // Priorität 2: Wenn kw parameter vorhanden ist, Stadt aus dem Suchbegriff extrahieren
   if (kw) {
     const searchTerm = decodeURIComponent(kw).replace(/\+/g, " ");
     // Extrahiere die Stadt (meist das letzte Wort nach "kammerjaeger" etc.)
@@ -87,7 +102,15 @@ export async function detectCity(): Promise<CityData> {
 export function getCityFromParams(): CityData {
   // NICHT aus sessionStorage laden - immer frisch ermitteln
   const urlParams = new URLSearchParams(window.location.search);
+  const cityParam = urlParams.get("city");
   const hasLocationId = urlParams.get("kw") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
+  
+  // Priorität 1: city Parameter
+  if (cityParam) {
+    const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
+    const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
+    return { name: cityName, plz: "00000" };
+  }
   
   if (hasLocationId) {
     // Wenn ID vorhanden, erstmal Platzhalter zurückgeben
