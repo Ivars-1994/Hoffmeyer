@@ -116,6 +116,8 @@ const Index = () => {
   console.log("=== FINALE STADT DATEN ===");
   console.log("City Name:", cityName);
   console.log("City Data:", cityData);
+  console.log("Window location:", window.location.href);
+  console.log("URL Params:", urlParams.toString());
 
   const pageTitle = `Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung in ${cityName}`;
   const pageDescription = `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
