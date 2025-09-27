@@ -50,22 +50,29 @@ const Index = () => {
     
     // Priorität 1: Direkter city Parameter
     if (cityParam) {
-      const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
-      const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
-      const newCityData = { name: cityName, plz: "00000" };
-      
-      console.log("✅ Stadt über city Parameter erkannt:", cityName);
       console.log("✅ Original cityParam:", cityParam);
-      console.log("✅ Cleaned cityParam:", cleanedCity);
-      setCityData(newCityData);
       
-      // Speichere in sessionStorage
-      sessionStorage.setItem('cityName', cityName);
-      sessionStorage.setItem('cityData', JSON.stringify(newCityData));
-      
-      // Dispatch Event
-      window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
-      return;
+      // Google Ads Platzhalter abfangen
+      if (cityParam.toLowerCase().includes('location') || cityParam.includes('{') || cityParam.includes('}')) {
+        console.log("⚠️ Google Ads Platzhalter erkannt, überspringe city Parameter");
+        // Fahre mit loc ID Erkennung fort anstatt Fallback
+      } else {
+        const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
+        const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
+        const newCityData = { name: cityName, plz: "00000" };
+        
+        console.log("✅ Stadt über city Parameter erkannt:", cityName);
+        console.log("✅ Cleaned cityParam:", cleanedCity);
+        setCityData(newCityData);
+        
+        // Speichere in sessionStorage
+        sessionStorage.setItem('cityName', cityName);
+        sessionStorage.setItem('cityData', JSON.stringify(newCityData));
+        
+        // Dispatch Event
+        window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
+        return;
+      }
     }
     
     if (!locId) {
