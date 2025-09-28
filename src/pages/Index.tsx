@@ -82,10 +82,15 @@ const Index = () => {
     // Priorität 2: Stadt aus kw Parameter extrahieren
     if (kwParam) {
       console.log("✅ KW Parameter gefunden:", kwParam);
+      console.log("🔍 KW Parameter Raw:", urlParams.get("kw"));
+      console.log("🔍 KW Parameter Decoded:", decodeURIComponent(kwParam));
       const searchTerm = decodeURIComponent(kwParam).replace(/\+/g, " ");
+      console.log("🔍 Search Term after decode/replace:", searchTerm);
       // Extrahiere die Stadt (meist das letzte Wort nach "kammerjaeger" etc.)
       const words = searchTerm.split(" ");
+      console.log("🔍 Words array:", words);
       let cityName = words[words.length - 1]; // Letztes Wort ist meist die Stadt
+      console.log("🔍 Extracted city name:", cityName);
       
       // Prüfe ob das letzte Wort eine echte Stadt sein könnte
       const isValidCity = cityName.length >= 3 && 
