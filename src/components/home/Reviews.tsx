@@ -53,8 +53,19 @@ const defaultReviews = [
 const Reviews = ({ cityName }: ReviewsProps) => {
   const isMobile = useIsMobile();
   
-  // Versuche zuerst aus sessionStorage zu laden, dann getCityFromParams
+  // Versuche zuerst aus sessionStorage zu laden (kw hat Priorität!), dann getCityFromParams
   const [cityInfo, setCityInfo] = useState(() => {
+    // Priorität 1: kw-Parameter (wird in 'cityData' gespeichert)
+    const storedFromKw = sessionStorage.getItem('cityData');
+    if (storedFromKw) {
+      try {
+        return JSON.parse(storedFromKw);
+      } catch (e) {
+        console.error("Error parsing cityData from sessionStorage:", e);
+      }
+    }
+    
+    // Priorität 2: lcid-Parameter (wird in 'detectedCityData' gespeichert)
     const stored = sessionStorage.getItem('detectedCityData');
     if (stored) {
       try {
@@ -66,10 +77,18 @@ const Reviews = ({ cityName }: ReviewsProps) => {
     return getCityFromParams();
   });
   
-  // Event Listener für Stadt-Updates
+  // Event Listener für Stadt-Updates (nur wenn kw nicht bereits gesetzt ist)
   useEffect(() => {
     const handleCityDetected = (event: CustomEvent) => {
       console.log("📝 REVIEWS - Stadt-Event empfangen:", event.detail);
+      
+      // Prüfe ob bereits eine Stadt aus kw gesetzt ist
+      const existingKwCity = sessionStorage.getItem('cityData');
+      if (existingKwCity) {
+        console.log("📝 REVIEWS - kw-Stadt bereits gesetzt, ignoriere Event");
+        return;
+      }
+      
       setCityInfo(event.detail);
     };
 
