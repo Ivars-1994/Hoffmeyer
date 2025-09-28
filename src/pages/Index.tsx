@@ -35,12 +35,14 @@ const Index = () => {
   // Extrahiere URL-Parameter für Stadt-Erkennung
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city");
-  const locId = urlParams.get("loc") || urlParams.get("city_id") || urlParams.get("loc_physical_ms");
+  const kwParam = urlParams.get("kw");
+  const locId = urlParams.get("lcid") || urlParams.get("loc") || urlParams.get("city_id") || urlParams.get("loc_physical_ms");
   
   console.log("=== DIREKTER TEST ===");
   console.log("URL:", window.location.href);
   console.log("Search:", window.location.search);
   console.log("City Param:", cityParam);
+  console.log("KW Param:", kwParam);
   console.log("Loc ID:", locId);
   
   const [cityData, setCityData] = useState<CityData | null>(null);
@@ -59,8 +61,8 @@ const Index = () => {
                                    cityParam.toLowerCase() === 'locationcity';
       
       if (isGoogleAdsPlaceholder) {
-        console.log("⚠️ Google Ads Platzhalter nicht ersetzt:", cityParam, "-> verwende loc ID");
-        // Weiter zu loc ID Erkennung
+        console.log("⚠️ Google Ads Platzhalter nicht ersetzt:", cityParam, "-> verwende kw oder loc ID");
+        // Weiter zu kw und loc ID Erkennung
       } else {
         // Echte Stadt erkannt
         const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
@@ -77,8 +79,32 @@ const Index = () => {
       }
     }
     
+    // Priorität 2: Stadt aus kw Parameter extrahieren
+    if (kwParam) {
+      console.log("✅ KW Parameter gefunden:", kwParam);
+      const searchTerm = decodeURIComponent(kwParam).replace(/\+/g, " ");
+      // Extrahiere die Stadt (meist das letzte Wort nach "kammerjaeger" etc.)
+      const words = searchTerm.split(" ");
+      let cityName = words[words.length - 1]; // Letztes Wort ist meist die Stadt
+      
+      // Ersten Buchstaben groß schreiben
+      cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
+      
+      console.log("✅ Vollständiger Suchbegriff:", searchTerm);
+      console.log("✅ Extrahierte Stadt aus kw:", cityName);
+      
+      const newCityData = { name: cityName, plz: "00000" };
+      setCityData(newCityData);
+      
+      sessionStorage.setItem('cityName', cityName);
+      sessionStorage.setItem('cityData', JSON.stringify(newCityData));
+      window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
+      return;
+    }
+    
+    // Priorität 3: Netlify Function mit lcid/loc_physical_ms
     if (!locId) {
-      console.log("Keine loc ID oder city Parameter gefunden");
+      console.log("Keine Parameter gefunden (city, kw, oder loc ID)");
       return;
     }
     
@@ -119,7 +145,7 @@ const Index = () => {
     
     // Don't block rendering - run after paint
     setTimeout(testNetlifyFunction, 100);
-  }, [cityParam, locId]);
+  }, [cityParam, kwParam, locId]);
 
   
   const cityName = cityData?.name || "Ihrer Stadt";
