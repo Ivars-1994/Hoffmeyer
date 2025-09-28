@@ -139,6 +139,15 @@ const Index = () => {
         if (response.ok) {
           const data = await response.json();
           console.log("✅ Netlify Function Response:", data);
+          
+          // Prüfe ob bereits eine Stadt aus kw extrahiert wurde
+          const existingCityData = sessionStorage.getItem('cityData');
+          if (existingCityData) {
+            const parsedCityData = JSON.parse(existingCityData);
+            console.log("⚠️ Stadt bereits aus kw erkannt:", parsedCityData.name, "-> überspringe Netlify Function");
+            return;
+          }
+          
           const newCityData = { name: data.stadt, plz: data.plz };
           setCityData(newCityData);
           
