@@ -94,7 +94,7 @@ const Index = () => {
       
       // Prüfe ob das letzte Wort eine echte Stadt sein könnte
       const isValidCity = cityName.length >= 3 && 
-                         !/^(entfernen|bekämpfen|hilfe|service|kosten|preise|notdienst|24h|sofort)$/i.test(cityName) &&
+                         !/^(entfernen|bekämpfen|hilfe|service|kosten|preise|notdienst|24h|sofort|schädlingsbekämpfung|kammerjäger|wespen|ratten|bettwanzen|mäuse|ungeziefer|schädling|desinfektion)$/i.test(cityName) &&
                          /^[a-zA-ZäöüÄÖÜß]+$/.test(cityName);
       
       if (isValidCity) {
