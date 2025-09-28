@@ -87,19 +87,29 @@ const Index = () => {
       const words = searchTerm.split(" ");
       let cityName = words[words.length - 1]; // Letztes Wort ist meist die Stadt
       
-      // Ersten Buchstaben groß schreiben
-      cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
+      // Prüfe ob das letzte Wort eine echte Stadt sein könnte
+      const isValidCity = cityName.length >= 3 && 
+                         !/^(entfernen|bekämpfen|hilfe|service|kosten|preise|notdienst|24h|sofort)$/i.test(cityName) &&
+                         /^[a-zA-ZäöüÄÖÜß]+$/.test(cityName);
       
-      console.log("✅ Vollständiger Suchbegriff:", searchTerm);
-      console.log("✅ Extrahierte Stadt aus kw:", cityName);
-      
-      const newCityData = { name: cityName, plz: "00000" };
-      setCityData(newCityData);
-      
-      sessionStorage.setItem('cityName', cityName);
-      sessionStorage.setItem('cityData', JSON.stringify(newCityData));
-      window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
-      return;
+      if (isValidCity) {
+        // Ersten Buchstaben groß schreiben
+        cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
+        
+        console.log("✅ Vollständiger Suchbegriff:", searchTerm);
+        console.log("✅ Gültige Stadt aus kw extrahiert:", cityName);
+        
+        const newCityData = { name: cityName, plz: "00000" };
+        setCityData(newCityData);
+        
+        sessionStorage.setItem('cityName', cityName);
+        sessionStorage.setItem('cityData', JSON.stringify(newCityData));
+        window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
+        return;
+      } else {
+        console.log("⚠️ Letztes Wort aus kw ist keine gültige Stadt:", cityName, "-> verwende lcid");
+        // Weiter zu lcid Erkennung
+      }
     }
     
     // Priorität 3: Netlify Function mit lcid/loc_physical_ms
