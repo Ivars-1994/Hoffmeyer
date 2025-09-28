@@ -172,7 +172,39 @@ const Index = () => {
   }, [cityParam, kwParam, locId]);
 
   
-  const cityName = cityData?.name || "Ihrer Stadt";
+  // Einheitliche Stadt-Prioritäts-Logik für alle Komponenten
+  const getDisplayCityName = () => {
+    // Priorität 1: kw-Parameter (wird in 'cityData' gespeichert)
+    const storedFromKw = sessionStorage.getItem('cityData');
+    if (storedFromKw) {
+      try {
+        const data = JSON.parse(storedFromKw);
+        return data.name;
+      } catch (e) {
+        console.error("Error parsing cityData from sessionStorage:", e);
+      }
+    }
+    
+    // Priorität 2: Current state (falls kw nicht verfügbar)
+    if (cityData?.name) {
+      return cityData.name;
+    }
+    
+    // Priorität 3: lcid-Parameter (wird in 'detectedCityData' gespeichert)
+    const storedFromLcid = sessionStorage.getItem('detectedCityData');
+    if (storedFromLcid) {
+      try {
+        const data = JSON.parse(storedFromLcid);
+        return data.name;
+      } catch (e) {
+        console.error("Error parsing detectedCityData from sessionStorage:", e);
+      }
+    }
+    
+    return "Ihrer Stadt";
+  };
+  
+  const cityName = getDisplayCityName();
 
   console.log("=== FINALE STADT DATEN ===");
   console.log("City Name:", cityName);
