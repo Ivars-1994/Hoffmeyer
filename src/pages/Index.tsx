@@ -299,12 +299,14 @@ const Index = () => {
           <FeaturedImage cityName={cityName} defaultCity="Ihrer Stadt" />
           
           {/* Below-the-fold content is lazy loaded */}
-          <Suspense fallback={<div className="h-20 bg-muted/20 animate-pulse" />}>
+          <Suspense fallback={<div className="h-20 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
             <LazyAboutUs />
           </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           
-          <Services cityName={cityName} />
+          <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
+            <Services cityName={cityName} />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
           
           <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>

@@ -39,13 +39,13 @@ const AboutUs = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {features.map((feature, index) => (
-            <Card key={index} className="border-accent/10 hover:shadow-md transition-shadow duration-300">
+            <Card key={index} className="border-accent/10 hover:shadow-md transition-shadow duration-300 bg-card">
               <CardContent className="pt-5 px-4">
                 <div className="flex flex-col items-center text-center">
                   <div className="p-2 bg-accent/10 rounded-full mb-3">
                     <feature.icon className="w-5 h-5 text-accent" />
                   </div>
-                  <h3 className="font-semibold mb-1 text-sm">{feature.title}</h3>
+                  <h3 className="font-semibold mb-1 text-sm text-foreground">{feature.title}</h3>
                   <p className="text-muted-foreground text-xs">{feature.description}</p>
                 </div>
               </CardContent>
