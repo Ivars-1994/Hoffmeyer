@@ -304,9 +304,8 @@ const Index = () => {
           </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           
-          <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
-            <Services cityName={cityName} />
-          </Suspense>
+          {/* Services is NOT lazy - needs to be in DOM for SEO */}
+          <Services cityName={cityName} />
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
           
           <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>

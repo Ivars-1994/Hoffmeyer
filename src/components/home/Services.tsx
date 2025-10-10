@@ -339,7 +339,7 @@ const Services = ({ cityName }: { cityName?: string }) => {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
 
   return (
-    <AnimatedSection id="services" className="py-16 bg-gradient-to-b from-background to-muted/20">
+    <AnimatedSection id="services" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
@@ -356,7 +356,7 @@ const Services = ({ cityName }: { cityName?: string }) => {
             <section 
               key={service.slug} 
               id={service.slug}
-              className="scroll-mt-24 bg-card rounded-2xl p-6 md:p-8 shadow-lg border border-border"
+              className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200"
             >
               <div className="grid md:grid-cols-2 gap-8 items-start">
                 {/* Left: Content */}
@@ -373,13 +373,13 @@ const Services = ({ cityName }: { cityName?: string }) => {
                     </div>
                   </div>
 
-                  <p className="text-muted-foreground mb-6 text-lg">
+                  <p className="text-gray-600 mb-6 text-lg">
                     {service.description}
                   </p>
 
                   {/* Detailed Content */}
                   <div 
-                    className="prose prose-sm max-w-none mb-6"
+                    className="prose prose-sm max-w-none mb-6 text-gray-700"
                     dangerouslySetInnerHTML={{ __html: service.detailedContent.content }}
                   />
 
@@ -457,11 +457,11 @@ const Services = ({ cityName }: { cityName?: string }) => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 text-center bg-primary/5 rounded-2xl p-8">
+        <div className="mt-16 text-center bg-blue-50 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-4 text-primary">
             Noch Fragen? Wir beraten Sie gerne!
           </h3>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-gray-600 mb-6">
             Kostenlose Erstberatung - Rufen Sie uns an oder schreiben Sie uns
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
