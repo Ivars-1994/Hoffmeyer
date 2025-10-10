@@ -4,8 +4,10 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/home/Hero';
 import ServicesSimple from '../components/home/ServicesSimple';
+import GeneralFAQ from '../components/home/GeneralFAQ';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
+import MobileStickyCTA from '../components/ui/MobileStickyCTA';
 import { Helmet } from 'react-helmet-async';
 import SectionCTA from '../components/ui/SectionCTA';
 import MovingLogoBanner from '../components/home/MovingLogoBanner';
@@ -326,6 +328,11 @@ const Index = () => {
           <Suspense fallback={<div className="h-40 bg-muted/20 animate-pulse" />}>
             <LazyContact />
           </Suspense>
+          
+          {/* FAQ Section with SEO-optimized Schema.org markup */}
+          <GeneralFAQ cityName={cityName} />
+          <SectionCTA phoneNumber={PHONE_NUMBER} text="Noch Fragen? Jetzt kostenlos anrufen!" />
+          
           <SeoKeywords />
         </main>
         
@@ -333,6 +340,7 @@ const Index = () => {
         
         <PhoneButton phoneNumber={PHONE_NUMBER} variant="fixed" />
         <WhatsAppButton phoneNumber={PHONE_NUMBER} variant="fixed" />
+        <MobileStickyCTA />
       </div>
     </>
   );
