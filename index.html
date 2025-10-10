@@ -152,5 +152,66 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
+    <!-- Google Ads Conversion: Verweildauer 30 Sekunden -->
+    <script>
+    setTimeout(function() {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17399576460/_PkeCNqP6akbElzv4ehA',
+        'event_category': 'Engagement',
+        'event_label': 'Verweildauer_30Sek'
+      });
+    }, 30000);
+    </script>
+
+    <!-- Google Ads Conversion: Scrolltiefe 50% -->
+    <script>
+    window.addEventListener('scroll', function() {
+      var scrollDepth = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+      if(scrollDepth >= 0.5 && !window.scrollSent) {
+        window.scrollSent = true;
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17399576460/1BWZCO-K66kbElzv4ehA',
+          'event_category': 'Engagement',
+          'event_label': 'Scrolltiefe_50'
+        });
+      }
+    });
+    </script>
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Kammerjäger Hoffmeyer",
+      "telephone": "+49 1521 2124199",
+      "areaServed": "DE",
+      "url": "https://kammerjaeger-hoffmeyer.de",
+      "serviceType": ["Wespennest entfernen", "Bettwanzen bekämpfen", "Marder vertreiben", "Ratten bekämpfen", "Mäuse bekämpfen", "Silberfische entfernen", "Kakerlaken vernichten", "Flöhe eliminieren"],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Schädlingsbekämpfung",
+        "itemListElement": [
+          {"@type": "Offer", "name": "Wespennest entfernen"},
+          {"@type": "Offer", "name": "Bettwanzen bekämpfen"},
+          {"@type": "Offer", "name": "Ratten bekämpfen"},
+          {"@type": "Offer", "name": "Marder vertreiben"},
+          {"@type": "Offer", "name": "Mäuse bekämpfen"},
+          {"@type": "Offer", "name": "Silberfische entfernen"},
+          {"@type": "Offer", "name": "Kakerlaken vernichten"},
+          {"@type": "Offer", "name": "Flöhe eliminieren"}
+        ]
+      }
+    }
+    </script>
+    
   </body>
 </html>
