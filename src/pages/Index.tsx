@@ -208,6 +208,71 @@ const Index = () => {
 
   console.log("=== FINALE STADT DATEN ===");
   console.log("City Name:", cityName);
+
+  // Dynamic Meta Tags for Hash URLs (SEO)
+  useEffect(() => {
+    const SERVICE_TITLES: Record<string, { title: string; description: string }> = {
+      wespen: {
+        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Hoffmeyer",
+        description: "Professionelle Wespenbekämpfung ✓ Schnelle Entfernung von Wespennestern ✓ IHK-zertifiziert ✓ Kostenlose Anfahrt ✓ 30-60 Min vor Ort"
+      },
+      bettwanzen: {
+        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Hoffmeyer",
+        description: "Effektive Bettwanzenbekämpfung ✓ Wärmebehandlung & Insektizide ✓ Diskret & gründlich ✓ Nachkontrolle inklusive ✓ 24/7 Notdienst"
+      },
+      ratten: {
+        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Hoffmeyer",
+        description: "Professionelle Rattenbekämpfung ✓ Gesicherte Köderstationen ✓ Hygienische Entsorgung ✓ Präventionsberatung ✓ Kostenlose Anfahrt"
+      },
+      marder: {
+        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Hoffmeyer",
+        description: "Tierschonende Marderabwehr ✓ Gebäudeabdichtung ✓ Geruchsneutralisation ✓ Langfristiger Schutz ✓ 24/7 verfügbar"
+      },
+      maeuse: {
+        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Hoffmeyer",
+        description: "Effektive Mäusebekämpfung ✓ Befallsanalyse ✓ Köderstationen & Fallen ✓ Abdichtung ✓ Kostenlose Erstberatung"
+      },
+      silberfische: {
+        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Hoffmeyer",
+        description: "Nachhaltige Silberfischbekämpfung ✓ Ursachenanalyse ✓ Feuchtigkeitsberatung ✓ Gründliche Behandlung ✓ Langfristige Lösung"
+      },
+      kakerlaken: {
+        title: "Kakerlaken vernichten | Professionell | Kammerjäger Hoffmeyer",
+        description: "Schnelle Schabenbekämpfung ✓ Gel-Köder & Sprühbehandlung ✓ Hygiene-Beratung ✓ Mehrfachbehandlung ✓ Diskret & zuverlässig"
+      },
+      floehe: {
+        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Hoffmeyer",
+        description: "Gründliche Flohbekämpfung ✓ Umgebungsbehandlung ✓ Wachstumsregulatoren ✓ Haustierfreundlich ✓ Nachbehandlung inklusive"
+      }
+    };
+
+    const updateMetaTags = () => {
+      const hash = window.location.hash.replace("#", "");
+      
+      if (hash && SERVICE_TITLES[hash]) {
+        document.title = SERVICE_TITLES[hash].title;
+        
+        // Update meta description
+        let metaDescription = document.querySelector('meta[name="description"]');
+        if (!metaDescription) {
+          metaDescription = document.createElement('meta');
+          metaDescription.setAttribute('name', 'description');
+          document.head.appendChild(metaDescription);
+        }
+        metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
+        
+        console.log(`📄 Meta Tags updated for #${hash}`);
+      } else {
+        // Reset to default
+        document.title = `Kammerjäger Hoffmeyer | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
+      }
+    };
+
+    updateMetaTags();
+    window.addEventListener("hashchange", updateMetaTags);
+    
+    return () => window.removeEventListener("hashchange", updateMetaTags);
+  }, [cityName]);
   console.log("City Data:", cityData);
   console.log("Window location:", window.location.href);
   console.log("URL Params:", urlParams.toString());
