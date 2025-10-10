@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, MessageCircle } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const PHONE_NUMBER = "+49 1521 2124199";
@@ -20,42 +20,38 @@ const MobileStickyCTA = () => {
     }
   };
 
-  const formatPhoneForDisplay = (phone: string) => {
-    return phone.replace('+49', '0').replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
-  };
-
   const formatPhoneForHref = (phone: string) => {
     return phone.replace(/\s/g, '');
   };
 
-  const whatsappUrl = `https://wa.me/${PHONE_NUMBER.replace(/\+/g, '')}?text=${encodeURIComponent('Hallo, ich benötige Hilfe bei Schädlingsbekämpfung')}`;
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-primary shadow-lg md:hidden">
-      <div className="flex items-stretch h-16">
-        {/* Phone Button */}
-        <a
-          href={`tel:${formatPhoneForHref(PHONE_NUMBER)}`}
-          onClick={handlePhoneClick}
-          className="flex-1 flex items-center justify-center gap-2 bg-primary text-white hover:bg-primary/90 transition-colors border-r border-white"
-          aria-label="Jetzt anrufen"
-        >
-          <Phone className="h-5 w-5" />
-          <span className="font-semibold text-sm">Anrufen</span>
-        </a>
+    <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+      <a
+        href={`tel:${formatPhoneForHref(PHONE_NUMBER)}`}
+        onClick={handlePhoneClick}
+        className="flex items-center gap-4 bg-gradient-to-r from-orange-500 to-orange-600 text-black px-6 py-4 rounded-full shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105"
+        aria-label="24h Hotline - Jetzt anrufen"
+      >
+        {/* Profile Image */}
+        <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-lg">
+          <img 
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=faces"
+            alt="Kundenservice Mitarbeiterin"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        {/* WhatsApp Button */}
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white hover:bg-[#1fb855] transition-colors"
-          aria-label="WhatsApp Nachricht senden"
-        >
-          <MessageCircle className="h-5 w-5" />
-          <span className="font-semibold text-sm">WhatsApp</span>
-        </a>
-      </div>
+        {/* Phone Icon */}
+        <div className="flex-shrink-0">
+          <Phone className="h-10 w-10 text-black" strokeWidth={2.5} />
+        </div>
+
+        {/* Text */}
+        <div className="flex-1 text-left">
+          <div className="text-xs font-semibold text-black/90">- 24h Hotline -</div>
+          <div className="text-xl font-bold text-black leading-tight">Jetzt anrufen</div>
+        </div>
+      </a>
     </div>
   );
 };

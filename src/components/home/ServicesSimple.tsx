@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import PhoneButton from '@/components/ui/PhoneButton';
-import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 const PHONE_NUMBER = "+49 1521 2124199";
 
@@ -93,22 +92,13 @@ const ServicesSimple = ({ cityName }: { cityName?: string }) => {
                   <p className="text-gray-600 text-sm mb-4">
                     {service.description}
                   </p>
-                  <div className="flex flex-col gap-2">
-                    <PhoneButton 
-                      phoneNumber={PHONE_NUMBER}
-                      variant="default"
-                      size="sm"
-                      linkText="Anrufen"
-                      className="w-full"
-                    />
-                    <WhatsAppButton
-                      phoneNumber={PHONE_NUMBER}
-                      message={`Hallo, ich habe Interesse an: ${service.title}`}
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                    />
-                  </div>
+                  <PhoneButton 
+                    phoneNumber={PHONE_NUMBER}
+                    variant="default"
+                    size="lg"
+                    linkText="Jetzt anrufen"
+                    className="w-full text-base font-semibold py-3"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -123,18 +113,13 @@ const ServicesSimple = ({ cityName }: { cityName?: string }) => {
           <p className="text-gray-600 mb-6">
             Kostenlose Erstberatung - Rufen Sie uns an oder schreiben Sie uns
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex justify-center">
             <PhoneButton 
               phoneNumber={PHONE_NUMBER}
               variant="default"
               size="lg"
-              linkText="Kostenlos anrufen"
-            />
-            <WhatsAppButton
-              phoneNumber={PHONE_NUMBER}
-              message="Hallo, ich hätte gerne eine kostenlose Beratung"
-              variant="outline"
-              size="lg"
+              linkText="Jetzt kostenlos anrufen"
+              className="text-lg font-bold px-8 py-4"
             />
           </div>
         </div>
