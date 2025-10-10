@@ -3,7 +3,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/home/Hero';
-import Services from '../components/home/Services';
+import ServicesSimple from '../components/home/ServicesSimple';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
 import { Helmet } from 'react-helmet-async';
@@ -304,8 +304,8 @@ const Index = () => {
           </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           
-          {/* Services is NOT lazy - needs to be in DOM for SEO */}
-          <Services cityName={cityName} />
+          {/* Services - Simple version that works */}
+          <ServicesSimple cityName={cityName} />
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
           
           <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
