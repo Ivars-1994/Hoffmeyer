@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Phone, MessageCircle, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import PhoneButton from '@/components/ui/PhoneButton';
-import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import ServiceFAQ from './ServiceFAQ';
 
 const PHONE_NUMBER = "+49 1521 2124199";
@@ -384,18 +383,13 @@ const Services = ({ cityName }: { cityName?: string }) => {
                   />
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-wrap gap-3 mb-6">
+                  <div className="flex flex-col gap-4 mb-6">
                     <PhoneButton 
                       phoneNumber={PHONE_NUMBER}
                       variant="default"
                       size="lg"
                       linkText="Jetzt anrufen"
-                    />
-                    <WhatsAppButton
-                      phoneNumber={PHONE_NUMBER}
-                      message={`Hallo, ich habe Interesse an: ${service.title}`}
-                      variant="outline"
-                      size="lg"
+                      className="text-xl py-6 font-bold"
                     />
                     <Dialog>
                       <DialogTrigger asChild>
@@ -427,10 +421,7 @@ const Services = ({ cityName }: { cityName?: string }) => {
                               phoneNumber={PHONE_NUMBER}
                               variant="default"
                               size="lg"
-                            />
-                            <WhatsAppButton
-                              phoneNumber={PHONE_NUMBER}
-                              message={`Hallo, ich benötige Hilfe bei: ${service.title}`}
+                              className="text-xl py-6 font-bold"
                             />
                           </div>
                         </div>
@@ -462,20 +453,15 @@ const Services = ({ cityName }: { cityName?: string }) => {
             Noch Fragen? Wir beraten Sie gerne!
           </h3>
           <p className="text-gray-600 mb-6">
-            Kostenlose Erstberatung - Rufen Sie uns an oder schreiben Sie uns
+            Kostenlose Erstberatung - Rufen Sie uns jetzt an
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex justify-center">
             <PhoneButton 
               phoneNumber={PHONE_NUMBER}
               variant="default"
               size="lg"
               linkText="Kostenlos anrufen"
-            />
-            <WhatsAppButton
-              phoneNumber={PHONE_NUMBER}
-              message="Hallo, ich hätte gerne eine kostenlose Beratung"
-              variant="outline"
-              size="lg"
+              className="text-xl py-6 font-bold min-w-[280px]"
             />
           </div>
         </div>
