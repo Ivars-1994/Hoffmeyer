@@ -3,7 +3,6 @@ import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
-import AnimatedSection from '@/components/ui/AnimatedSection';
 import PhoneButton from '@/components/ui/PhoneButton';
 import ServiceFAQ from './ServiceFAQ';
 
@@ -341,7 +340,7 @@ const Services = ({ cityName }: { cityName?: string }) => {
   console.log("🔧 SERVICES - Number of services:", services.length);
 
   return (
-    <AnimatedSection id="services" className="py-16 bg-background">
+    <section id="services" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
@@ -469,7 +468,7 @@ const Services = ({ cityName }: { cityName?: string }) => {
           </div>
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 };
 
