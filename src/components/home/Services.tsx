@@ -15,7 +15,7 @@ const services = [
     title: "Wespennest entfernen",
     subtitle: "24h Notdienst vor Ort",
     description: "Sichere Entfernung von Wespennestern durch zertifizierte Experten",
-    image: "/lovable-uploads/4ae74c53-cd9c-47d4-ba9e-e38058eef4e3.png",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Echte_wespe.jpg",
     alt: "Wespenbekämpfung - Professionelle Entfernung von Wespennestern",
     keywords: "Wespen, Wespennest, Wespenbekämpfung, Wespennest entfernen",
     detailedContent: {
