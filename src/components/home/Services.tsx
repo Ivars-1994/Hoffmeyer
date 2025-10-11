@@ -336,6 +336,9 @@ const services = [
 
 const Services = ({ cityName }: { cityName?: string }) => {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+  
+  console.log("🔧 SERVICES - Rendering, cityName:", cityName);
+  console.log("🔧 SERVICES - Number of services:", services.length);
 
   return (
     <AnimatedSection id="services" className="py-16 bg-background">
