@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -336,8 +336,24 @@ const services = [
 const Services = ({ cityName }: { cityName?: string }) => {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
   
-  console.log("🔧 SERVICES - Rendering, cityName:", cityName);
-  console.log("🔧 SERVICES - Number of services:", services.length);
+  useEffect(() => {
+    // Scroll to hash on mount and when hash changes
+    const scrollToHash = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      }
+    };
+
+    scrollToHash();
+    window.addEventListener('hashchange', scrollToHash);
+    return () => window.removeEventListener('hashchange', scrollToHash);
+  }, []);
 
   return (
     <section id="services" className="py-16 bg-background">
