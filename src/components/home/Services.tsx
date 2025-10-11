@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 import PhoneButton from '@/components/ui/PhoneButton';
-import ServiceFAQ from './ServiceFAQ';
+import { CheckCircle2, Clock, Euro, Shield } from 'lucide-react';
 
 const PHONE_NUMBER = "+49 1521 2124199";
 
@@ -459,8 +459,32 @@ const Services = ({ cityName }: { cityName?: string }) => {
                 </div>
               </div>
 
-              {/* FAQ Section */}
-              <ServiceFAQ faqs={service.faqs} serviceSlug={service.slug} />
+              {/* USP Section */}
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="flex items-center gap-3 p-4 bg-green-50 rounded-lg">
+                    <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900">Kostenlose Anfahrt</h4>
+                      <p className="text-xs text-gray-600">Keine versteckten Kosten</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg">
+                    <Clock className="w-8 h-8 text-blue-600 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900">30-60 Min vor Ort</h4>
+                      <p className="text-xs text-gray-600">Bei Notfällen</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-yellow-50 rounded-lg">
+                    <Shield className="w-8 h-8 text-yellow-600 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900">100% Geld-zurück</h4>
+                      <p className="text-xs text-gray-600">Garantie auf alle Leistungen</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </section>
           ))}
         </div>
