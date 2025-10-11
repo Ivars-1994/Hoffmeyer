@@ -15,7 +15,7 @@ const services = [
     title: "Wespennest entfernen",
     subtitle: "24h Notdienst vor Ort",
     description: "Sichere Entfernung von Wespennestern durch zertifizierte Experten",
-    image: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Echte_wespe.jpg",
+    image: "/lovable-uploads/wespe.jpg",
     alt: "Wespenbekämpfung - Professionelle Entfernung von Wespennestern",
     keywords: "Wespen, Wespennest, Wespenbekämpfung, Wespennest entfernen",
     detailedContent: {
@@ -58,7 +58,7 @@ const services = [
     title: "Bettwanzen bekämpfen",
     subtitle: "Soforthilfe vom Profi",
     description: "Effektive Bekämpfung von Bettwanzen mit modernsten Methoden",
-    image: "/lovable-uploads/b662e3d0-b8bb-4a2d-81e4-c778522162ee.png",
+    image: "/lovable-uploads/bettwanzen.jpg",
     alt: "Bettwanzenbekämpfung - Professionelle Behandlung gegen Bettwanzen",
     keywords: "Bettwanzen, Bettwanzenbekämpfung, Bettwanzen bekämpfen, Bettwanzen entfernen",
     detailedContent: {
@@ -106,7 +106,7 @@ const services = [
     title: "Ratten bekämpfen",
     subtitle: "Schnell & diskret",
     description: "Professionelle Rattenbekämpfung für Haus, Garten und Gewerbe",
-    image: "/lovable-uploads/fd34969b-82ab-4649-be06-3894900a053e.png",
+    image: "/lovable-uploads/ratte.jpg",
     alt: "Rattenbekämpfung - Professionelle Bekämpfung von Ratten",
     keywords: "Ratten, Rattenbekämpfung, Ratten bekämpfen, Rattengift, Schädlinge",
     detailedContent: {
@@ -150,7 +150,7 @@ const services = [
     title: "Marder vertreiben",
     subtitle: "Dachboden Schutz 24/7",
     description: "Schonende Marderabwehr und Gebäudesicherung",
-    image: "/lovable-uploads/b413039e-1a85-4fcd-b872-92ec0f7a9ed6.png",
+    image: "/lovable-uploads/marder.webp",
     alt: "Marderabwehr - Professionelle Vertreibung und Schutz vor Mardern",
     keywords: "Marder, Marderabwehr, Marder vertreiben, Marder Dachboden, Steinmarder",
     detailedContent: {
@@ -194,7 +194,7 @@ const services = [
     title: "Mäuse bekämpfen",
     subtitle: "Hygienisch & sicher",
     description: "Effektive Mäusebekämpfung für Wohn- und Geschäftsräume",
-    image: "/lovable-uploads/4ae74c53-cd9c-47d4-ba9e-e38058eef4e3.png",
+    image: "/lovable-uploads/maus.webp",
     alt: "Mäusebekämpfung - Professionelle Bekämpfung von Mäusen",
     keywords: "Mäuse, Mäusebekämpfung, Mäuse bekämpfen, Hausmaus",
     detailedContent: {
@@ -230,7 +230,7 @@ const services = [
     title: "Silberfische entfernen",
     subtitle: "Dauerhaft & gründlich",
     description: "Nachhaltige Bekämpfung von Silberfischen in Bad und Küche",
-    image: "/lovable-uploads/b662e3d0-b8bb-4a2d-81e4-c778522162ee.png",
+    image: "/lovable-uploads/silberfische.jpg",
     alt: "Silberfischchen-Bekämpfung",
     keywords: "Silberfische, Silberfischchen, Ungeziefer Bad",
     detailedContent: {
@@ -265,7 +265,7 @@ const services = [
     title: "Kakerlaken vernichten",
     subtitle: "Professionell & zuverlässig",
     description: "Schnelle Hilfe bei Schabenbefall in Küche und Gewerbe",
-    image: "/lovable-uploads/fd34969b-82ab-4649-be06-3894900a053e.png",
+    image: "/lovable-uploads/kakerlaken.jpg",
     alt: "Kakerlakenbekämpfung - Schaben professionell bekämpfen",
     keywords: "Kakerlaken, Schaben, Schabenbekämpfung",
     detailedContent: {
@@ -301,7 +301,7 @@ const services = [
     title: "Flöhe eliminieren",
     subtitle: "Für Mensch & Tier sicher",
     description: "Gründliche Flohbekämpfung in Wohnung und Haustierumgebung",
-    image: "/lovable-uploads/b413039e-1a85-4fcd-b872-92ec0f7a9ed6.png",
+    image: "/lovable-uploads/floh.jpeg",
     alt: "Flohbekämpfung - Professionelle Beseitigung von Flöhen",
     keywords: "Flöhe, Flohbekämpfung, Katzenflöhe, Hundeflöhe",
     detailedContent: {
