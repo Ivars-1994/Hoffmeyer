@@ -38,7 +38,7 @@ const Navbar = () => {
   }];
   return <>
       {/* Emergency banner with availability badge - improved for mobile */}
-      <div className="bg-red-600 text-white py-2 fixed top-0 left-0 right-0 w-full z-50">
+      <div className="bg-red-600 text-white py-2 fixed top-0 left-0 right-0 w-full z-50 h-[39px]">
         <div className="container mx-auto px-2">
           <div className="flex items-center justify-between">
             <span className="font-medium text-sm sm:text-base mobile-text-boost">24/7 Notfalldienst unter {PHONE_NUMBER}</span>
