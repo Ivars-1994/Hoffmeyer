@@ -344,7 +344,10 @@ const Services = ({ cityName }: { cityName?: string }) => {
         setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Calculate offset: emergency banner (39px) + navbar height (~56px) + spacing (20px)
+            const yOffset = -115;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
           }
         }, 100);
       }
@@ -373,7 +376,7 @@ const Services = ({ cityName }: { cityName?: string }) => {
             <section 
               key={service.slug} 
               id={service.slug}
-              className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200"
+              className="scroll-mt-32 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200"
             >
               <div className="grid md:grid-cols-2 gap-8 items-start">
                 {/* Left: Content */}
