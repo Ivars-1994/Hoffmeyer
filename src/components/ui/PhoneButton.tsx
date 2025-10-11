@@ -67,7 +67,7 @@ const PhoneButton = ({
     ? "hover:shadow-accent/30 hover:shadow-xl transition-shadow duration-1000 animate-ultra-slow-pulse" 
     : "hover:shadow-sm transition-all duration-700 hover:-translate-y-0.5";
 
-  // If we're using the fixed variant button, we'll show only the icon
+  // If we're using the fixed variant button, hide it on mobile since we have MobileStickyCTA
   // Otherwise, show the standard button with text and icon
   if (variant === 'fixed') {
     return (
@@ -80,6 +80,7 @@ const PhoneButton = ({
           animationStyles,
           "call-link ring-offset-background transition-all",
           "after:absolute after:inset-0 after:rounded-full after:border-4 after:border-blue-500/30 after:opacity-0 hover:after:opacity-100 after:animate-ping-very-slow after:animation-delay-500",
+          "hidden md:flex", // Hide on mobile, show on desktop
           className
         )}
         aria-label={displayNumber}
