@@ -37,8 +37,9 @@ const Impressum = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Angaben gemäß § 5 TMG</h2>
                 <div className="space-y-2">
-                  <p>Kammerjäger Hoffmeyer{cityName && ` ${cityName}`}</p>
-                  <p>Hauptstraße 26–36</p>
+                  <p>Kammerjäger Hoffmeyer</p>
+                  <p>Hauptstraße 26–28</p>
+                  {cityName && <p>{cityName}</p>}
                   <p>Deutschland</p>
                 </div>
               </div>
