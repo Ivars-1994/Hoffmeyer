@@ -1,14 +1,23 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
+import { getCityFromParams } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
 
 const Impressum = () => {
+  const [cityName, setCityName] = useState<string>('');
+
+  useEffect(() => {
+    const cityData = getCityFromParams();
+    if (cityData?.name) {
+      setCityName(cityData.name);
+    }
+  }, []);
 
   return (
     <>
@@ -28,7 +37,7 @@ const Impressum = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Angaben gemäß § 5 TMG</h2>
                 <div className="space-y-2">
-                  <p>Kammerjäger Hoffmeyer</p>
+                  <p>Kammerjäger Hoffmeyer{cityName && ` ${cityName}`}</p>
                   <p>Hauptstraße 26–36</p>
                   <p>Deutschland</p>
                 </div>
