@@ -21,7 +21,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
   ratten: {
     slug: "ratten",
     title: "Rattenbekämpfung",
-    h1: "Ratten bekämpfen im Garten",
+    h1: "Ratten bekämpfen",
     metaTitle: "Rattenbekämpfung – Ratten im Garten bekämpfen",
     metaDescription: "Ratten bekämpfen im Garten & Haus. Professionelle Rattenbekämpfung. Ratten vertreiben & loswerden. ☎ +49 1521 2124199",
     keywords: ["ratten bekämpfen", "ratten im garten", "rattenbekämpfung", "ratten vertreiben", "ratten loswerden"],
@@ -30,7 +30,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
   marder: {
     slug: "marder",
     title: "Marderabwehr",
-    h1: "Marder im Dachboden vertreiben",
+    h1: "Marder bekämpfen",
     metaTitle: "Marderabwehr – Marder im Dachboden vertreiben",
     metaDescription: "Marder bekämpfen & vertreiben. Professionelle Marderabwehr für Dachboden & Auto. Marder loswerden. ☎ +49 1521 2124199",
     keywords: ["marderabwehr", "marder bekämpfen", "marder im dachboden", "marder vertreiben", "marder loswerden"],
