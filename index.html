@@ -3,26 +3,35 @@
   <head>
     <!-- Critical tracking only - defer non-critical -->
     <script>
-      // Load tracking scripts after page load
-      window.addEventListener('load', function() {
-        // ClickCease
-        const clickcease = document.createElement('script');
-        clickcease.src = 'https://www.clickcease.com/monitor/stat.js';
-        clickcease.async = true;
-        document.head.appendChild(clickcease);
-        
-        // ClickGuard pixel
-        const clickguard1 = document.createElement('script');
-        clickguard1.src = 'https://www.clickguard.com/pixel?k=9048141';
-        clickguard1.async = true;
-        document.head.appendChild(clickguard1);
-        
-        // ClickGuard pulse
-        const clickguard2 = document.createElement('script');
-        clickguard2.src = 'https://pulse.clickguard.com/s/accTOL7eSoDrh/astAsXcywd8mm';
-        clickguard2.async = true;
-        document.head.appendChild(clickguard2);
-      });
+      (function () {
+        // Detect react-snap/Puppeteer prerendering
+        var isPrerender =
+          typeof window !== 'undefined' &&
+          (window.snapSaveState || (navigator.userAgent||'').indexOf('HeadlessChrome') !== -1);
+
+        if (isPrerender) return; // Skip all third-party scripts during prerender
+
+        // Load tracking scripts after page load
+        window.addEventListener('load', function() {
+          // ClickCease
+          const clickcease = document.createElement('script');
+          clickcease.src = 'https://www.clickcease.com/monitor/stat.js';
+          clickcease.async = true;
+          document.head.appendChild(clickcease);
+          
+          // ClickGuard pixel
+          const clickguard1 = document.createElement('script');
+          clickguard1.src = 'https://www.clickguard.com/pixel?k=9048141';
+          clickguard1.async = true;
+          document.head.appendChild(clickguard1);
+          
+          // ClickGuard pulse
+          const clickguard2 = document.createElement('script');
+          clickguard2.src = 'https://pulse.clickguard.com/s/accTOL7eSoDrh/astAsXcywd8mm';
+          clickguard2.async = true;
+          document.head.appendChild(clickguard2);
+        });
+      })();
     </script>
     <!-- End optimized tracking -->
     
@@ -81,31 +90,40 @@
 
     <!-- Fingerprint2 - Delayed load for better performance -->
     <script>
-      // Delay fingerprint loading even more to not block critical rendering
-      setTimeout(function() {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js';
-        script.async = true;
-        script.onload = function() {
-          FingerprintJS.load()
-            .then(fp => fp.get())
-            .then(result => {
-              const visitorId = result.visitorId;
-              if (typeof gtag !== 'undefined') {
-                gtag('config', 'AW-17399576460', {
-                  'custom_map': {'dimension1': 'fp_visitor_id'}
-                });
-                gtag('event', 'page_view', {
-                  'fp_visitor_id': visitorId
-                });
-              }
-            })
-            .catch(error => {
-              console.error("Error getting Fingerprint visitor ID:", error);
-            });
-        };
-        document.head.appendChild(script);
-      }, 3000); // Load after 3 seconds
+      (function () {
+        // Skip during prerender
+        var isPrerender =
+          typeof window !== 'undefined' &&
+          (window.snapSaveState || (navigator.userAgent||'').indexOf('HeadlessChrome') !== -1);
+        
+        if (isPrerender) return;
+
+        // Delay fingerprint loading even more to not block critical rendering
+        setTimeout(function() {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js';
+          script.async = true;
+          script.onload = function() {
+            FingerprintJS.load()
+              .then(fp => fp.get())
+              .then(result => {
+                const visitorId = result.visitorId;
+                if (typeof gtag !== 'undefined') {
+                  gtag('config', 'AW-17399576460', {
+                    'custom_map': {'dimension1': 'fp_visitor_id'}
+                  });
+                  gtag('event', 'page_view', {
+                    'fp_visitor_id': visitorId
+                  });
+                }
+              })
+              .catch(error => {
+                console.error("Error getting Fingerprint visitor ID:", error);
+              });
+          };
+          document.head.appendChild(script);
+        }, 3000); // Load after 3 seconds
+      })();
     </script>
 
     <!-- Google Ads Conversion: Verweildauer 30 Sekunden -->
