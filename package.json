@@ -13,16 +13,7 @@
   },
   "reactSnap": {
     "source": "dist",
-    "inlineCss": true,
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ],
-    "minifyHtml": {
-      "collapseWhitespace": true,
-      "removeComments": true
-    },
-    "waitFor": 2000,
+    "crawl": false,
     "include": [
       "/",
       "/svc/wespen",
@@ -33,8 +24,26 @@
       "/svc/ameisen",
       "/svc/silberfische",
       "/svc/floehe",
-      "/svc/maeuse"
-    ]
+      "/svc/maeuse",
+      "/impressum",
+      "/datenschutz",
+      "/agb"
+    ],
+    "exclude": [
+      "/404.html"
+    ],
+    "inlineCss": true,
+    "skipThirdPartyRequests": true,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "minifyHtml": {
+      "collapseWhitespace": true,
+      "removeComments": true
+    },
+    "waitFor": 2000,
+    "concurrency": 2
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
