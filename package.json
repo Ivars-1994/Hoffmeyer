@@ -20,7 +20,18 @@
       "removeComments": true 
     },
     "waitFor": 2000,
-    "include": ["/"]
+    "include": [
+      "/",
+      "/svc/wespen",
+      "/svc/ratten",
+      "/svc/marder",
+      "/svc/bettwanzen",
+      "/svc/kakerlaken",
+      "/svc/ameisen",
+      "/svc/silberfische",
+      "/svc/floehe",
+      "/svc/maeuse"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
