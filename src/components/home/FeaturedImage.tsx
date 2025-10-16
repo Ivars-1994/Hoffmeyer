@@ -1,5 +1,6 @@
 
 import React from 'react';
+import pestControlImage from '@/assets/pest-control-professional.jpg';
 
 interface FeaturedImageProps {
   cityName: string;
@@ -12,9 +13,10 @@ const FeaturedImage = ({ cityName, defaultCity }: FeaturedImageProps) => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto relative rounded-xl overflow-hidden shadow-xl">
           <img 
-            src="https://kammerjaeger-wolfgang.de/wp-content/uploads/2025/04/norbert_wolframm_cousin.jpg" 
+            src={pestControlImage}
             alt="Professioneller Kammerjäger im Einsatz" 
             className="w-full h-auto"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
           <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">

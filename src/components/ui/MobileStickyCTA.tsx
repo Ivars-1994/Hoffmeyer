@@ -25,7 +25,7 @@ const MobileStickyCTA = () => {
   };
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+    <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden">
       <a
         href={`tel:${formatPhoneForHref(PHONE_NUMBER)}`}
         onClick={handlePhoneClick}

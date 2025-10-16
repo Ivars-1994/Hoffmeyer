@@ -41,8 +41,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-[#1A1F2C] to-[#2A2F3C] text-white pt-16 pb-8">
-      <div className="container mx-auto">
+    <footer className="relative bg-gradient-to-br from-[#1A1F2C] to-[#2A2F3C] text-white pt-16 pb-24 md:pb-8 z-10">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Contact Information */}
           <div>
@@ -100,12 +100,12 @@ const Footer = () => {
           ))}
         </div>
         
-        <div className="border-t border-white/10 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm md:text-sm opacity-80 mb-4 md:mb-0 mobile-text-boost">
+        <div className="border-t border-white/10 mt-12 pt-8 pb-20 md:pb-0">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+            <p className="text-sm md:text-sm opacity-80 mobile-text-boost text-center md:text-left">
               © {currentYear} Kammerjäger Hoffmeyer. Alle Rechte vorbehalten.
             </p>
-            <div className="text-sm md:text-sm opacity-80 mobile-text-boost">
+            <div className="text-sm md:text-sm opacity-80 mobile-text-boost text-center md:text-left">
               <span>IHK zertifizierte Schädlingsbekämpfung</span>
             </div>
           </div>

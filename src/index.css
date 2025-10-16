@@ -248,8 +248,8 @@
   /* Mobile-friendly improvements */
   @media (max-width: 640px) {
     .mobile-text-boost {
-      font-size: 115%;
-      line-height: 1.4;
+      font-size: 105%;
+      line-height: 1.35;
     }
 
     .mobile-spacing-boost {
@@ -259,7 +259,7 @@
     .mobile-button-boost {
       padding-top: 0.75rem;
       padding-bottom: 0.75rem;
-      font-size: 1.05rem;
+      font-size: 1rem;
     }
   }
 }
