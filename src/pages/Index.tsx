@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
+import { useParams } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/home/Hero';
@@ -15,6 +16,7 @@ import CityWelcomeBanner from '../components/home/CityWelcomeBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
 import SeoKeywords from '../components/seo/SeoKeywords';
 import { CityData } from '../utils/cityDetection';
+import { getServiceConfig } from '../utils/serviceConfig';
 import { 
   LazyCertifications, 
   LazyReviews, 
@@ -34,11 +36,16 @@ declare global {
 const PHONE_NUMBER = "+4915212124199";
 
 const Index = () => {
+  const { service: serviceSlug } = useParams<{ service?: string }>();
+  
   // Extrahiere URL-Parameter für Stadt-Erkennung
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city");
   const kwParam = urlParams.get("kw");
   const locId = urlParams.get("lcid") || urlParams.get("loc") || urlParams.get("city_id") || urlParams.get("loc_physical_ms");
+  
+  // Get service config if on a service route
+  const serviceConfig = serviceSlug ? getServiceConfig(serviceSlug) : null;
   
   console.log("=== DIREKTER TEST ===");
   console.log("URL:", window.location.href);
@@ -279,8 +286,41 @@ const Index = () => {
   console.log("Window location:", window.location.href);
   console.log("URL Params:", urlParams.toString());
 
-  const pageTitle = `Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung in ${cityName}`;
-  const pageDescription = `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
+  // Dynamic title and description based on service route
+  const pageTitle = serviceConfig 
+    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Hoffmeyer`
+    : `Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung in ${cityName}`;
+  
+  const pageDescription = serviceConfig 
+    ? `${serviceConfig.metaDescription} Schnelle Hilfe in ${cityName}.`
+    : `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
+  
+  const canonicalUrl = serviceConfig 
+    ? `https://kammerjaeger-hoffmeyer.de/svc/${serviceConfig.slug}`
+    : 'https://kammerjaeger-hoffmeyer.de/';
+
+  // Service-specific Schema.org markup
+  const serviceSchema = serviceConfig ? {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": serviceConfig.schemaServiceType,
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Kammerjäger Hoffmeyer",
+      "telephone": PHONE_NUMBER,
+      "url": "https://kammerjaeger-hoffmeyer.de",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "DE",
+        "addressLocality": cityName !== 'Ihrer Stadt' ? cityName : undefined
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": cityName !== 'Ihrer Stadt' ? cityName : "Deutschland"
+    },
+    "description": serviceConfig.metaDescription
+  } : null;
 
   return (
     <>
@@ -288,6 +328,15 @@ const Index = () => {
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <link rel="canonical" href={canonicalUrl} />
+        {serviceConfig && (
+          <meta name="keywords" content={serviceConfig.keywords.join(', ')} />
+        )}
+        {serviceSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(serviceSchema)}
+          </script>
+        )}
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
@@ -295,7 +344,7 @@ const Index = () => {
         
         <main className="flex-grow pt-[83px] md:pt-28">
           {/* Critical above-the-fold content loads first */}
-          <Hero cityName={cityName} />
+          <Hero cityName={cityName} serviceConfig={serviceConfig} />
           <CityWelcomeBanner cityName={cityName} />
           <MovingLogoBanner />
           <FeaturedImage cityName={cityName} defaultCity="Ihrer Stadt" />

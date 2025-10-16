@@ -5,15 +5,25 @@ import WhatsAppButton from '../ui/WhatsAppButton';
 import Logo from '../ui/Logo';
 import MoneyBackBadge from '../ui/MoneyBackBadge';
 import EmergencyWaspBadge from '../ui/EmergencyWaspBadge';
+import { ServiceConfig } from '../../utils/serviceConfig';
 
 const PHONE_NUMBER = "+4915212124199";
 
 interface HeroContentProps {
   cityName: string;
+  serviceConfig?: ServiceConfig | null;
 }
 
-const HeroContent = ({ cityName }: HeroContentProps) => {
-  console.log("🎯 HERO CONTENT - Empfange Stadt:", cityName);
+const HeroContent = ({ cityName, serviceConfig }: HeroContentProps) => {
+  console.log("🎯 HERO CONTENT - Empfange Stadt:", cityName, "Service:", serviceConfig);
+  
+  const headline = serviceConfig 
+    ? `${serviceConfig.h1} in ${cityName}`
+    : `Ihr Experte für effektive Schädlingsbekämpfung aus ${cityName}`;
+  
+  const subheadline = serviceConfig
+    ? `Zertifizierte Profis mit über 20 Jahren Erfahrung. Wir bieten schnelle und diskrete ${serviceConfig.title} in ${cityName}.`
+    : `Zertifizierte Profis mit über 20 Jahren Erfahrung aus ${cityName}. Wir bieten schnelle und diskrete Lösungen für Ihre Schädlingsprobleme.`;
   
   return (
     <div className="w-full md:w-1/2 mb-6 sm:mb-8 md:mb-0 text-center md:text-left">
@@ -22,11 +32,13 @@ const HeroContent = ({ cityName }: HeroContentProps) => {
       </div>
       
       <div className="inline-block rounded-full bg-accent/10 px-3 py-1.5 text-sm sm:text-base font-medium text-accent mb-4 animate-fade-in relative z-10">
-        <span className="break-words mobile-text-boost">Professionelle Schädlingsbekämpfung</span>
+        <span className="break-words mobile-text-boost">
+          {serviceConfig ? serviceConfig.title : "Professionelle Schädlingsbekämpfung"}
+        </span>
       </div>
       
       <h1 className="headline text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 tracking-tight animate-fade-in mobile-spacing-boost" style={{ animationDelay: '100ms' }}>
-        Ihr Experte für effektive Schädlingsbekämpfung aus <span className="font-bold text-accent">{cityName}</span>
+        {headline}
       </h1>
       
       {/* Wespen-Notdienst Badge direkt unter dem Haupttitel */}
@@ -35,7 +47,7 @@ const HeroContent = ({ cityName }: HeroContentProps) => {
       </div>
       
       <p className="subheadline text-base sm:text-lg md:text-xl text-muted-foreground mb-5 sm:mb-6 max-w-xl mx-auto md:mx-0 animate-fade-in mobile-text-boost" style={{ animationDelay: '200ms' }}>
-        Zertifizierte Profis mit über 20 Jahren Erfahrung aus {cityName}. Wir bieten schnelle und diskrete Lösungen für Ihre Schädlingsprobleme.
+        {subheadline}
       </p>
       
       <div className="flex flex-col gap-3 justify-center md:justify-start animate-fade-in" style={{ animationDelay: '300ms' }}>

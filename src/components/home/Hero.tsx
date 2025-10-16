@@ -3,23 +3,27 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import HeroContent from './HeroContent';
 import HeroFeatures from './HeroFeatures';
+import { ServiceConfig } from '../../utils/serviceConfig';
 
 const PHONE_NUMBER = "+4915212124199";
 
 interface HeroProps {
   cityName: string;
+  serviceConfig?: ServiceConfig | null;
 }
 
-const Hero = ({ cityName }: HeroProps) => {
-  console.log("Hero: Render mit cityName:", cityName);
+const Hero = ({ cityName, serviceConfig }: HeroProps) => {
+  console.log("Hero: Render mit cityName:", cityName, "serviceConfig:", serviceConfig);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Kammerjäger Hoffmeyer",
-    "description": `Professionelle Schädlingsbekämpfung mit IHK-zertifizierten Experten in ${cityName}. 24/7 Notdienst verfügbar.`,
+    "description": serviceConfig 
+      ? `${serviceConfig.schemaServiceType} in ${cityName}. 24/7 Notdienst verfügbar.`
+      : `Professionelle Schädlingsbekämpfung mit IHK-zertifizierten Experten in ${cityName}. 24/7 Notdienst verfügbar.`,
     "telephone": PHONE_NUMBER,
-    "url": "https://kammerjaeger-adalbert.de",
+    "url": "https://kammerjaeger-hoffmeyer.de",
     "image": "/lovable-uploads/4ae74c53-cd9c-47d4-ba9e-e38058eef4e3.png",
     "address": {
       "@type": "PostalAddress",
@@ -53,7 +57,7 @@ const Hero = ({ cityName }: HeroProps) => {
       <section className="pb-12 sm:pb-16 md:pb-20 overflow-hidden relative">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="flex flex-col md:flex-row items-center">
-            <HeroContent cityName={cityName} />
+            <HeroContent cityName={cityName} serviceConfig={serviceConfig} />
             <div className="w-full md:w-1/2 pl-0 md:pl-6 lg:pl-10">
               <HeroFeatures />
             </div>
