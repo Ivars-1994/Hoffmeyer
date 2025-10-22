@@ -41,29 +41,29 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-[#1A1F2C] to-[#2A2F3C] text-white pt-16 pb-24 md:pb-8 z-10">
+    <footer className="relative bg-primary text-primary-foreground pt-16 pb-24 md:pb-8 z-10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Contact Information */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-[#9b87f5]">Kammerjäger Hoffmeyer</h3>
+            <h3 className="text-xl font-bold mb-6 text-accent">Kammerjäger Hoffmeyer</h3>
             <ul className="space-y-4 text-sm md:text-base">
               <li className="flex items-start">
-                <Phone className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-[#9b87f5]" />
+                <Phone className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-accent" />
                 <span><a href={`tel:${PHONE_NUMBER}`} className="call-link" aria-label="Anrufen">24/7 Notdienst: {PHONE_NUMBER}</a></span>
               </li>
               <li className="flex items-start">
-                <Mail className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-[#9b87f5]" />
+                <Mail className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-accent" />
                 <span><a href={`mailto:${EMAIL}`} aria-label="Email senden">{EMAIL}</a></span>
               </li>
               
               <li className="flex items-start">
-                <Clock className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-[#9b87f5]" />
+                <Clock className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-accent" />
                 <div>
                   <p>Mo-Fr: 7:00 - 20:00 Uhr</p>
                   <p>Sa: 7:00 - 20:00 Uhr</p>
                   <p>So: 24/7 Notdienst</p>
-                  <p className="text-[#9b87f5] font-medium mt-1">An Wochenenden & Feiertagen ohne Aufpreis für Sie da!</p>
+                  <p className="text-accent font-medium mt-1">An Wochenenden & Feiertagen ohne Aufpreis für Sie da!</p>
                 </div>
               </li>
             </ul>
@@ -72,14 +72,14 @@ const Footer = () => {
           {/* Footer Links */}
           {footerLinks.map((column, idx) => (
             <nav key={idx} aria-labelledby={`footer-nav-${idx}`}>
-              <h3 id={`footer-nav-${idx}`} className="text-lg font-semibold mb-6 text-[#9b87f5]">{column.title}</h3>
+              <h3 id={`footer-nav-${idx}`} className="text-lg font-semibold mb-6 text-accent">{column.title}</h3>
               <ul className="space-y-3 text-sm md:text-base">
                 {column.links.map((link, linkIdx) => (
                   <li key={linkIdx}>
                     {link.href.startsWith('#') ? (
                       <a 
                         href={link.href}
-                        className="inline-flex items-center transition-colors hover:text-[#9b87f5]"
+                        className="inline-flex items-center transition-colors hover:text-accent"
                       >
                         <ChevronRight className="h-3 w-3 mr-2" />
                         {link.name}
@@ -87,7 +87,7 @@ const Footer = () => {
                     ) : (
                       <Link 
                         to={link.href}
-                        className="inline-flex items-center transition-colors hover:text-[#9b87f5]"
+                        className="inline-flex items-center transition-colors hover:text-accent"
                       >
                         <ChevronRight className="h-3 w-3 mr-2" />
                         {link.name}
@@ -100,7 +100,7 @@ const Footer = () => {
           ))}
         </div>
         
-        <div className="border-t border-white/10 mt-12 pt-8 pb-20 md:pb-0">
+        <div className="border-t border-primary-foreground/10 mt-12 pt-8 pb-20 md:pb-0">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <p className="text-sm opacity-80 text-center md:text-left">
               © {currentYear} Kammerjäger Hoffmeyer. Alle Rechte vorbehalten.
