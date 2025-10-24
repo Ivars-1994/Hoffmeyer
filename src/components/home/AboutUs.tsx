@@ -2,7 +2,6 @@ import React from 'react';
 import { Bug, Clock, Award, Users2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import AnimatedSection from '../ui/AnimatedSection';
-import teamMemberImage from '@/assets/team-member.jpg';
 
 const AboutUs = () => {
   const features = [
@@ -36,27 +35,6 @@ const AboutUs = () => {
           <p className="text-base text-muted-foreground max-w-2xl mx-auto">
             Seit über 20 Jahren sind wir Ihr vertrauenswürdiger Partner für professionelle Schädlingsbekämpfung. Unsere Expertise und unser Engagement für Qualität machen uns zu Ihrer ersten Wahl in <span data-city>Ihrer Stadt</span>.
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 items-center">
-          <div className="relative rounded-lg overflow-hidden shadow-lg">
-            <img 
-              src={teamMemberImage} 
-              alt="Professioneller Schädlingsbekämpfer" 
-              className="w-full h-auto object-cover"
-              loading="lazy"
-            />
-          </div>
-          
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-primary">Ihr Partner für Schädlingsbekämpfung</h3>
-            <p className="text-muted-foreground">
-              Mit über 20 Jahren Erfahrung und modernster Technik bieten wir Ihnen professionelle Lösungen für alle Schädlingsprobleme. Unser Team aus IHK-zertifizierten Experten steht Ihnen mit Rat und Tat zur Seite.
-            </p>
-            <p className="text-muted-foreground">
-              Wir legen größten Wert auf umweltfreundliche Methoden und nachhaltige Lösungen, die Ihre Gesundheit und die Umwelt schützen.
-            </p>
-          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
