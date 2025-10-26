@@ -29,11 +29,11 @@ const MobileStickyCTA = () => {
       <a
         href={`tel:${formatPhoneForHref(PHONE_NUMBER)}`}
         onClick={handlePhoneClick}
-        className="flex items-center gap-4 bg-accent text-white px-6 py-4 rounded-full shadow-2xl hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
+        className="flex items-center gap-4 bg-accent text-accent-foreground px-6 py-4 rounded-2xl shadow-2xl hover:shadow-accent/40 transition-all duration-300 hover:scale-[1.02]"
         aria-label="Jetzt verfügbar - Sofort anrufen"
       >
         {/* Profile Image */}
-        <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-lg">
+        <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
           <img 
             src="/lovable-uploads/norbert-wolframm.jpg"
             alt="Kammerjäger Hoffmeyer Experte"
@@ -48,7 +48,7 @@ const MobileStickyCTA = () => {
 
         {/* Text */}
         <div className="flex-1 text-left">
-          <div className="text-xs font-semibold text-white/95">Jetzt verfügbar</div>
+          <div className="text-xs font-semibold text-white/90">Jetzt verfügbar</div>
           <div className="text-xl font-bold text-white leading-tight">Sofort anrufen</div>
         </div>
       </a>

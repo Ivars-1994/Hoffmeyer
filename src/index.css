@@ -6,35 +6,54 @@
 
 @layer base {
   :root {
+    /* Base Colors */
     --background: 0 0% 100%;
     --foreground: 222 14% 9%;
 
+    /* Card System */
     --card: 0 0% 100%;
     --card-foreground: 222 14% 9%;
+    --card-border: 214 25% 90%;
 
+    /* Popover */
     --popover: 0 0% 100%;
     --popover-foreground: 222 14% 9%;
 
+    /* Primary Brand Color (Dark Blue-Grey) */
     --primary: 222 47% 14%;
     --primary-foreground: 210 40% 98%;
 
+    /* Secondary (Light Grey) */
     --secondary: 210 20% 96%;
     --secondary-foreground: 222 14% 9%;
 
+    /* Muted */
     --muted: 210 20% 96.1%;
     --muted-foreground: 220 8.9% 46.1%;
 
-    --accent: 220 70% 46%;
-    --accent-foreground: 210 40% 98%;
+    /* Accent - Blue for CTAs */
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
 
+    /* Success - Green for WhatsApp & Badges */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning - Orange/Red for Emergency */
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Destructive */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Border & Input */
+    --border: 214 25% 88%;
+    --input: 214 25% 88%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    /* Border Radius */
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -78,28 +97,43 @@
     font-family: 'Inter', sans-serif;
   }
 
+  /* Layout & Spacing */
   .container {
-    @apply px-4 mx-auto;
+    @apply px-4 mx-auto max-w-7xl;
   }
 
   .section {
-    @apply py-12 md:py-16 overflow-hidden;
+    @apply py-16 md:py-20 lg:py-24 overflow-hidden;
+  }
+
+  /* Card System */
+  .card-base {
+    @apply bg-card rounded-xl border border-card-border shadow-sm transition-shadow duration-200;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg;
   }
 
   .glass-effect {
     @apply backdrop-blur-md bg-white/80 shadow-md;
   }
 
+  /* Typography Hierarchy */
   .section-heading {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight;
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight text-primary leading-tight;
   }
   
   .section-subheading {
-    @apply text-base sm:text-lg md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto;
+    @apply text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed;
+  }
+
+  .card-heading {
+    @apply text-xl sm:text-2xl font-bold text-primary mb-3;
   }
 
   .highlight-text {
-    @apply text-accent font-medium;
+    @apply text-accent font-semibold;
   }
 
   .image-fade-in {
@@ -245,21 +279,37 @@
     }
   }
 
-  /* Mobile-friendly improvements */
+  /* Mobile Optimizations */
   @media (max-width: 640px) {
+    .section {
+      @apply py-12 md:py-16;
+    }
+
     .mobile-text-boost {
-      font-size: 105%;
-      line-height: 1.35;
+      font-size: 100%;
+      line-height: 1.5;
     }
 
     .mobile-spacing-boost {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
     
     .mobile-button-boost {
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
+      padding-top: 0.875rem;
+      padding-bottom: 0.875rem;
       font-size: 1rem;
+      min-height: 44px;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
 }

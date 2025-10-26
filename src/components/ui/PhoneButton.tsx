@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 interface PhoneButtonProps {
   phoneNumber: string;
   className?: string;
-  variant?: 'default' | 'outline' | 'ghost' | 'link' | 'fixed';
+  variant?: 'default' | 'cta' | 'success' | 'outline' | 'ghost' | 'link' | 'fixed';
   size?: 'sm' | 'default' | 'lg';
   linkText?: string;
 }
@@ -42,20 +42,22 @@ const PhoneButton = ({
     }
   };
   
-  const baseStyles = "inline-flex items-center justify-center font-medium";
+  const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg";
   
   const variantStyles = {
-    default: "bg-blue-600 text-white hover:bg-blue-700 rounded-md",
-    outline: "border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-md",
-    ghost: "text-accent hover:text-accent/80 rounded-md",
+    default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg",
+    cta: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl",
+    success: "bg-success text-success-foreground hover:bg-success/90 shadow-md hover:shadow-lg",
+    outline: "border-2 border-accent text-accent hover:bg-accent/5",
+    ghost: "text-accent hover:text-accent/80 hover:bg-accent/10",
     link: "text-accent underline-offset-4 hover:underline",
-    fixed: "fixed bottom-6 right-6 z-50 bg-blue-600 text-white shadow-xl rounded-full hover:bg-blue-700"
+    fixed: "fixed bottom-6 right-6 z-50 bg-accent text-accent-foreground shadow-xl rounded-full hover:bg-accent/90"
   };
   
   const sizeStyles = {
-    sm: "text-xs px-3 py-1 gap-1",
-    default: "text-sm px-4 py-2 gap-2",
-    lg: "text-base px-6 py-3 gap-2 font-bold"
+    sm: "text-sm px-4 py-2 gap-2 h-9",
+    default: "text-base px-6 py-3 gap-2 h-11",
+    lg: "text-lg px-8 py-4 gap-2 h-14"
   };
   
   const fixedStyles = variant === 'fixed' 

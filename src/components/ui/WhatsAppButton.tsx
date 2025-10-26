@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 interface WhatsAppButtonProps {
   phoneNumber: string;
   className?: string;
-  variant?: 'default' | 'outline' | 'ghost' | 'link' | 'fixed';
+  variant?: 'default' | 'success' | 'outline' | 'ghost' | 'link' | 'fixed';
   size?: 'sm' | 'default' | 'lg';
   message?: string;
 }
@@ -22,20 +22,21 @@ const WhatsAppButton = ({
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${formattedNumber}?text=${encodedMessage}`;
   
-  const baseStyles = "inline-flex items-center justify-center font-medium transition-all ease-in-out duration-300";
+  const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200";
   
   const variantStyles = {
-    default: "bg-green-600 text-white hover:bg-green-700 rounded-md shadow-sm hover:shadow-md",
-    outline: "border border-green-600 text-green-600 hover:bg-green-600/10 rounded-md hover:shadow-md",
-    ghost: "text-green-600 hover:bg-green-600/10 rounded-md",
-    link: "text-green-600 underline-offset-4 hover:underline",
-    fixed: "fixed bottom-24 right-6 z-50 bg-green-600 text-white shadow-lg rounded-full hover:scale-110 active:scale-95 transition-transform"
+    default: "bg-success text-success-foreground hover:bg-success/90 shadow-md hover:shadow-lg hover:-translate-y-0.5",
+    success: "bg-success text-success-foreground hover:bg-success/90 shadow-md hover:shadow-lg hover:-translate-y-0.5",
+    outline: "border-2 border-success text-success hover:bg-success/5",
+    ghost: "text-success hover:bg-success/10",
+    link: "text-success underline-offset-4 hover:underline",
+    fixed: "fixed bottom-24 right-6 z-50 bg-success text-success-foreground shadow-xl rounded-full hover:scale-105 active:scale-95"
   };
   
   const sizeStyles = {
-    sm: "text-xs px-3 py-1 gap-1",
-    default: "text-sm px-4 py-2 gap-2",
-    lg: "text-base px-6 py-3 gap-2"
+    sm: "text-sm px-4 py-2 gap-2 h-9",
+    default: "text-base px-6 py-3 gap-2 h-11",
+    lg: "text-lg px-8 py-4 gap-2 h-14"
   };
   
   const fixedStyles = variant === 'fixed' 

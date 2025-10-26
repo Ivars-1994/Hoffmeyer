@@ -22,7 +22,7 @@ const MoneyBackBadge = ({
         className
       )}>
         <Badge 
-          className="bg-green-600 text-white px-3 py-2 font-bold text-xs shadow-lg flex items-center gap-1 whitespace-nowrap border-2 border-white"
+          className="bg-success text-success-foreground px-3 py-2 font-bold text-xs shadow-lg flex items-center gap-1 whitespace-nowrap border-2 border-white"
         >
           {showIcon && <BadgePercent className="w-4 h-4" />}
           100% Geld-zurück Garantie
@@ -34,12 +34,12 @@ const MoneyBackBadge = ({
   return (
     <Badge 
       className={cn(
-        "bg-green-600 text-white px-3 py-1 font-bold text-xs flex items-center gap-1 whitespace-nowrap",
-        variant === 'outline' && "bg-transparent border-2 border-green-600 text-green-600",
+        "bg-success text-success-foreground px-4 py-1.5 font-bold text-sm flex items-center gap-1.5 whitespace-nowrap shadow-sm",
+        variant === 'outline' && "bg-transparent border-2 border-success text-success",
         className
       )}
     >
-      {showIcon && <BadgePercent className="w-3.5 h-3.5" />}
+      {showIcon && <BadgePercent className="w-4 h-4" />}
       100% Geld-zurück Garantie
     </Badge>
   );
