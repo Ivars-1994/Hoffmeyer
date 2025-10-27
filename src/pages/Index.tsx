@@ -388,7 +388,6 @@ const Index = () => {
         <Footer />
         
         <PhoneButton phoneNumber={PHONE_NUMBER} variant="fixed" />
-        <WhatsAppButton phoneNumber={PHONE_NUMBER} variant="fixed" />
         <MobileStickyCTA />
       </div>
     </>
