@@ -37,21 +37,8 @@ const Navbar = () => {
     href: '#contact'
   }];
   return <>
-      {/* Emergency banner with availability badge - improved for mobile */}
-      <div className="bg-red-600 text-white py-1.5 sm:py-2 fixed top-0 left-0 right-0 w-full z-50 min-h-[36px]">
-        <div className="container mx-auto px-2 sm:px-4">
-          <div className="flex items-center justify-between gap-1 sm:gap-2">
-            <span className="font-medium text-xs sm:text-sm md:text-sm truncate leading-tight">24/7 Notdienst: {PHONE_NUMBER}</span>
-            <Badge variant="outline" className="bg-white/95 text-green-600 border-none font-medium py-0.5 px-2 flex-shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1 inline-block"></span>
-              <span className="text-[10px] sm:text-xs whitespace-nowrap leading-none">Erreichbar</span>
-            </Badge>
-          </div>
-        </div>
-      </div>
-      
       {/* Navigation bar - Glassmorphism design */}
-      <header className={cn('fixed top-[36px] left-0 right-0 z-40 transition-all duration-300 py-2 sm:py-3 glass-navbar', isScrolled && 'shadow-lg')}>
+      <header className={cn('fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-2 sm:py-3 glass-navbar', isScrolled && 'shadow-lg')}>
         <div className="container mx-auto px-2 sm:px-4">
           <div className="flex items-center justify-between min-h-[48px] sm:h-16">
             {/* Logo and company name */}

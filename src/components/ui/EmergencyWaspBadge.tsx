@@ -51,7 +51,7 @@ const EmergencyWaspBadge = ({
         }}
       >
         {showIcon && <Siren className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#ffffff' }} />}
-        <span className="font-bold text-xs sm:text-sm whitespace-nowrap" style={{ color: '#ffffff' }}>24/7 WESPEN-NOTDIENST</span>
+        <span className="font-bold text-xs sm:text-sm whitespace-nowrap" style={{ color: '#ffffff' }}>24/7 NOTDIENST</span>
         <span className="bg-white px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold shadow-sm" style={{ color: '#dc2626' }}>VERFÜGBAR</span>
       </div>
     );
