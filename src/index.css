@@ -206,9 +206,9 @@
     animation: ultra-slow-pulse 10s ease-in-out infinite;
   }
   
-  /* Emergency badge pulse animation - very subtle */
+  /* Emergency badge pulse animation - extremely subtle and slow */
   .animate-pulse-subtle {
-    animation: pulse-subtle 8s ease-in-out infinite;
+    animation: pulse-subtle 12s ease-in-out infinite;
   }
   
   @keyframes ultra-slow-pulse {
@@ -250,8 +250,8 @@
       transform: scale(1);
     }
     50% {
-      opacity: 0.95;
-      transform: scale(1.01);
+      opacity: 0.98;
+      transform: scale(1.005);
     }
   }
   

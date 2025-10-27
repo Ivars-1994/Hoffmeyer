@@ -38,29 +38,29 @@ const Navbar = () => {
   }];
   return <>
       {/* Emergency banner with availability badge - improved for mobile */}
-      <div className="bg-red-600 text-white py-2 fixed top-0 left-0 right-0 w-full z-50 h-[39px]">
+      <div className="bg-red-600 text-white py-1.5 sm:py-2 fixed top-0 left-0 right-0 w-full z-50 min-h-[36px]">
         <div className="container mx-auto px-2 sm:px-4">
-          <div className="flex items-center justify-between gap-2">
-            <span className="font-medium text-xs sm:text-sm md:text-base truncate">24/7 Notfalldienst unter {PHONE_NUMBER}</span>
-            <Badge variant="outline" className="bg-white/95 text-green-600 border-none font-medium py-0.5 px-1.5 sm:px-2 flex-shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1 inline-block"></span>
-              <span className="text-[10px] sm:text-xs whitespace-nowrap">Jetzt erreichbar</span>
+          <div className="flex items-center justify-between gap-1 sm:gap-2">
+            <span className="font-medium text-[10px] sm:text-xs md:text-sm truncate leading-tight">24/7 Notdienst: {PHONE_NUMBER}</span>
+            <Badge variant="outline" className="bg-white/95 text-green-600 border-none font-medium py-0.5 px-1.5 flex-shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-0.5 sm:mr-1 inline-block"></span>
+              <span className="text-[9px] sm:text-[10px] whitespace-nowrap leading-none">Erreichbar</span>
             </Badge>
           </div>
         </div>
       </div>
       
       {/* Navigation bar - Glassmorphism design */}
-      <header className={cn('fixed top-[39px] left-0 right-0 z-40 transition-all duration-300 py-3 glass-navbar', isScrolled && 'shadow-lg')}>
-        <div className="container mx-auto px-2">
-          <div className="flex items-center justify-between h-16">
+      <header className={cn('fixed top-[36px] left-0 right-0 z-40 transition-all duration-300 py-2 sm:py-3 glass-navbar', isScrolled && 'shadow-lg')}>
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="flex items-center justify-between min-h-[48px] sm:h-16">
             {/* Logo and company name */}
-            <div className="flex items-center h-full">
+            <div className="flex items-center h-full flex-shrink-0">
               <Logo size={isMobile ? "small" : "medium"} className="mr-1" />
               <div className="font-bold text-primary">
                 <div className={cn("flex flex-col justify-center", isMobile ? "gap-0" : "gap-0.5")}>
-                  <span className="text-[#9b87f5] leading-none text-xl md:text-xl">Kammerjäger</span>
-                  <span className="leading-none text-base mx-0 px-0 text-[#9b87f5] font-extrabold md:text-2xl">Hoffmeyer</span>
+                  <span className="text-[#9b87f5] leading-none text-base sm:text-xl md:text-xl">Kammerjäger</span>
+                  <span className="leading-none text-sm sm:text-base mx-0 px-0 text-[#9b87f5] font-extrabold md:text-2xl">Hoffmeyer</span>
                 </div>
               </div>
             </div>
@@ -81,11 +81,11 @@ const Navbar = () => {
             </nav>
 
             {/* Mobile Menu and Action Buttons */}
-            <div className="md:hidden flex items-center gap-2">
-              <PhoneButton phoneNumber={PHONE_NUMBER} variant="ghost" size="sm" className="text-accent p-1.5" />
-              <WhatsAppButton phoneNumber={PHONE_NUMBER} variant="ghost" size="sm" className="text-green-600 p-1.5" />
-              <button onClick={toggleMenu} className="text-primary p-1.5 rounded-md hover:bg-secondary transition-colors" aria-expanded={isMenuOpen} aria-label="Toggle menu">
-                {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            <div className="md:hidden flex items-center gap-1 sm:gap-2 flex-shrink-0">
+              <PhoneButton phoneNumber={PHONE_NUMBER} variant="ghost" size="sm" className="text-accent p-1 sm:p-1.5" />
+              <WhatsAppButton phoneNumber={PHONE_NUMBER} variant="ghost" size="sm" className="text-green-600 p-1 sm:p-1.5" />
+              <button onClick={toggleMenu} className="text-primary p-1 sm:p-1.5 rounded-md hover:bg-secondary transition-colors" aria-expanded={isMenuOpen} aria-label="Toggle menu">
+                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>

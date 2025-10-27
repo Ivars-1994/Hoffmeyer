@@ -41,12 +41,13 @@ const EmergencyWaspBadge = ({
   if (variant === 'hero') {
     return (
       <div className={cn(
-        "bg-gradient-to-r from-red-600 to-orange-500 text-white px-4 sm:px-5 py-2.5 rounded-full inline-flex items-center gap-2 sm:gap-2.5 shadow-xl border-2 border-red-700 hover:shadow-2xl transition-all duration-300 hover:scale-105",
+        "bg-gradient-to-r from-red-600 to-orange-600 text-white px-4 sm:px-5 py-2.5 rounded-full inline-flex items-center gap-2 sm:gap-2.5 shadow-[0_4px_20px_rgba(220,38,38,0.5)] border-2 border-red-800 hover:shadow-2xl transition-all duration-300 hover:scale-105",
+        animate && "animate-pulse-subtle",
         className
       )}>
         {showIcon && <Siren className="w-4 h-4 sm:w-5 sm:h-5" />}
         <span className="font-bold text-xs sm:text-sm whitespace-nowrap">24/7 WESPEN-NOTDIENST</span>
-        <span className="bg-white text-red-600 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold">VERFÜGBAR</span>
+        <span className="bg-white text-red-600 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold shadow-sm">VERFÜGBAR</span>
       </div>
     );
   }
