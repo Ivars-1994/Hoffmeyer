@@ -50,10 +50,10 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Navigation bar - position fixed to top with precise positioning to eliminate gap */}
-      <header className={cn('fixed top-[39px] left-0 right-0 z-40 transition-all duration-300 py-2 border-b', isScrolled ? 'bg-white shadow-sm' : 'bg-white')}>
+      {/* Navigation bar - Glassmorphism design */}
+      <header className={cn('fixed top-[39px] left-0 right-0 z-40 transition-all duration-300 py-3 glass-navbar', isScrolled && 'shadow-lg')}>
         <div className="container mx-auto px-2">
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center justify-between h-16">
             {/* Logo and company name */}
             <div className="flex items-center h-full">
               <Logo size={isMobile ? "small" : "medium"} className="mr-1" />

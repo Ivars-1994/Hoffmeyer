@@ -6,15 +6,22 @@
 
 @layer base {
   :root {
-    /* Base Colors */
-    --background: 0 0% 100%;
+    /* Base Colors - Apple-inspired */
+    --background: 0 0% 98%;
     --foreground: 222 14% 9%;
 
-    /* Card System */
+    /* Card System with Glassmorphism */
     --card: 0 0% 100%;
     --card-foreground: 222 14% 9%;
-    --card-border: 214 25% 90%;
+    --card-border: 214 32% 91%;
 
+    /* Glass Effect Properties */
+    --glass-bg: 0 0% 100%;
+    --glass-bg-opacity: 0.7;
+    --glass-border: 214 32% 91%;
+    --glass-border-opacity: 0.5;
+    --blur-amount: 20px;
+    
     /* Popover */
     --popover: 0 0% 100%;
     --popover-foreground: 222 14% 9%;
@@ -23,8 +30,8 @@
     --primary: 222 47% 14%;
     --primary-foreground: 210 40% 98%;
 
-    /* Secondary (Light Grey) */
-    --secondary: 210 20% 96%;
+    /* Secondary (Light Grey with warmth) */
+    --secondary: 210 20% 98%;
     --secondary-foreground: 222 14% 9%;
 
     /* Muted */
@@ -48,12 +55,12 @@
     --destructive-foreground: 210 40% 98%;
 
     /* Border & Input */
-    --border: 214 25% 88%;
-    --input: 214 25% 88%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 217 91% 60%;
 
-    /* Border Radius */
-    --radius: 0.75rem;
+    /* Border Radius - Apple-inspired */
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -97,39 +104,79 @@
     font-family: 'Inter', sans-serif;
   }
 
-  /* Layout & Spacing */
+  /* Layout & Spacing - More airy Apple style */
   .container {
     @apply px-4 mx-auto max-w-7xl;
   }
 
   .section {
-    @apply py-16 md:py-20 lg:py-24 overflow-hidden;
+    @apply py-20 md:py-28 lg:py-32 overflow-hidden;
   }
 
-  /* Card System */
+  /* Glassmorphism Card System */
   .card-base {
-    @apply bg-card rounded-xl border border-card-border shadow-sm transition-shadow duration-200;
+    @apply rounded-2xl border transition-all duration-300;
+    background: hsla(var(--glass-bg), var(--glass-bg-opacity));
+    border-color: hsla(var(--glass-border), var(--glass-border-opacity));
+    backdrop-filter: blur(var(--blur-amount)) saturate(180%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
   }
 
   .card-hover {
-    @apply hover:shadow-lg;
+    @apply hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.01];
   }
 
-  .glass-effect {
-    @apply backdrop-blur-md bg-white/80 shadow-md;
+  .glass-card {
+    @apply rounded-2xl border transition-all duration-300;
+    background: hsla(var(--glass-bg), 0.75);
+    border-color: hsla(var(--glass-border), 0.5);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   }
 
-  /* Typography Hierarchy */
+  .glass-navbar {
+    @apply transition-all duration-300;
+    background: hsla(var(--glass-bg), 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid hsla(var(--glass-border), 0.3);
+    box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.06);
+  }
+
+  .glass-footer {
+    background: linear-gradient(to bottom, hsla(var(--primary), 0.95), hsla(var(--primary), 1));
+    backdrop-filter: blur(10px);
+  }
+
+  .glass-button {
+    @apply transition-all duration-300;
+    background: hsla(var(--glass-bg), 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsla(var(--glass-border), 0.4);
+  }
+
+  .glass-badge {
+    @apply transition-all duration-200;
+    background: hsla(var(--glass-bg), 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsla(var(--glass-border), 0.5);
+  }
+
+  /* Typography Hierarchy - Apple-inspired */
   .section-heading {
-    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight text-primary leading-tight;
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold mb-6 md:mb-8 text-primary leading-tight;
+    letter-spacing: -0.02em;
+    font-weight: 700;
   }
   
   .section-subheading {
-    @apply text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed;
+    @apply text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-10 md:mb-16 max-w-4xl mx-auto;
+    line-height: 1.5;
+    font-weight: 400;
   }
 
   .card-heading {
-    @apply text-xl sm:text-2xl font-bold text-primary mb-3;
+    @apply text-2xl sm:text-3xl font-semibold text-primary mb-4;
+    letter-spacing: -0.01em;
   }
 
   .highlight-text {

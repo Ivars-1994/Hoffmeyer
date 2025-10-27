@@ -25,22 +25,22 @@ const HeroFeatures = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:gap-6 max-w-md mx-auto">
+    <div className="grid grid-cols-1 gap-5 md:gap-6 max-w-lg mx-auto">
       {features.map((feature, index) => (
         <div 
           key={index}
-          className="bg-white rounded-xl p-4 md:p-6 shadow-sm border border-primary/10 transition-all duration-300 hover:shadow-md animate-fade-in"
+          className="glass-card p-6 md:p-7 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-in"
           style={{ animationDelay: `${feature.delay}ms` }}
         >
-          <div className="flex items-start">
-            <div className="rounded-full bg-accent/10 p-2.5 md:p-3 mr-3 flex-shrink-0">
+          <div className="flex items-start gap-4">
+            <div className="rounded-2xl bg-accent/10 backdrop-blur-sm p-3.5 md:p-4 flex-shrink-0">
               {feature.icon}
             </div>
             <div>
-              <h3 className="font-semibold text-primary mb-1 md:mb-1 text-base sm:text-base mobile-text-boost">
+              <h3 className="font-semibold text-primary mb-2 text-lg sm:text-lg mobile-text-boost">
                 {feature.title}
               </h3>
-              <p className="text-sm sm:text-sm text-muted-foreground mobile-text-boost">
+              <p className="text-sm sm:text-base text-muted-foreground mobile-text-boost leading-relaxed">
                 {feature.description}
               </p>
             </div>

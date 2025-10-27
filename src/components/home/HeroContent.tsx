@@ -27,26 +27,26 @@ const HeroContent = ({ cityName, serviceConfig }: HeroContentProps) => {
   
   return (
     <div className="w-full md:w-1/2 mb-6 sm:mb-8 md:mb-0 text-center md:text-left">
-      <div className="flex justify-center md:justify-start mb-3 relative z-30">
+      <div className="flex justify-center md:justify-start mb-5 relative z-30">
         <Logo size="large" />
       </div>
       
-      <div className="inline-block rounded-full bg-accent/10 px-3 py-1.5 text-sm sm:text-base font-medium text-accent mb-4 animate-fade-in relative z-10">
+      <div className="inline-block rounded-full backdrop-blur-md bg-accent/10 border border-accent/20 px-4 py-2 text-sm sm:text-base font-semibold text-accent mb-6 animate-fade-in relative z-10 shadow-sm">
         <span className="break-words mobile-text-boost">
           {serviceConfig ? serviceConfig.title : "Professionelle Schädlingsbekämpfung"}
         </span>
       </div>
       
-      <h1 className="headline text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 tracking-tight animate-fade-in mobile-spacing-boost" style={{ animationDelay: '100ms' }}>
+      <h1 className="headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 animate-fade-in mobile-spacing-boost" style={{ animationDelay: '100ms', letterSpacing: '-0.02em' }}>
         {headline}
       </h1>
       
       {/* Wespen-Notdienst Badge direkt unter dem Haupttitel */}
-      <div className="flex justify-center md:justify-start mb-4 animate-fade-in" style={{ animationDelay: '150ms' }}>
+      <div className="flex justify-center md:justify-start mb-6 animate-fade-in" style={{ animationDelay: '150ms' }}>
         <EmergencyWaspBadge variant="hero" />
       </div>
       
-      <p className="subheadline text-base sm:text-lg md:text-xl text-muted-foreground mb-5 sm:mb-6 max-w-xl mx-auto md:mx-0 animate-fade-in mobile-text-boost" style={{ animationDelay: '200ms' }}>
+      <p className="subheadline text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto md:mx-0 animate-fade-in mobile-text-boost" style={{ animationDelay: '200ms', lineHeight: '1.5' }}>
         {subheadline}
       </p>
       

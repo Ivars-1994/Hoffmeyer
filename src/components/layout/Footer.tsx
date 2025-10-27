@@ -41,9 +41,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-primary text-primary-foreground pt-16 pb-24 md:pb-8 z-10">
+    <footer className="relative glass-footer text-primary-foreground pt-20 pb-24 md:pb-10 z-10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
           {/* Contact Information */}
           <div>
             <h3 className="text-xl font-bold mb-6 text-accent">Kammerjäger Hoffmeyer</h3>

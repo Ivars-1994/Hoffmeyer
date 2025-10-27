@@ -115,9 +115,9 @@ const Reviews = ({ cityName }: ReviewsProps) => {
   }));
   
   return (
-    <AnimatedSection id="reviews" className="bg-secondary/50">
+    <AnimatedSection id="reviews" className="bg-gradient-to-b from-secondary/30 to-background">
       <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-8">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           <div className={cn(
             "flex justify-center items-center mb-8",
             isMobile ? "flex-col gap-4" : "gap-6"
@@ -144,9 +144,9 @@ const Reviews = ({ cityName }: ReviewsProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-12 md:mt-16">
           {reviews.map((review, index) => (
-            <Card key={index} className="border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 relative">
+            <Card key={index} className="hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative">
               <CardContent className="pt-6">
                 <div className="absolute top-4 right-4">
                   <div className="w-6 h-6 flex items-center justify-center">
@@ -192,8 +192,8 @@ const Reviews = ({ cityName }: ReviewsProps) => {
           ))}
         </div>
 
-        <div className="text-center mt-10 md:mt-16">
-          <div className="bg-white rounded-xl p-4 md:p-6 inline-block shadow-sm border border-primary/10">
+        <div className="text-center mt-16 md:mt-20">
+          <div className="glass-card p-8 md:p-10 inline-block shadow-xl hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-center mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star 

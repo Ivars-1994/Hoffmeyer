@@ -54,11 +54,11 @@ const Hero = ({ cityName, serviceConfig }: HeroProps) => {
         </script>
       </Helmet>
       
-      <section className="pb-12 sm:pb-16 md:pb-20 overflow-hidden relative">
+      <section className="pb-16 sm:pb-20 md:pb-24 overflow-hidden relative bg-gradient-to-b from-background to-secondary/30">
         <div className="container mx-auto px-2 sm:px-4">
-          <div className="flex flex-col md:flex-row items-center">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <HeroContent cityName={cityName} serviceConfig={serviceConfig} />
-            <div className="w-full md:w-1/2 pl-0 md:pl-6 lg:pl-10">
+            <div className="w-full md:w-1/2">
               <HeroFeatures />
             </div>
           </div>
