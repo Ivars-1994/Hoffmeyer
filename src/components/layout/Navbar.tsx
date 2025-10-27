@@ -39,12 +39,12 @@ const Navbar = () => {
   return <>
       {/* Emergency banner with availability badge - improved for mobile */}
       <div className="bg-red-600 text-white py-2 fixed top-0 left-0 right-0 w-full z-50 h-[39px]">
-        <div className="container mx-auto px-2">
-          <div className="flex items-center justify-between">
-            <span className="font-medium text-sm sm:text-base mobile-text-boost">24/7 Notfalldienst unter {PHONE_NUMBER}</span>
-            <Badge variant="outline" className="bg-white/95 text-green-600 border-none font-medium py-0.5 px-2">
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="flex items-center justify-between gap-2">
+            <span className="font-medium text-xs sm:text-sm md:text-base truncate">24/7 Notfalldienst unter {PHONE_NUMBER}</span>
+            <Badge variant="outline" className="bg-white/95 text-green-600 border-none font-medium py-0.5 px-1.5 sm:px-2 flex-shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1 inline-block"></span>
-              <span className="text-xs">Jetzt erreichbar</span>
+              <span className="text-[10px] sm:text-xs whitespace-nowrap">Jetzt erreichbar</span>
             </Badge>
           </div>
         </div>
