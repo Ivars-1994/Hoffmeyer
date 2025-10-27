@@ -47,7 +47,7 @@ const Navbar = () => {
               <div className="font-bold text-primary">
                 <div className={cn("flex flex-col justify-center", isMobile ? "gap-0" : "gap-0.5")}>
                   <span className="text-[#9b87f5] leading-none text-base sm:text-xl md:text-xl">Kammerjäger</span>
-                  <span className="leading-none text-sm sm:text-base mx-0 px-0 text-[#9b87f5] font-extrabold md:text-2xl">Hoffmeyer</span>
+                  <span className="leading-none text-base sm:text-xl mx-0 px-0 text-[#9b87f5] font-extrabold md:text-2xl">Hoffmeyer</span>
                 </div>
               </div>
             </div>
