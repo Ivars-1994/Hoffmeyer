@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { saveConsent, loadConsent, hasConsent } from '@/utils/consentManager';
-import { getCityFromGeolocation } from '@/utils/geolocationService';
+import { saveConsent, hasConsent } from '@/utils/consentManager';
 import { Link } from 'react-router-dom';
 
 interface CookieConsentProps {
@@ -25,7 +24,7 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     }
   }, []);
 
-  const handleAcceptAll = async () => {
+  const handleAcceptAll = () => {
     const consent = {
       stats: true,
       marketing: true,
@@ -34,9 +33,6 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     
     saveConsent(consent);
     
-    // Geolocation abfragen
-    await getCityFromGeolocation();
-    
     setIsVisible(false);
     onConsentGiven?.();
     
@@ -44,13 +40,8 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     window.location.reload();
   };
 
-  const handleSavePreferences = async () => {
+  const handleSavePreferences = () => {
     saveConsent(preferences);
-    
-    // Wenn Geolocation erlaubt, abfragen
-    if (preferences.geolocation) {
-      await getCityFromGeolocation();
-    }
     
     setIsVisible(false);
     onConsentGiven?.();
