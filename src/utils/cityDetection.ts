@@ -1,4 +1,7 @@
 // Einfache Stadt-Erkennung über Netlify-Funktion
+import { hasGeolocationConsent } from './consentManager';
+import { getCityFromGeolocation } from './geolocationService';
+
 export interface CityData {
   name: string;
   plz: string;
@@ -18,6 +21,15 @@ export async function detectCity(): Promise<CityData> {
   console.log("🔍 DEBUG: city parameter:", cityParam);
   console.log("🔍 DEBUG: kw parameter:", kw);
   console.log("🔍 DEBUG: loc_physical_ms/city_id/loc:", locId);
+
+  // Priorität 0: Geolocation (wenn Consent vorhanden und keine URL-Parameter)
+  if (!cityParam && !kw && !locId && hasGeolocationConsent()) {
+    const geoCity = await getCityFromGeolocation();
+    if (geoCity) {
+      console.log("✅ DEBUG: Stadt über Geolocation erkannt:", geoCity);
+      return geoCity;
+    }
+  }
 
   // Priorität 1: Direkter city Parameter
   if (cityParam) {

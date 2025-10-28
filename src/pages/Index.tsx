@@ -15,6 +15,7 @@ import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import CityWelcomeBanner from '../components/home/CityWelcomeBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
 import SeoKeywords from '../components/seo/SeoKeywords';
+import CookieConsent from '../components/CookieConsent';
 import { CityData } from '../utils/cityDetection';
 import { getServiceConfig } from '../utils/serviceConfig';
 import { 
@@ -338,6 +339,8 @@ const Index = () => {
           </script>
         )}
       </Helmet>
+      
+      <CookieConsent />
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
         <Navbar />
