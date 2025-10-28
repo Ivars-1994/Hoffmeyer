@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { saveConsent, hasConsent } from '@/utils/consentManager';
+import { getCityFromGeolocation } from '@/utils/geolocationService';
+import { detectAndUpdateCity } from '@/utils/cityDetection';
 import { Link } from 'react-router-dom';
 
 interface CookieConsentProps {
@@ -24,7 +26,7 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     }
   }, []);
 
-  const handleAcceptAll = () => {
+  const handleAcceptAll = async () => {
     const consent = {
       stats: true,
       marketing: true,
@@ -32,22 +34,28 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     };
     
     saveConsent(consent);
-    
     setIsVisible(false);
-    onConsentGiven?.();
     
-    // Seite neu laden um Stadt-Erkennung zu triggern
-    window.location.reload();
+    // Geolocation abfragen (Browser-Dialog erscheint)
+    await getCityFromGeolocation();
+    
+    // Stadt-Erkennung aktualisieren
+    await detectAndUpdateCity();
+    
+    onConsentGiven?.();
   };
 
-  const handleSavePreferences = () => {
+  const handleSavePreferences = async () => {
     saveConsent(preferences);
-    
     setIsVisible(false);
-    onConsentGiven?.();
     
-    // Seite neu laden um Stadt-Erkennung zu triggern
-    window.location.reload();
+    // Wenn Geolocation erlaubt, abfragen
+    if (preferences.geolocation) {
+      await getCityFromGeolocation();
+      await detectAndUpdateCity();
+    }
+    
+    onConsentGiven?.();
   };
 
   const togglePreference = (key: keyof typeof preferences) => {
