@@ -36,11 +36,18 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     saveConsent(consent);
     setIsVisible(false);
     
-    // Geolocation abfragen (Browser-Dialog erscheint)
-    await getCityFromGeolocation();
+    // Freundlicher Dialog vor Browser-Geolocation
+    const userConfirmed = window.confirm(
+      "🏠 Damit wir Ihnen passende Angebote in Ihrer Straße zeigen können, benötigen wir kurz Ihren Standort. Dies hilft uns auch bei der Anfahrtsplanung zu Ihnen!"
+    );
     
-    // Stadt-Erkennung aktualisieren
-    await detectAndUpdateCity();
+    if (userConfirmed) {
+      // Geolocation abfragen (Browser-Dialog erscheint)
+      await getCityFromGeolocation();
+      
+      // Stadt-Erkennung aktualisieren
+      await detectAndUpdateCity();
+    }
     
     onConsentGiven?.();
   };
@@ -51,8 +58,15 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     
     // Wenn Geolocation erlaubt, abfragen
     if (preferences.geolocation) {
-      await getCityFromGeolocation();
-      await detectAndUpdateCity();
+      // Freundlicher Dialog vor Browser-Geolocation
+      const userConfirmed = window.confirm(
+        "🏠 Damit wir Ihnen passende Angebote in Ihrer Straße zeigen können, benötigen wir kurz Ihren Standort. Dies hilft uns auch bei der Anfahrtsplanung zu Ihnen!"
+      );
+      
+      if (userConfirmed) {
+        await getCityFromGeolocation();
+        await detectAndUpdateCity();
+      }
     }
     
     onConsentGiven?.();
@@ -70,27 +84,16 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] animate-in fade-in duration-300">
       <div className="bg-card border border-border rounded-xl max-w-2xl w-[90%] p-6 shadow-2xl">
-        <h2 className="text-2xl font-bold text-foreground mb-4">
-          Datenschutzhinweis
+        <h2 className="text-xl font-bold text-foreground mb-3">
+          Cookie-Einstellungen
         </h2>
         
-        <div className="space-y-4 text-muted-foreground">
+        <div className="space-y-2 text-xs text-muted-foreground">
           <p>
-            Wir benötigen Ihre Einwilligung, bevor Sie unsere Website weiter besuchen können.
-            Wenn Sie unter 16 Jahre alt sind und Ihre Einwilligung zu optionalen Services geben möchten, müssen Sie Ihre Erziehungsberechtigten um Erlaubnis bitten.
-          </p>
-          
-          <p>
-            Wir verwenden Cookies und andere Technologien auf unserer Website. Einige sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern – etwa durch die{' '}
-            <strong className="text-foreground">Anzeige standortbezogener Inhalte und Angebote in Ihrer Nähe</strong>{' '}
-            (nach Ihrer Zustimmung zur Standortbestimmung).
-          </p>
-          
-          <p>
-            Weitere Informationen finden Sie in unserer{' '}
+            Wir nutzen Cookies für eine bessere Nutzererfahrung.{' '}
             <Link to="/datenschutz" className="text-primary hover:underline font-medium">
-              Datenschutzerklärung
-            </Link>.
+              Mehr erfahren
+            </Link>
           </p>
         </div>
 
