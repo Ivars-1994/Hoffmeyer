@@ -75,10 +75,17 @@ const cityList = [
   'Xanten'
 ];
 
-const CityPage = () => {
+  const CityPage = () => {
   const { city } = useParams();
-  const [cityName, setCityName] = useState(city || DEFAULT_CITY);
-  const [cityData, setCityData] = useState<CityData>({ name: city || DEFAULT_CITY, plz: "00000" });
+  
+  // Funktion zum Kapitalisieren der Stadt
+  const capitalizeCity = (cityStr: string) => {
+    if (!cityStr || cityStr === DEFAULT_CITY) return cityStr;
+    return cityStr.charAt(0).toUpperCase() + cityStr.slice(1);
+  };
+  
+  const [cityName, setCityName] = useState(capitalizeCity(city || DEFAULT_CITY));
+  const [cityData, setCityData] = useState<CityData>({ name: capitalizeCity(city || DEFAULT_CITY), plz: "00000" });
   
   // Stadt-Erkennung mit dem integrierten System
   useEffect(() => {
@@ -86,9 +93,10 @@ const CityPage = () => {
     
     // Wenn bereits eine Stadt aus den Route-Parametern da ist
     if (city) {
-      console.log("✅ CityPage: Stadt aus Route-Parametern:", city);
-      setCityName(city);
-      setCityData({ name: city, plz: "00000" });
+      const capitalizedCity = capitalizeCity(city);
+      console.log("✅ CityPage: Stadt aus Route-Parametern:", capitalizedCity);
+      setCityName(capitalizedCity);
+      setCityData({ name: capitalizedCity, plz: "00000" });
       return;
     }
 
@@ -188,7 +196,7 @@ const CityPage = () => {
             </div>
           </div>
           
-          <AboutUs />
+          <AboutUs cityName={cityName} />
           
           <Services />
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />

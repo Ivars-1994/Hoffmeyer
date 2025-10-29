@@ -53,8 +53,12 @@ const defaultReviews = [
 const Reviews = ({ cityName }: ReviewsProps) => {
   const isMobile = useIsMobile();
   
-  // Versuche zuerst aus sessionStorage zu laden (kw hat Priorität!), dann getCityFromParams
+  // Wenn cityName als Prop übergeben wird, verwende es direkt
   const [cityInfo, setCityInfo] = useState(() => {
+    if (cityName) {
+      return { name: cityName, plz: "00000" };
+    }
+    
     // Priorität 1: kw-Parameter (wird in 'cityData' gespeichert)
     const storedFromKw = sessionStorage.getItem('cityData');
     if (storedFromKw) {
@@ -77,8 +81,13 @@ const Reviews = ({ cityName }: ReviewsProps) => {
     return getCityFromParams();
   });
   
-  // Event Listener für Stadt-Updates (nur wenn kw nicht bereits gesetzt ist)
+  // Event Listener für Stadt-Updates (nur wenn kein cityName Prop übergeben wurde)
   useEffect(() => {
+    // Wenn cityName als Prop übergeben wird, ignoriere Events
+    if (cityName) {
+      return;
+    }
+    
     const handleCityDetected = (event: CustomEvent) => {
       console.log("📝 REVIEWS - Stadt-Event empfangen:", event.detail);
       
@@ -97,7 +106,7 @@ const Reviews = ({ cityName }: ReviewsProps) => {
     return () => {
       window.removeEventListener('cityDetected', handleCityDetected as EventListener);
     };
-  }, []);
+  }, [cityName]);
   
   useEffect(() => {
     console.log("Reviews: Verwende erkannte Stadt:", cityInfo);

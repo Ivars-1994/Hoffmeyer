@@ -3,7 +3,11 @@ import { Bug, Clock, Award, Users2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import AnimatedSection from '../ui/AnimatedSection';
 
-const AboutUs = () => {
+interface AboutUsProps {
+  cityName?: string;
+}
+
+const AboutUs = ({ cityName = "Ihrer Stadt" }: AboutUsProps) => {
   const features = [
     {
       icon: Bug,
@@ -33,7 +37,7 @@ const AboutUs = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6" style={{ letterSpacing: '-0.02em' }}>Über uns</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Seit über 20 Jahren sind wir Ihr vertrauenswürdiger Partner für professionelle Schädlingsbekämpfung. Unsere Expertise und unser Engagement für Qualität machen uns zu Ihrer ersten Wahl in <span data-city>Ihrer Stadt</span>.
+            Seit über 20 Jahren sind wir Ihr vertrauenswürdiger Partner für professionelle Schädlingsbekämpfung. Unsere Expertise und unser Engagement für Qualität machen uns zu Ihrer ersten Wahl in {cityName}.
           </p>
         </div>
         
