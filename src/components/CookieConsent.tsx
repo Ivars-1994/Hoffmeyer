@@ -9,9 +9,10 @@ import { Link } from 'react-router-dom';
 interface CookieConsentProps {
   onConsentGiven?: () => void;
   onCityDetected?: (cityData: { name: string; plz: string }) => void;
+  hasCityInUrl?: boolean; // Wenn Stadt bereits aus URL bekannt ist
 }
 
-const CookieConsent = ({ onConsentGiven, onCityDetected }: CookieConsentProps) => {
+const CookieConsent = ({ onConsentGiven, onCityDetected, hasCityInUrl = false }: CookieConsentProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [preferences, setPreferences] = useState({
@@ -37,21 +38,24 @@ const CookieConsent = ({ onConsentGiven, onCityDetected }: CookieConsentProps) =
     saveConsent(consent);
     setIsVisible(false);
     
-    // Freundlicher Dialog vor Browser-Geolocation
-    const userConfirmed = window.confirm(
-      "🏠 Damit wir Ihnen passende Angebote in Ihrer Straße zeigen können, benötigen wir kurz Ihren Standort. Dies hilft uns auch bei der Anfahrtsplanung zu Ihnen!"
-    );
-    
-    if (userConfirmed) {
-      // Geolocation abfragen (Browser-Dialog erscheint)
-      const cityData = await getCityFromGeolocation();
+    // NUR Geolocation abfragen, wenn KEINE Stadt in URL vorhanden ist
+    if (!hasCityInUrl) {
+      // Freundlicher Dialog vor Browser-Geolocation
+      const userConfirmed = window.confirm(
+        "🏠 Damit wir Ihnen passende Angebote in Ihrer Straße zeigen können, benötigen wir kurz Ihren Standort. Dies hilft uns auch bei der Anfahrtsplanung zu Ihnen!"
+      );
       
-      if (cityData) {
-        // Sofort State updaten via Callback
-        onCityDetected?.(cityData);
+      if (userConfirmed) {
+        // Geolocation abfragen (Browser-Dialog erscheint)
+        const cityData = await getCityFromGeolocation();
         
-        // Events für andere Komponenten
-        window.dispatchEvent(new CustomEvent('cityDetected', { detail: cityData }));
+        if (cityData) {
+          // Sofort State updaten via Callback
+          onCityDetected?.(cityData);
+          
+          // Events für andere Komponenten
+          window.dispatchEvent(new CustomEvent('cityDetected', { detail: cityData }));
+        }
       }
     }
     
@@ -62,8 +66,8 @@ const CookieConsent = ({ onConsentGiven, onCityDetected }: CookieConsentProps) =
     saveConsent(preferences);
     setIsVisible(false);
     
-    // Wenn Geolocation erlaubt, abfragen
-    if (preferences.geolocation) {
+    // Wenn Geolocation erlaubt UND keine Stadt in URL, abfragen
+    if (preferences.geolocation && !hasCityInUrl) {
       // Freundlicher Dialog vor Browser-Geolocation
       const userConfirmed = window.confirm(
         "🏠 Damit wir Ihnen passende Angebote in Ihrer Straße zeigen können, benötigen wir kurz Ihren Standort. Dies hilft uns auch bei der Anfahrtsplanung zu Ihnen!"

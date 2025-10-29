@@ -355,6 +355,7 @@ const Index = () => {
       </Helmet>
       
       <CookieConsent 
+        hasCityInUrl={!!cityParam || !!kwParam || !!locId}
         onCityDetected={(city) => {
           console.log("🚀 SOFORTIGE Stadt-Aktualisierung:", city);
           setCityData(city);
