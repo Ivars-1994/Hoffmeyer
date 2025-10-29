@@ -138,7 +138,15 @@ const CityPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
       </Helmet>
       
-      <CookieConsent />
+      <CookieConsent 
+        hasCityInUrl={!!city}
+        onCityDetected={(detectedCity) => {
+          if (!city) {
+            setCityName(detectedCity.name);
+            setCityData(detectedCity);
+          }
+        }}
+      />
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
         <Navbar />
