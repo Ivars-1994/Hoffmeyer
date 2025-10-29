@@ -8,9 +8,10 @@ import { Link } from 'react-router-dom';
 
 interface CookieConsentProps {
   onConsentGiven?: () => void;
+  onCityDetected?: (cityData: { name: string; plz: string }) => void;
 }
 
-const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
+const CookieConsent = ({ onConsentGiven, onCityDetected }: CookieConsentProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [preferences, setPreferences] = useState({
@@ -43,10 +44,15 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
     
     if (userConfirmed) {
       // Geolocation abfragen (Browser-Dialog erscheint)
-      await getCityFromGeolocation();
+      const cityData = await getCityFromGeolocation();
       
-      // Stadt-Erkennung aktualisieren
-      await detectAndUpdateCity();
+      if (cityData) {
+        // Sofort State updaten via Callback
+        onCityDetected?.(cityData);
+        
+        // Events für andere Komponenten
+        window.dispatchEvent(new CustomEvent('cityDetected', { detail: cityData }));
+      }
     }
     
     onConsentGiven?.();
@@ -64,8 +70,15 @@ const CookieConsent = ({ onConsentGiven }: CookieConsentProps) => {
       );
       
       if (userConfirmed) {
-        await getCityFromGeolocation();
-        await detectAndUpdateCity();
+        const cityData = await getCityFromGeolocation();
+        
+        if (cityData) {
+          // Sofort State updaten via Callback
+          onCityDetected?.(cityData);
+          
+          // Events für andere Komponenten
+          window.dispatchEvent(new CustomEvent('cityDetected', { detail: cityData }));
+        }
       }
     }
     

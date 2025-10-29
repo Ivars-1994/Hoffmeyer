@@ -354,7 +354,13 @@ const Index = () => {
         )}
       </Helmet>
       
-      <CookieConsent />
+      <CookieConsent 
+        onCityDetected={(city) => {
+          console.log("🚀 SOFORTIGE Stadt-Aktualisierung:", city);
+          setCityData(city);
+          sessionStorage.setItem('cityData', JSON.stringify(city));
+        }}
+      />
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
         <Navbar />
