@@ -10,13 +10,41 @@ import { getCityFromParams } from '../utils/cityDetection';
 const PHONE_NUMBER = "+4915212124199";
 
 const Impressum = () => {
-  const [cityName, setCityName] = useState<string>('');
+  const [cityName, setCityName] = useState<string>('Ihrer Stadt');
 
   useEffect(() => {
+    // Priorität 1: Stadt aus sessionStorage (wenn von CityPage kommend)
+    const storedCity = sessionStorage.getItem('cityData');
+    if (storedCity) {
+      try {
+        const cityData = JSON.parse(storedCity);
+        if (cityData?.name) {
+          setCityName(cityData.name);
+          return;
+        }
+      } catch (e) {
+        console.error("Error parsing cityData:", e);
+      }
+    }
+    
+    // Priorität 2: Stadt aus URL-Parametern
     const cityData = getCityFromParams();
-    if (cityData?.name) {
+    if (cityData?.name && cityData.name !== 'Ihrer Stadt') {
       setCityName(cityData.name);
     }
+    
+    // Event Listener für Stadt-Updates
+    const handleCityDetected = (event: CustomEvent) => {
+      if (event.detail?.name) {
+        setCityName(event.detail.name);
+      }
+    };
+
+    window.addEventListener('cityDetected', handleCityDetected as EventListener);
+    
+    return () => {
+      window.removeEventListener('cityDetected', handleCityDetected as EventListener);
+    };
   }, []);
 
   return (
@@ -39,7 +67,7 @@ const Impressum = () => {
                 <div className="space-y-2">
                   <p>Kammerjäger Hoffmeyer</p>
                   <p>Hauptstraße 26–28</p>
-                  {cityName && <p>{cityName}</p>}
+                  <p>{cityName}</p>
                   <p>Deutschland</p>
                 </div>
               </div>

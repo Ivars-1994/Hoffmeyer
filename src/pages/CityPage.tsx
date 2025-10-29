@@ -174,28 +174,6 @@ const cityList = [
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           <MovingLogoBanner />
           
-          {/* Featured image with loading optimization - fixed the fetchPriority capitalization */}
-          <div className="w-full bg-gradient-to-b from-accent/5 to-white py-8">
-            <div className="container mx-auto px-4">
-              <div className="max-w-6xl mx-auto relative rounded-xl overflow-hidden shadow-xl">
-                <img 
-                  src="https://storage.googleapis.com/media-hero-de-9411/DE-AT-CH/Anwendungen/_900x719_crop_center-center_82_line/hero-schaedlingsbekaempfung-software.png" 
-                  alt="Professioneller Kammerjäger im Einsatz" 
-                  className="w-full h-auto"
-                  loading="eager"
-                  width="900"
-                  height="719"
-                  fetchPriority="high"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h2 className="text-2xl md:text-3xl font-bold mb-2">Schädlingsbekämpfung {cityName !== DEFAULT_CITY && `in ${cityName}`}</h2>
-                  <p className="text-lg md:text-xl max-w-xl">Professionelle und diskrete Hilfe bei Schädlingsbefall</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
           <AboutUs cityName={cityName} />
           
           <Services />
