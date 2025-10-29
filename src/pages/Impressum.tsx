@@ -9,6 +9,12 @@ import { getCityFromParams } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
 
+// Funktion zum Kapitalisieren der Stadt
+const capitalizeCity = (cityStr: string) => {
+  if (!cityStr || cityStr === 'Ihrer Stadt') return cityStr;
+  return cityStr.charAt(0).toUpperCase() + cityStr.slice(1);
+};
+
 const Impressum = () => {
   const [cityName, setCityName] = useState<string>('Ihrer Stadt');
 
@@ -18,8 +24,8 @@ const Impressum = () => {
     if (storedCity) {
       try {
         const cityData = JSON.parse(storedCity);
-        if (cityData?.name) {
-          setCityName(cityData.name);
+        if (cityData?.name && cityData.name !== 'Ihrer Stadt') {
+          setCityName(capitalizeCity(cityData.name));
           return;
         }
       } catch (e) {
@@ -30,13 +36,13 @@ const Impressum = () => {
     // Priorität 2: Stadt aus URL-Parametern
     const cityData = getCityFromParams();
     if (cityData?.name && cityData.name !== 'Ihrer Stadt') {
-      setCityName(cityData.name);
+      setCityName(capitalizeCity(cityData.name));
     }
     
     // Event Listener für Stadt-Updates
     const handleCityDetected = (event: CustomEvent) => {
-      if (event.detail?.name) {
-        setCityName(event.detail.name);
+      if (event.detail?.name && event.detail.name !== 'Ihrer Stadt') {
+        setCityName(capitalizeCity(event.detail.name));
       }
     };
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import pestControlImage from '@/assets/pest-control-professional.jpg';
+import norbertImage from '@/assets/norbert-wolframm.jpg';
 
 interface FeaturedImageProps {
   cityName: string;
@@ -13,7 +13,7 @@ const FeaturedImage = ({ cityName, defaultCity }: FeaturedImageProps) => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto relative rounded-xl overflow-hidden shadow-xl">
           <img 
-            src={pestControlImage}
+            src={norbertImage}
             alt="Professioneller Kammerjäger im Einsatz" 
             className="w-full h-auto"
             loading="lazy"

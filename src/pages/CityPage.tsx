@@ -14,6 +14,7 @@ import { Helmet } from 'react-helmet-async';
 import SectionCTA from '../components/ui/SectionCTA';
 import AboutUs from '../components/home/AboutUs';
 import MovingLogoBanner from '../components/home/MovingLogoBanner';
+import FeaturedImage from '../components/home/FeaturedImage';
 import { useParams } from 'react-router-dom';
 import SeoKeywords from '../components/seo/SeoKeywords';
 import CookieConsent from '../components/CookieConsent';
@@ -173,6 +174,7 @@ const cityList = [
           
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           <MovingLogoBanner />
+          <FeaturedImage cityName={cityName} defaultCity={DEFAULT_CITY} />
           
           <AboutUs cityName={cityName} />
           
