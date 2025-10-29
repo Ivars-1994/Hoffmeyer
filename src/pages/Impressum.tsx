@@ -11,37 +11,46 @@ const PHONE_NUMBER = "+4915212124199";
 
 // Funktion zum Kapitalisieren der Stadt
 const capitalizeCity = (cityStr: string) => {
-  if (!cityStr || cityStr === 'Ihrer Stadt') return cityStr;
-  return cityStr.charAt(0).toUpperCase() + cityStr.slice(1);
+  if (!cityStr) return 'Ihrer Stadt';
+  return cityStr.charAt(0).toUpperCase() + cityStr.slice(1).toLowerCase();
 };
 
 const Impressum = () => {
-  const [cityName, setCityName] = useState<string>('Ihrer Stadt');
+  const [cityName, setCityName] = useState<string>(() => {
+    // Initiale Stadt aus verschiedenen Quellen
+    try {
+      // Versuch 1: cityData aus sessionStorage
+      const storedCity = sessionStorage.getItem('cityData');
+      if (storedCity) {
+        const cityData = JSON.parse(storedCity);
+        if (cityData?.name) return capitalizeCity(cityData.name);
+      }
+      
+      // Versuch 2: cityName direkt aus sessionStorage
+      const directCity = sessionStorage.getItem('cityName');
+      if (directCity) return capitalizeCity(directCity);
+      
+      // Versuch 3: detectedCityData aus sessionStorage
+      const detectedCity = sessionStorage.getItem('detectedCityData');
+      if (detectedCity) {
+        const cityData = JSON.parse(detectedCity);
+        if (cityData?.name) return capitalizeCity(cityData.name);
+      }
+    } catch (e) {
+      console.error("Error reading city from sessionStorage:", e);
+    }
+    
+    // Versuch 4: URL-Parameter
+    const cityData = getCityFromParams();
+    if (cityData?.name) return capitalizeCity(cityData.name);
+    
+    return 'Ihrer Stadt';
+  });
 
   useEffect(() => {
-    // Priorität 1: Stadt aus sessionStorage (wenn von CityPage kommend)
-    const storedCity = sessionStorage.getItem('cityData');
-    if (storedCity) {
-      try {
-        const cityData = JSON.parse(storedCity);
-        if (cityData?.name && cityData.name !== 'Ihrer Stadt') {
-          setCityName(capitalizeCity(cityData.name));
-          return;
-        }
-      } catch (e) {
-        console.error("Error parsing cityData:", e);
-      }
-    }
-    
-    // Priorität 2: Stadt aus URL-Parametern
-    const cityData = getCityFromParams();
-    if (cityData?.name && cityData.name !== 'Ihrer Stadt') {
-      setCityName(capitalizeCity(cityData.name));
-    }
-    
     // Event Listener für Stadt-Updates
     const handleCityDetected = (event: CustomEvent) => {
-      if (event.detail?.name && event.detail.name !== 'Ihrer Stadt') {
+      if (event.detail?.name) {
         setCityName(capitalizeCity(event.detail.name));
       }
     };
