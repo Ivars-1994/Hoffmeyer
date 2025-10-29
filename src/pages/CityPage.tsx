@@ -21,7 +21,6 @@ import CookieConsent from '../components/CookieConsent';
 import { detectAndUpdateCity, CityData } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
-const DEFAULT_CITY = "Ihrer Stadt";
 
 // Erweiterte Liste deutscher Städte für die Erkennung
 const cityList = [
@@ -81,12 +80,12 @@ const cityList = [
   
   // Funktion zum Kapitalisieren der Stadt
   const capitalizeCity = (cityStr: string) => {
-    if (!cityStr || cityStr === DEFAULT_CITY) return cityStr;
+    if (!cityStr) return '';
     return cityStr.charAt(0).toUpperCase() + cityStr.slice(1);
   };
   
-  const [cityName, setCityName] = useState(capitalizeCity(city || DEFAULT_CITY));
-  const [cityData, setCityData] = useState<CityData>({ name: capitalizeCity(city || DEFAULT_CITY), plz: "00000" });
+  const [cityName, setCityName] = useState(capitalizeCity(city || ''));
+  const [cityData, setCityData] = useState<CityData>({ name: capitalizeCity(city || ''), plz: "00000" });
   
   // Stadt-Erkennung mit dem integrierten System
   useEffect(() => {
@@ -112,8 +111,8 @@ const cityList = [
         setCityData(detectedCity);
       } catch (error) {
         console.error("❌ CityPage: Fehler bei Stadt-Erkennung:", error);
-        setCityName(DEFAULT_CITY);
-        setCityData({ name: DEFAULT_CITY, plz: "00000" });
+        setCityName('');
+        setCityData({ name: '', plz: "00000" });
       }
     };
 
@@ -174,7 +173,7 @@ const cityList = [
           
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           <MovingLogoBanner />
-          <FeaturedImage cityName={cityName} defaultCity={DEFAULT_CITY} />
+          <FeaturedImage cityName={cityName} defaultCity="" />
           
           <AboutUs cityName={cityName} />
           
