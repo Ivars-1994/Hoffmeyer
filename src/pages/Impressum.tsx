@@ -5,7 +5,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
-import { getCityFromParams } from '../utils/cityDetection';
+import { detectAndUpdateCity, CityData } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
 
@@ -17,7 +17,7 @@ const capitalizeCity = (cityStr: string) => {
 
 const Impressum = () => {
   const [cityName, setCityName] = useState<string>(() => {
-    // Initiale Stadt aus verschiedenen Quellen
+    // Initiale Stadt aus sessionStorage
     try {
       // Versuch 1: cityData aus sessionStorage
       const storedCity = sessionStorage.getItem('cityData');
@@ -40,16 +40,32 @@ const Impressum = () => {
       console.error("Error reading city from sessionStorage:", e);
     }
     
-    // Versuch 4: URL-Parameter
-    const cityData = getCityFromParams();
-    if (cityData?.name) return capitalizeCity(cityData.name);
-    
     return 'Ihrer Stadt';
   });
 
   useEffect(() => {
+    // Stadt-Erkennung durchführen (wie auf anderen Seiten)
+    const runDetection = async () => {
+      try {
+        console.log("🔍 Impressum: Führe Stadt-Erkennung aus...");
+        const detectedCity = await detectAndUpdateCity();
+        console.log("✅ Impressum: Stadt erkannt:", detectedCity);
+        
+        if (detectedCity?.name) {
+          setCityName(capitalizeCity(detectedCity.name));
+        }
+      } catch (error) {
+        console.error("❌ Impressum: Fehler bei Stadt-Erkennung:", error);
+      }
+    };
+
+    // Nur ausführen wenn noch keine Stadt erkannt wurde
+    if (cityName === 'Ihrer Stadt') {
+      runDetection();
+    }
+    
     // Event Listener für Stadt-Updates
-    const handleCityDetected = (event: CustomEvent) => {
+    const handleCityDetected = (event: CustomEvent<CityData>) => {
       if (event.detail?.name) {
         setCityName(capitalizeCity(event.detail.name));
       }
