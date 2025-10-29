@@ -57,6 +57,20 @@ const Index = () => {
   
   const [cityData, setCityData] = useState<CityData | null>(null);
   
+  // Event-Listener für cityDetected Event (z.B. nach Cookie-Consent Geolocation)
+  useEffect(() => {
+    const handleCityDetected = (event: CustomEvent<CityData>) => {
+      console.log("🎉 Stadt erkannt über Event:", event.detail);
+      setCityData(event.detail);
+    };
+    
+    window.addEventListener('cityDetected', handleCityDetected as EventListener);
+    
+    return () => {
+      window.removeEventListener('cityDetected', handleCityDetected as EventListener);
+    };
+  }, []);
+  
   useEffect(() => {
     console.log("=== USEEFFECT LÄUFT ===");
     
