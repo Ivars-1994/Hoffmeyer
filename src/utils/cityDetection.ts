@@ -44,7 +44,45 @@ export async function detectCity(): Promise<CityData> {
     return cityData;
   }
 
-  // Priorität 2: Wenn kw parameter vorhanden ist, Stadt aus dem Suchbegriff extrahieren
+  // Priorität 2: mslocid/loc_physical_ms/city_id über Netlify Function
+  if (locId) {
+    try {
+      // Netlify Function nutzen
+      console.log("🔍 DEBUG: Versuche Netlify Function zu nutzen für ID:", locId);
+      const netlifyUrl = `/.netlify/functions/resolve-id?id=${locId}`;
+      console.log("🌐 DEBUG: Netlify Function URL:", netlifyUrl);
+      
+      const response = await fetch(netlifyUrl);
+      console.log("📡 DEBUG: Response Status:", response.status);
+      console.log("📡 DEBUG: Response OK:", response.ok);
+      
+      if (!response.ok) {
+        console.error("❌ DEBUG: Response not OK, status:", response.status);
+        const errorText = await response.text();
+        console.error("❌ DEBUG: Error response text:", errorText);
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+      
+      const data = await response.json();
+      console.log("📥 DEBUG: Netlify Function Antwort:", data);
+
+      if (data.stadt) {
+        const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();
+        const realPlz = data.plz || "00000";
+        const cityData = { name: capitalizedCity, plz: realPlz };
+        console.log("✅ DEBUG: Stadt über Netlify Function erkannt:", cityData);
+        
+        sessionStorage.setItem("cityName", capitalizedCity);
+        sessionStorage.setItem("cityPlz", realPlz);
+        sessionStorage.setItem("cityData", JSON.stringify(cityData));
+        return cityData;
+      }
+    } catch (error) {
+      console.error("❌ DEBUG: Netlify Function fehlgeschlagen:", error);
+    }
+  }
+
+  // Priorität 3: Wenn kw/utm_term parameter vorhanden ist, Stadt aus dem Suchbegriff extrahieren
   if (kw) {
     const searchTerm = decodeURIComponent(kw).replace(/\+/g, " ");
     // Extrahiere die Stadt (meist das letzte Wort nach "kammerjaeger" etc.)
@@ -64,51 +102,9 @@ export async function detectCity(): Promise<CityData> {
     return cityData;
   }
 
-  // Wenn keine kw aber loc_physical_ms/city_id, dann lokale Datei oder API-Aufruf
-  if (!locId) {
-    console.log("❌ DEBUG: Keine Parameter gefunden");
-    return { name: "Ihrer Stadt", plz: "00000" };
-  }
-
-  try {
-    // Netlify Function nutzen
-    console.log("🔍 DEBUG: Versuche Netlify Function zu nutzen für ID:", locId);
-    const netlifyUrl = `/.netlify/functions/resolve-id?id=${locId}`;
-    console.log("🌐 DEBUG: Netlify Function URL:", netlifyUrl);
-    
-    const response = await fetch(netlifyUrl);
-    console.log("📡 DEBUG: Response Status:", response.status);
-    console.log("📡 DEBUG: Response OK:", response.ok);
-    console.log("📡 DEBUG: Response Headers:", response.headers);
-    
-    if (!response.ok) {
-      console.error("❌ DEBUG: Response not OK, status:", response.status);
-      const errorText = await response.text();
-      console.error("❌ DEBUG: Error response text:", errorText);
-      throw new Error(`HTTP ${response.status}: ${errorText}`);
-    }
-    
-    const data = await response.json();
-    console.log("📥 DEBUG: Netlify Function Antwort:", data);
-    console.log("📥 DEBUG: Response data type:", typeof data);
-    console.log("📥 DEBUG: Response data keys:", Object.keys(data));
-
-    if (data.stadt) {
-      const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();
-      const realPlz = data.plz || "00000";
-      const cityData = { name: capitalizedCity, plz: realPlz };
-      console.log("✅ DEBUG: Stadt über Netlify Function erkannt:", cityData);
-      
-      sessionStorage.setItem("cityName", capitalizedCity);
-      sessionStorage.setItem("cityPlz", realPlz);
-      sessionStorage.setItem("cityData", JSON.stringify(cityData));
-      return cityData;
-    }
-  } catch (error) {
-    console.error("❌ DEBUG: Netlify Function fehlgeschlagen:", error);
-  }
-
+  console.log("❌ DEBUG: Keine Parameter gefunden");
   return { name: "Ihrer Stadt", plz: "00000" };
+
 }
 
 export function getCityFromParams(): CityData {
