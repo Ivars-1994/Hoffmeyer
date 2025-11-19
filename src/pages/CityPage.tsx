@@ -17,7 +17,6 @@ import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
 import { useParams } from 'react-router-dom';
 import SeoKeywords from '../components/seo/SeoKeywords';
-import CookieConsent from '../components/CookieConsent';
 import { detectAndUpdateCity, CityData } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
@@ -146,15 +145,6 @@ const cityList = [
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
       </Helmet>
       
-      <CookieConsent 
-        hasCityInUrl={!!city}
-        onCityDetected={(detectedCity) => {
-          if (!city) {
-            setCityName(detectedCity.name);
-            setCityData(detectedCity);
-          }
-        }}
-      />
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
         <Navbar />

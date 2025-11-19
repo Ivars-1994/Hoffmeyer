@@ -15,7 +15,6 @@ import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import CityWelcomeBanner from '../components/home/CityWelcomeBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
 import SeoKeywords from '../components/seo/SeoKeywords';
-import CookieConsent from '../components/CookieConsent';
 import { CityData } from '../utils/cityDetection';
 import { getServiceConfig } from '../utils/serviceConfig';
 import { 
@@ -354,14 +353,6 @@ const Index = () => {
         )}
       </Helmet>
       
-      <CookieConsent 
-        hasCityInUrl={!!cityParam || !!kwParam || !!locId}
-        onCityDetected={(city) => {
-          console.log("🚀 SOFORTIGE Stadt-Aktualisierung:", city);
-          setCityData(city);
-          sessionStorage.setItem('cityData', JSON.stringify(city));
-        }}
-      />
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
         <Navbar />
