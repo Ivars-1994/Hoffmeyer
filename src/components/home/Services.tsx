@@ -430,8 +430,11 @@ const Services = ({ cityName }: { cityName?: string }) => {
                           <img 
                             src={service.image} 
                             alt={service.alt}
+                            width="400"
+                            height="225"
                             className="w-full h-64 object-cover rounded-lg mb-6"
                             loading="lazy"
+                            decoding="async"
                           />
                           <div 
                             className="prose max-w-none"
@@ -456,8 +459,11 @@ const Services = ({ cityName }: { cityName?: string }) => {
                   <img 
                     src={service.image}
                     alt={service.alt}
+                    width="400"
+                    height="225"
                     className="w-full h-64 md:h-80 object-cover rounded-xl shadow-md"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
