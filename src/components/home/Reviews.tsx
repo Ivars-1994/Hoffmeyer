@@ -140,11 +140,15 @@ const Reviews = ({ cityName }: ReviewsProps) => {
             >
               <img 
                 src="https://weltweiser.de/wp-content/uploads/2022/07/proven-expert.png" 
-                alt="ProvenExpert Logo" 
+                alt="ProvenExpert Logo"
+                width="150"
+                height="80"
                 className={cn(
                   "object-contain", 
                   isMobile ? "h-20" : "h-16"
-                )} 
+                )}
+                loading="lazy"
+                decoding="async"
               />
             </a>
           </div>
