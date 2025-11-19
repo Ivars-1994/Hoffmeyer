@@ -24,6 +24,8 @@ import {
   LazyContact, 
   LazyAboutUs 
 } from '../components/LazyComponents';
+import TrustBadges from '../components/ui/TrustBadges';
+import ProcessSteps from '../components/home/ProcessSteps';
 
 
 // Declare gtag as a global function
@@ -368,22 +370,32 @@ const Index = () => {
           <Suspense fallback={<div className="h-20 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
             <LazyAboutUs />
           </Suspense>
+          
+          {/* Trust Badges - Zertifizierungen Bild */}
+          <TrustBadges />
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           
-          {/* Services - Full version with anchor IDs for SEO */}
-          <Services cityName={cityName} />
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
+          {/* Prozess-Ablauf */}
+          <ProcessSteps />
+          <SectionCTA phoneNumber={PHONE_NUMBER} text="Bereit für den ersten Schritt?" />
           
+          {/* Zertifizierungen */}
           <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
             <LazyCertifications />
           </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Professionelle Beratung gewünscht?" />
           
+          {/* Services - Full version with anchor IDs for SEO */}
+          <Services cityName={cityName} />
+          <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
+          
+          {/* Kundenbewertungen */}
           <Suspense fallback={<div className="h-40 bg-muted/20 animate-pulse" />}>
             <LazyReviews cityName={cityName} />
           </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Überzeugt? Kontaktieren Sie uns!" />
           
+          {/* Zahlungsmöglichkeiten */}
           <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
             <LazyPaymentOptions />
           </Suspense>

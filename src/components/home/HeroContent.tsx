@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, Star } from 'lucide-react';
 import PhoneButton from '../ui/PhoneButton';
 import WhatsAppButton from '../ui/WhatsAppButton';
 import Logo from '../ui/Logo';
@@ -42,21 +42,46 @@ const HeroContent = ({ cityName, serviceConfig }: HeroContentProps) => {
       </h1>
       
       {/* Wespen-Notdienst Badge direkt unter dem Haupttitel */}
-      <div className="flex justify-center md:justify-start mb-6 animate-fade-in" style={{ animationDelay: '150ms' }}>
+      <div className="flex justify-center md:justify-start mb-4 animate-fade-in" style={{ animationDelay: '150ms' }}>
         <EmergencyWaspBadge variant="hero" />
       </div>
       
-      <p className="subheadline text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto md:mx-0 animate-fade-in mobile-text-boost" style={{ animationDelay: '200ms', lineHeight: '1.5' }}>
+      {/* Social Proof - Bewertungen prominent */}
+      <div className="flex items-center justify-center md:justify-start gap-2 mb-6 animate-fade-in" style={{ animationDelay: '175ms' }}>
+        <div className="flex">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+          ))}
+        </div>
+        <span className="text-base font-semibold text-foreground">4.9/5</span>
+        <span className="text-sm text-muted-foreground">bei über 500 Bewertungen</span>
+      </div>
+      
+      {/* Telefonnummer RIESIG und prominent */}
+      <a 
+        href={`tel:${PHONE_NUMBER}`}
+        className="block text-center md:text-left mb-6 animate-fade-in group"
+        style={{ animationDelay: '200ms' }}
+      >
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/5 to-accent/5 px-6 py-4 rounded-xl border-2 border-primary/20 hover:border-primary/40 transition-all">
+          <span className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary group-hover:scale-105 transition-transform">
+            0152 1212 4199
+          </span>
+        </div>
+      </a>
+      
+      <p className="subheadline text-base sm:text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto md:mx-0 animate-fade-in mobile-text-boost" style={{ animationDelay: '250ms', lineHeight: '1.5' }}>
         {subheadline}
       </p>
       
       <div className="flex flex-col gap-3 justify-center md:justify-start animate-fade-in" style={{ animationDelay: '300ms' }}>
-        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+        <div className="flex flex-wrap gap-3 justify-center md:justify-start">
           <div>
             <PhoneButton 
               phoneNumber={PHONE_NUMBER} 
               size="default"
-              className="bg-blue-600 hover:bg-blue-700 text-base py-2.5 sm:py-3 shadow-lg mobile-button-boost" 
+              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white text-lg font-bold py-4 px-8 shadow-xl mobile-button-boost animate-pulse-subtle" 
+              linkText="JETZT ANRUFEN"
             />
           </div>
           
@@ -64,17 +89,8 @@ const HeroContent = ({ cityName, serviceConfig }: HeroContentProps) => {
             <WhatsAppButton 
               phoneNumber={PHONE_NUMBER} 
               size="default"
-              className="bg-green-600 hover:bg-green-700 text-base py-2.5 sm:py-3 shadow-lg mobile-button-boost"
+              className="bg-green-600 hover:bg-green-700 text-base py-3 shadow-lg mobile-button-boost"
             />
-          </div>
-          
-          <div>
-            <a 
-              href="#contact" 
-              className="inline-flex items-center justify-center px-4 py-2.5 sm:py-3 rounded-md bg-accent hover:bg-accent/90 text-white font-bold transition-colors text-base shadow-lg mobile-button-boost"
-            >
-              Kostenlose Beratung
-            </a>
           </div>
         </div>
         
