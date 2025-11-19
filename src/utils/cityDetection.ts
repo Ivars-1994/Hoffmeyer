@@ -14,7 +14,7 @@ export async function detectCity(): Promise<CityData> {
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city"); // Neuer direkter city Parameter
   const kw = urlParams.get("kw") || urlParams.get("utm_term");
-  const locId = urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc") || urlParams.get("mslocid");
+  const locId = urlParams.get("mslocid") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
 
   console.log("🔍 DEBUG: Stadt-Erkennung startet mit URL:", window.location.href);
   console.log("🔍 DEBUG: Search params:", window.location.search);
@@ -115,7 +115,7 @@ export function getCityFromParams(): CityData {
   // NICHT aus sessionStorage laden - immer frisch ermitteln
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city");
-  const hasLocationId = urlParams.get("kw") || urlParams.get("utm_term") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc") || urlParams.get("mslocid");
+  const hasLocationId = urlParams.get("mslocid") || urlParams.get("kw") || urlParams.get("utm_term") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
   
   // Priorität 1: city Parameter
   if (cityParam) {
