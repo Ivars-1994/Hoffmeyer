@@ -32,12 +32,14 @@ const MobileStickyCTA = () => {
         className="flex items-center gap-4 bg-accent text-accent-foreground px-6 py-5 rounded-3xl shadow-2xl hover:shadow-accent/40 transition-all duration-300 hover:scale-[1.02] backdrop-blur-md border border-white/20"
         aria-label="Jetzt verfügbar - Sofort anrufen"
       >
-        {/* Profile Image */}
+        {/* Profile Image - lazy loaded */}
         <div className="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border-3 border-white shadow-lg">
           <img 
             src="/lovable-uploads/norbert-wolframm.jpg"
             alt="Kammerjäger Hoffmeyer Experte"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

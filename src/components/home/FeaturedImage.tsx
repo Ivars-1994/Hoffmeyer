@@ -20,6 +20,7 @@ const FeaturedImage = ({ cityName, defaultCity }: FeaturedImageProps) => {
             height="473"
             loading="lazy"
             decoding="async"
+            fetchPriority="low"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
           <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
