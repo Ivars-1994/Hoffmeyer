@@ -5,7 +5,6 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/home/Hero';
 import Services from '../components/home/Services';
-import GeneralFAQ from '../components/home/GeneralFAQ';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
 import MobileStickyCTA from '../components/ui/MobileStickyCTA';
@@ -22,10 +21,11 @@ import {
   LazyReviews, 
   LazyPaymentOptions, 
   LazyContact, 
-  LazyAboutUs 
+  LazyAboutUs,
+  LazyProcessSteps,
+  LazyGeneralFAQ
 } from '../components/LazyComponents';
 import TrustBadges from '../components/ui/TrustBadges';
-import ProcessSteps from '../components/home/ProcessSteps';
 
 
 // Declare gtag as a global function
@@ -376,7 +376,9 @@ const Index = () => {
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
           
           {/* Prozess-Ablauf */}
-          <ProcessSteps />
+          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
+            <LazyProcessSteps />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Bereit für den ersten Schritt?" />
           
           {/* Zertifizierungen */}
@@ -406,7 +408,9 @@ const Index = () => {
           </Suspense>
           
           {/* FAQ Section with SEO-optimized Schema.org markup */}
-          <GeneralFAQ cityName={cityName} />
+          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
+            <LazyGeneralFAQ cityName={cityName} />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Noch Fragen? Jetzt kostenlos anrufen!" />
           
           <SeoKeywords />
