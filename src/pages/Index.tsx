@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/home/Hero';
-import Services from '../components/home/Services';
 import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
 import MobileStickyCTA from '../components/ui/MobileStickyCTA';
@@ -23,7 +22,8 @@ import {
   LazyContact, 
   LazyAboutUs,
   LazyProcessSteps,
-  LazyGeneralFAQ
+  LazyGeneralFAQ,
+  LazyServices
 } from '../components/LazyComponents';
 import TrustBadges from '../components/ui/TrustBadges';
 
@@ -388,7 +388,9 @@ const Index = () => {
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Professionelle Beratung gewünscht?" />
           
           {/* Services - Full version with anchor IDs for SEO */}
-          <Services cityName={cityName} />
+          <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
+            <LazyServices cityName={cityName} />
+          </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
           
           {/* Kundenbewertungen */}
