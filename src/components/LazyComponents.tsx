@@ -9,3 +9,4 @@ export const LazyAboutUs = lazy(() => import('./home/AboutUs'));
 export const LazyProcessSteps = lazy(() => import('./home/ProcessSteps'));
 export const LazyGeneralFAQ = lazy(() => import('./home/GeneralFAQ'));
 export const LazyServiceFAQ = lazy(() => import('./home/ServiceFAQ'));
+export const LazyServices = lazy(() => import('./home/Services'));

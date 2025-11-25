@@ -1,5 +1,5 @@
 import React from 'react';
-import trustBadgesImage from '@/assets/trust-badges.png';
+import trustBadgesImage from '@/assets/trust-badges-optimized.webp';
 
 const TrustBadges = () => {
   return (
@@ -10,7 +10,10 @@ const TrustBadges = () => {
             src={trustBadgesImage}
             alt="Zertifizierungen: DSV Verband, Stiftung Warentest Sehr Gut, TÜV Rheinland, DSV, ISO 9001, CEPA" 
             className="w-full h-auto"
-            loading="lazy"
+            width="1200"
+            height="400"
+            loading="eager"
+            fetchPriority="high"
             decoding="async"
           />
         </div>
