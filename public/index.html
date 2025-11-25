@@ -1,24 +1,15 @@
 <!doctype html>
 <html lang="de">
-  <head>
-    <!-- Google Tag Manager -->
-    <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KTVFNWPH');
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <!--  ClickCease.com tracking-->
-    <script type='text/javascript'>var script = document.createElement('script');
-    script.async = true; script.type = 'text/javascript';
-    var target = 'https://www.clickcease.com/monitor/stat.js';
-    script.src = target;var elem = document.head;elem.appendChild(script);
-    </script>
-    <noscript>
-    <a href='https://www.clickcease.com' rel='nofollow'><img src='https://monitor.clickcease.com' alt='ClickCease'/></a>
-    </noscript>
-    <!--  ClickCease.com tracking-->
-
+<head>
     <meta charset="UTF-8" />
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.clickcease.com">
+    <link rel="dns-prefetch" href="https://cdn.gpteng.co">
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung</title>
@@ -40,53 +31,9 @@
     <meta name="twitter:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung" />
     <meta name="twitter:description" content="Schnelle & diskrete Schädlingsbekämpfung. 24/7 Notdienst verfügbar." />
 
-    <!-- Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16458367327"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-16458367327');
-    </script>
-
-    <!-- Conversion tracking function -->
-    <script>
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-16458367327/uNzYCJ34_O8ZEOq8hpo9',
-          'event_callback': callback
-        });
-        return false;
-      }
-    </script>
-
-    <!-- Fingerprint2 - Temporarily disabled due to loading issues -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
-    <script>
-      FingerprintJS.load()
-        .then(fp => fp.get())
-        .then(result => {
-          const visitorId = result.visitorId;
-          if (typeof gtag !== 'undefined') {
-            gtag('config', 'AW-16458367327', {
-              'custom_map': {'dimension1': 'fp_visitor_id'}
-            });
-            gtag('event', 'page_view', {
-              'fp_visitor_id': visitorId
-            });
-          }
-        })
-        .catch(error => {
-          console.error("Error getting Fingerprint visitor ID:", error);
-        });
-    </script>
-    -->
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   </head>
 
   <body>
@@ -123,6 +70,56 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Deferred Tracking Scripts (load after page interactive) -->
+    <script>
+      window.addEventListener('load', function() {
+        // Google Tag Manager - deferred
+        setTimeout(function() {
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-KTVFNWPH');
+        }, 1000);
+        
+        // ClickCease - deferred
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.type = 'text/javascript';
+          script.src = 'https://www.clickcease.com/monitor/stat.js';
+          document.head.appendChild(script);
+        }, 1500);
+        
+        // Google Ads - deferred
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16458367327';
+          document.head.appendChild(script);
+          
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-16458367327');
+          
+          // Conversion tracking function
+          window.gtag_report_conversion = function(url) {
+            var callback = function () {
+              if (typeof(url) != 'undefined') {
+                window.location = url;
+              }
+            };
+            gtag('event', 'conversion', {
+              'send_to': 'AW-16458367327/uNzYCJ34_O8ZEOq8hpo9',
+              'event_callback': callback
+            });
+            return false;
+          };
+        }, 2000);
+      });
+    </script>
     
     <!-- Smart Location Detection Script -->
     <script>
