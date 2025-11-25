@@ -16,8 +16,8 @@ const HeroContent = ({
   serviceConfig
 }: HeroContentProps) => {
   console.log("🎯 HERO CONTENT - Empfange Stadt:", cityName, "Service:", serviceConfig);
-  const headline = serviceConfig ? `${serviceConfig.h1} in ${cityName}` : `Ihr Experte für effektive Schädlingsbekämpfung aus ${cityName}`;
-  const subheadline = serviceConfig ? `Zertifizierte Profis mit über 20 Jahren Erfahrung. Wir bieten schnelle und diskrete ${serviceConfig.title} in ${cityName}.` : `Zertifizierte Profis mit über 20 Jahren Erfahrung aus ${cityName}. Wir bieten schnelle und diskrete Lösungen für Ihre Schädlingsprobleme.`;
+  const headline = serviceConfig ? `${serviceConfig.h1} in ${cityName}` : `Ihr Experte für effektive Schädlingsbekämpfung aus ${cityName} und Umgebung`;
+  const subheadline = serviceConfig ? `Zertifizierte Profis mit über 20 Jahren Erfahrung. Wir bieten schnelle und diskrete ${serviceConfig.title} in ${cityName} und Umgebung.` : `Zertifizierte Profis mit über 20 Jahren Erfahrung aus ${cityName} und Umgebung. Wir bieten schnelle und diskrete Lösungen für Ihre Schädlingsprobleme.`;
   return <div className="w-full md:w-1/2 mb-6 sm:mb-8 md:mb-0 text-center md:text-left">
       <div className="flex justify-center md:justify-start mb-5 relative z-30">
         <Logo size="large" />
