@@ -301,6 +301,134 @@
       display: block;
     }
     
+    /* Trust Badges Certificates */
+    .trust-badges-section {
+      padding: 3rem 0;
+      background: linear-gradient(to bottom, white, hsla(217, 91%, 60%, 0.03));
+    }
+    .trust-badges-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .trust-badges-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* Certifications Section */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .cert-grid { grid-template-columns: 1fr; }
+    }
+    .cert-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+    .cert-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .cert-item:last-child { margin-bottom: 0; }
+    .cert-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      background: hsla(217, 91%, 60%, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .cert-icon svg { color: var(--accent); width: 0.875rem; height: 0.875rem; }
+    .cert-item h4 { font-weight: 600; margin-bottom: 0.25rem; font-size: 1rem; }
+    .cert-item p { font-size: 0.875rem; color: var(--muted-foreground); }
+    .quality-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 480px) {
+      .quality-grid { grid-template-columns: 1fr; }
+    }
+    .quality-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .quality-item p { font-size: 0.875rem; }
+    .quality-box {
+      margin-top: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+    }
+    
+    /* Payment Section */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .payment-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .payment-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    .payment-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      background: hsla(217, 91%, 60%, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .payment-icon svg { color: var(--accent); width: 1.5rem; height: 1.5rem; }
+    .payment-card h4 { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .payment-card p { font-size: 0.75rem; color: var(--muted-foreground); }
+    .payment-info-box {
+      background: hsla(217, 91%, 60%, 0.05);
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+      max-width: 800px;
+      margin: 2rem auto 0;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .payment-info-box { flex-direction: column; text-align: center; }
+    }
+    .payment-info-icon {
+      width: 4rem;
+      height: 4rem;
+      background: hsla(217, 91%, 60%, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .payment-info-icon svg { color: var(--accent); width: 2rem; height: 2rem; }
+    
     /* About Us */
     .about-grid {
       display: grid;
@@ -818,6 +946,21 @@
     </div>
   </section>
   
+  <!-- Trust Badges - Zertifizierungen Bild -->
+  <section class="trust-badges-section">
+    <div class="container">
+      <div class="trust-badges-wrapper">
+        <img 
+          src="/lovable-uploads/trust-badges-optimized.webp" 
+          alt="Zertifizierungen: DSV Verband, Stiftung Warentest Sehr Gut, TÜV Rheinland, DSV, ISO 9001, CEPA"
+          loading="lazy"
+          width="1200"
+          height="400"
+        >
+      </div>
+    </div>
+  </section>
+  
   <!-- CTA Section 1 -->
   <section class="cta-section">
     <div class="container">
@@ -865,6 +1008,119 @@
           <p>Wir beseitigen das Problem effektiv und diskret. Mit Garantie und Nachkontrolle für Ihre Sicherheit.</p>
         </div>
       </div>
+    </div>
+  </section>
+  
+  <!-- CTA after Process -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Bereit für den ersten Schritt?</h2>
+      <p>Kostenlose Beratung und Festpreisgarantie – rufen Sie jetzt an!</p>
+      <a href="tel:+4915212124199" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        0152 1212 4199
+      </a>
+    </div>
+  </section>
+  
+  <!-- Certifications Section -->
+  <section>
+    <div class="container">
+      <h2>Unsere Zertifizierungen</h2>
+      <p class="section-intro">Vertrauen Sie auf nachgewiesene Expertise und höchste Qualitätsstandards bei der Schädlingsbekämpfung.</p>
+      <div class="cert-grid">
+        <div class="cert-box">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+            <div class="icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </div>
+            <h3 style="font-size: 1.5rem; font-weight: 700;">Zertifizierungen</h3>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div>
+              <h4>IHK-zertifizierte Fachkraft</h4>
+              <p>Wir sind offiziell von der Industrie- und Handelskammer (IHK) zertifizierte Fachkräfte für Schädlingsbekämpfung.</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div>
+              <h4>Sachkundenachweis §4 Biozidverordnung</h4>
+              <p>Wir besitzen den erforderlichen Sachkundenachweis für den Umgang mit Bioziden gemäß §4 der Biozidverordnung.</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div>
+              <h4>Spezial-Zertifizierung</h4>
+              <p>Spezialisiert und zertifiziert für die Bekämpfung von besonderen Schädlingen wie Bettwanzen und Holzschädlingen.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cert-box" style="background: hsla(210, 20%, 98%, 0.5);">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Unser Qualitätsversprechen</h3>
+          <div class="quality-grid">
+            <div class="quality-item">
+              <div class="cert-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <p>Umweltfreundliche Methoden</p>
+            </div>
+            <div class="quality-item">
+              <div class="cert-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <p>Modernste Technologien</p>
+            </div>
+            <div class="quality-item">
+              <div class="cert-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <p>Diskrete Durchführung</p>
+            </div>
+            <div class="quality-item">
+              <div class="cert-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <p>Umfassende Nachbetreuung</p>
+            </div>
+            <div class="quality-item">
+              <div class="cert-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <p>Transparente Preise</p>
+            </div>
+            <div class="quality-item">
+              <div class="cert-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <p>Gesetzeskonform</p>
+            </div>
+          </div>
+          <div class="quality-box">
+            <p style="font-weight: 500;">Als zertifizierte Experten garantieren wir eine professionelle, effektive und nachhaltige Schädlingsbekämpfung für Ihr Zuhause oder Unternehmen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA after Certifications -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Professionelle Beratung gewünscht?</h2>
+      <p>Unsere zertifizierten Experten helfen Ihnen gerne weiter!</p>
+      <a href="tel:+4915212124199" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        0152 1212 4199
+      </a>
     </div>
   </section>
   
@@ -945,6 +1201,91 @@
           <p class="review-location">Essen-Stadtmitte</p>
         </div>
       </div>
+    </div>
+  </section>
+  
+  <!-- CTA after Reviews -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Überzeugt? Kontaktieren Sie uns!</h2>
+      <p>Werden auch Sie einer unserer zufriedenen Kunden in Essen!</p>
+      <a href="tel:+4915212124199" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        0152 1212 4199
+      </a>
+    </div>
+  </section>
+  
+  <!-- Payment Options Section -->
+  <section>
+    <div class="container">
+      <h2>Zahlungsmöglichkeiten</h2>
+      <p class="section-intro">Flexible und sichere Zahlungsmethoden für Ihre Bequemlichkeit</p>
+      <div class="payment-grid">
+        <div class="payment-card">
+          <div class="payment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </div>
+          <h4>Rechnung</h4>
+          <p>Bequeme Zahlung nach erbrachter Leistung</p>
+        </div>
+        <div class="payment-card">
+          <div class="payment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <h4>Bar</h4>
+          <p>Direkte Barzahlung vor Ort möglich</p>
+        </div>
+        <div class="payment-card">
+          <div class="payment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          </div>
+          <h4>Karte</h4>
+          <p>EC- und Kreditkartenzahlung verfügbar</p>
+        </div>
+        <div class="payment-card">
+          <div class="payment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.067 8.478c-.492-.268-1.047-.419-1.646-.419h-3.028l-.723 4.568h3.028c.599 0 1.154-.151 1.646-.419.492-.268.886-.643 1.169-1.104.283-.461.424-1.003.424-1.626 0-.623-.141-1.165-.424-1.626-.283-.461-.677-.836-1.169-1.104l.723.73z"/></svg>
+          </div>
+          <h4>PayPal</h4>
+          <p>Schnelle und sichere Online-Zahlung</p>
+        </div>
+        <div class="payment-card">
+          <div class="payment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4" fill="hsla(338, 100%, 85%, 0.3)"/><circle cx="7.5" cy="16" r="3" fill="var(--accent)"/></svg>
+          </div>
+          <h4>Klarna</h4>
+          <p>Flexible Zahlungsmöglichkeiten</p>
+        </div>
+        <div class="payment-card">
+          <div class="payment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h4>Versicherung</h4>
+          <p>Direkte Abrechnung mit Ihrer Versicherung</p>
+        </div>
+      </div>
+      <div class="payment-info-box">
+        <div class="payment-info-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Sichere und transparente Zahlungsabwicklung</h3>
+          <p style="color: var(--muted-foreground);">Bei uns gibt es keine versteckten Kosten. Alle Preise sind transparent und werden vor Beginn der Arbeiten klar kommuniziert. Wir bieten zudem eine kostenlose Beratung und Anfahrt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA after Payment -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Fragen zu unseren Zahlungsoptionen?</h2>
+      <p>Wir beraten Sie gerne zu allen Zahlungsmöglichkeiten!</p>
+      <a href="tel:+4915212124199" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        0152 1212 4199
+      </a>
     </div>
   </section>
   
