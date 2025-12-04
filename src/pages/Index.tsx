@@ -12,7 +12,7 @@ import SectionCTA from '../components/ui/SectionCTA';
 import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import CityWelcomeBanner from '../components/home/CityWelcomeBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
-import SeoKeywords from '../components/seo/SeoKeywords';
+// SeoKeywords entfernt - versteckter Text ist ein Google Spam-Signal
 import { CityData } from '../utils/cityDetection';
 import { getServiceConfig } from '../utils/serviceConfig';
 import { 
@@ -415,7 +415,7 @@ const Index = () => {
           </Suspense>
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Noch Fragen? Jetzt kostenlos anrufen!" />
           
-          <SeoKeywords />
+          {/* SEO Keywords entfernt - versteckter Text ist ein Google Spam-Signal */}
         </main>
         
         <Footer />
