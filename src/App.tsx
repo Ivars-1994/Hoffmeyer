@@ -11,6 +11,7 @@ import Datenschutz from "./pages/Datenschutz";
 import AGB from "./pages/AGB";
 import NotFound from "./pages/NotFound";
 import CityPage from "./pages/CityPage";
+import EssenPage from "./pages/EssenPage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/svc/:service" element={<Index />} />
+            {/* SEO-optimierte Essen-Seite */}
+            <Route path="/kammerjaeger-essen" element={<EssenPage />} />
             <Route path="/city/:city" element={<CityPage />} />
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/datenschutz" element={<Datenschutz />} />

@@ -22,6 +22,14 @@ const Footer = () => {
       ]
     },
     {
+      title: "Standorte",
+      links: [
+        { name: "Kammerjäger Essen", href: "/kammerjaeger-essen" },
+        { name: "Schädlingsbekämpfung Essen", href: "/kammerjaeger-essen" },
+        { name: "Kammerjäger Notdienst Essen", href: "/kammerjaeger-essen" },
+      ]
+    },
+    {
       title: "Unternehmen",
       links: [
         { name: "Über uns", href: "#" },
