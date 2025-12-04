@@ -1,2 +1,5 @@
+# 301-Redirect für kanonische URL mit Trailing Slash
+/kammerjaeger-essen    /kammerjaeger-essen/    301
 
+# SPA Fallback
 /*    /index.html   200
