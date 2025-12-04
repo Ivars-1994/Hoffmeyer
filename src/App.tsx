@@ -11,7 +11,7 @@ import Datenschutz from "./pages/Datenschutz";
 import AGB from "./pages/AGB";
 import NotFound from "./pages/NotFound";
 import CityPage from "./pages/CityPage";
-import EssenPage from "./pages/EssenPage";
+// EssenPage entfernt - /kammerjaeger-essen/ wird als statische HTML aus public/ ausgeliefert
 
 const queryClient = new QueryClient();
 
@@ -25,8 +25,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/svc/:service" element={<Index />} />
-            {/* SEO-optimierte Essen-Seite */}
-            <Route path="/kammerjaeger-essen" element={<EssenPage />} />
+            {/* /kammerjaeger-essen wird als statische HTML-Datei aus public/ ausgeliefert - KEINE React-Route! */}
             <Route path="/city/:city" element={<CityPage />} />
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/datenschutz" element={<Datenschutz />} />
