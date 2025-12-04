@@ -9,7 +9,25 @@
     <loc>https://kammerjaeger-hoffmeyer.de/kammerjaeger-essen/</loc>
     <priority>0.95</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2024-12-04</lastmod>
+    <lastmod>2025-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://kammerjaeger-hoffmeyer.de/ratgeber/kammerjaeger-essen-kosten-2025/</loc>
+    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://kammerjaeger-hoffmeyer.de/ratgeber/wespennest-entfernen-essen/</loc>
+    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://kammerjaeger-hoffmeyer.de/ratgeber/bettwanzen-essen-anzeichen/</loc>
+    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-12-04</lastmod>
   </url>
   <url>
     <loc>https://kammerjaeger-hoffmeyer.de/svc/wespen</loc>
