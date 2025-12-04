@@ -5,6 +5,28 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Statische Seiten ZUERST (werden direkt ausgeliefert, nicht durch SPA)
+[[redirects]]
+  from = "/kammerjaeger-essen"
+  to = "/kammerjaeger-essen/"
+  status = 301
+
+[[redirects]]
+  from = "/ratgeber/kammerjaeger-essen-kosten-2025"
+  to = "/ratgeber/kammerjaeger-essen-kosten-2025/"
+  status = 301
+
+[[redirects]]
+  from = "/ratgeber/wespennest-entfernen-essen"
+  to = "/ratgeber/wespennest-entfernen-essen/"
+  status = 301
+
+[[redirects]]
+  from = "/ratgeber/bettwanzen-essen-anzeichen"
+  to = "/ratgeber/bettwanzen-essen-anzeichen/"
+  status = 301
+
+# SPA Fallback für alle anderen Routen
 [[redirects]]
   from = "/*"
   to = "/index.html"

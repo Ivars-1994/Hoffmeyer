@@ -1,5 +1,8 @@
-# 301-Redirect für kanonische URL mit Trailing Slash
+# 301-Redirects für kanonische URLs mit Trailing Slash
 /kammerjaeger-essen    /kammerjaeger-essen/    301
+/ratgeber/kammerjaeger-essen-kosten-2025    /ratgeber/kammerjaeger-essen-kosten-2025/    301
+/ratgeber/wespennest-entfernen-essen    /ratgeber/wespennest-entfernen-essen/    301
+/ratgeber/bettwanzen-essen-anzeichen    /ratgeber/bettwanzen-essen-anzeichen/    301
 
-# SPA Fallback
+# SPA Fallback - NUR für Routen die keine statische Datei haben
 /*    /index.html   200
