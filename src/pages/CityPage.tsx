@@ -16,7 +16,7 @@ import AboutUs from '../components/home/AboutUs';
 import MovingLogoBanner from '../components/home/MovingLogoBanner';
 import FeaturedImage from '../components/home/FeaturedImage';
 import { useParams } from 'react-router-dom';
-import SeoKeywords from '../components/seo/SeoKeywords';
+// SeoKeywords entfernt - versteckter Text ist ein Google Spam-Signal
 import { detectAndUpdateCity, CityData } from '../utils/cityDetection';
 
 const PHONE_NUMBER = "+4915212124199";
@@ -177,8 +177,7 @@ const cityList = [
           <SectionCTA phoneNumber={PHONE_NUMBER} text="Fragen zu unseren Zahlungsoptionen?" />
           <Contact />
           
-          {/* SEO Keywords für Google-Indexierung */}
-          <SeoKeywords />
+          {/* SEO Keywords entfernt - versteckter Text ist ein Google Spam-Signal */}
         </main>
         
         <Footer />
