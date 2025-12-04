@@ -47,7 +47,6 @@
   
   <style>
     :root {
-      /* Light Mode - matching React app */
       --background: hsl(0, 0%, 98%);
       --foreground: hsl(222, 14%, 9%);
       --primary: hsl(222, 47%, 14%);
@@ -74,7 +73,6 @@
     
     .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
     
-    /* Glass Card Effect */
     .glass-card {
       background: hsla(0, 0%, 100%, 0.75);
       border: 1px solid hsla(214, 32%, 91%, 0.5);
@@ -96,562 +94,191 @@
       z-index: 100;
       padding: 1rem 0;
     }
-    .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-decoration: none;
-    }
-    .logo img {
-      height: 40px;
-      width: auto;
-    }
-    .nav-phone {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: white;
-      padding: 0.75rem 1.25rem;
-      border-radius: 0.75rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
-    }
-    .nav-phone:hover { 
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-    }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+    .logo img { height: 40px; width: auto; }
+    .nav-phone { display: flex; align-items: center; gap: 0.5rem; background: var(--accent); color: white; padding: 0.75rem 1.25rem; border-radius: 0.75rem; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3); }
+    .nav-phone:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4); }
     
     /* Hero */
-    .hero {
-      padding: 7rem 0 4rem;
-      background: linear-gradient(to bottom, var(--background), var(--secondary));
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    @media (max-width: 768px) {
-      .hero-grid { grid-template-columns: 1fr; }
-    }
+    .hero { padding: 7rem 0 3rem; background: linear-gradient(to bottom, var(--background), var(--secondary)); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } }
     .hero-content { text-align: left; }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: hsla(217, 91%, 60%, 0.1);
-      color: var(--accent);
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-    .emergency-badge {
-      background: hsla(25, 95%, 53%, 0.1);
-      color: hsl(25, 95%, 53%);
-    }
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-    }
-    .hero p {
-      font-size: 1.125rem;
-      color: var(--muted-foreground);
-      margin-bottom: 2rem;
-      max-width: 500px;
-    }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: hsla(217, 91%, 60%, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; margin-right: 0.5rem; }
+    .emergency-badge { background: hsla(25, 95%, 53%, 0.1); color: hsl(25, 95%, 53%); }
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: var(--primary); letter-spacing: -0.02em; }
+    .hero p { font-size: 1.125rem; color: var(--muted-foreground); margin-bottom: 2rem; max-width: 500px; }
     .hero strong { color: var(--foreground); }
-    
-    .rating {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
+    .rating { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
     .stars { color: #fbbf24; font-size: 1.25rem; }
-    .rating-text { 
-      font-size: 0.9rem; 
-      color: var(--muted-foreground);
-    }
+    .rating-text { font-size: 0.9rem; color: var(--muted-foreground); }
     .rating-text strong { color: var(--foreground); }
-    
-    .cta-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: white;
-      padding: 1rem 1.75rem;
-      border-radius: 0.75rem;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.0625rem;
-      transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
-    }
-    .btn-whatsapp {
-      background: var(--success);
-      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
-    }
-    .btn-whatsapp:hover {
-      box-shadow: 0 6px 20px rgba(22, 163, 74, 0.45);
-    }
-    
-    .money-back {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      color: var(--success);
-      font-weight: 500;
-    }
+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: white; padding: 1rem 1.75rem; border-radius: 0.75rem; text-decoration: none; font-weight: 700; font-size: 1.0625rem; transition: all 0.2s; box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45); }
+    .btn-whatsapp { background: var(--success); box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35); }
+    .btn-whatsapp:hover { box-shadow: 0 6px 20px rgba(22, 163, 74, 0.45); }
+    .money-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--success); font-weight: 500; }
     
     /* Hero Features */
-    .hero-features {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .feature-card {
-      padding: 1.5rem;
-      transition: all 0.3s;
-    }
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
-    }
-    .feature-card .icon-wrap {
-      width: 3rem;
-      height: 3rem;
-      background: hsla(217, 91%, 60%, 0.1);
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .hero-features { display: flex; flex-direction: column; gap: 1.25rem; }
+    .feature-card { padding: 1.5rem; transition: all 0.3s; }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15); }
+    .feature-card .icon-wrap { width: 3rem; height: 3rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .feature-card .icon-wrap svg { color: var(--accent); width: 1.5rem; height: 1.5rem; }
     .feature-card .content { flex: 1; }
     .feature-card h3 { font-size: 1.0625rem; font-weight: 600; color: var(--primary); margin-bottom: 0.25rem; }
     .feature-card p { font-size: 0.9rem; color: var(--muted-foreground); }
     .feature-row { display: flex; align-items: flex-start; gap: 1rem; }
     
+    /* Table of Contents */
+    .toc { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem 2rem; margin: 2rem auto; max-width: 800px; }
+    .toc h2 { font-size: 1.25rem; margin-bottom: 1rem; text-align: left; }
+    .toc-grid { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+    .toc a { color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; padding: 0.25rem 0; display: inline-flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .toc a:hover { color: var(--primary); text-decoration: underline; }
+    .toc a::before { content: "→"; color: var(--muted-foreground); }
+    
+    /* Tabs */
+    .tabs-container { margin: 3rem 0; }
+    .tabs-nav { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tab-btn { background: var(--card); border: 2px solid var(--border); color: var(--foreground); padding: 0.75rem 1.5rem; border-radius: 2rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+    .tab-btn:hover { border-color: var(--accent); }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-box { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; }
+    .tab-box h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
+    .tab-box p { color: var(--muted-foreground); margin-bottom: 1.5rem; line-height: 1.7; }
+    .tab-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .tab-feature { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .tab-feature .check { color: var(--success); flex-shrink: 0; margin-top: 0.125rem; }
+    .tab-feature span { font-size: 0.9rem; }
+    
     /* Section Styles */
     section { padding: 5rem 0; }
     .section-alt { background: var(--secondary); }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; text-align: center; margin-bottom: 1rem; color: var(--primary); letter-spacing: -0.02em; }
+    .section-intro { text-align: center; color: var(--muted-foreground); max-width: 700px; margin: 0 auto 3rem; font-size: 1.125rem; }
     
-    h2 {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-    }
-    .section-intro {
-      text-align: center;
-      color: var(--muted-foreground);
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      font-size: 1.125rem;
-    }
+    /* Trust Badges */
+    .trust-image-section { padding: 3rem 0; background: var(--background); }
+    .trust-image-wrapper { max-width: 600px; margin: 0 auto; border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
+    .trust-image-wrapper img { width: 100%; height: auto; display: block; }
+    .trust-badges-section { padding: 3rem 0; background: linear-gradient(to bottom, white, hsla(217, 91%, 60%, 0.03)); }
+    .trust-badges-wrapper { max-width: 1000px; margin: 0 auto; }
+    .trust-badges-wrapper img { width: 100%; height: auto; display: block; }
     
-    /* Trust Badges Image */
-    .trust-image-section {
-      padding: 3rem 0;
-      background: var(--background);
-    }
-    .trust-image-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    .trust-image-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    
-    /* Trust Badges Certificates */
-    .trust-badges-section {
-      padding: 3rem 0;
-      background: linear-gradient(to bottom, white, hsla(217, 91%, 60%, 0.03));
-    }
-    .trust-badges-wrapper {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .trust-badges-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    
-    /* Certifications Section */
-    .cert-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    @media (max-width: 768px) {
-      .cert-grid { grid-template-columns: 1fr; }
-    }
-    .cert-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 2rem;
-    }
-    .cert-item {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
+    /* Certifications */
+    .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media (max-width: 768px) { .cert-grid { grid-template-columns: 1fr; } }
+    .cert-box { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; }
+    .cert-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
     .cert-item:last-child { margin-bottom: 0; }
-    .cert-icon {
-      width: 1.5rem;
-      height: 1.5rem;
-      background: hsla(217, 91%, 60%, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 0.25rem;
-    }
+    .cert-icon { width: 1.5rem; height: 1.5rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.25rem; }
     .cert-icon svg { color: var(--accent); width: 0.875rem; height: 0.875rem; }
     .cert-item h4 { font-weight: 600; margin-bottom: 0.25rem; font-size: 1rem; }
     .cert-item p { font-size: 0.875rem; color: var(--muted-foreground); }
-    .quality-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    @media (max-width: 480px) {
-      .quality-grid { grid-template-columns: 1fr; }
-    }
-    .quality-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
+    .quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 480px) { .quality-grid { grid-template-columns: 1fr; } }
+    .quality-item { display: flex; align-items: flex-start; gap: 0.75rem; }
     .quality-item p { font-size: 0.875rem; }
-    .quality-box {
-      margin-top: 1.5rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 0.75rem;
-      text-align: center;
-    }
+    .quality-box { margin-top: 1.5rem; background: var(--card); border: 1px solid var(--border); padding: 1rem; border-radius: 0.75rem; text-align: center; }
     
-    /* Payment Section */
-    .payment-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
-    }
-    .payment-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .payment-card:hover {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-    .payment-icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      background: hsla(217, 91%, 60%, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-    }
+    /* Payment */
+    .payment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
+    .payment-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; text-align: center; transition: all 0.3s; }
+    .payment-card:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+    .payment-icon { width: 3.5rem; height: 3.5rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
     .payment-icon svg { color: var(--accent); width: 1.5rem; height: 1.5rem; }
     .payment-card h4 { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
     .payment-card p { font-size: 0.75rem; color: var(--muted-foreground); }
-    .payment-info-box {
-      background: hsla(217, 91%, 60%, 0.05);
-      padding: 1.5rem 2rem;
-      border-radius: 1rem;
-      max-width: 800px;
-      margin: 2rem auto 0;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    @media (max-width: 640px) {
-      .payment-info-box { flex-direction: column; text-align: center; }
-    }
-    .payment-info-icon {
-      width: 4rem;
-      height: 4rem;
-      background: hsla(217, 91%, 60%, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .payment-info-box { background: hsla(217, 91%, 60%, 0.05); padding: 1.5rem 2rem; border-radius: 1rem; max-width: 800px; margin: 2rem auto 0; display: flex; align-items: center; gap: 1.5rem; }
+    @media (max-width: 640px) { .payment-info-box { flex-direction: column; text-align: center; } }
+    .payment-info-icon { width: 4rem; height: 4rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .payment-info-icon svg { color: var(--accent); width: 2rem; height: 2rem; }
     
     /* About Us */
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .about-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .about-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    }
-    .about-card .icon-wrap {
-      width: 3.5rem;
-      height: 3.5rem;
-      background: hsla(217, 91%, 60%, 0.1);
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.25rem;
-    }
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .about-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-align: center; transition: all 0.3s; }
+    .about-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); }
+    .about-card .icon-wrap { width: 3.5rem; height: 3.5rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
     .about-card .icon-wrap svg { color: var(--accent); width: 1.75rem; height: 1.75rem; }
     .about-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--foreground); }
     .about-card p { font-size: 0.875rem; color: var(--muted-foreground); }
     
     /* Process Steps */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-    }
-    .process-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.75rem;
-      text-align: center;
-      position: relative;
-      transition: all 0.3s;
-    }
-    .process-card:hover {
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    }
-    .process-card .step-icon {
-      width: 4rem;
-      height: 4rem;
-      background: hsla(217, 91%, 60%, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-    }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+    .process-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.75rem; text-align: center; position: relative; transition: all 0.3s; }
+    .process-card:hover { box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); }
+    .process-card .step-icon { width: 4rem; height: 4rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
     .process-card .step-icon svg { color: var(--accent); width: 2rem; height: 2rem; }
     .process-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
     .process-card p { font-size: 0.875rem; color: var(--muted-foreground); }
     
     /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .service-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    }
-    .service-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .service-card-content {
-      padding: 1.5rem;
-    }
-    .service-card h3 {
-      font-size: 1.125rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; transition: all 0.3s; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); }
+    .service-card img { width: 100%; height: 180px; object-fit: cover; }
+    .service-card-content { padding: 1.5rem; }
+    .service-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--primary); }
     .service-card p { color: var(--muted-foreground); font-size: 0.9rem; }
     
     /* Reviews */
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .review-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.75rem;
-    }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.75rem; }
     .review-stars { color: #fbbf24; font-size: 1.125rem; margin-bottom: 0.75rem; }
     .review-text { color: var(--muted-foreground); margin-bottom: 1rem; font-style: italic; line-height: 1.7; }
     .review-author { font-weight: 600; font-size: 0.9rem; color: var(--foreground); }
     .review-location { color: var(--muted-foreground); font-size: 0.8rem; }
     
     /* Stadtteile */
-    .stadtteile-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .stadtteil-tag {
-      background: hsla(217, 91%, 60%, 0.08);
-      color: var(--accent);
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
+    .stadtteile-section { padding: 4rem 0; }
+    .stadtteile-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; max-width: 900px; margin: 0 auto 2rem; }
+    .stadtteil-tag { background: hsla(217, 91%, 60%, 0.08); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 500; }
+    .stadtteile-info { max-width: 800px; margin: 0 auto; text-align: center; color: var(--muted-foreground); font-size: 0.95rem; line-height: 1.7; }
     
-    /* FAQ */
+    /* Ratgeber Teaser */
+    .ratgeber-section { padding: 5rem 0; background: linear-gradient(to bottom, white, hsla(217, 91%, 60%, 0.03)); }
+    .ratgeber-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .ratgeber-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; transition: all 0.3s; }
+    .ratgeber-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); }
+    .ratgeber-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--primary); }
+    .ratgeber-card p { color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.7; }
+    .ratgeber-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-weight: 600; text-decoration: none; transition: gap 0.2s; }
+    .ratgeber-link:hover { gap: 0.75rem; }
+    
+    /* FAQ Accordion */
     .faq-list { max-width: 800px; margin: 0 auto; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-      padding: 1.5rem 0;
-    }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-question {
-      font-weight: 600;
-      font-size: 1.0625rem;
-      margin-bottom: 0.75rem;
-      color: var(--foreground);
-    }
-    .faq-answer { color: var(--muted-foreground); line-height: 1.7; }
+    .faq-item { border: 1px solid var(--border); border-radius: 0.75rem; margin-bottom: 0.75rem; overflow: hidden; background: var(--card); }
+    .faq-question { width: 100%; background: none; border: none; padding: 1.25rem 1.5rem; text-align: left; font-weight: 600; font-size: 1rem; color: var(--foreground); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+    .faq-question:hover { background: var(--secondary); }
+    .faq-question svg { flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-question svg { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; }
+    .faq-item.open .faq-answer { max-height: 500px; padding: 0 1.5rem 1.25rem; }
+    .faq-answer p { color: var(--muted-foreground); line-height: 1.7; }
     
     /* CTA Section */
-    .cta-section {
-      background: linear-gradient(135deg, var(--accent), hsl(217, 91%, 50%));
-      text-align: center;
-      padding: 4rem 0;
-    }
+    .cta-section { background: linear-gradient(135deg, var(--accent), hsl(217, 91%, 50%)); text-align: center; padding: 4rem 0; }
     .cta-section h2 { color: white; }
     .cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .cta-section .btn-primary {
-      background: white;
-      color: var(--accent);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-    }
-    .cta-section .btn-primary:hover {
-      background: #f8fafc;
-    }
+    .cta-section .btn-primary { background: white; color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+    .cta-section .btn-primary:hover { background: #f8fafc; }
     
     /* Footer */
-    footer {
-      background: var(--primary);
-      color: var(--primary-foreground);
-      padding: 3rem 0 1.5rem;
-    }
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-col h4 {
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: white;
-    }
-    .footer-col a {
-      display: block;
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      padding: 0.25rem 0;
-      transition: color 0.2s;
-    }
+    footer { background: var(--primary); color: var(--primary-foreground); padding: 3rem 0 1.5rem; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-col h4 { font-weight: 700; margin-bottom: 1rem; color: white; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; padding: 0.25rem 0; transition: color 0.2s; }
     .footer-col a:hover { color: white; }
-    .footer-bottom {
-      text-align: center;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.875rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 1.5rem;
-    }
+    .footer-bottom { text-align: center; color: rgba(255,255,255,0.5); font-size: 0.875rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
     
     /* Mobile Sticky CTA */
-    .mobile-cta {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--background);
-      border-top: 1px solid var(--border);
-      padding: 1rem;
-      z-index: 90;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-    }
-    .mobile-cta a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: white;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.0625rem;
-    }
+    .mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--background); border-top: 1px solid var(--border); padding: 1rem; z-index: 90; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); }
+    .mobile-cta a { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--accent); color: white; padding: 1rem; border-radius: 0.75rem; text-decoration: none; font-weight: 700; font-size: 1.0625rem; }
     
     @media (max-width: 768px) {
       .mobile-cta { display: block; }
@@ -663,9 +290,9 @@
       .cta-buttons { justify-content: center; }
       .rating { justify-content: center; }
       .money-back { justify-content: center; }
+      .badge { display: inline-flex; margin-bottom: 0.5rem; }
     }
     
-    /* SVG Icons */
     svg { display: inline-block; vertical-align: middle; }
   </style>
   
@@ -696,14 +323,12 @@
           "latitude": "51.4556",
           "longitude": "7.0116"
         },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "00:00",
-            "closes": "23:59"
-          }
-        ],
+        "openingHoursSpecification": [{
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }],
         "areaServed": {
           "@type": "City",
           "name": "Essen",
@@ -741,7 +366,7 @@
             "name": "Was kostet ein Kammerjäger in Essen?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Die Kosten für einen Kammerjäger-Einsatz in Essen hängen von Art und Ausmaß des Befalls ab. In vielen Fällen liegen typische Einsätze im Bereich von etwa 90 bis 180 Euro. Nach einer kurzen telefonischen Einschätzung erhalten Sie von uns einen transparenten Festpreis vor Beginn der Maßnahme."
+              "text": "Die Kosten für einen Kammerjäger in Essen variieren je nach Schädlingsart und Befallsstärke. Typische Einsätze liegen zwischen 90 und 180 Euro. Bei uns erhalten Sie vor Beginn einen verbindlichen Festpreis ohne versteckte Kosten."
             }
           },
           {
@@ -749,31 +374,55 @@
             "name": "Wie schnell ist der Kammerjäger in Essen vor Ort?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In der Regel sind wir in Essen innerhalb von 30 bis 60 Minuten vor Ort. Im 24/7 Notdienst behandeln wir Einsätze in allen Essener Stadtteilen so schnell wie möglich."
+              "text": "Unser Notdienst erreicht Sie in Essen in der Regel innerhalb von 30 bis 60 Minuten. Wir sind in allen Stadtteilen von Rüttenscheid bis Altenessen schnell für Sie da."
             }
           },
           {
             "@type": "Question",
-            "name": "Bieten Sie einen 24h Notdienst für Essen an?",
+            "name": "Bietet Hoffmeyer einen 24h Notdienst in Essen?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ja, für Essen bieten wir einen 24/7 Notdienst an. Akute Befälle wie Wespennester, Ratten oder Bettwanzen können jederzeit gemeldet werden."
+              "text": "Ja, wir bieten einen 24/7 Kammerjäger-Notdienst in ganz Essen an. Bei akutem Befall wie Wespennestern, Ratten oder Bettwanzen sind wir rund um die Uhr erreichbar."
             }
           },
           {
             "@type": "Question",
-            "name": "Welche Schädlinge bekämpfen Sie in Essen?",
+            "name": "Welche Schädlinge bekämpft der Kammerjäger in Essen?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In Essen bekämpfen wir unter anderem Wespen, Bettwanzen, Ratten, Mäuse, Silberfische, Kakerlaken, Flöhe und weitere Schädlinge."
+              "text": "Wir bekämpfen in Essen alle gängigen Schädlinge: Wespen, Bettwanzen, Ratten, Mäuse, Kakerlaken, Silberfische, Flöhe, Ameisen und Marder. Für jeden Schädling setzen wir die passende Methode ein."
             }
           },
           {
             "@type": "Question",
-            "name": "Sind Ihre Methoden sicher für Menschen und Haustiere?",
+            "name": "Sind die Methoden sicher für Kinder und Haustiere?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Wir setzen in Essen ausschließlich zugelassene und fachgerecht dosierte Mittel ein. Wo möglich arbeiten wir mit mechanischen, physikalischen oder biologischen Verfahren."
+              "text": "Ja, wir verwenden ausschließlich geprüfte und zugelassene Mittel. Wo möglich setzen wir auf mechanische, thermische oder biologische Verfahren. Ihre Sicherheit hat bei uns oberste Priorität."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie erkenne ich einen Bettwanzenbefall?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Typische Anzeichen sind kleine Blutflecken auf der Bettwäsche, dunkle Kotpunkte an Matratzenrändern, ein süßlicher Geruch und juckende Stiche in Reihen. Bei Verdacht sollten Sie umgehend einen Fachmann kontaktieren."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kann ich die Rechnung bei der Versicherung einreichen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Viele Hausrat- und Gebäudeversicherungen übernehmen Kosten für Schädlingsbekämpfung. Wir stellen Ihnen eine detaillierte Rechnung aus, die Sie bei Ihrer Versicherung einreichen können."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Arbeitet Hoffmeyer auch für Gewerbe und Gastronomie in Essen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, wir betreuen zahlreiche Gewerbebetriebe, Restaurants und Hotels in Essen. Wir bieten diskrete Einsätze außerhalb der Geschäftszeiten und HACCP-konforme Dokumentation."
             }
           }
         ]
@@ -797,7 +446,7 @@
   <nav class="navbar">
     <div class="container">
       <a href="/" class="logo">
-        <img src="/lovable-uploads/hoffmeyer-logo.png" alt="Kammerjäger Hoffmeyer Logo">
+        <img src="/lovable-uploads/hoffmeyer-logo.png" alt="Kammerjäger Hoffmeyer Logo" width="40" height="40">
         <span>Hoffmeyer</span>
       </a>
       <a href="tel:+4915212124199" class="nav-phone">
@@ -808,7 +457,7 @@
   </nav>
   
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
@@ -824,7 +473,7 @@
           <h1>Kammerjäger in Essen – Schnelle & professionelle Schädlingsbekämpfung</h1>
           
           <p>
-            <strong>Schädlingsbefall in Essen?</strong> Unsere IHK-zertifizierten Experten sind in <strong>30–60 Minuten</strong> bei Ihnen vor Ort. Diskret, effektiv und mit Festpreisgarantie.
+            <strong>Schädlingsbefall in Essen?</strong> Unsere IHK-zertifizierten Kammerjäger sind in <strong>30–60 Minuten</strong> bei Ihnen – ob in Rüttenscheid, Werden oder Stadtmitte. Diskret, effektiv und mit Festpreisgarantie.
           </p>
           
           <div class="rating">
@@ -857,7 +506,7 @@
               </div>
               <div class="content">
                 <h3>IHK zertifizierte Experten</h3>
-                <p>Von der IHK anerkannte Fachkräfte für Schädlingsbekämpfung</p>
+                <p>Geprüfte Fachkräfte für Schädlingsbekämpfung in Essen</p>
               </div>
             </div>
           </div>
@@ -867,8 +516,8 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
               </div>
               <div class="content">
-                <h3>Kostenlose Anfahrt</h3>
-                <p>Keine versteckten Kosten – transparente Preise garantiert</p>
+                <h3>Kostenlose Anfahrt in Essen</h3>
+                <p>Keine versteckten Kosten – transparente Festpreise</p>
               </div>
             </div>
           </div>
@@ -879,7 +528,7 @@
               </div>
               <div class="content">
                 <h3>Schnelle Reaktionszeit</h3>
-                <p>Wir sind innerhalb von 30-60 Minuten bei Ihnen vor Ort</p>
+                <p>In 30–60 Min. vor Ort in allen Essener Stadtteilen</p>
               </div>
             </div>
           </div>
@@ -888,153 +537,267 @@
     </div>
   </section>
   
-  <!-- City Welcome Banner -->
-  <section style="padding: 2rem 0; background: linear-gradient(135deg, hsla(217, 91%, 60%, 0.05), hsla(217, 91%, 60%, 0.1));">
-    <div class="container" style="text-align: center;">
-      <p style="font-size: 1.125rem; color: var(--muted-foreground);">
-        🏠 Willkommen! Sie befinden sich auf der Seite für <strong style="color: var(--accent);">Essen</strong> – Ihr lokaler Kammerjäger-Service.
-      </p>
-    </div>
-  </section>
+  <!-- Table of Contents -->
+  <div class="container">
+    <nav class="toc" aria-label="Inhaltsverzeichnis">
+      <h2>📋 Schnellnavigation</h2>
+      <div class="toc-grid">
+        <a href="#leistungen">Unsere Leistungen</a>
+        <a href="#ablauf">So funktioniert's</a>
+        <a href="#zielgruppen">Privat / Gewerbe</a>
+        <a href="#preise">Kosten & Preise</a>
+        <a href="#stadtteile">Stadtteile Essen</a>
+        <a href="#faq">Häufige Fragen</a>
+        <a href="#ratgeber">Ratgeber</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </nav>
+  </div>
   
   <!-- Trust Image Section -->
   <section class="trust-image-section">
     <div class="container">
       <div class="trust-image-wrapper">
-        <img src="/lovable-uploads/norbert-wolframm.jpg" alt="Kammerjäger Hoffmeyer Team in Essen - Zertifizierte Schädlingsbekämpfer" loading="lazy">
+        <img src="/lovable-uploads/norbert-wolframm.jpg" alt="Kammerjäger Hoffmeyer Team in Essen - Zertifizierte Schädlingsbekämpfer" width="600" height="400" loading="lazy">
       </div>
     </div>
   </section>
   
   <!-- About Us Section -->
-  <section class="section-alt">
+  <section class="section-alt" id="ueber-uns">
     <div class="container">
-      <h2>Über uns</h2>
+      <h2>Ihr Kammerjäger in Essen – Über 20 Jahre Erfahrung</h2>
       <p class="section-intro">
-        Seit über 20 Jahren sind wir Ihr vertrauenswürdiger Partner für professionelle Schädlingsbekämpfung. Unsere Expertise und unser Engagement für Qualität machen uns zu Ihrer ersten Wahl in Essen.
+        Als Essener Familienunternehmen kennen wir die lokalen Gegebenheiten – von der Zeche Zollverein bis zum Grugapark. Vertrauen Sie auf geprüfte Expertise und persönlichen Service.
       </p>
       <div class="about-grid">
         <div class="about-card">
           <div class="icon-wrap">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"></path><path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2"></path><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path><path d="M8.65 22c.21-.66.45-1.32.57-2"></path><path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path><path d="M2 16h.01"></path><path d="M21.8 16c.2-2 .131-5.354 0-6"></path><path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2"></path></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
           </div>
-          <h3>Zertifizierte Expertise</h3>
-          <p>IHK-geprüfte Schädlingsbekämpfer mit jahrelanger Erfahrung</p>
+          <h3>IHK-zertifizierte Expertise</h3>
+          <p>Geprüfte Fachkräfte mit Sachkundenachweis nach §4 Biozidverordnung</p>
         </div>
         <div class="about-card">
           <div class="icon-wrap">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           </div>
-          <h3>24/7 Notdienst</h3>
-          <p>Schnelle Hilfe rund um die Uhr, auch an Wochenenden</p>
+          <h3>24/7 Notdienst Essen</h3>
+          <p>Rund um die Uhr erreichbar – auch an Wochenenden und Feiertagen</p>
         </div>
         <div class="about-card">
           <div class="icon-wrap">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
           </div>
-          <h3>Garantierte Qualität</h3>
-          <p>Modernste Methoden und umweltfreundliche Lösungen</p>
+          <h3>Erfolgsgarantie</h3>
+          <p>Kostenlose Nachbehandlung bei erneutem Befall innerhalb der Garantiezeit</p>
         </div>
         <div class="about-card">
           <div class="icon-wrap">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
           <h3>Persönliche Betreuung</h3>
-          <p>Individuelle Beratung und maßgeschneiderte Lösungen</p>
+          <p>Fester Ansprechpartner für Ihren Einsatz in Essen</p>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Trust Badges - Zertifizierungen Bild -->
+  <!-- Trust Badges Section -->
   <section class="trust-badges-section">
     <div class="container">
       <div class="trust-badges-wrapper">
-        <img 
-          src="/lovable-uploads/trust-badges-optimized.webp" 
-          alt="Zertifizierungen: DSV Verband, Stiftung Warentest Sehr Gut, TÜV Rheinland, DSV, ISO 9001, CEPA"
-          loading="lazy"
-          width="1200"
-          height="400"
-        >
+        <img src="/lovable-uploads/trust-badges-optimized.webp" alt="Kammerjäger Hoffmeyer Zertifikate - DSV, TÜV geprüft, IHK zertifiziert" width="1000" height="200" loading="lazy">
       </div>
     </div>
   </section>
   
-  <!-- CTA Section 1 -->
-  <section class="cta-section">
+  <!-- Process Steps -->
+  <section id="ablauf">
     <div class="container">
-      <h2>Schnelle Hilfe benötigt?</h2>
-      <p>Unsere Experten sind rund um die Uhr für Sie da – rufen Sie uns jetzt an!</p>
-      <a href="tel:+4915212124199" class="btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        0152 1212 4199
-      </a>
-    </div>
-  </section>
-  
-  <!-- Process Steps Section -->
-  <section>
-    <div class="container">
-      <h2>So ist der Ablauf</h2>
-      <p class="section-intro">In nur 4 einfachen Schritten sind Sie Ihr Schädlingsproblem los</p>
+      <h2>So läuft Ihr Kammerjäger-Einsatz in Essen ab</h2>
+      <p class="section-intro">Von der ersten Kontaktaufnahme bis zur schädlingsfreien Wohnung – transparent und unkompliziert</p>
       <div class="process-grid">
         <div class="process-card">
           <div class="step-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </div>
-          <h3>1. Anruf</h3>
-          <p>Sie rufen uns an und schildern Ihr Schädlingsproblem. Wir beraten Sie kostenlos und unverbindlich.</p>
+          <h3>1. Anruf & Erstberatung</h3>
+          <p>Sie schildern Ihr Problem telefonisch. Wir geben erste Einschätzung und nennen den Festpreis.</p>
         </div>
         <div class="process-card">
           <div class="step-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           </div>
-          <h3>2. Kostenlose Beratung</h3>
-          <p>Wir besprechen die Situation und geben Ihnen eine erste Einschätzung. Transparente Festpreise ohne versteckte Kosten.</p>
+          <h3>2. Terminvereinbarung</h3>
+          <p>Kurzfristige Termine verfügbar. Notdienst: meist innerhalb von 30–60 Minuten in Essen.</p>
         </div>
         <div class="process-card">
           <div class="step-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </div>
-          <h3>3. Vor-Ort-Termin</h3>
-          <p>Unser Experte kommt zu Ihnen und analysiert den Befall. Meist noch am selben Tag verfügbar.</p>
+          <h3>3. Vor-Ort-Analyse</h3>
+          <p>Unser Experte analysiert den Befall und bespricht die optimale Bekämpfungsmethode mit Ihnen.</p>
         </div>
         <div class="process-card">
           <div class="step-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
           </div>
           <h3>4. Professionelle Bekämpfung</h3>
-          <p>Wir beseitigen das Problem effektiv und diskret. Mit Garantie und Nachkontrolle für Ihre Sicherheit.</p>
+          <p>Effektive Behandlung mit geprüften Mitteln. Inklusive Nachkontrolle und Erfolgsgarantie.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- CTA after Process -->
-  <section class="cta-section">
+  <section class="cta-section" id="kontakt">
     <div class="container">
-      <h2>Bereit für den ersten Schritt?</h2>
-      <p>Kostenlose Beratung und Festpreisgarantie – rufen Sie jetzt an!</p>
+      <h2>Schädlingsproblem in Essen? Wir helfen sofort!</h2>
+      <p>Kostenlose Beratung und verbindlicher Festpreis am Telefon</p>
       <a href="tel:+4915212124199" class="btn-primary">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        0152 1212 4199
+        0152 1212 4199 anrufen
       </a>
     </div>
   </section>
   
-  <!-- Certifications Section -->
-  <section>
+  <!-- Tabs Section: Zielgruppen -->
+  <section class="section-alt" id="zielgruppen">
     <div class="container">
-      <h2>Unsere Zertifizierungen</h2>
-      <p class="section-intro">Vertrauen Sie auf nachgewiesene Expertise und höchste Qualitätsstandards bei der Schädlingsbekämpfung.</p>
+      <h2>Schädlingsbekämpfung für jeden Bedarf in Essen</h2>
+      <p class="section-intro">Ob Privathaushalt, Restaurant oder Hausverwaltung – wir haben die passende Lösung</p>
+      
+      <div class="tabs-container">
+        <div class="tabs-nav">
+          <button class="tab-btn active" onclick="showTab('privat')">🏠 Privatkunden</button>
+          <button class="tab-btn" onclick="showTab('gewerbe')">🏢 Gewerbe & Gastronomie</button>
+          <button class="tab-btn" onclick="showTab('hausverwaltung')">🏘️ Hausverwaltungen</button>
+        </div>
+        
+        <div id="privat" class="tab-content active">
+          <div class="tab-box">
+            <h3>Kammerjäger für Privathaushalte in Essen</h3>
+            <p>Schädlinge in den eigenen vier Wänden sind belastend. Wir behandeln Ihr Problem diskret und effektiv – ohne dass Nachbarn etwas mitbekommen. Von der Mietwohnung in Altenessen bis zum Eigenheim in Bredeney.</p>
+            <div class="tab-features">
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Diskrete Anfahrt in neutralem Fahrzeug</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Kinderfreundliche Methoden</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Haustierverträgliche Behandlung</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Flexible Termine – auch abends</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Festpreis ohne versteckte Kosten</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Versicherungsrechnung möglich</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="gewerbe" class="tab-content">
+          <div class="tab-box">
+            <h3>Schädlingsbekämpfung für Gewerbe in Essen</h3>
+            <p>In Gastronomie, Hotellerie und Lebensmittelhandel gelten strenge Hygienevorschriften. Wir arbeiten HACCP-konform und bieten Einsätze außerhalb Ihrer Geschäftszeiten – so bleibt Ihr Betrieb ungestört.</p>
+            <div class="tab-features">
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>HACCP-konforme Dokumentation</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Einsätze nachts & am Wochenende</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Präventive Wartungsverträge</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Schnelle Reaktion bei Kontrollen</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Lebensmittelverträgliche Mittel</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Schädlingsmonitoring inklusive</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="hausverwaltung" class="tab-content">
+          <div class="tab-box">
+            <h3>Partner für Hausverwaltungen in Essen</h3>
+            <p>Schädlingsbefall in Mehrfamilienhäusern erfordert schnelles und koordiniertes Handeln. Wir kommunizieren direkt mit Mietern, erstellen rechtssichere Dokumentation und bieten Rahmenverträge.</p>
+            <div class="tab-features">
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Koordination mit allen Mietparteien</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Rechtssichere Berichte</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Rahmenverträge mit Sonderkonditionen</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Notfall-Hotline für Verwaltungen</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Präventionsberatung inklusive</span>
+              </div>
+              <div class="tab-feature">
+                <span class="check">✓</span>
+                <span>Sammelrechnungen möglich</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+  
+  <!-- Certifications Section -->
+  <section id="preise">
+    <div class="container">
+      <h2>Zertifizierungen & Qualitätsversprechen</h2>
+      <p class="section-intro">Vertrauen Sie auf geprüfte Expertise und höchste Standards bei der Schädlingsbekämpfung in Essen</p>
       <div class="cert-grid">
         <div class="cert-box">
           <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-            <div class="icon-wrap">
+            <div class="icon-wrap" style="width: 3.5rem; height: 3.5rem;">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
             </div>
-            <h3 style="font-size: 1.5rem; font-weight: 700;">Zertifizierungen</h3>
+            <h3 style="font-size: 1.5rem; font-weight: 700;">Unsere Zertifizierungen</h3>
           </div>
           <div class="cert-item">
             <div class="cert-icon">
@@ -1042,7 +805,7 @@
             </div>
             <div>
               <h4>IHK-zertifizierte Fachkraft</h4>
-              <p>Wir sind offiziell von der Industrie- und Handelskammer (IHK) zertifizierte Fachkräfte für Schädlingsbekämpfung.</p>
+              <p>Offiziell anerkannte Schädlingsbekämpfer mit IHK-Prüfung</p>
             </div>
           </div>
           <div class="cert-item">
@@ -1051,7 +814,7 @@
             </div>
             <div>
               <h4>Sachkundenachweis §4 Biozidverordnung</h4>
-              <p>Wir besitzen den erforderlichen Sachkundenachweis für den Umgang mit Bioziden gemäß §4 der Biozidverordnung.</p>
+              <p>Berechtigung für den professionellen Einsatz von Biozidprodukten</p>
             </div>
           </div>
           <div class="cert-item">
@@ -1059,117 +822,106 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </div>
             <div>
-              <h4>Spezial-Zertifizierung</h4>
-              <p>Spezialisiert und zertifiziert für die Bekämpfung von besonderen Schädlingen wie Bettwanzen und Holzschädlingen.</p>
+              <h4>Spezial-Zertifizierung Bettwanzen</h4>
+              <p>Fortbildung für thermische und chemische Bettwanzenbekämpfung</p>
             </div>
           </div>
         </div>
         <div class="cert-box" style="background: hsla(210, 20%, 98%, 0.5);">
-          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Unser Qualitätsversprechen</h3>
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Kammerjäger Essen – Kosten & Preise</h3>
+          <p style="color: var(--muted-foreground); margin-bottom: 1.5rem;">Transparente Festpreise ohne versteckte Kosten. Typische Einsätze in Essen:</p>
           <div class="quality-grid">
             <div class="quality-item">
               <div class="cert-icon">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               </div>
-              <p>Umweltfreundliche Methoden</p>
+              <p>Wespen: ab 89 €</p>
             </div>
             <div class="quality-item">
               <div class="cert-icon">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               </div>
-              <p>Modernste Technologien</p>
+              <p>Ratten/Mäuse: ab 120 €</p>
             </div>
             <div class="quality-item">
               <div class="cert-icon">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               </div>
-              <p>Diskrete Durchführung</p>
+              <p>Bettwanzen: ab 180 €</p>
             </div>
             <div class="quality-item">
               <div class="cert-icon">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               </div>
-              <p>Umfassende Nachbetreuung</p>
+              <p>Kakerlaken: ab 150 €</p>
             </div>
             <div class="quality-item">
               <div class="cert-icon">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               </div>
-              <p>Transparente Preise</p>
+              <p>Kostenlose Anfahrt</p>
             </div>
             <div class="quality-item">
               <div class="cert-icon">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               </div>
-              <p>Gesetzeskonform</p>
+              <p>Festpreis-Garantie</p>
             </div>
           </div>
           <div class="quality-box">
-            <p style="font-weight: 500;">Als zertifizierte Experten garantieren wir eine professionelle, effektive und nachhaltige Schädlingsbekämpfung für Ihr Zuhause oder Unternehmen.</p>
+            <p style="font-weight: 500;">Exakter Preis nach telefonischer Beratung – abhängig von Befallsstärke und Aufwand</p>
           </div>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- CTA after Certifications -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Professionelle Beratung gewünscht?</h2>
-      <p>Unsere zertifizierten Experten helfen Ihnen gerne weiter!</p>
-      <a href="tel:+4915212124199" class="btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        0152 1212 4199
-      </a>
-    </div>
-  </section>
-  
   <!-- Services Section -->
-  <section class="section-alt">
+  <section class="section-alt" id="leistungen">
     <div class="container">
-      <h2>Unsere Schädlingsbekämpfung in Essen</h2>
+      <h2>Schädlingsbekämpfung in Essen – Unsere Leistungen</h2>
       <p class="section-intro">Professionelle Bekämpfung aller Schädlingsarten – diskret, effektiv und nachhaltig</p>
       <div class="services-grid">
         <div class="service-card">
-          <img src="/lovable-uploads/wespe.jpg" alt="Wespenbekämpfung Essen" loading="lazy">
+          <img src="/lovable-uploads/wespe.jpg" alt="Wespenbekämpfung Essen - Wespennest entfernen" width="280" height="180" loading="lazy">
           <div class="service-card-content">
-            <h3>Wespenbekämpfung</h3>
-            <p>Sichere Entfernung von Wespennestern in Essen. Schnell und professionell durch unsere Experten.</p>
+            <h3>Wespenbekämpfung Essen</h3>
+            <p>Sichere Entfernung von Wespennestern an Dachböden, Rollladenkästen und im Garten. Im Sommer innerhalb von 60 Minuten vor Ort.</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="/lovable-uploads/bettwanzen.jpg" alt="Bettwanzenbekämpfung Essen" loading="lazy">
+          <img src="/lovable-uploads/bettwanzen.jpg" alt="Bettwanzenbekämpfung Essen - Wärmebehandlung" width="280" height="180" loading="lazy">
           <div class="service-card-content">
-            <h3>Bettwanzenbekämpfung</h3>
-            <p>Effektive Bettwanzenbekämpfung mit Wärmebehandlung und modernen Methoden in Essen.</p>
+            <h3>Bettwanzenbekämpfung Essen</h3>
+            <p>Effektive Bekämpfung mit Wärmebehandlung oder Chemie. Erfolgsgarantie und diskrete Durchführung in Hotels und Privathaushalten.</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="/lovable-uploads/ratte.jpg" alt="Rattenbekämpfung Essen" loading="lazy">
+          <img src="/lovable-uploads/ratte.jpg" alt="Rattenbekämpfung Essen - Ratten vertreiben" width="280" height="180" loading="lazy">
           <div class="service-card-content">
-            <h3>Rattenbekämpfung</h3>
-            <p>Diskrete und gründliche Rattenbekämpfung in Essen. Inklusive Präventionsberatung.</p>
+            <h3>Rattenbekämpfung Essen</h3>
+            <p>Professionelle Rattenbekämpfung in Keller, Garten und Gewerbe. Inklusive Ursachenanalyse und Abdichtungsberatung.</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="/lovable-uploads/maus.webp" alt="Mäusebekämpfung Essen" loading="lazy">
+          <img src="/lovable-uploads/maus.webp" alt="Mäusebekämpfung Essen - Mäuse fangen" width="280" height="180" loading="lazy">
           <div class="service-card-content">
-            <h3>Mäusebekämpfung</h3>
-            <p>Professionelle Mäusebekämpfung in Essen mit nachhaltigen Lösungen.</p>
+            <h3>Mäusebekämpfung Essen</h3>
+            <p>Nachhaltige Mäusebekämpfung mit Fallen und Ködern. Wir finden und verschließen die Eintrittswege.</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="/lovable-uploads/kakerlaken.jpg" alt="Kakerlakenbekämpfung Essen" loading="lazy">
+          <img src="/lovable-uploads/kakerlaken.jpg" alt="Schabenbekämpfung Essen - Kakerlaken entfernen" width="280" height="180" loading="lazy">
           <div class="service-card-content">
-            <h3>Schabenbekämpfung</h3>
-            <p>Gründliche Kakerlakenbekämpfung in Essen. Diskret und mit Erfolgsgarantie.</p>
+            <h3>Schabenbekämpfung Essen</h3>
+            <p>Gründliche Kakerlakenbekämpfung mit Gelködern und Sprühverfahren. Erfolgsgarantie bei vollständiger Behandlung.</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="/lovable-uploads/marder.webp" alt="Marderabwehr Essen" loading="lazy">
+          <img src="/lovable-uploads/marder.webp" alt="Marderabwehr Essen - Marder vertreiben" width="280" height="180" loading="lazy">
           <div class="service-card-content">
-            <h3>Marderabwehr</h3>
-            <p>Tierschonende Mardervertreibung in Essen. Gebäudeabdichtung inklusive.</p>
+            <h3>Marderabwehr Essen</h3>
+            <p>Tierschonende Mardervertreibung aus Dachböden und Motorräumen. Dauerhafte Abdichtung gegen Wiederkehr.</p>
           </div>
         </div>
       </div>
@@ -1179,24 +931,24 @@
   <!-- Reviews Section -->
   <section>
     <div class="container">
-      <h2>Das sagen unsere Kunden in Essen</h2>
-      <p class="section-intro">Über 127 zufriedene Kunden vertrauen auf unseren Service</p>
+      <h2>Das sagen Kunden über unseren Kammerjäger-Service in Essen</h2>
+      <p class="section-intro">Über 127 zufriedene Kunden vertrauen auf Hoffmeyer Schädlingsbekämpfung</p>
       <div class="reviews-grid">
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Schneller Service, sehr freundlich und professionell. Das Wespennest war innerhalb von einer Stunde entfernt. Klare Empfehlung!"</p>
+          <p class="review-text">"Hatte ein Wespennest am Balkon in Rüttenscheid. Der Kammerjäger war innerhalb einer Stunde da und hat das Nest sicher entfernt. Sehr professionell und fairer Preis!"</p>
           <p class="review-author">Michael S.</p>
           <p class="review-location">Essen-Rüttenscheid</p>
         </div>
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Hatte ein ernstes Rattenproblem im Keller. Das Team hat diskret und gründlich gearbeitet. Seitdem keine Probleme mehr!"</p>
+          <p class="review-text">"Rattenbefall im Keller unseres Altbaus in Werden. Hoffmeyer hat das Problem diskret und gründlich gelöst. Seit der Behandlung absolute Ruhe. Klare Empfehlung!"</p>
           <p class="review-author">Sandra K.</p>
           <p class="review-location">Essen-Werden</p>
         </div>
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Top Beratung am Telefon und der Techniker war super pünktlich. Die Bettwanzen sind jetzt Geschichte. Danke!"</p>
+          <p class="review-text">"Nach dem Urlaub Bettwanzen im Schlafzimmer entdeckt. Der Kammerjäger hat mit Wärmebehandlung alles beseitigt. Super Beratung und transparente Preise!"</p>
           <p class="review-author">Thomas H.</p>
           <p class="review-location">Essen-Stadtmitte</p>
         </div>
@@ -1204,96 +956,63 @@
     </div>
   </section>
   
-  <!-- CTA after Reviews -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Überzeugt? Kontaktieren Sie uns!</h2>
-      <p>Werden auch Sie einer unserer zufriedenen Kunden in Essen!</p>
-      <a href="tel:+4915212124199" class="btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        0152 1212 4199
-      </a>
-    </div>
-  </section>
-  
   <!-- Payment Options Section -->
-  <section>
+  <section class="section-alt">
     <div class="container">
-      <h2>Zahlungsmöglichkeiten</h2>
-      <p class="section-intro">Flexible und sichere Zahlungsmethoden für Ihre Bequemlichkeit</p>
+      <h2>Flexible Zahlungsmöglichkeiten</h2>
+      <p class="section-intro">Wählen Sie die Zahlungsart, die Ihnen am besten passt</p>
       <div class="payment-grid">
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
           </div>
           <h4>Rechnung</h4>
-          <p>Bequeme Zahlung nach erbrachter Leistung</p>
+          <p>Zahlung nach Einsatz</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
           </div>
           <h4>Bar</h4>
-          <p>Direkte Barzahlung vor Ort möglich</p>
+          <p>Direkt vor Ort</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
           </div>
           <h4>Karte</h4>
-          <p>EC- und Kreditkartenzahlung verfügbar</p>
+          <p>EC & Kreditkarte</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.067 8.478c-.492-.268-1.047-.419-1.646-.419h-3.028l-.723 4.568h3.028c.599 0 1.154-.151 1.646-.419.492-.268.886-.643 1.169-1.104.283-.461.424-1.003.424-1.626 0-.623-.141-1.165-.424-1.626-.283-.461-.677-.836-1.169-1.104l.723.73z"/></svg>
           </div>
           <h4>PayPal</h4>
-          <p>Schnelle und sichere Online-Zahlung</p>
+          <p>Online-Zahlung</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4" fill="hsla(338, 100%, 85%, 0.3)"/><circle cx="7.5" cy="16" r="3" fill="var(--accent)"/></svg>
           </div>
           <h4>Klarna</h4>
-          <p>Flexible Zahlungsmöglichkeiten</p>
+          <p>Ratenzahlung</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
           </div>
           <h4>Versicherung</h4>
-          <p>Direkte Abrechnung mit Ihrer Versicherung</p>
+          <p>Direktabrechnung</p>
         </div>
       </div>
-      <div class="payment-info-box">
-        <div class="payment-info-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-        </div>
-        <div>
-          <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Sichere und transparente Zahlungsabwicklung</h3>
-          <p style="color: var(--muted-foreground);">Bei uns gibt es keine versteckten Kosten. Alle Preise sind transparent und werden vor Beginn der Arbeiten klar kommuniziert. Wir bieten zudem eine kostenlose Beratung und Anfahrt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- CTA after Payment -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Fragen zu unseren Zahlungsoptionen?</h2>
-      <p>Wir beraten Sie gerne zu allen Zahlungsmöglichkeiten!</p>
-      <a href="tel:+4915212124199" class="btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        0152 1212 4199
-      </a>
     </div>
   </section>
   
   <!-- Stadtteile Section -->
-  <section class="section-alt">
+  <section class="stadtteile-section" id="stadtteile">
     <div class="container">
-      <h2>Wir sind in ganz Essen für Sie da</h2>
-      <p class="section-intro">Schnelle Hilfe in allen Essener Stadtteilen</p>
+      <h2>Kammerjäger in allen Stadtteilen von Essen</h2>
+      <p class="section-intro">Schnelle Hilfe in ganz Essen – durchschnittlich 30–60 Minuten Anfahrtszeit</p>
       <div class="stadtteile-list">
         <span class="stadtteil-tag">Rüttenscheid</span>
         <span class="stadtteil-tag">Stadtmitte</span>
@@ -1311,51 +1030,145 @@
         <span class="stadtteil-tag">Kupferdreh</span>
         <span class="stadtteil-tag">Heisingen</span>
         <span class="stadtteil-tag">Überruhr</span>
+        <span class="stadtteil-tag">Rellinghausen</span>
+        <span class="stadtteil-tag">Margarethenhöhe</span>
+      </div>
+      <p class="stadtteile-info">
+        Von der Zeche Zollverein bis zum Baldeneysee – unsere Kammerjäger kennen Essen. Ob dicht bebaute Altbauquartiere in Altenessen oder Villen in Bredeney: Wir haben die Erfahrung und das Equipment für jeden Einsatzort. Kurze Anfahrtswege bedeuten schnelle Hilfe bei akutem Schädlingsbefall.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Ratgeber Teaser Section -->
+  <section class="ratgeber-section" id="ratgeber">
+    <div class="container">
+      <h2>Ratgeber: Schädlingsbekämpfung in Essen</h2>
+      <p class="section-intro">Informieren Sie sich über Kosten, Anzeichen und Bekämpfungsmethoden</p>
+      <div class="ratgeber-grid">
+        <div class="ratgeber-card">
+          <h3>💰 Kammerjäger Essen – Kosten 2025</h3>
+          <p>Was kostet ein Kammerjäger in Essen wirklich? Erfahren Sie alles über Preise, Kostenfaktoren und wie Sie Abzocke vermeiden. Mit aktueller Preisübersicht für 2025.</p>
+          <a href="/ratgeber/kammerjaeger-essen-kosten-2025/" class="ratgeber-link">
+            Weiterlesen →
+          </a>
+        </div>
+        <div class="ratgeber-card">
+          <h3>🐝 Wespennest entfernen in Essen</h3>
+          <p>Wespennest am Haus entdeckt? Erfahren Sie, wann Sie selbst handeln können und wann Sie einen Profi rufen sollten. Plus: Rechtliche Hinweise zum Artenschutz.</p>
+          <a href="/ratgeber/wespennest-entfernen-essen/" class="ratgeber-link">
+            Weiterlesen →
+          </a>
+        </div>
+        <div class="ratgeber-card">
+          <h3>🛏️ Bettwanzen erkennen – Anzeichen</h3>
+          <p>Juckende Stiche nach dem Aufwachen? Lernen Sie die typischen Anzeichen für Bettwanzenbefall und was Sie sofort tun sollten. Mit Checkliste zum Selbsttest.</p>
+          <a href="/ratgeber/bettwanzen-essen-anzeichen/" class="ratgeber-link">
+            Weiterlesen →
+          </a>
+        </div>
       </div>
     </div>
   </section>
   
   <!-- FAQ Section -->
-  <section>
+  <section id="faq">
     <div class="container">
       <h2>Häufige Fragen – Kammerjäger Essen</h2>
+      <p class="section-intro">Antworten auf die wichtigsten Fragen zur Schädlingsbekämpfung</p>
       <div class="faq-list">
         <div class="faq-item">
-          <h3 class="faq-question">Was kostet ein Kammerjäger in Essen?</h3>
-          <p class="faq-answer">Die Kosten für einen Kammerjäger-Einsatz in Essen hängen von Art und Ausmaß des Befalls ab. In vielen Fällen liegen typische Einsätze im Bereich von etwa 90 bis 180 Euro. Nach einer kurzen telefonischen Einschätzung erhalten Sie von uns einen transparenten Festpreis vor Beginn der Maßnahme.</p>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Was kostet ein Kammerjäger in Essen?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Die Kosten für einen Kammerjäger in Essen variieren je nach Schädlingsart und Befallsstärke. Typische Einsätze liegen zwischen 90 und 180 Euro. Wespenbekämpfung startet ab 89 €, Rattenbekämpfung ab 120 €, Bettwanzenbekämpfung ab 180 €. Bei uns erhalten Sie vor Beginn einen verbindlichen Festpreis ohne versteckte Kosten. Die Anfahrt in Essen ist kostenlos.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3 class="faq-question">Wie schnell ist der Kammerjäger in Essen vor Ort?</h3>
-          <p class="faq-answer">In der Regel sind wir in Essen innerhalb von 30 bis 60 Minuten vor Ort. Im 24/7 Notdienst behandeln wir Einsätze in allen Essener Stadtteilen – von Rüttenscheid bis Altenessen – so schnell wie möglich.</p>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Wie schnell ist der Kammerjäger in Essen vor Ort?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Im Notdienst erreichen wir Sie in Essen in der Regel innerhalb von 30 bis 60 Minuten. Wir sind in allen Stadtteilen von Rüttenscheid über Werden bis Altenessen schnell für Sie da. Bei weniger dringenden Fällen können wir meist noch am selben Tag oder am Folgetag einen Termin anbieten.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3 class="faq-question">Bieten Sie einen 24h Notdienst für Essen an?</h3>
-          <p class="faq-answer">Ja, für Essen bieten wir einen 24/7 Notdienst an. Akute Befälle wie Wespennester, Ratten oder Bettwanzen können jederzeit gemeldet werden – auch nachts und am Wochenende.</p>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Bietet Hoffmeyer einen 24h Notdienst in Essen?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Ja, wir bieten einen 24/7 Kammerjäger-Notdienst in ganz Essen an. Bei akutem Befall wie Wespennestern im Garten, Ratten in der Wohnung oder Bettwanzen sind wir rund um die Uhr erreichbar – auch an Wochenenden und Feiertagen. Rufen Sie einfach an: 0152 1212 4199.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3 class="faq-question">Welche Schädlinge bekämpfen Sie in Essen?</h3>
-          <p class="faq-answer">In Essen bekämpfen wir unter anderem Wespen, Bettwanzen, Ratten, Mäuse, Silberfische, Kakerlaken, Flöhe, Marder und weitere Schädlinge. Egal ob im privaten Haushalt oder Gewerbebetrieb.</p>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Welche Schädlinge bekämpft der Kammerjäger in Essen?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Wir bekämpfen in Essen alle gängigen Schädlinge: Wespen, Hornissen, Bettwanzen, Ratten, Mäuse, Kakerlaken (Schaben), Silberfische, Flöhe, Ameisen, Motten und Marder. Für jeden Schädling setzen wir die passende und effektivste Methode ein – von Fallen über Köder bis hin zu Wärmebehandlung.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3 class="faq-question">Sind Ihre Methoden sicher für Menschen und Haustiere?</h3>
-          <p class="faq-answer">Wir setzen in Essen ausschließlich zugelassene und fachgerecht dosierte Mittel ein. Wo möglich arbeiten wir mit mechanischen, physikalischen oder biologischen Verfahren. Die Sicherheit Ihrer Familie und Haustiere hat für uns höchste Priorität.</p>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Sind die Bekämpfungsmethoden sicher für Kinder und Haustiere?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Ja, wir verwenden ausschließlich geprüfte und in Deutschland zugelassene Mittel. Wo möglich setzen wir auf mechanische, thermische oder biologische Verfahren. Bei chemischen Behandlungen informieren wir Sie genau über Vorsichtsmaßnahmen. Ihre Sicherheit und die Ihrer Familie hat bei uns oberste Priorität.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3 class="faq-question">Arbeiten Sie auch mit Hausverwaltungen in Essen zusammen?</h3>
-          <p class="faq-answer">Ja, wir arbeiten regelmäßig mit Hausverwaltungen, Wohnungsbaugesellschaften und Gewerbebetrieben in Essen zusammen. Wir bieten auch Rahmenverträge und regelmäßige Prävention an.</p>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Wie erkenne ich einen Bettwanzenbefall?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Typische Anzeichen sind kleine Blutflecken auf der Bettwäsche, dunkle Kotpunkte an Matratzenrändern und Bettgestell, ein süßlicher Geruch im Schlafzimmer und juckende Stiche in Reihen (oft 3 Stiche = "Frühstück, Mittagessen, Abendessen"). Bei Verdacht sollten Sie umgehend einen Fachmann kontaktieren, da sich Bettwanzen schnell vermehren.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Kann ich die Rechnung bei der Versicherung einreichen?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Viele Hausrat- und Gebäudeversicherungen übernehmen Kosten für Schädlingsbekämpfung – besonders bei Ratten, Mäusen oder Mardern. Wir stellen Ihnen eine detaillierte Rechnung aus, die Sie bei Ihrer Versicherung einreichen können. Prüfen Sie vorab Ihre Police oder fragen Sie bei Ihrer Versicherung nach.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Arbeitet Hoffmeyer auch für Gewerbe und Gastronomie in Essen?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Ja, wir betreuen zahlreiche Gewerbebetriebe, Restaurants, Bäckereien, Hotels und Supermärkte in Essen. Wir bieten diskrete Einsätze außerhalb der Geschäftszeiten, HACCP-konforme Dokumentation und präventive Wartungsverträge. Bei Kontrollen durch das Gesundheitsamt sind wir Ihr schneller und zuverlässiger Partner.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
   
+  <script>
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+  </script>
+  
   <!-- Final CTA -->
   <section class="cta-section">
     <div class="container">
-      <h2>Schädlingsproblem in Essen?</h2>
-      <p>Rufen Sie jetzt an für eine kostenlose Beratung. Wir sind 24/7 für Sie erreichbar!</p>
+      <h2>Jetzt Kammerjäger in Essen anrufen!</h2>
+      <p>Kostenlose Beratung • Festpreis-Garantie • 30–60 Min. vor Ort</p>
       <a href="tel:+4915212124199" class="btn-primary">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        Jetzt kostenlos anrufen: 0152 1212 4199
+        0152 1212 4199
       </a>
     </div>
   </section>
@@ -1365,22 +1178,26 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-col">
-          <h4>Kammerjäger Hoffmeyer</h4>
-          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6;">
-            Ihr zuverlässiger Partner für Schädlingsbekämpfung in Essen und Umgebung. IHK-zertifiziert und 24/7 erreichbar.
+          <h4>Hoffmeyer Schädlingsbekämpfung</h4>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1rem;">
+            Ihr IHK-zertifizierter Kammerjäger in Essen. Professionelle Schädlingsbekämpfung seit über 20 Jahren.
           </p>
-        </div>
-        <div class="footer-col">
-          <h4>Kontakt</h4>
           <a href="tel:+4915212124199">📞 0152 1212 4199</a>
           <a href="mailto:info.kammerjaegerhoffmeyer@gmail.com">✉️ E-Mail schreiben</a>
-          <a href="https://wa.me/4915212124199">💬 WhatsApp</a>
         </div>
         <div class="footer-col">
-          <h4>Service</h4>
-          <a href="/">Startseite</a>
-          <a href="/kammerjaeger-essen/">Kammerjäger Essen</a>
-          <a href="/#services">Unsere Leistungen</a>
+          <h4>Leistungen</h4>
+          <a href="#leistungen">Wespenbekämpfung</a>
+          <a href="#leistungen">Bettwanzenbekämpfung</a>
+          <a href="#leistungen">Rattenbekämpfung</a>
+          <a href="#leistungen">Mäusebekämpfung</a>
+          <a href="#leistungen">Schabenbekämpfung</a>
+        </div>
+        <div class="footer-col">
+          <h4>Ratgeber</h4>
+          <a href="/ratgeber/kammerjaeger-essen-kosten-2025/">Kammerjäger Kosten 2025</a>
+          <a href="/ratgeber/wespennest-entfernen-essen/">Wespennest entfernen</a>
+          <a href="/ratgeber/bettwanzen-essen-anzeichen/">Bettwanzen erkennen</a>
         </div>
         <div class="footer-col">
           <h4>Rechtliches</h4>
@@ -1390,7 +1207,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2024 Kammerjäger Hoffmeyer. Alle Rechte vorbehalten.</p>
+        <p>© 2025 Hoffmeyer Schädlingsbekämpfung Essen. Alle Rechte vorbehalten.</p>
       </div>
     </div>
   </footer>
