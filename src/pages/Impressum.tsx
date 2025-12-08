@@ -7,7 +7,7 @@ import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
 import { CityData } from '../utils/cityDetection';
 
-const PHONE_NUMBER = "+4915212124199";
+const PHONE_NUMBER = "+4915792337877";
 
 // Funktion zum Kapitalisieren der Stadt
 const capitalizeCity = (cityStr: string) => {
@@ -85,7 +85,7 @@ const Impressum = () => {
 
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-[#1A1F2C]">Kontakt</h3>
-                <p>Telefon: <a href="tel:+4915212124199" className="call-link text-[#9b87f5] hover:underline">+49 152 1212 4199</a></p>
+                <p>Telefon: <a href="tel:+4915792337877" className="call-link text-[#9b87f5] hover:underline">+49 157 923 37877</a></p>
                 <p>E-Mail: <a href="mailto:info@kammerjaegerhoffmeyer.de" className="text-[#9b87f5] hover:underline">info@kammerjaegerhoffmeyer.de</a></p>
               </div>
 
