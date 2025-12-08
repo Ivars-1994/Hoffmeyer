@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const PHONE_NUMBER = "+4915212124199";
+const PHONE_NUMBER = "+4915792337877";
 const EMAIL = "info.kammerjaegerhoffmeyer@gmail.com";
 
 const Footer = () => {
