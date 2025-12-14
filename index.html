@@ -119,32 +119,7 @@
         }, 3000); // Load after 3 seconds
       })();
     </script>
-
-    <!-- Google Ads Conversion: Verweildauer 30 Sekunden -->
-    <script>
-      setTimeout(function() {
-        gtag('event', 'conversion', {
-          'send_to': 'AW-17399576460/_PkeCNqP6akbElzv4ehA',
-          'event_category': 'Engagement',
-          'event_label': 'Verweildauer_30Sek'
-        });
-      }, 30000);
-    </script>
-
-    <!-- Google Ads Conversion: Scrolltiefe 50% -->
-    <script>
-      window.addEventListener('scroll', function() {
-        var scrollDepth = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
-        if(scrollDepth >= 0.5 && !window.scrollSent) {
-          window.scrollSent = true;
-          gtag('event', 'conversion', {
-            'send_to': 'AW-17399576460/1BWZCO-K66kbElzv4ehA',
-            'event_category': 'Engagement',
-            'event_label': 'Scrolltiefe_50'
-          });
-        }
-      });
-    </script>
+    <!-- Engagement tracking moved to body to avoid duplicates -->
     <meta property="og:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung">
   <meta name="twitter:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung">
   <meta property="og:description" content="Kammerjäger Hoffmeyer - Schnelle &amp; diskrete Schädlingsbekämpfung. 24/7 Notdienst. IHK-zertifiziert. Faire Preise. ✓ Wespen ✓ Bettwanzen ✓ Ungeziefer">
@@ -171,28 +146,40 @@
     
     <!-- Google Ads Conversion: Verweildauer 30 Sekunden -->
     <script>
-    setTimeout(function() {
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17399576460/_PkeCNqP6akbElzv4ehA',
-        'event_category': 'Engagement',
-        'event_label': 'Verweildauer_30Sek'
-      });
-    }, 30000);
+    (function() {
+      if (window.verweildauerSent) return;
+      window.verweildauerSent = true;
+      setTimeout(function() {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17399576460/_PkeCNqP6akbElzv4ehA',
+            'event_category': 'Engagement',
+            'event_label': 'Verweildauer_30Sek'
+          });
+        }
+      }, 30000);
+    })();
     </script>
 
     <!-- Google Ads Conversion: Scrolltiefe 50% -->
     <script>
-    window.addEventListener('scroll', function() {
-      var scrollDepth = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
-      if(scrollDepth >= 0.5 && !window.scrollSent) {
-        window.scrollSent = true;
-        gtag('event', 'conversion', {
-          'send_to': 'AW-17399576460/1BWZCO-K66kbElzv4ehA',
-          'event_category': 'Engagement',
-          'event_label': 'Scrolltiefe_50'
-        });
-      }
-    });
+    (function() {
+      if (window.scrollListenerAdded) return;
+      window.scrollListenerAdded = true;
+      window.addEventListener('scroll', function() {
+        var scrollDepth = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+        if(scrollDepth >= 0.5 && !window.scrollConversionSent) {
+          window.scrollConversionSent = true;
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-17399576460/1BWZCO-K66kbElzv4ehA',
+              'event_category': 'Engagement',
+              'event_label': 'Scrolltiefe_50'
+            });
+          }
+        }
+      });
+    })();
     </script>
 
     <!-- Schema.org LocalBusiness -->
@@ -201,7 +188,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Kammerjäger Hoffmeyer",
-      "telephone": "+49 1521 2124199",
+      "telephone": "+49 157 92337877",
       "areaServed": "DE",
       "url": "https://kammerjaeger-hoffmeyer.de",
       "serviceType": ["Wespennest entfernen", "Bettwanzen bekämpfen", "Marder vertreiben", "Ratten bekämpfen", "Mäuse bekämpfen", "Silberfische entfernen", "Kakerlaken vernichten", "Flöhe eliminieren"],
