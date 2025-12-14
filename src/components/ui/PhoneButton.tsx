@@ -24,7 +24,7 @@ const PhoneButton = ({
   // Keep the href format without spaces
   const formattedNumber = phoneNumber.replace(/\s/g, '');
   
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     // Send GTM dataLayer event for conversion tracking
     if (typeof window !== 'undefined' && (window as any).dataLayer) {
       (window as any).dataLayer.push({
@@ -34,12 +34,16 @@ const PhoneButton = ({
       });
     }
     
-    // Send Google Ads conversion event directly
-    if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
-      e.preventDefault();
-      (window as any).gtag_report_conversion(`tel:${formattedNumber}`);
-      return false;
+    // Fire Google Ads conversion but DON'T prevent default - let the tel: link work naturally
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-17399576460/l7ZeCJ-hl50bElzv4ehA',
+        'event_callback': function() {
+          console.log('Phone conversion tracked');
+        }
+      });
     }
+    // Don't return false or preventDefault - allow native tel: link to work
   };
   
   const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg";
