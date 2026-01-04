@@ -25,7 +25,8 @@ const PhoneButton = ({
   const formattedNumber = phoneNumber.replace(/\s/g, '');
   
   const handleClick = () => {
-    // Send GTM dataLayer event for conversion tracking
+    // GTM tracks tel: links automatically via the "Nur Links" trigger
+    // Just push additional data to dataLayer for analytics
     if (typeof window !== 'undefined' && (window as any).dataLayer) {
       (window as any).dataLayer.push({
         'event': 'phone_click',
@@ -33,17 +34,7 @@ const PhoneButton = ({
         'button_variant': variant
       });
     }
-    
-    // Fire Google Ads conversion but DON'T prevent default - let the tel: link work naturally
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-17399576460/l7ZeCJ-hl50bElzv4ehA',
-        'event_callback': function() {
-          console.log('Phone conversion tracked');
-        }
-      });
-    }
-    // Don't return false or preventDefault - allow native tel: link to work
+    // Don't fire gtag directly - GTM handles conversion tracking via link click trigger
   };
   
   const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg";
