@@ -25,8 +25,7 @@ const PhoneButton = ({
   const formattedNumber = phoneNumber.replace(/\s/g, '');
   
   const handleClick = () => {
-    // GTM tracks tel: links automatically via the "Nur Links" trigger
-    // Just push additional data to dataLayer for analytics
+    // Push to dataLayer for GTM
     if (typeof window !== 'undefined' && (window as any).dataLayer) {
       (window as any).dataLayer.push({
         'event': 'phone_click',
@@ -34,7 +33,14 @@ const PhoneButton = ({
         'button_variant': variant
       });
     }
-    // Don't fire gtag directly - GTM handles conversion tracking via link click trigger
+    
+    // Fire Google Ads conversion with beacon transport - survives page navigation
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-17399576460/l7ZeCJ-hl50bElzv4ehA',
+        'transport_type': 'beacon'
+      });
+    }
   };
   
   const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg";
