@@ -125,5 +125,6 @@ export default async function handler(request: Request, context: any) {
 }
 
 export const config = {
-  path: "/*"
+  path: "/*",
+  excludedPath: ["/assets/*", "/.netlify/*", "/api/*"]
 };
