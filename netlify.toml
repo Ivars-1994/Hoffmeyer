@@ -5,9 +5,10 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Edge Functions Ordner
-[build]
-  edge_functions = "netlify/edge-functions"
+# Edge Function für Prerender.io (Bot-Erkennung)
+[[edge_functions]]
+  path = "/*"
+  function = "prerender"
 
 # Statische Seiten ZUERST (werden direkt ausgeliefert, nicht durch SPA)
 [[redirects]]
