@@ -164,17 +164,24 @@ function getPrerenderDecision(request: Request): PrerenderDecision {
     };
   }
 
-  // Avoid infinite loops when Prerender itself crawls the site
+  // Avoid infinite loops when Prerender itself crawls the site to generate cache
+  // x-prerender: On = Prerender.io signaling it WANTS us to prerender (proceed!)
+  // x-prerendered = Already prerendered response (don't re-prerender)
+  // UA contains "prerender" = Prerender's crawler fetching the original page
   const userAgent = request.headers.get('user-agent') || '';
   const ua = userAgent.toLowerCase();
   const hasXPrerender = request.headers.has('x-prerender');
   const hasXPrerendered = request.headers.has('x-prerendered');
-  const isPrerenderLoop = ua.includes('prerender') || hasXPrerender || hasXPrerendered;
+  
+  // Only block if this is Prerender's own crawler OR already prerendered
+  const isPrerenderCrawler = ua.includes('prerender');
+  const isAlreadyPrerendered = hasXPrerendered;
+  const isPrerenderLoop = isPrerenderCrawler || isAlreadyPrerendered;
 
   if (isPrerenderLoop) {
     return {
       shouldPrerender: false,
-      reason: 'prerender_loop_guard',
+      reason: isPrerenderCrawler ? 'prerender_crawler' : 'already_prerendered',
       debug: {
         path,
         ignoredExtension: null,
