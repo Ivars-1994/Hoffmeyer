@@ -90,7 +90,10 @@ export default async function handler(request: Request, context: any) {
   }
   
   const url = new URL(request.url);
-  const prerenderUrl = `https://service.prerender.io/${url.href}`;
+  // Prerender.io expects the full URL after the service URL
+  // Format: https://service.prerender.io/https://www.example.com/page
+  const targetUrl = url.href;
+  const prerenderUrl = `https://service.prerender.io/${targetUrl}`;
   
   try {
     const response = await fetch(prerenderUrl, {
