@@ -110,42 +110,39 @@ return BOT_AGENTS.some(bot => ua.includes(bot));
 
 function shouldPrerender(request: Request): boolean {
 
-const url = new URL(request.url);
+  const url = new URL(request.url);
+  const userAgent = request.headers.get('user-agent') || '';
+  const ua = userAgent.toLowerCase();
 
-const userAgent = request.headers.get('user-agent') || '';
+  // Loop-Guard: Prerender.io ruft unsere Seite zum Rendern selbst nochmal ab.
+  // Diese Requests dürfen wir NICHT erneut zu Prerender.io weiterleiten.
+  const hasXPrerender = request.headers.has('x-prerender');
+  const hasXPrerendered = request.headers.has('x-prerendered');
+  const isPrerenderService = ua.includes('prerender');
 
-// Prüfe auf ignorierte Dateierweiterungen
+  if (hasXPrerender || hasXPrerendered || isPrerenderService) {
+    return false;
+  }
 
-const pathname = url.pathname.toLowerCase();
+  // Prüfe auf ignorierte Dateierweiterungen
+  const pathname = url.pathname.toLowerCase();
+  if (IGNORED_EXTENSIONS.some((ext) => pathname.endsWith(ext))) {
+    return false;
+  }
 
-if (IGNORED_EXTENSIONS.some(ext => pathname.endsWith(ext))) {
+  // Prüfe auf Bot User-Agent
+  if (!isBot(userAgent)) {
+    return false;
+  }
 
-return false;
+  // Keine Prerender für API-Aufrufe
+  if (pathname.startsWith('/api/') || pathname.startsWith('/.netlify/')) {
+    return false;
+  }
 
-
+  return true;
 }
 
-// Prüfe auf Bot User-Agent
-
-if (!isBot(userAgent)) {
-
-return false;
-
-
-}
-
-// Keine Prerender für API-Aufrufe
-
-if (pathname.startsWith('/api/') || pathname.startsWith('/.netlify/')) {
-
-return false;
-
-
-}
-
-return true;
-
-}
 
 export default async function handler(request: Request, context: Context) {
 
@@ -223,10 +220,13 @@ return new Response(html, {
   headers: {
 
     'Content-Type': 'text/html; charset=utf-8',
-
     'X-Prerender': 'true',
 
-    'Cache-Control': 'public, max-age=3600',
+    // Wichtig, damit Caches nicht versehentlich Bot-HTML an normale Nutzer ausliefern
+    'Vary': 'User-Agent',
+
+    // Beim Debuggen lieber nicht aggressiv cachen (kann sonst „Integration Failed“ festkleben)
+    'Cache-Control': 'public, max-age=0, must-revalidate',
 
   },
 
