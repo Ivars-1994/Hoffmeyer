@@ -32,15 +32,54 @@ const BOT_USER_AGENTS = [
   'developers.google.com/+/web/snippet',
   'google-inspectiontool',
   'chrome-lighthouse',
-  'telegrambot'
+  'telegrambot',
 ];
 
 const IGNORED_EXTENSIONS = [
-  '.js', '.css', '.xml', '.less', '.png', '.jpg', '.jpeg', '.gif', '.pdf',
-  '.doc', '.txt', '.ico', '.rss', '.zip', '.mp3', '.rar', '.exe', '.wmv',
-  '.doc', '.avi', '.ppt', '.mpg', '.mpeg', '.tif', '.wav', '.mov', '.psd',
-  '.ai', '.xls', '.mp4', '.m4a', '.swf', '.dat', '.dmg', '.iso', '.flv',
-  '.m4v', '.torrent', '.ttf', '.woff', '.woff2', '.svg', '.webp', '.webm'
+  '.js',
+  '.css',
+  '.xml',
+  '.less',
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.gif',
+  '.pdf',
+  '.doc',
+  '.txt',
+  '.ico',
+  '.rss',
+  '.zip',
+  '.mp3',
+  '.rar',
+  '.exe',
+  '.wmv',
+  '.doc',
+  '.avi',
+  '.ppt',
+  '.mpg',
+  '.mpeg',
+  '.tif',
+  '.wav',
+  '.mov',
+  '.psd',
+  '.ai',
+  '.xls',
+  '.mp4',
+  '.m4a',
+  '.swf',
+  '.dat',
+  '.dmg',
+  '.iso',
+  '.flv',
+  '.m4v',
+  '.torrent',
+  '.ttf',
+  '.woff',
+  '.woff2',
+  '.svg',
+  '.webp',
+  '.webm',
 ];
 
 function getEnv(name: string): string | undefined {
@@ -65,37 +104,123 @@ function getEnv(name: string): string | undefined {
 
 function isBot(userAgent: string): boolean {
   const ua = userAgent.toLowerCase();
-  return BOT_USER_AGENTS.some(bot => ua.includes(bot));
+  return BOT_USER_AGENTS.some((bot) => ua.includes(bot));
 }
 
-function shouldPrerender(request: Request): boolean {
+type PrerenderDecision = {
+  shouldPrerender: boolean;
+  reason: string;
+  debug: {
+    path: string;
+    ignoredExtension: string | null;
+    isApiOrNetlify: boolean;
+    escapedFragment: boolean;
+    isBot: boolean;
+    hasXPrerender: boolean;
+    hasXPrerendered: boolean;
+    isPrerenderLoop: boolean;
+  };
+};
+
+function getPrerenderDecision(request: Request): PrerenderDecision {
   const url = new URL(request.url);
   const path = url.pathname.toLowerCase();
 
-  // Skip static assets
-  if (IGNORED_EXTENSIONS.some(ext => path.endsWith(ext))) {
-    return false;
+  const ignoredExtension =
+    IGNORED_EXTENSIONS.find((ext) => path.endsWith(ext)) ?? null;
+  if (ignoredExtension) {
+    return {
+      shouldPrerender: false,
+      reason: `ignored_extension:${ignoredExtension}`,
+      debug: {
+        path,
+        ignoredExtension,
+        isApiOrNetlify: false,
+        escapedFragment: false,
+        isBot: false,
+        hasXPrerender: request.headers.has('x-prerender'),
+        hasXPrerendered: request.headers.has('x-prerendered'),
+        isPrerenderLoop: false,
+      },
+    };
   }
 
-  // Skip API routes and functions
-  if (path.startsWith('/api/') || path.startsWith('/.netlify/')) {
-    return false;
+  const isApiOrNetlify =
+    path.startsWith('/api/') || path.startsWith('/.netlify/');
+  if (isApiOrNetlify) {
+    return {
+      shouldPrerender: false,
+      reason: 'internal_path',
+      debug: {
+        path,
+        ignoredExtension: null,
+        isApiOrNetlify: true,
+        escapedFragment: false,
+        isBot: false,
+        hasXPrerender: request.headers.has('x-prerender'),
+        hasXPrerendered: request.headers.has('x-prerendered'),
+        isPrerenderLoop: false,
+      },
+    };
   }
 
   // Avoid infinite loops when Prerender itself crawls the site
   const userAgent = request.headers.get('user-agent') || '';
   const ua = userAgent.toLowerCase();
-  if (ua.includes('prerender') || request.headers.has('x-prerender') || request.headers.has('x-prerendered')) {
-    return false;
+  const hasXPrerender = request.headers.has('x-prerender');
+  const hasXPrerendered = request.headers.has('x-prerendered');
+  const isPrerenderLoop = ua.includes('prerender') || hasXPrerender || hasXPrerendered;
+
+  if (isPrerenderLoop) {
+    return {
+      shouldPrerender: false,
+      reason: 'prerender_loop_guard',
+      debug: {
+        path,
+        ignoredExtension: null,
+        isApiOrNetlify: false,
+        escapedFragment: false,
+        isBot: isBot(userAgent),
+        hasXPrerender,
+        hasXPrerendered,
+        isPrerenderLoop: true,
+      },
+    };
   }
 
-  // Check for _escaped_fragment_ (old AJAX crawling scheme)
-  if (url.searchParams.has('_escaped_fragment_')) {
-    return true;
+  const escapedFragment = url.searchParams.has('_escaped_fragment_');
+  if (escapedFragment) {
+    return {
+      shouldPrerender: true,
+      reason: '_escaped_fragment_',
+      debug: {
+        path,
+        ignoredExtension: null,
+        isApiOrNetlify: false,
+        escapedFragment: true,
+        isBot: isBot(userAgent),
+        hasXPrerender,
+        hasXPrerendered,
+        isPrerenderLoop: false,
+      },
+    };
   }
 
-  // Check user agent
-  return isBot(userAgent);
+  const bot = isBot(userAgent);
+  return {
+    shouldPrerender: bot,
+    reason: bot ? 'bot_user_agent' : 'not_a_bot',
+    debug: {
+      path,
+      ignoredExtension: null,
+      isApiOrNetlify: false,
+      escapedFragment: false,
+      isBot: bot,
+      hasXPrerender,
+      hasXPrerendered,
+      isPrerenderLoop: false,
+    },
+  };
 }
 
 export default async function handler(request: Request, context: any) {
@@ -107,18 +232,26 @@ export default async function handler(request: Request, context: any) {
   const url = new URL(request.url);
   const userAgent = request.headers.get('user-agent') || '';
   const requestId = crypto.randomUUID();
+  const decision = getPrerenderDecision(request);
 
   // Simple health/debug endpoint to verify the Edge Function is running on Netlify
-  if (url.pathname === '/__prerender/health' || url.searchParams.has('__prerender_debug')) {
+  if (
+    url.pathname === '/__prerender/health' ||
+    url.searchParams.has('__prerender_debug')
+  ) {
     const info = {
       ok: true,
       requestId,
       url: url.href,
       path: url.pathname,
       userAgent,
-      isBot: isBot(userAgent),
-      shouldPrerender: shouldPrerender(request),
       hasToken: Boolean(getEnv('PRERENDER_TOKEN')),
+      decision,
+      headers: {
+        xPrerender: request.headers.get('x-prerender'),
+        xPrerendered: request.headers.get('x-prerendered'),
+        via: request.headers.get('via'),
+      },
     };
 
     return new Response(JSON.stringify(info, null, 2), {
@@ -130,12 +263,11 @@ export default async function handler(request: Request, context: any) {
     });
   }
 
-  const willPrerender = shouldPrerender(request);
   console.log(
-    `[prerender][${requestId}] ${url.pathname}${url.search} willPrerender=${willPrerender} ua="${userAgent}"`
+    `[prerender][${requestId}] ${url.pathname}${url.search} willPrerender=${decision.shouldPrerender} reason=${decision.reason} ua="${userAgent}"`
   );
 
-  if (!willPrerender) {
+  if (!decision.shouldPrerender) {
     return context.next();
   }
 
@@ -156,7 +288,7 @@ export default async function handler(request: Request, context: any) {
       headers: {
         'X-Prerender-Token': prerenderToken,
         'User-Agent': userAgent || 'Netlify Edge Function',
-        'Accept': 'text/html',
+        Accept: 'text/html',
       },
     });
 
@@ -179,7 +311,7 @@ export default async function handler(request: Request, context: any) {
         'X-Prerendered': 'true',
         'X-Prerender-Status': String(response.status),
         'Cache-Control': 'public, max-age=86400',
-        'Vary': 'User-Agent',
+        Vary: 'User-Agent',
       },
     });
   } catch (error) {
@@ -189,6 +321,6 @@ export default async function handler(request: Request, context: any) {
 }
 
 export const config = {
-  path: "/*",
-  excludedPath: ["/assets/*", "/.netlify/*", "/api/*"]
+  path: '/*',
+  excludedPath: ['/assets/*', '/.netlify/*', '/api/*'],
 };
