@@ -12,5 +12,17 @@
 /kammerjaeger-essen/maeusebekaempfung    /kammerjaeger-essen/maeusebekaempfung/    301
 /kammerjaeger-essen/marderabwehr    /kammerjaeger-essen/marderabwehr/    301
 
+# Stadtteile Essen
+/kammerjaeger-essen/ruettenscheid    /kammerjaeger-essen/ruettenscheid/    301
+/kammerjaeger-essen/werden    /kammerjaeger-essen/werden/    301
+/kammerjaeger-essen/bredeney    /kammerjaeger-essen/bredeney/    301
+/kammerjaeger-essen/kettwig    /kammerjaeger-essen/kettwig/    301
+/kammerjaeger-essen/stadtmitte    /kammerjaeger-essen/stadtmitte/    301
+
+# Nachbarstädte
+/kammerjaeger-muelheim    /kammerjaeger-muelheim/    301
+/kammerjaeger-bochum    /kammerjaeger-bochum/    301
+/kammerjaeger-duisburg    /kammerjaeger-duisburg/    301
+
 # SPA Fallback - NUR für Routen die keine statische Datei haben
 /*    /index.html   200
