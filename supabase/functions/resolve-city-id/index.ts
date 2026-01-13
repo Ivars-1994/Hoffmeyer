@@ -1,8 +1,22 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  'https://kammerjaeger-hoffmeyer.de',
+  'https://www.kammerjaeger-hoffmeyer.de',
+  'http://localhost:5173'
+];
+
+function getCorsHeaders(origin: string | null) {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) 
+    ? origin 
+    : ALLOWED_ORIGINS[0];
+    
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  };
 }
 
 // Import der kompletten Stadt-Map (alle 7000+ Einträge)
@@ -1165,112 +1179,97 @@ const stadtMapContent = `{
 const stadtMap: Record<string, string> = JSON.parse(stadtMapContent);
 
 serve(async (req) => {
-  console.log(`🔍 Edge Function aufgerufen: ${req.method} ${req.url}`);
+  const origin = req.headers.get('origin');
+  const corsHeaders = getCorsHeaders(origin);
 
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Only allow GET requests
+  if (req.method !== 'GET') {
+    return new Response(
+      JSON.stringify({ error: "Method not allowed" }), 
+      { status: 405, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+  }
+
   try {
     const url = new URL(req.url);
-    const id = url.searchParams.get("id");
+    const rawId = url.searchParams.get("id");
     
-    console.log(`📥 ID Parameter: ${id}`);
-    
-    if (!id) {
-      console.log(`❌ Keine ID angegeben`);
+    // Input validation: ID must exist
+    if (!rawId) {
       return new Response(
         JSON.stringify({ error: "ID fehlt" }), 
-        { 
-          status: 400, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Sanitize: only allow digits, max 15 chars
+    const id = rawId.replace(/[^0-9]/g, '').substring(0, 15);
+    
+    if (!id || id.length < 5) {
+      return new Response(
+        JSON.stringify({ error: "Ungültige ID" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
     const value = stadtMap[id];
     if (!value) {
-      console.log(`❌ Unbekannte ID: ${id}`);
       return new Response(
-        JSON.stringify({ error: "Unbekannte ID", id }),
-        { 
-          status: 404, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
+        JSON.stringify({ error: "Unbekannte ID" }),
+        { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    console.log(`✅ Gefundener Wert für ID ${id}: ${value}`);
-
     // Prüfe ob es eine PLZ ist (5 Ziffern)
     const isPlz = /^\d{5}$/.test(value);
-    console.log(`🔍 Ist PLZ: ${isPlz}`);
 
     if (isPlz) {
-      // PLZ zu Stadt über externe API
-      const apiUrl = `https://openplzapi.org/de/Localities?postalCode=${value}`;
-      console.log(`🌐 API-Aufruf für PLZ: ${apiUrl}`);
+      // PLZ zu Stadt über externe API mit Timeout
+      const apiUrl = `https://openplzapi.org/de/Localities?postalCode=${encodeURIComponent(value)}`;
       
       try {
-        const response = await fetch(apiUrl);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+        
+        const response = await fetch(apiUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
         const data = await response.json();
         const stadt = data?.[0]?.name || null;
         
-        console.log(`📥 PLZ-API Antwort:`, data);
-        console.log(`🏙️ Erkannte Stadt: ${stadt}`);
-        
         if (!stadt) {
           return new Response(
-            JSON.stringify({ error: "Stadt nicht gefunden (via PLZ)", id, plz: value }),
-            { 
-              status: 404, 
-              headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-            }
+            JSON.stringify({ error: "Stadt nicht gefunden" }),
+            { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
           );
         }
 
-        const result = { id, typ: "plz-id", stadt, plz: value };
-        console.log(`✅ PLZ-Ergebnis:`, result);
-        
         return new Response(
-          JSON.stringify(result),
-          { 
-            status: 200, 
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-          }
+          JSON.stringify({ id, typ: "plz-id", stadt, plz: value }),
+          { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
-      } catch (error) {
-        console.error(`❌ PLZ-API Fehler:`, error);
+      } catch {
         return new Response(
-          JSON.stringify({ error: "API Fehler", details: error.message }),
-          { 
-            status: 500, 
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-          }
+          JSON.stringify({ error: "Externe API nicht erreichbar" }),
+          { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
     } else {
       // Direkter Stadtname
-      const result = { id, typ: "stadt-id", stadt: value };
-      console.log(`✅ Stadt-Ergebnis:`, result);
-      
       return new Response(
-        JSON.stringify(result),
-        { 
-          status: 200, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
+        JSON.stringify({ id, typ: "stadt-id", stadt: value }),
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
-  } catch (error) {
-    console.error(`❌ Allgemeiner Fehler:`, error);
+  } catch {
     return new Response(
-      JSON.stringify({ error: "Interner Serverfehler", details: error.message }),
-      { 
-        status: 500, 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-      }
+      JSON.stringify({ error: "Interner Serverfehler" }),
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
 });

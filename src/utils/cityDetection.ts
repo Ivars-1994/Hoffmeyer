@@ -7,26 +7,25 @@ export interface CityData {
   plz: string;
 }
 
+// Helper für Development-only Logging
+const isDev = import.meta.env.DEV;
+const debugLog = (...args: unknown[]) => {
+  if (isDev) console.log(...args);
+};
+
 export async function detectCity(): Promise<CityData> {
-  console.log("🚀 DETECTCITY GESTARTET!");
-  console.log("🚀 URL:", window.location.href);
+  debugLog("Stadt-Erkennung gestartet");
   
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city"); // Neuer direkter city Parameter
   const kw = urlParams.get("kw") || urlParams.get("utm_term");
   const locId = urlParams.get("mslocid") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
 
-  console.log("🔍 DEBUG: Stadt-Erkennung startet mit URL:", window.location.href);
-  console.log("🔍 DEBUG: Search params:", window.location.search);
-  console.log("🔍 DEBUG: city parameter:", cityParam);
-  console.log("🔍 DEBUG: kw parameter:", kw);
-  console.log("🔍 DEBUG: loc_physical_ms/city_id/loc:", locId);
-
   // Priorität 0: Geolocation (wenn Consent vorhanden und keine URL-Parameter)
   if (!cityParam && !kw && !locId && hasGeolocationConsent()) {
     const geoCity = await getCityFromGeolocation();
     if (geoCity) {
-      console.log("✅ DEBUG: Stadt über Geolocation erkannt:", geoCity);
+      debugLog("Stadt über Geolocation erkannt:", geoCity.name);
       return geoCity;
     }
   }
@@ -36,7 +35,7 @@ export async function detectCity(): Promise<CityData> {
     const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
     const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
     
-    console.log("✅ DEBUG: Stadt über city Parameter:", cityName);
+    debugLog("Stadt über city Parameter:", cityName);
     
     const cityData = { name: cityName, plz: "00000" };
     sessionStorage.setItem("cityName", cityName);
@@ -46,31 +45,34 @@ export async function detectCity(): Promise<CityData> {
 
   // Priorität 2: mslocid/loc_physical_ms/city_id über Netlify Function
   if (locId) {
+    // Validate locId - must be numeric and reasonable length
+    const sanitizedLocId = locId.replace(/[^0-9]/g, '').substring(0, 15);
+    if (!sanitizedLocId || sanitizedLocId.length < 5) {
+      debugLog("Ungültige Location ID");
+      return { name: "Ihrer Stadt", plz: "00000" };
+    }
+    
     try {
-      // Netlify Function nutzen
-      console.log("🔍 DEBUG: Versuche Netlify Function zu nutzen für ID:", locId);
-      const netlifyUrl = `/.netlify/functions/resolve-id?id=${locId}`;
-      console.log("🌐 DEBUG: Netlify Function URL:", netlifyUrl);
+      debugLog("Versuche Netlify Function für ID:", sanitizedLocId);
+      const netlifyUrl = `/.netlify/functions/resolve-id?id=${encodeURIComponent(sanitizedLocId)}`;
       
-      const response = await fetch(netlifyUrl);
-      console.log("📡 DEBUG: Response Status:", response.status);
-      console.log("📡 DEBUG: Response OK:", response.ok);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      
+      const response = await fetch(netlifyUrl, { signal: controller.signal });
+      clearTimeout(timeoutId);
       
       if (!response.ok) {
-        console.error("❌ DEBUG: Response not OK, status:", response.status);
-        const errorText = await response.text();
-        console.error("❌ DEBUG: Error response text:", errorText);
-        throw new Error(`HTTP ${response.status}: ${errorText}`);
+        throw new Error(`HTTP ${response.status}`);
       }
       
       const data = await response.json();
-      console.log("📥 DEBUG: Netlify Function Antwort:", data);
 
       if (data.stadt) {
         const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1).toLowerCase();
         const realPlz = data.plz || "00000";
         const cityData = { name: capitalizedCity, plz: realPlz };
-        console.log("✅ DEBUG: Stadt über Netlify Function erkannt:", cityData);
+        debugLog("Stadt über Netlify Function erkannt:", capitalizedCity);
         
         sessionStorage.setItem("cityName", capitalizedCity);
         sessionStorage.setItem("cityPlz", realPlz);
@@ -78,7 +80,7 @@ export async function detectCity(): Promise<CityData> {
         return cityData;
       }
     } catch (error) {
-      console.error("❌ DEBUG: Netlify Function fehlgeschlagen:", error);
+      debugLog("Netlify Function fehlgeschlagen");
     }
   }
 
@@ -92,8 +94,7 @@ export async function detectCity(): Promise<CityData> {
     // Ersten Buchstaben groß schreiben
     cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
     
-    console.log("✅ DEBUG: Vollständiger Suchbegriff:", searchTerm);
-    console.log("✅ DEBUG: Extrahierte Stadt:", cityName);
+    debugLog("Stadt aus kw extrahiert:", cityName);
     
     const cityData = { name: cityName, plz: "00000" };
     
@@ -102,7 +103,7 @@ export async function detectCity(): Promise<CityData> {
     return cityData;
   }
 
-  console.log("❌ DEBUG: Keine Parameter gefunden");
+  debugLog("Keine Parameter gefunden");
   return { name: "Ihrer Stadt", plz: "00000" };
 
 }

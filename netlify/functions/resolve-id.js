@@ -2,27 +2,56 @@
 const path = require("path");
 const fs = require("fs");
 
-function corsHeaders() {
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  'https://kammerjaeger-hoffmeyer.de',
+  'https://www.kammerjaeger-hoffmeyer.de',
+  'http://localhost:5173',
+  'http://localhost:8888'
+];
+
+function corsHeaders(origin) {
+  // Check if origin is in the allowed list
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) 
+    ? origin 
+    : ALLOWED_ORIGINS[0];
+    
   return {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Methods": "GET, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 }
 
 exports.handler = async (event) => {
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 204, headers: corsHeaders(), body: "" };
-  }
-  const headers = corsHeaders();
+  const origin = event.headers.origin || event.headers.Origin || '';
+  const headers = corsHeaders(origin);
 
-  const id = event.queryStringParameters?.id?.trim();
-  if (!id) {
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 204, headers, body: "" };
+  }
+
+  // Only allow GET requests
+  if (event.httpMethod !== "GET") {
+    return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
+  }
+
+  const rawId = event.queryStringParameters?.id;
+  
+  // Input validation: ID must exist and be numeric with reasonable length
+  if (!rawId) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "ID fehlt" }) };
   }
+  
+  // Sanitize: only allow digits, max 15 chars
+  const id = rawId.replace(/[^0-9]/g, '').substring(0, 15);
+  
+  if (!id || id.length < 5) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: "Ungültige ID" }) };
+  }
 
-  // JSON liegt neben der Function (wie bei dir)
+  // JSON liegt neben der Function
   const jsonPath = path.join(__dirname, "stadt_map_complete.json");
   let stadtMap;
   try {
@@ -31,13 +60,13 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: "Fehler beim Lesen der stadt_map_complete.json", details: err.message }),
+      body: JSON.stringify({ error: "Interner Fehler" }),
     };
   }
 
   const raw = stadtMap[String(id)];
   if (!raw) {
-    return { statusCode: 404, headers, body: JSON.stringify({ error: "Unbekannte ID", id }) };
+    return { statusCode: 404, headers, body: JSON.stringify({ error: "Unbekannte ID" }) };
   }
 
   const val = String(raw).trim();
@@ -51,20 +80,25 @@ exports.handler = async (event) => {
   // Wenn wir eine PLZ haben, versuche OpenPLZ
   if (plz) {
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      
       const url = `https://openplzapi.org/de/Localities?postalCode=${encodeURIComponent(plz)}`;
-      const resp = await fetch(url);
+      const resp = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      
       if (!resp.ok) {
-        return { statusCode: resp.status, headers, body: JSON.stringify({ error: "API nicht OK", status: resp.status }) };
+        return { statusCode: 502, headers, body: JSON.stringify({ error: "Externe API nicht erreichbar" }) };
       }
       const data = await resp.json();
       const stadt = data?.[0]?.name || null;
       if (stadt) {
         return { statusCode: 200, headers, body: JSON.stringify({ id, typ: "plz-lookup", stadt, plz }) };
       }
-      // Fallback: Keine Stadt gefunden → trotzdem etwas Sinnvolles zurückgeben
-      return { statusCode: 404, headers, body: JSON.stringify({ error: "Stadt nicht gefunden", id, plz }) };
+      // Fallback: Keine Stadt gefunden
+      return { statusCode: 404, headers, body: JSON.stringify({ error: "Stadt nicht gefunden" }) };
     } catch (e) {
-      return { statusCode: 502, headers, body: JSON.stringify({ error: "API Fehler", details: String(e) }) };
+      return { statusCode: 502, headers, body: JSON.stringify({ error: "Externe API nicht erreichbar" }) };
     }
   }
 
