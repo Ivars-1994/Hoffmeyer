@@ -1,19 +1,42 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  'https://kammerjaeger-hoffmeyer.de',
+  'https://www.kammerjaeger-hoffmeyer.de',
+  'http://localhost:5173'
+];
+
+function getCorsHeaders(origin: string | null) {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) 
+    ? origin 
+    : ALLOWED_ORIGINS[0];
+    
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  };
 }
 
 serve(async (req) => {
+  const origin = req.headers.get('origin');
+  const corsHeaders = getCorsHeaders(origin);
+
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
-  try {
-    console.log('Starting stadt_map.json update process...');
+  // Only allow GET and POST
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    return new Response(
+      JSON.stringify({ error: "Method not allowed" }), 
+      { status: 405, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+  }
 
+  try {
     // Lade die vollständige geparsete Excel-Datei
     const fullExcelData = await fetch('https://rvecdywqfmmetoiktaan.supabase.co/storage/v1/object/public/temp/complete-excel-data.txt')
       .then(res => res.text())
@@ -28,8 +51,8 @@ serve(async (req) => {
         if (toolResultResponse.ok) {
           excelDataText = await toolResultResponse.text();
         }
-      } catch (e) {
-        console.log('Tool results not available, using hardcoded approach');
+      } catch {
+        // Tool results not available, using hardcoded approach
       }
     } else {
       excelDataText = fullExcelData;
@@ -37,16 +60,12 @@ serve(async (req) => {
 
     // Parse ALLE Daten aus der Excel-Datei
     if (!excelDataText) {
-      console.log('Loading all Excel data directly...');
-      // Da ich nicht die komplette Datei hier einbetten kann, erstelle ich eine Funktion die alle Daten lädt
       excelDataText = await loadCompleteExcelData();
     }
 
     const lines = excelDataText.split('\n');
     const stadtMap: Record<string, string> = {};
     let processedCount = 0;
-    
-    console.log(`Processing ${lines.length} lines from Excel file...`);
     
     for (const line of lines) {
       const match = line.match(/^\|(\d+)\|([^|]+)\|$/);
@@ -61,8 +80,6 @@ serve(async (req) => {
         }
       }
     }
-
-    console.log(`Successfully processed ${processedCount} cities from ${lines.length} total lines`);
 
     // Generate JSON file content
     const jsonContent = JSON.stringify(stadtMap, null, 2);
@@ -81,12 +98,11 @@ serve(async (req) => {
       }
     );
 
-  } catch (error) {
-    console.error('Error processing Excel data:', error);
+  } catch {
     return new Response(
       JSON.stringify({
         success: false,
-        error: error.message
+        error: "Interner Fehler"
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

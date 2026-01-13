@@ -49,19 +49,17 @@ const Index = () => {
   // Get service config if on a service route
   const serviceConfig = serviceSlug ? getServiceConfig(serviceSlug) : null;
   
-  console.log("=== DIREKTER TEST ===");
-  console.log("URL:", window.location.href);
-  console.log("Search:", window.location.search);
-  console.log("City Param:", cityParam);
-  console.log("KW Param:", kwParam);
-  console.log("Loc ID:", locId);
+  // Development-only logging
+  const isDev = import.meta.env.DEV;
+  if (isDev) {
+    console.log("Stadt-Parameter:", { cityParam, kwParam, locId });
+  }
   
   const [cityData, setCityData] = useState<CityData | null>(null);
   
   // Event-Listener für cityDetected Event (z.B. nach Cookie-Consent Geolocation)
   useEffect(() => {
     const handleCityDetected = (event: CustomEvent<CityData>) => {
-      console.log("🎉 Stadt erkannt über Event:", event.detail);
       setCityData(event.detail);
     };
     
@@ -73,28 +71,20 @@ const Index = () => {
   }, []);
   
   useEffect(() => {
-    console.log("=== USEEFFECT LÄUFT ===");
-    
     // Priorität 1: Direkter city Parameter (aber nur wenn es eine echte Stadt ist)
     if (cityParam) {
-      console.log("✅ Original cityParam:", cityParam);
-      
       // Google Ads Platzhalter abfangen - diese sollen NICHT als Stadt verwendet werden
       const isGoogleAdsPlaceholder = cityParam.toLowerCase().includes('location') || 
                                    cityParam.includes('{') || 
                                    cityParam.includes('}') || 
                                    cityParam.toLowerCase() === 'locationcity';
       
-      if (isGoogleAdsPlaceholder) {
-        console.log("⚠️ Google Ads Platzhalter nicht ersetzt:", cityParam, "-> verwende kw oder loc ID");
-        // Weiter zu kw und loc ID Erkennung
-      } else {
+      if (!isGoogleAdsPlaceholder) {
         // Echte Stadt erkannt
         const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
         const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
         const newCityData = { name: cityName, plz: "00000" };
         
-        console.log("✅ Echte Stadt über city Parameter erkannt:", cityName);
         setCityData(newCityData);
         
         sessionStorage.setItem('cityName', cityName);
@@ -106,16 +96,10 @@ const Index = () => {
     
     // Priorität 2: Stadt aus kw Parameter extrahieren
     if (kwParam) {
-      console.log("✅ KW Parameter gefunden:", kwParam);
-      console.log("🔍 KW Parameter Raw:", urlParams.get("kw"));
-      console.log("🔍 KW Parameter Decoded:", decodeURIComponent(kwParam));
       const searchTerm = decodeURIComponent(kwParam).replace(/\+/g, " ");
-      console.log("🔍 Search Term after decode/replace:", searchTerm);
       // Extrahiere die Stadt (meist das letzte Wort nach "kammerjaeger" etc.)
       const words = searchTerm.split(" ");
-      console.log("🔍 Words array:", words);
       let cityName = words[words.length - 1]; // Letztes Wort ist meist die Stadt
-      console.log("🔍 Extracted city name:", cityName);
       
       // Prüfe ob das letzte Wort eine echte Stadt sein könnte
       const isValidCity = cityName.length >= 3 && 
@@ -126,9 +110,6 @@ const Index = () => {
         // Ersten Buchstaben groß schreiben
         cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
         
-        console.log("✅ Vollständiger Suchbegriff:", searchTerm);
-        console.log("✅ Gültige Stadt aus kw extrahiert:", cityName);
-        
         const newCityData = { name: cityName, plz: "00000" };
         setCityData(newCityData);
         
@@ -136,40 +117,37 @@ const Index = () => {
         sessionStorage.setItem('cityData', JSON.stringify(newCityData));
         window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
         return;
-      } else {
-        console.log("⚠️ Letztes Wort aus kw ist keine gültige Stadt:", cityName, "-> verwende lcid");
-        // Weiter zu lcid Erkennung
       }
     }
     
     // Priorität 3: Netlify Function mit lcid/loc_physical_ms
     if (!locId) {
-      console.log("Keine Parameter gefunden (city, kw, oder loc ID)");
+      return;
+    }
+    
+    // Validate locId - must be numeric
+    const sanitizedLocId = locId.replace(/[^0-9]/g, '').substring(0, 15);
+    if (!sanitizedLocId || sanitizedLocId.length < 5) {
       return;
     }
     
     // Non-blocking city detection
-    const testNetlifyFunction = async () => {
+    const fetchCityFromFunction = async () => {
       try {
-        console.log("Teste Netlify Function...");
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
         
-        const response = await fetch(`/.netlify/functions/resolve-id?id=${locId}`, {
+        const response = await fetch(`/.netlify/functions/resolve-id?id=${encodeURIComponent(sanitizedLocId)}`, {
           signal: controller.signal
         });
         clearTimeout(timeoutId);
-        console.log("Response status:", response.status);
         
         if (response.ok) {
           const data = await response.json();
-          console.log("✅ Netlify Function Response:", data);
           
           // Prüfe ob bereits eine Stadt aus kw extrahiert wurde
           const existingCityData = sessionStorage.getItem('cityData');
           if (existingCityData) {
-            const parsedCityData = JSON.parse(existingCityData);
-            console.log("⚠️ Stadt bereits aus kw erkannt:", parsedCityData.name, "-> überspringe Netlify Function");
             return;
           }
           
@@ -180,20 +158,15 @@ const Index = () => {
           sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
           
           // Dispatch Event für andere Komponenten
-          const event = new CustomEvent('cityDetected', { 
-            detail: newCityData 
-          });
-          window.dispatchEvent(event);
-        } else {
-          console.log("Netlify Function failed:", response.status);
+          window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
         }
-      } catch (error) {
-        console.error("❌ Netlify Function Error:", error);
+      } catch {
+        // Silently fail - not critical for page function
       }
     };
     
     // Don't block rendering - run after paint
-    setTimeout(testNetlifyFunction, 100);
+    setTimeout(fetchCityFromFunction, 100);
   }, [cityParam, kwParam, locId]);
 
   
@@ -205,8 +178,8 @@ const Index = () => {
       try {
         const data = JSON.parse(storedFromKw);
         return data.name;
-      } catch (e) {
-        console.error("Error parsing cityData from sessionStorage:", e);
+      } catch {
+        // Ignore parse errors
       }
     }
     
@@ -221,8 +194,8 @@ const Index = () => {
       try {
         const data = JSON.parse(storedFromLcid);
         return data.name;
-      } catch (e) {
-        console.error("Error parsing detectedCityData from sessionStorage:", e);
+      } catch {
+        // Ignore parse errors
       }
     }
     
@@ -286,7 +259,7 @@ const Index = () => {
         }
         metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
         
-        console.log(`📄 Meta Tags updated for #${hash}`);
+        // Meta tags updated for hash
       } else {
         // Reset to default
         document.title = `Kammerjäger Hoffmeyer | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
@@ -298,9 +271,6 @@ const Index = () => {
     
     return () => window.removeEventListener("hashchange", updateMetaTags);
   }, [cityName]);
-  console.log("City Data:", cityData);
-  console.log("Window location:", window.location.href);
-  console.log("URL Params:", urlParams.toString());
 
   // Dynamic title and description based on service route
   const pageTitle = serviceConfig 
