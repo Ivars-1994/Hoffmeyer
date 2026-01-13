@@ -4,5 +4,13 @@
 /ratgeber/wespennest-entfernen-essen    /ratgeber/wespennest-entfernen-essen/    301
 /ratgeber/bettwanzen-essen-anzeichen    /ratgeber/bettwanzen-essen-anzeichen/    301
 
+# Service-Landingpages Essen (NEU)
+/kammerjaeger-essen/wespenbekaempfung    /kammerjaeger-essen/wespenbekaempfung/    301
+/kammerjaeger-essen/rattenbekaempfung    /kammerjaeger-essen/rattenbekaempfung/    301
+/kammerjaeger-essen/bettwanzenbekaempfung    /kammerjaeger-essen/bettwanzenbekaempfung/    301
+/kammerjaeger-essen/schabenbekaempfung    /kammerjaeger-essen/schabenbekaempfung/    301
+/kammerjaeger-essen/maeusebekaempfung    /kammerjaeger-essen/maeusebekaempfung/    301
+/kammerjaeger-essen/marderabwehr    /kammerjaeger-essen/marderabwehr/    301
+
 # SPA Fallback - NUR für Routen die keine statische Datei haben
 /*    /index.html   200
