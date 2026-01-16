@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import PhoneButton from '@/components/ui/PhoneButton';
 
-const PHONE_NUMBER = "+49 157 92337877";
+const PHONE_NUMBER = "+49 1579 2453526";
 
 const services = [
   {
