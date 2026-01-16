@@ -7,7 +7,7 @@ import PhoneButton from '../components/ui/PhoneButton';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
 import { CityData } from '../utils/cityDetection';
 
-const PHONE_NUMBER = "+4915792337877";
+const PHONE_NUMBER = "+4915792453526";
 
 // Funktion zum Kapitalisieren der Stadt
 const capitalizeCity = (cityStr: string) => {
