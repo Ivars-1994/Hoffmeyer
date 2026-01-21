@@ -1,0 +1,22 @@
+/* TEAM */
+Geschäftsführer: Norbert Wolframm
+Unternehmen: Kammerjäger Hoffmeyer
+Standort: Essen, Nordrhein-Westfalen, Deutschland
+Telefon: 01579 2453526
+
+/* SITE */
+Letzte Aktualisierung: 2025-01-21
+Technologie: React, Vite, TypeScript, Tailwind CSS
+Standards: HTML5, CSS3, ES6+
+Hosting: Netlify
+
+/* SERVICES */
+- Wespenbekämpfung
+- Bettwanzenbekämpfung
+- Rattenbekämpfung
+- Mäusebekämpfung
+- Schabenbekämpfung
+- Marderabwehr
+- Flohbekämpfung
+- Silberfischbekämpfung
+- 24/7 Notdienst
