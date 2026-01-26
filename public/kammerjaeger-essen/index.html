@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1e3a5f">
-  <title>Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Hoffmeyer</title>
-  <meta name="description" content="Kammerjäger Essen ✓ IHK-zertifiziert ✓ 24h Notdienst ✓ 30-60 Min vor Ort. Professionelle Schädlingsbekämpfung – jetzt anrufen!">
+  <title>Kammerjäger Essen | 24h Notdienst & Festpreis</title>
+  <meta name="description" content="Kammerjäger Essen ✓ IHK-zertifiziert ✓ 24h Notdienst ✓ 30-60 Min vor Ort. Jetzt anrufen!">
   <link rel="canonical" href="https://kammerjaeger-hoffmeyer.de/kammerjaeger-essen/">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Hoffmeyer">
+  <meta property="og:title" content="Kammerjäger Essen | 24h Notdienst & Festpreis">
   <meta property="og:description" content="Kammerjäger Essen ✓ IHK-zertifiziert ✓ 24h Notdienst ✓ 30-60 Min vor Ort. Jetzt anrufen!">
   <meta property="og:url" content="https://kammerjaeger-hoffmeyer.de/kammerjaeger-essen/">
   <meta property="og:type" content="website">
@@ -22,7 +23,7 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst">
+  <meta name="twitter:title" content="Kammerjäger Essen | 24h Notdienst & Festpreis">
   <meta name="twitter:description" content="IHK-zertifizierte Schädlingsbekämpfung in Essen. 24h Notdienst, 30-60 Min vor Ort.">
   <meta name="twitter:image" content="https://kammerjaeger-hoffmeyer.de/og-image.png">
   
@@ -114,12 +115,12 @@
     .feature-card .icon-wrap { width: 3rem; height: 3rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
     .feature-card .icon-wrap svg { color: var(--accent); width: 1.5rem; height: 1.5rem; }
     .feature-card .content { }
-    .feature-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+    .feature-card .feature-title { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
     .feature-card p { font-size: 0.9rem; color: var(--muted-foreground); }
     
     /* Table of Contents */
     .toc { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem 2rem; margin: 2rem auto; max-width: 800px; }
-    .toc h2 { font-size: 1.25rem; margin-bottom: 1rem; text-align: left; }
+    .toc-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; text-align: left; color: var(--primary); }
     .toc-grid { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
     .toc a { color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; padding: 0.25rem 0; display: inline-flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
     .toc a:hover { color: var(--primary); text-decoration: underline; }
@@ -134,7 +135,7 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     .tab-box { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; }
-    .tab-box h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
+    .tab-box .tab-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary); }
     .tab-box p { color: var(--muted-foreground); margin-bottom: 1.5rem; line-height: 1.7; }
     .tab-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
     .tab-feature { display: flex; align-items: flex-start; gap: 0.75rem; }
@@ -177,7 +178,7 @@
     .payment-card:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
     .payment-icon { width: 3.5rem; height: 3.5rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
     .payment-icon svg { color: var(--accent); width: 1.5rem; height: 1.5rem; }
-    .payment-card h4 { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .payment-card .payment-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--foreground); }
     .payment-card p { font-size: 0.75rem; color: var(--muted-foreground); }
     .payment-info-box { background: hsla(217, 91%, 60%, 0.05); padding: 1.5rem 2rem; border-radius: 1rem; max-width: 800px; margin: 2rem auto 0; display: flex; align-items: center; gap: 1.5rem; }
     @media (max-width: 640px) { .payment-info-box { flex-direction: column; text-align: center; } }
@@ -190,7 +191,7 @@
     .about-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); }
     .about-card .icon-wrap { width: 3.5rem; height: 3.5rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
     .about-card .icon-wrap svg { color: var(--accent); width: 1.75rem; height: 1.75rem; }
-    .about-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--foreground); }
+    .about-card .about-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--foreground); }
     .about-card p { font-size: 0.875rem; color: var(--muted-foreground); }
     
     /* Process Steps */
@@ -199,7 +200,7 @@
     .process-card:hover { box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); }
     .process-card .step-icon { width: 4rem; height: 4rem; background: hsla(217, 91%, 60%, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
     .process-card .step-icon svg { color: var(--accent); width: 2rem; height: 2rem; }
-    .process-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .process-card .process-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--foreground); }
     .process-card p { font-size: 0.875rem; color: var(--muted-foreground); }
     
     /* Services Grid */
@@ -230,7 +231,7 @@
     .ratgeber-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .ratgeber-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; transition: all 0.3s; }
     .ratgeber-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); }
-    .ratgeber-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--primary); }
+    .ratgeber-card .ratgeber-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--primary); }
     .ratgeber-card p { color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.7; }
     .ratgeber-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-weight: 600; text-decoration: none; transition: gap 0.2s; }
     .ratgeber-link:hover { gap: 0.75rem; }
@@ -256,7 +257,7 @@
     /* Footer */
     footer { background: var(--primary); color: var(--primary-foreground); padding: 3rem 0 1.5rem; }
     .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-    .footer-col h4 { font-weight: 700; margin-bottom: 1rem; color: white; }
+    .footer-col .footer-title { font-weight: 700; margin-bottom: 1rem; color: white; }
     .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; padding: 0.25rem 0; transition: color 0.2s; }
     .footer-col a:hover { color: white; }
     .footer-bottom { text-align: center; color: rgba(255,255,255,0.5); font-size: 0.875rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
@@ -494,21 +495,21 @@
             <div class="icon-wrap" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             </div>
-            <h3>IHK zertifizierte Experten</h3>
+            <p class="feature-title">IHK zertifizierte Experten</p>
             <p>Geprüfte Fachkräfte für Schädlingsbekämpfung in Essen</p>
           </article>
           <article class="feature-card glass-card">
             <div class="icon-wrap" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             </div>
-            <h3>Kostenlose Anfahrt in Essen</h3>
+            <p class="feature-title">Kostenlose Anfahrt in Essen</p>
             <p>Keine versteckten Kosten – transparente Festpreise</p>
           </article>
           <article class="feature-card glass-card">
             <div class="icon-wrap" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             </div>
-            <h3>Schnelle Reaktionszeit</h3>
+            <p class="feature-title">Schnelle Reaktionszeit</p>
             <p>In 30–60 Min. vor Ort in allen Essener Stadtteilen</p>
           </article>
         </aside>
@@ -519,7 +520,7 @@
   <!-- Table of Contents -->
   <div class="container">
     <nav class="toc" aria-label="Inhaltsverzeichnis">
-      <h2>📋 Schnellnavigation</h2>
+      <p class="toc-title">📋 Schnellnavigation</p>
       <div class="toc-grid">
         <a href="#leistungen">Unsere Leistungen</a>
         <a href="#ablauf">So funktioniert's</a>
@@ -554,28 +555,28 @@
           <div class="icon-wrap">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
           </div>
-          <h3>IHK-zertifizierte Expertise</h3>
+          <p class="about-title">IHK-zertifizierte Expertise</p>
           <p>Geprüfte Fachkräfte mit Sachkundenachweis nach §4 Biozidverordnung</p>
         </div>
         <div class="about-card">
           <div class="icon-wrap">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           </div>
-          <h3>24/7 Notdienst Essen</h3>
+          <p class="about-title">24/7 Notdienst Essen</p>
           <p>Rund um die Uhr erreichbar – auch an Wochenenden und Feiertagen</p>
         </div>
         <div class="about-card">
           <div class="icon-wrap">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
           </div>
-          <h3>Erfolgsgarantie</h3>
+          <p class="about-title">Erfolgsgarantie</p>
           <p>Kostenlose Nachbehandlung bei erneutem Befall innerhalb der Garantiezeit</p>
         </div>
         <div class="about-card">
           <div class="icon-wrap">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
-          <h3>Persönliche Betreuung</h3>
+          <p class="about-title">Persönliche Betreuung</p>
           <p>Fester Ansprechpartner für Ihren Einsatz in Essen</p>
         </div>
       </div>
@@ -601,28 +602,28 @@
           <div class="step-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </div>
-          <h3>1. Anruf & Erstberatung</h3>
+          <p class="process-title">1. Anruf & Erstberatung</p>
           <p>Sie schildern Ihr Problem telefonisch. Wir geben erste Einschätzung und nennen den Festpreis.</p>
         </div>
         <div class="process-card">
           <div class="step-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           </div>
-          <h3>2. Terminvereinbarung</h3>
+          <p class="process-title">2. Terminvereinbarung</p>
           <p>Kurzfristige Termine verfügbar. Notdienst: meist innerhalb von 30–60 Minuten in Essen.</p>
         </div>
         <div class="process-card">
           <div class="step-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </div>
-          <h3>3. Vor-Ort-Analyse</h3>
+          <p class="process-title">3. Vor-Ort-Analyse</p>
           <p>Unser Experte analysiert den Befall und bespricht die optimale Bekämpfungsmethode mit Ihnen.</p>
         </div>
         <div class="process-card">
           <div class="step-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
           </div>
-          <h3>4. Professionelle Bekämpfung</h3>
+          <p class="process-title">4. Professionelle Bekämpfung</p>
           <p>Effektive Behandlung mit geprüften Mitteln. Inklusive Nachkontrolle und Erfolgsgarantie.</p>
         </div>
       </div>
@@ -656,7 +657,7 @@
         
         <div id="privat" class="tab-content active" role="tabpanel" aria-labelledby="tab-privat" tabindex="0">
           <div class="tab-box">
-            <h3>Kammerjäger für Privathaushalte in Essen</h3>
+            <p class="tab-title">Kammerjäger für Privathaushalte in Essen</p>
             <p>Schädlinge in den eigenen vier Wänden sind belastend. Wir behandeln Ihr Problem diskret und effektiv – ohne dass Nachbarn etwas mitbekommen. Von der Mietwohnung in Altenessen bis zum Eigenheim in Bredeney.</p>
             <ul class="tab-features" role="list">
               <li class="tab-feature">
@@ -689,7 +690,7 @@
         
         <div id="gewerbe" class="tab-content" role="tabpanel" aria-labelledby="tab-gewerbe" tabindex="0">
           <div class="tab-box">
-            <h3>Schädlingsbekämpfung für Gewerbe in Essen</h3>
+            <p class="tab-title">Schädlingsbekämpfung für Gewerbe in Essen</p>
             <p>In Gastronomie, Hotellerie und Lebensmittelhandel gelten strenge Hygienevorschriften. Wir arbeiten HACCP-konform und bieten Einsätze außerhalb Ihrer Geschäftszeiten – so bleibt Ihr Betrieb ungestört.</p>
             <ul class="tab-features" role="list">
               <li class="tab-feature">
@@ -722,7 +723,7 @@
         
         <div id="hausverwaltung" class="tab-content" role="tabpanel" aria-labelledby="tab-hausverwaltung" tabindex="0">
           <div class="tab-box">
-            <h3>Partner für Hausverwaltungen in Essen</h3>
+            <p class="tab-title">Partner für Hausverwaltungen in Essen</p>
             <p>Schädlingsbefall in Mehrfamilienhäusern erfordert schnelles und koordiniertes Handeln. Wir kommunizieren direkt mit Mietern, erstellen rechtssichere Dokumentation und bieten Rahmenverträge.</p>
             <ul class="tab-features" role="list">
               <li class="tab-feature">
@@ -955,42 +956,42 @@
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
           </div>
-          <h4>Rechnung</h4>
+          <p class="payment-title">Rechnung</p>
           <p>Zahlung nach Einsatz</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
           </div>
-          <h4>Bar</h4>
+          <p class="payment-title">Bar</p>
           <p>Direkt vor Ort</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
           </div>
-          <h4>Karte</h4>
+          <p class="payment-title">Karte</p>
           <p>EC & Kreditkarte</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.067 8.478c-.492-.268-1.047-.419-1.646-.419h-3.028l-.723 4.568h3.028c.599 0 1.154-.151 1.646-.419.492-.268.886-.643 1.169-1.104.283-.461.424-1.003.424-1.626 0-.623-.141-1.165-.424-1.626-.283-.461-.677-.836-1.169-1.104l.723.73z"/></svg>
           </div>
-          <h4>PayPal</h4>
+          <p class="payment-title">PayPal</p>
           <p>Online-Zahlung</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4" fill="hsla(338, 100%, 85%, 0.3)"/><circle cx="7.5" cy="16" r="3" fill="var(--accent)"/></svg>
           </div>
-          <h4>Klarna</h4>
+          <p class="payment-title">Klarna</p>
           <p>Ratenzahlung</p>
         </div>
         <div class="payment-card">
           <div class="payment-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
           </div>
-          <h4>Versicherung</h4>
+          <p class="payment-title">Versicherung</p>
           <p>Direktabrechnung</p>
         </div>
       </div>
@@ -1035,25 +1036,19 @@
       <p class="section-intro">Informieren Sie sich über Kosten, Anzeichen und Bekämpfungsmethoden</p>
       <div class="ratgeber-grid">
         <div class="ratgeber-card">
-          <h3>💰 Kammerjäger Essen – Kosten 2025</h3>
+          <p class="ratgeber-title">💰 Kammerjäger Essen – Kosten 2025</p>
           <p>Was kostet ein Kammerjäger in Essen wirklich? Erfahren Sie alles über Preise, Kostenfaktoren und wie Sie Abzocke vermeiden. Mit aktueller Preisübersicht für 2025.</p>
-          <a href="/ratgeber/kammerjaeger-essen-kosten-2025/" class="ratgeber-link">
-            Weiterlesen →
-          </a>
+          <a href="/ratgeber/kammerjaeger-essen-kosten-2025/" class="ratgeber-link">Kosten-Ratgeber lesen →</a>
         </div>
         <div class="ratgeber-card">
-          <h3>🐝 Wespennest entfernen in Essen</h3>
+          <p class="ratgeber-title">🐝 Wespennest entfernen in Essen</p>
           <p>Wespennest am Haus entdeckt? Erfahren Sie, wann Sie selbst handeln können und wann Sie einen Profi rufen sollten. Plus: Rechtliche Hinweise zum Artenschutz.</p>
-          <a href="/ratgeber/wespennest-entfernen-essen/" class="ratgeber-link">
-            Weiterlesen →
-          </a>
+          <a href="/ratgeber/wespennest-entfernen-essen/" class="ratgeber-link">Wespen-Ratgeber lesen →</a>
         </div>
         <div class="ratgeber-card">
-          <h3>🛏️ Bettwanzen erkennen – Anzeichen</h3>
+          <p class="ratgeber-title">🛏️ Bettwanzen erkennen – Anzeichen</p>
           <p>Juckende Stiche nach dem Aufwachen? Lernen Sie die typischen Anzeichen für Bettwanzenbefall und was Sie sofort tun sollten. Mit Checkliste zum Selbsttest.</p>
-          <a href="/ratgeber/bettwanzen-essen-anzeichen/" class="ratgeber-link">
-            Weiterlesen →
-          </a>
+          <a href="/ratgeber/bettwanzen-essen-anzeichen/" class="ratgeber-link">Bettwanzen-Ratgeber lesen →</a>
         </div>
       </div>
     </div>
@@ -1174,7 +1169,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-col">
-          <h4>Hoffmeyer Schädlingsbekämpfung</h4>
+          <p class="footer-title">Hoffmeyer Schädlingsbekämpfung</p>
           <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1rem;">
             Ihr IHK-zertifizierter Kammerjäger in Essen. Professionelle Schädlingsbekämpfung seit über 20 Jahren.
           </p>
@@ -1182,24 +1177,24 @@
           <a href="mailto:info.kammerjaegerhoffmeyer@gmail.com">✉️ E-Mail schreiben</a>
         </div>
         <div class="footer-col">
-          <h4>Leistungen</h4>
-          <a href="#leistungen">Wespenbekämpfung</a>
-          <a href="#leistungen">Bettwanzenbekämpfung</a>
-          <a href="#leistungen">Rattenbekämpfung</a>
-          <a href="#leistungen">Mäusebekämpfung</a>
-          <a href="#leistungen">Schabenbekämpfung</a>
+          <p class="footer-title">Leistungen</p>
+          <a href="/kammerjaeger-essen/wespenbekaempfung/">Wespen entfernen</a>
+          <a href="/kammerjaeger-essen/bettwanzenbekaempfung/">Bettwanzen bekämpfen</a>
+          <a href="/kammerjaeger-essen/rattenbekaempfung/">Ratten vertreiben</a>
+          <a href="/kammerjaeger-essen/maeusebekaempfung/">Mäuse bekämpfen</a>
+          <a href="/kammerjaeger-essen/schabenbekaempfung/">Schaben beseitigen</a>
         </div>
         <div class="footer-col">
-          <h4>Ratgeber</h4>
-          <a href="/ratgeber/kammerjaeger-essen-kosten-2025/">Kammerjäger Kosten 2025</a>
-          <a href="/ratgeber/wespennest-entfernen-essen/">Wespennest entfernen</a>
-          <a href="/ratgeber/bettwanzen-essen-anzeichen/">Bettwanzen erkennen</a>
+          <p class="footer-title">Ratgeber</p>
+          <a href="/ratgeber/kammerjaeger-essen-kosten-2025/">Kosten-Übersicht 2025</a>
+          <a href="/ratgeber/wespennest-entfernen-essen/">Wespennest selbst entfernen?</a>
+          <a href="/ratgeber/bettwanzen-essen-anzeichen/">Bettwanzen-Anzeichen</a>
         </div>
         <div class="footer-col">
-          <h4>Rechtliches</h4>
+          <p class="footer-title">Rechtliches</p>
           <a href="/kammerjaeger-essen/impressum/">Impressum</a>
-          <a href="/datenschutz">Datenschutz</a>
-          <a href="/agb">AGB</a>
+          <a href="/datenschutz">Datenschutzerklärung</a>
+          <a href="/agb">Allgemeine Geschäftsbedingungen</a>
         </div>
       </div>
       <div class="footer-bottom">
