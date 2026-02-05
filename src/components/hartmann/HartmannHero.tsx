@@ -11,7 +11,20 @@ const HartmannHero = () => {
               Schädlingsbekämpfung Seit 1998
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Kammerjäger<br />Ihrer Stadt
+              Kammerjäger<br />
+              <span className="relative inline-block">
+                Ihrer Stadt
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#c9a227] animate-pulse"></span>
+                <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" preserveAspectRatio="none">
+                  <path 
+                    d="M0 4 Q 50 0, 100 4 T 200 4" 
+                    stroke="#c9a227" 
+                    strokeWidth="3" 
+                    fill="none"
+                    className="animate-draw-line"
+                  />
+                </svg>
+              </span>
             </h1>
             <p className="text-gray-200 text-lg mb-6 leading-relaxed">
               Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger Hartmann Ihr Partner! 
