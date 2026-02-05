@@ -1,6 +1,6 @@
 const HartmannService = () => {
   return (
-    <section id="service" className="bg-[#003311] py-16 px-4 md:px-8">
+    <section id="service" className="bg-[#004d1a] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

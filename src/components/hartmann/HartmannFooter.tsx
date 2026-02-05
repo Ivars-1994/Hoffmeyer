@@ -2,7 +2,7 @@ import { Phone, Mail } from 'lucide-react';
 
 const HartmannFooter = () => {
   return (
-    <footer className="bg-[#001a0d] py-12 px-4 md:px-8">
+    <footer className="bg-[#004d1a] border-t border-[#006622] py-12 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Logo & Info */}
@@ -58,7 +58,7 @@ const HartmannFooter = () => {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 border-t border-[#003311]">
+        <div className="pt-8 border-t border-[#006622]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
               © {new Date().getFullYear()} Kammerjäger Hartmann. Alle Rechte vorbehalten.
