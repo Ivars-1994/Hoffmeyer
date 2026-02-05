@@ -20,7 +20,7 @@ const steps = [
 
 const HartmannProcess = () => {
   return (
-    <section className="bg-[#004d1a] py-16 px-4 md:px-8">
+    <section className="bg-[#003311] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">

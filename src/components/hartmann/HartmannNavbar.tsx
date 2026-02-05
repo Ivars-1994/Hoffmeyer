@@ -5,7 +5,7 @@ const HartmannNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-[#004d1a] py-4 px-4 md:px-8 sticky top-0 z-50">
+    <nav className="bg-[#003311] py-4 px-4 md:px-8 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo - exact match to original */}
         <a href="/lp" className="flex items-center gap-3">

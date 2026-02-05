@@ -20,7 +20,7 @@ const LandingPageHartmann = () => {
         <meta name="robots" content="index, follow" />
       </Helmet>
       
-      <div className="min-h-screen bg-[#004d1a]">
+      <div className="min-h-screen bg-[#003311]">
         <HartmannNavbar />
         <HartmannHero />
         <HartmannService />
