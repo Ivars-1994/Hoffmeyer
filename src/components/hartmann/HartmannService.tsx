@@ -1,6 +1,6 @@
 const HartmannService = () => {
   return (
-    <section id="service" className="bg-[#002800] py-16 px-4 md:px-8">
+    <section id="service" className="bg-[#003311] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -40,6 +40,9 @@ const HartmannService = () => {
                 src="https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Kammerjaeger-fuer-jede-Schaedlingsbekaempfung-und-Notdienst-1024x682.webp" 
                 alt="Kammerjäger Hartmann Team"
                 className="w-full h-auto object-cover"
+                loading="lazy"
+                width="1024"
+                height="682"
               />
             </div>
           </div>

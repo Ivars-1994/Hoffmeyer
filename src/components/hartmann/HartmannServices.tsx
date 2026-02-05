@@ -5,7 +5,6 @@ const services = [
     title: "Kammerjäger Notdienst",
     description: "Unser 24/7 Kammerjäger Notdienst ist sofort für Sie erreichbar und hilft Ihnen bei jedem Anliegen nachhaltig und sicher weiter. 100 % sichere Bekämpfung durch Profis!",
     icon: AlertTriangle,
-    highlight: true
   },
   {
     title: "Ratten",
@@ -51,7 +50,7 @@ const services = [
 
 const HartmannServices = () => {
   return (
-    <section id="leistungen" className="bg-[#003d00] py-16 px-4 md:px-8">
+    <section id="leistungen" className="bg-[#004d1a] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -61,7 +60,7 @@ const HartmannServices = () => {
 
         {/* First row with badge */}
         <div className="mb-8">
-          <div className="inline-block bg-[#c5a54e] text-[#003d00] px-4 py-2 rounded-lg font-bold text-sm mb-6">
+          <div className="inline-block bg-[#c9a227] text-[#003311] px-4 py-2 rounded-lg font-bold text-sm mb-6">
             Vor Ort in 30 - 60 Min. nach Ihrer Anfrage
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -73,7 +72,7 @@ const HartmannServices = () => {
 
         {/* Second row with badge */}
         <div>
-          <div className="inline-block bg-[#c5a54e] text-[#003d00] px-4 py-2 rounded-lg font-bold text-sm mb-6">
+          <div className="inline-block bg-[#c9a227] text-[#003311] px-4 py-2 rounded-lg font-bold text-sm mb-6">
             Noch am selben Tag Mo. - Fr.
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -90,9 +89,9 @@ const HartmannServices = () => {
 const ServiceCard = ({ service }: { service: typeof services[0] }) => {
   const Icon = service.icon;
   return (
-    <div className="bg-[#002800] border border-[#005500] rounded-2xl p-6 hover:border-[#c5a54e] transition-colors">
-      <div className="w-12 h-12 bg-[#003d00] rounded-lg flex items-center justify-center mb-4">
-        <Icon className="w-6 h-6 text-[#c5a54e]" />
+    <div className="bg-[#003311] border border-[#006622] rounded-2xl p-6 hover:border-[#c9a227] transition-colors">
+      <div className="w-12 h-12 bg-[#004d1a] rounded-lg flex items-center justify-center mb-4">
+        <Icon className="w-6 h-6 text-[#c9a227]" />
       </div>
       <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
       <p className="text-gray-300 text-sm leading-relaxed">{service.description}</p>
