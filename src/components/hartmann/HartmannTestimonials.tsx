@@ -76,7 +76,7 @@ const testimonials = [
 
 const HartmannTestimonials = () => {
   return (
-    <section className="bg-[#004d1a] py-16 px-4 md:px-8 overflow-hidden">
+    <section className="bg-[#003311] py-16 px-4 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Scrollable testimonials */}
         <div 

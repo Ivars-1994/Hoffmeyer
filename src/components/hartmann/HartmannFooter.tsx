@@ -2,7 +2,7 @@ import { Phone, Mail } from 'lucide-react';
 
 const HartmannFooter = () => {
   return (
-    <footer className="bg-[#004d1a] border-t border-[#006622] py-12 px-4 md:px-8">
+    <footer className="bg-[#003311] border-t border-[#004d1a] py-12 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Logo & Info */}

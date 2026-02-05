@@ -16,7 +16,7 @@ const HartmannContact = () => {
   };
 
   return (
-    <section id="kontakt" className="bg-[#004d1a] py-16 px-4 md:px-8">
+    <section id="kontakt" className="bg-[#003311] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
