@@ -4,6 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hartmann animated line */
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 400;
+  animation: draw-line 2s ease-in-out forwards;
+}
+
 @layer base {
   :root {
     /* Base Colors - Apple-inspired */
