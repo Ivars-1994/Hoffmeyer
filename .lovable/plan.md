@@ -1,78 +1,85 @@
 
-Ziel: Domain **kammerjaeger-hoffmeyer.de** wieder erreichbar machen (DNS/Registry-Problem, kein Code-Problem)
+# Plan: Hartmann Landing Page 1:1 in Lovable nachbauen
 
-Warum es trotz “nichts geändert” plötzlich nicht mehr geht
-- Deine Netlify-DNS-Zone sieht korrekt aus (A-Record + www CNAME).
-- Entscheidend ist aber: Ob die Domain bei der **.de-Registry (DENIC)** überhaupt noch als registriert/delegiert existiert.
-- Aktuell ist sie dort offenbar “weg”: Öffentliche Resolver bekommen **NXDOMAIN** (Domain existiert laut Registry nicht).
-  - Ich habe das gerade über Google DNS geprüft:
-    - A/NS/CNAME Abfragen liefern **Status: 3 (NXDOMAIN)** und kommen direkt von DENIC-Nameservern (z.B. f.nic.de).
-  - Das bedeutet: Selbst perfekte DNS-Records in Netlify helfen nicht, wenn die Domain bei DENIC nicht mehr im Zoneneintrag existiert.
+## Ziel
+Eine pixelgenaue Kopie der WordPress-Seite `https://kammerjaeger-hartmann.de/lp/` als React-Komponente unter der Route `/lp/` erstellen.
 
-Was das konkret heißt
-- Netlify zeigt dir “DNS records”, aber öffentlich wird nichts auflösbar sein, wenn:
-  1) die Domain **nicht mehr registriert** ist (z.B. versehentlich gelöscht/expired/renewal fehlgeschlagen), oder
-  2) Netlify-Registrar/Registry ein **Provisioning-/Sync-Problem** hat (Domain in Netlify “grün”, bei DENIC aber nicht vorhanden).
+## Design-Analyse der Hartmann-Seite
 
-Vorgehen (in der Reihenfolge, schnellste Klärung zuerst)
+### Farbschema
+- Hintergrund: Dunkelgrün (#004d00 / #003d00)
+- Akzentfarbe: Gold/Orange für Buttons und Highlights
+- Text: Weiß auf dunklem Hintergrund
 
-1) Extern verifizieren, ob die Domain bei DENIC existiert (2 Minuten)
-- Öffne DENIC WHOIS (Web):
-  - https://www.denic.de/service/tools/whois-service/
-- Suche: kammerjaeger-hoffmeyer.de
-- Ergebnis interpretieren:
-  - Wenn dort steht “nicht registriert / free / no entries found” → Domain ist bei der Registry wirklich nicht (mehr) vorhanden.
-  - Wenn dort ein Eintrag mit Nameservern steht → dann wäre es kein NXDOMAIN-Problem, sondern evtl. DNSSEC/Nameserver-Erreichbarkeit (würde eher SERVFAIL geben, nicht NXDOMAIN).
+### Sektionen (in Reihenfolge)
+1. **Navbar** - Logo links, Navigation mittig, Telefon-Button rechts (grüner Rahmen)
+2. **Hero** - Links: Tagline, H1, Text, Sterne-Bewertung, 2 CTA-Buttons, 4 USP-Icons | Rechts: 2x2 Bildgrid mit gerundeten Ecken
+3. **Service-Banner** - "Unser einwandfreier Service" mit Bild rechts
+4. **Testimonials** - Horizontaler Slider mit Bewertungskarten (Name, Sterne, Plattform, Text)
+5. **Leistungen** - Grid mit Service-Karten (Notdienst, Ratten, Wespen, Mäuse, Bettwanzen, Schaben, Marder, Ameisen, Käfer)
+6. **Ablauf** - 3 Schritte (Kontakt, Termin, Bekämpfung)
+7. **Zertifizierungen** - Bild mit Logos
+8. **Kontakt** - Formular links, Google Maps rechts
+9. **Footer** - Kontaktinfos, Garantie, Copyright
 
-2) In Netlify prüfen: Ist es wirklich “Registrar = Netlify” und ist die Domain wirklich registriert (nicht nur eine DNS-Zone)?
-- In Netlify gibt es oft zwei Dinge, die man verwechseln kann:
-  - (A) “DNS Zone verwalten” (Records editieren)
-  - (B) “Domain registriert bei Netlify” (echte Registrierung inkl. Ablaufdatum, Auto-Renew, Billing)
-- Prüfe in Netlify in deinem Team:
-  - Domain Registration/Registrar Details (Ablaufdatum, Auto-Renew aktiv, Payment-Method ok)
-  - Ob die Domain in genau dem Team/Account liegt, den du gerade offen hast
+## Technische Umsetzung
 
-3) Audit Log in Netlify checken (sehr wichtig, weil du sagst “keiner hat was geändert”)
-- Links hast du “Audit log” im Menü (sieht man in deinem Screenshot).
-- Filtere auf “Domain / DNS / Registrar” und Zeitraum “gestern/heute”.
-- Wenn dort Events stehen wie “domain removed”, “nameserver changed”, “renewal failed” o.ä. → Ursache ist klar und wir reagieren gezielt.
+### Neue Dateien
+| Datei | Zweck |
+|-------|-------|
+| `src/pages/LandingPageHartmann.tsx` | Hauptseite mit allen Sektionen |
+| `src/components/hartmann/HartmannNavbar.tsx` | Grüne Navbar mit Hartmann-Logo |
+| `src/components/hartmann/HartmannHero.tsx` | Hero mit 2x2 Grid und USPs |
+| `src/components/hartmann/HartmannTestimonials.tsx` | Bewertungs-Slider |
+| `src/components/hartmann/HartmannServices.tsx` | Service-Karten Grid |
+| `src/components/hartmann/HartmannProcess.tsx` | 3-Schritte Ablauf |
+| `src/components/hartmann/HartmannContact.tsx` | Formular + Map |
+| `src/components/hartmann/HartmannFooter.tsx` | Footer |
 
-4) Wenn DENIC sagt “Domain nicht registriert”, aber Netlify sagt “aktiv & bezahlt” → Netlify Support ist zwingend
-Das ist dann ein Registrar/Registry-Provisioning-Thema. Dann muss Netlify die Registrierung bei DENIC wiederherstellen.
-- Support-Ticket-Inhalt (copy/paste Vorlage):
-  - Betreff: “kammerjaeger-hoffmeyer.de resolves NXDOMAIN (DENIC), was reachable yesterday”
-  - Text:
-    - “Domain was working until yesterday. Today it returns NXDOMAIN from DENIC via public resolvers.”
-    - “Netlify DNS zone exists and contains A record (75.2.60.5) and CNAME for www.”
-    - “Please verify the .de registry (DENIC) registration/delegation for kammerjaeger-hoffmeyer.de and restore it.”
-    - “I can provide screenshots of Netlify DNS zone and the DENIC WHOIS result.”
-- Warum Support: Nur der Registrar kann bei .de die Registrierung/Delegation wieder “einschalten”, wenn sie aus der Registry raus ist.
+### Routing
+Route `/lp/` wird in `App.tsx` hinzugefügt und zeigt `LandingPageHartmann`
 
-5) Übergangslösung (damit du nicht offline bist)
-- Nutze vorübergehend eine erreichbare URL:
-  - deine Netlify-Subdomain: nimble-licorice-156202.netlify.app
-  - oder deine Lovable-Published-URL: https://hoffmeyer.lovable.app
-- Optional: Wenn du Ads/Google Business/Verzeichnisse hast, dort kurzfristig die Ziel-URL anpassen (oder pausieren), bis die Domain wieder live ist.
+### Styling-Ansatz
+- Eigene Tailwind-Klassen für Hartmann-Farbschema (dunkelgrün, gold)
+- CSS-Variablen für konsistente Farben
+- Responsive Design wie Original (Mobile-First)
 
-6) Nach Wiederherstellung: Entscheidung, wohin die Domain zeigen soll (Netlify oder Lovable)
-- Wenn du final bei Lovable hosten willst:
-  - In Lovable → Project Settings → Domains → Domain hinzufügen
-  - DNS:
-    - A @ → 185.158.133.1
-    - A www → 185.158.133.1
-    - TXT _lovable → (Lovable Verification String)
-- Wenn du bei Netlify bleiben willst:
-  - Deine aktuellen Records (A 75.2.60.5 + www CNAME) sind grundsätzlich plausibel,
-  - aber sie funktionieren erst, wenn die Domain bei DENIC wieder existiert.
+### Assets
+- Hartmann-Logo (muss hochgeladen werden oder als SVG nachgebaut)
+- Bilder aus WordPress (werden als URLs referenziert oder durch Platzhalter ersetzt)
+- Icons (Lucide React Icons)
 
-Erfolgskontrolle (10 Minuten nach Fix, dann ggf. 1–6h warten)
-- Prüfe erneut bei:
-  - https://dns.google/resolve?name=kammerjaeger-hoffmeyer.de&type=A
-  - https://dnschecker.org (A + NS)
-- Sobald A/NS nicht mehr NXDOMAIN ist, kommt die Website wieder.
+## Wichtige Details
 
-Risiko/Edge Cases (kurz)
-- Negative DNS-Caches: Selbst nach Fix kann es bei manchen Providern noch 1–2 Stunden NXDOMAIN zeigen. Google DNS sollte aber relativ schnell korrekt werden.
-- .de-Registry/Registrar-Sync: Wenn Netlify intern “grün” ist, aber DENIC nicht, ist es fast immer ein Registrar-Provisioning-Thema.
+### Telefonnummer
+Die Hartmann-Seite verwendet: **01579 2305 928**
+(Wird 1:1 übernommen wie gewünscht)
 
-Wenn du willst, kann ich als nächstes den Support-Text exakt für Netlify auf Deutsch/Englisch formulieren (mit den richtigen Beweisen/Links), und wir entscheiden, ob die Domain später direkt auf Lovable umziehen soll (einfacher, weniger “zweites Deployment”).
+### Testimonials
+7 Bewertungen mit Namen, Plattform (Google, MyHammer, Trustpilot) und Text
+
+### USP-Icons
+- Uhr-Icon: 30-60 Min Reaktionszeit
+- Checkmark: Garantie 100% Zufrieden
+- Schild: Festpreise Transparent
+- 24-Badge: 24/7 Hotline
+
+## Zeitaufwand
+- Geschätzt 4-6 Nachrichten für vollständige Implementierung
+- Hero + Navbar zuerst (kritisch für erste Eindruck)
+- Dann Sektionen von oben nach unten
+
+## Offene Punkte
+
+### Bilder
+Die WordPress-Bilder können direkt verlinkt werden, aber für Produktion sollten eigene Bilder verwendet werden. Soll ich:
+- Temporär die WordPress-URLs nutzen?
+- Platzhalter-Bilder verwenden die du später ersetzt?
+
+### Logo
+Das Hartmann-Logo muss entweder:
+- Als Datei hochgeladen werden
+- Als SVG nachgebaut werden
+
+### Kontaktformular
+Soll das Formular funktional sein (E-Mail senden) oder nur als Design-Demo?
