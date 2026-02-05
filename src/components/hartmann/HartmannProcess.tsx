@@ -20,7 +20,7 @@ const steps = [
 
 const HartmannProcess = () => {
   return (
-    <section className="bg-[#002800] py-16 px-4 md:px-8">
+    <section className="bg-[#003311] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
@@ -33,8 +33,8 @@ const HartmannProcess = () => {
             const Icon = step.icon;
             return (
               <div key={index} className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 bg-[#003d00] border-2 border-[#c5a54e] rounded-full flex items-center justify-center">
-                  <Icon className="w-8 h-8 text-[#c5a54e]" />
+                <div className="w-20 h-20 mx-auto mb-6 bg-[#004d1a] border-2 border-[#c9a227] rounded-full flex items-center justify-center">
+                  <Icon className="w-8 h-8 text-[#c9a227]" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
                 <p className="text-gray-300 leading-relaxed">{step.description}</p>
@@ -47,13 +47,13 @@ const HartmannProcess = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
           <a 
             href="#kontakt"
-            className="flex items-center justify-center gap-2 bg-[#c5a54e] text-[#003d00] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b45e] transition-colors"
+            className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#003311] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
           >
             Anfrage Senden
           </a>
           <a 
             href="tel:015792305928"
-            className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-[#003d00] transition-colors"
+            className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-[#003311] transition-colors"
           >
             <Phone size={20} />
             01579 2305 928
