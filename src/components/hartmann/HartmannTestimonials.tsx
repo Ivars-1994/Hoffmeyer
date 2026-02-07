@@ -91,7 +91,7 @@ const testimonials = [
 
 const HartmannTestimonials = () => {
   return (
-    <section className="bg-white py-16 px-4 md:px-8 overflow-hidden">
+    <section className="bg-[#003311] py-16 px-4 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div 
           className="flex gap-6 overflow-x-auto pb-4" 

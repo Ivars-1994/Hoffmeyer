@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Phone, Mail } from 'lucide-react';
+import { toast } from "sonner";
 
 const HartmannContact = () => {
   const [formData, setFormData] = useState({
@@ -9,10 +10,38 @@ const HartmannContact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xovwepvz", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Ihre Anfrage wurde erfolgreich gesendet!");
+        setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' });
+      } else {
+        toast.error("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.");
+      }
+    } catch (error) {
+      toast.error("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -38,6 +67,7 @@ const HartmannContact = () => {
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     className="w-full bg-[#004d1a] border border-[#006622] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-[#c9a227] focus:outline-none transition-colors"
                     placeholder="Max"
+                    required
                   />
                 </div>
                 <div>
@@ -48,6 +78,7 @@ const HartmannContact = () => {
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     className="w-full bg-[#004d1a] border border-[#006622] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-[#c9a227] focus:outline-none transition-colors"
                     placeholder="Mustermann"
+                    required
                   />
                 </div>
               </div>
@@ -59,6 +90,7 @@ const HartmannContact = () => {
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full bg-[#004d1a] border border-[#006622] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-[#c9a227] focus:outline-none transition-colors"
                   placeholder="+49 123 456789"
+                  required
                 />
               </div>
               <div>
@@ -69,6 +101,7 @@ const HartmannContact = () => {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full bg-[#004d1a] border border-[#006622] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-[#c9a227] focus:outline-none transition-colors"
                   placeholder="max@beispiel.de"
+                  required
                 />
               </div>
               <div>
@@ -79,34 +112,21 @@ const HartmannContact = () => {
                   rows={4}
                   className="w-full bg-[#004d1a] border border-[#006622] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-[#c9a227] focus:outline-none transition-colors resize-none"
                   placeholder="Beschreiben Sie Ihr Anliegen..."
+                  required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#c9a227] text-[#003311] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
+                disabled={isSubmitting}
+                className="w-full bg-[#c9a227] text-[#003311] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors disabled:opacity-50"
               >
-                Senden
+                {isSubmitting ? "Wird gesendet..." : "Senden"}
               </button>
             </form>
           </div>
 
-          {/* Map + Contact Info */}
+          {/* Contact Info */}
           <div className="space-y-6">
-            {/* Map Placeholder */}
-            <div className="bg-[#003311] border border-[#006622] rounded-2xl h-64 flex items-center justify-center overflow-hidden">
-              <div className="text-center text-gray-400">
-                <div className="w-16 h-16 mx-auto mb-3 bg-[#004d1a] rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-[#c9a227]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <p className="text-white font-medium">Google Maps</p>
-                <p className="text-sm">Standort-Karte</p>
-              </div>
-            </div>
-
-            {/* Contact Info */}
             <div className="bg-[#003311] border border-[#006622] rounded-2xl p-6 space-y-4">
               <h3 className="text-xl font-bold text-white mb-4">Kontakt</h3>
               <a 
@@ -117,11 +137,11 @@ const HartmannContact = () => {
                 <span>01579 2453 526</span>
               </a>
               <a 
-                href="mailto:info@hoffmeyer-schaedlingsbekaempfung.de" 
+                href="mailto:info.kammerjaegerhoffmeyer@gmail.com" 
                 className="flex items-center gap-3 text-gray-300 hover:text-[#c9a227] transition-colors"
               >
                 <Mail className="w-5 h-5 text-[#c9a227]" />
-                <span>info@hoffmeyer-schaedlingsbekaempfung.de</span>
+                <span>info.kammerjaegerhoffmeyer@gmail.com</span>
               </a>
             </div>
 
