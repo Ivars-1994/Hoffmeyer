@@ -1,6 +1,5 @@
 import { Star } from 'lucide-react';
 
-// Platform logos
 const GoogleLogo = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5">
     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -22,12 +21,21 @@ const MyHammerLogo = () => (
   </div>
 );
 
+const InitialAvatar = ({ name, bg }: { name: string; bg: string }) => {
+  const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2);
+  return (
+    <div className={`w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-sm ${bg}`}>
+      {initials}
+    </div>
+  );
+};
+
 const testimonials = [
   {
     name: "Max Lehmann",
     platform: "Google",
     platformLogo: GoogleLogo,
-    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Max-Lehmann-Google-Bewertung.webp",
+    bg: "bg-blue-600",
     stars: 5,
     text: "Das Wespennest war wirklich innerhalb von 1 Stunde nach dem Anruf weg!! Andere Kammerjäger wollten mir erst in 3 Tagen helfen!! SUPER IMMER WIEDER GERN!!"
   },
@@ -35,7 +43,7 @@ const testimonials = [
     name: "Heike O.",
     platform: "MyHammer",
     platformLogo: MyHammerLogo,
-    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Heike-O-MyHammer-Bewertung.webp",
+    bg: "bg-orange-500",
     stars: 5,
     text: "Wir hatten bei uns im Keller Mäuse, die uns schon länger Ärger verursacht haben. Nicht nur die Bekämpfung, sondern auch die Nachkontrolle verlief einwandfrei. Kann ich wärmstens empfehlen."
   },
@@ -43,7 +51,7 @@ const testimonials = [
     name: "Treckster8310",
     platform: "Google",
     platformLogo: GoogleLogo,
-    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Treckster-Google-Bewertung.webp",
+    bg: "bg-green-600",
     stars: 5,
     text: "Silberfische im Badezimmer und Flur weg. Preis war gut. Beratung war gut. Rechnung bekommt der Vermieter 🤣🤣"
   },
@@ -51,7 +59,7 @@ const testimonials = [
     name: "Klaus W.",
     platform: "Trustpilot",
     platformLogo: TrustpilotLogo,
-    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Klaus-W-Trustpilot-Bewertung.webp",
+    bg: "bg-teal-600",
     stars: 5,
     text: "Als Hotelier bekommt man Gäste aus der ganzen Welt. Was diese mit ins Zimmer bringen, können wir nicht kontrollieren. Was wir kontrollieren können, ist die Beseitigung. Bettwanzen waren am selben Tag vollständig weg!"
   },
@@ -59,15 +67,15 @@ const testimonials = [
     name: "Hassan Gebäudereinigung",
     platform: "Trustpilot",
     platformLogo: TrustpilotLogo,
-    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Hassan-Trustpilot-Bewertung.webp",
+    bg: "bg-purple-600",
     stars: 5,
-    text: "Wir arbeiten schon länger zusammen und wollten uns für die Beratung und schnelle Hilfe bedanken. Wir empfehlen Kammerjäger Hartmann jedem weiter."
+    text: "Wir arbeiten schon länger zusammen und wollten uns für die Beratung und schnelle Hilfe bedanken. Wir empfehlen Kammerjäger Hoffmeyer jedem weiter."
   },
   {
     name: "Nicole Bauer",
     platform: "Google",
     platformLogo: GoogleLogo,
-    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Nicole-Bauer-Google-Bewertung.webp",
+    bg: "bg-pink-600",
     stars: 5,
     text: "Ich hatte Schaben bei mir am Balkon und in der Küche. Die Jungen haben mir gezeigt, von wo diese in meine Wohnung kamen und wie ich das lösen konnte. Seit 4 Wochen keine Schaben mehr!"
   },
@@ -75,7 +83,7 @@ const testimonials = [
     name: "Katarina Weis",
     platform: "MyHammer",
     platformLogo: MyHammerLogo,
-    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Katarina-Weis-MyHammer-Bewertung.webp",
+    bg: "bg-amber-600",
     stars: 4,
     text: "Preis-Leistung war super. Das Team kam 1 Stunde zu spät, waren aber dennoch nett und haben die Ameisen wirklich komplett beseitigen können."
   }
@@ -85,7 +93,6 @@ const HartmannTestimonials = () => {
   return (
     <section className="bg-white py-16 px-4 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        {/* Scrollable testimonials */}
         <div 
           className="flex gap-6 overflow-x-auto pb-4" 
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -98,13 +105,7 @@ const HartmannTestimonials = () => {
                 className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  {/* Profile Photo */}
-                  <img 
-                    src={testimonial.photo} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover flex-shrink-0"
-                    loading="lazy"
-                  />
+                  <InitialAvatar name={testimonial.name} bg={testimonial.bg} />
                   <div className="flex-1 min-w-0">
                     <div className="text-[#1a1a1a] font-semibold truncate">{testimonial.name}</div>
                     <div className="flex mt-0.5">
@@ -115,11 +116,10 @@ const HartmannTestimonials = () => {
                         />
                       ))}
                     </div>
-                    <div className="text-sm text-green-600 mt-0.5">{testimonial.platform}</div>
-                  </div>
-                  {/* Platform Logo */}
-                  <div className="flex-shrink-0">
-                    <PlatformLogo />
+                    <div className="text-sm text-green-600 mt-0.5 flex items-center gap-1">
+                      <PlatformLogo />
+                      {testimonial.platform}
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 text-sm leading-relaxed">{testimonial.text}</p>
@@ -128,7 +128,6 @@ const HartmannTestimonials = () => {
           })}
         </div>
 
-        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
           <a 
             href="#kontakt"

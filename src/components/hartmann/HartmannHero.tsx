@@ -1,4 +1,8 @@
-import { Phone, Clock, CheckCircle, Shield, Headphones, Star } from 'lucide-react';
+import { Phone, Clock, CheckCircle, Shield, Star } from 'lucide-react';
+import wespenImg from '@/assets/hartmann/wespenbekaempfung.webp';
+import schaedlingImg from '@/assets/hartmann/schaedlingsbekaempfung.webp';
+import schabenImg from '@/assets/hartmann/schabenbekaempfung.webp';
+import maeuseImg from '@/assets/hartmann/maeusebekaempfung.webp';
 
 const HartmannHero = () => {
   return (
@@ -23,7 +27,6 @@ const HartmannHero = () => {
               an oder senden Sie eine Anfrage.
             </p>
             
-            {/* Rating */}
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-8">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
@@ -33,7 +36,6 @@ const HartmannHero = () => {
               <span className="text-white">4.7 aus 500+ Bewertungen</span>
             </div>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a 
                 href="tel:015792453526"
@@ -50,7 +52,6 @@ const HartmannHero = () => {
               </a>
             </div>
 
-            {/* USP Icons - hidden on mobile like original */}
             <div className="hidden md:grid grid-cols-4 gap-6 pt-8 border-t border-[#006622]">
               <div className="text-center">
                 <div className="w-14 h-14 mx-auto mb-2 border-2 border-[#c9a227] rounded-full flex items-center justify-center">
@@ -83,9 +84,8 @@ const HartmannHero = () => {
             </div>
           </div>
 
-          {/* Right Content - Image Grid (hidden on mobile like original) */}
+          {/* Right Content - Image Grid */}
           <div className="relative hidden lg:block">
-            {/* Top Badge */}
             <div className="absolute -top-2 right-0 z-10">
               <div className="bg-[#003311] border border-[#c9a227] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -93,43 +93,21 @@ const HartmannHero = () => {
               </div>
             </div>
             
-            {/* 2x2 Image Grid */}
             <div className="grid grid-cols-2 gap-4 mt-8">
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img 
-                  src="https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Wespenbekaempfung-von-Profis-in-deiner-Naehe-1024x682.webp" 
-                  alt="Wespenbekämpfung"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
+                <img src={wespenImg} alt="Wespenbekämpfung" className="w-full h-full object-cover" loading="eager" />
               </div>
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img 
-                  src="https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Akute-Schaedlingsbekaempfung-1024x682.webp" 
-                  alt="Schädlingsbekämpfung"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
+                <img src={schaedlingImg} alt="Schädlingsbekämpfung" className="w-full h-full object-cover" loading="eager" />
               </div>
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img 
-                  src="https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Schaben-und-Kakerlaken-Bekaempfung-von-Profis-1024x682.webp" 
-                  alt="Schabenbekämpfung"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <img src={schabenImg} alt="Schabenbekämpfung" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img 
-                  src="https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Maeusebekaempfung-1024x682.webp" 
-                  alt="Mäusebekämpfung"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <img src={maeuseImg} alt="Mäusebekämpfung" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
 
-            {/* Bottom Badge */}
             <div className="absolute -bottom-4 left-4 z-10">
               <div className="bg-[#003311] border border-[#c9a227] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full" />
