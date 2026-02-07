@@ -6,7 +6,7 @@ const HartmannHero = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div>
+          <div className="text-center lg:text-left">
             <p className="text-[#c9a227] italic text-lg mb-4">
               Schädlingsbekämpfung Seit 1998 
             </p>
@@ -24,7 +24,7 @@ const HartmannHero = () => {
             </p>
             
             {/* Rating */}
-            <div className="flex items-center gap-2 mb-8">
+            <div className="flex items-center justify-center lg:justify-start gap-2 mb-8">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 text-[#FFD700] fill-[#FFD700]" />
@@ -50,8 +50,8 @@ const HartmannHero = () => {
               </a>
             </div>
 
-            {/* USP Icons */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-[#006622]">
+            {/* USP Icons - hidden on mobile like original */}
+            <div className="hidden md:grid grid-cols-4 gap-6 pt-8 border-t border-[#006622]">
               <div className="text-center">
                 <div className="w-14 h-14 mx-auto mb-2 border-2 border-[#c9a227] rounded-full flex items-center justify-center">
                   <Clock className="w-7 h-7 text-[#c9a227]" />
@@ -83,8 +83,8 @@ const HartmannHero = () => {
             </div>
           </div>
 
-          {/* Right Content - Image Grid */}
-          <div className="relative">
+          {/* Right Content - Image Grid (hidden on mobile like original) */}
+          <div className="relative hidden lg:block">
             {/* Top Badge */}
             <div className="absolute -top-2 right-0 z-10">
               <div className="bg-[#003311] border border-[#c9a227] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
