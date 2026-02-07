@@ -17,7 +17,7 @@ const HartmannFooter = () => {
                 </svg>
               </div>
               <div className="text-white">
-                <div className="font-bold text-lg tracking-wider">HARTMANN</div>
+                <div className="font-bold text-lg tracking-wider">HOFFMEYER</div>
                 <div className="text-xs text-gray-400">Kammerjäger Seit 98'</div>
               </div>
             </div>
@@ -31,18 +31,18 @@ const HartmannFooter = () => {
             <h4 className="text-white font-bold mb-4">Kontakt</h4>
             <div className="space-y-3">
               <a 
-                href="tel:015792305928" 
+                href="tel:015792453526" 
                 className="flex items-center gap-2 text-gray-400 hover:text-[#c9a227] transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                <span>01579 2305 928</span>
+                <span>01579 2453 526</span>
               </a>
               <a 
-                href="mailto:info@kammerjaeger-hartmann.de" 
+                href="mailto:info@hoffmeyer-schaedlingsbekaempfung.de" 
                 className="flex items-center gap-2 text-gray-400 hover:text-[#c9a227] transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>info@kammerjaeger-hartmann.de</span>
+                <span>info@hoffmeyer-schaedlingsbekaempfung.de</span>
               </a>
             </div>
           </div>
@@ -61,7 +61,7 @@ const HartmannFooter = () => {
         <div className="pt-8 border-t border-[#006622]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Kammerjäger Hartmann. Alle Rechte vorbehalten.
+              © {new Date().getFullYear()} Kammerjäger Hoffmeyer. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6">
               <a href="/impressum" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">

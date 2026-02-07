@@ -110,18 +110,18 @@ const HartmannContact = () => {
             <div className="bg-[#003311] border border-[#006622] rounded-2xl p-6 space-y-4">
               <h3 className="text-xl font-bold text-white mb-4">Kontakt</h3>
               <a 
-                href="tel:015792305928" 
+                href="tel:015792453526" 
                 className="flex items-center gap-3 text-gray-300 hover:text-[#c9a227] transition-colors"
               >
                 <Phone className="w-5 h-5 text-[#c9a227]" />
-                <span>01579 2305 928</span>
+                <span>01579 2453 526</span>
               </a>
               <a 
-                href="mailto:info@kammerjaeger-hartmann.de" 
+                href="mailto:info@hoffmeyer-schaedlingsbekaempfung.de" 
                 className="flex items-center gap-3 text-gray-300 hover:text-[#c9a227] transition-colors"
               >
                 <Mail className="w-5 h-5 text-[#c9a227]" />
-                <span>info@kammerjaeger-hartmann.de</span>
+                <span>info@hoffmeyer-schaedlingsbekaempfung.de</span>
               </a>
             </div>
 
