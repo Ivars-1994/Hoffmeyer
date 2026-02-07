@@ -8,26 +8,17 @@ const HartmannHero = () => {
           {/* Left Content */}
           <div>
             <p className="text-[#c9a227] italic text-lg mb-4">
-              Schädlingsbekämpfung Seit 1998
+              Schädlingsbekämpfung Seit 1998 
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Kammerjäger<br />
               <span className="relative inline-block">
                 Ihrer Stadt
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#c9a227] animate-pulse"></span>
-                <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" preserveAspectRatio="none">
-                  <path 
-                    d="M0 4 Q 50 0, 100 4 T 200 4" 
-                    stroke="#c9a227" 
-                    strokeWidth="3" 
-                    fill="none"
-                    className="animate-draw-line"
-                  />
-                </svg>
+                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-[#c9a227] origin-left animate-underline-draw"></span>
               </span>
             </h1>
             <p className="text-gray-200 text-lg mb-6 leading-relaxed">
-              Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger Hartmann Ihr Partner! 
+              Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger Hoffmeyer Ihr Partner! 
               Wir helfen Ihnen sofort bei jedem Schädlingsbefall weiter. Rufen Sie uns jetzt 
               an oder senden Sie eine Anfrage.
             </p>
@@ -45,11 +36,11 @@ const HartmannHero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a 
-                href="tel:015792305928"
+                href="tel:015792453526"
                 className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#004d1a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
               >
                 <Phone size={20} />
-                01579 2305 928
+                01579 2453 526
               </a>
               <a 
                 href="#kontakt"

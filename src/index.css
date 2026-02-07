@@ -4,19 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hartmann animated line */
-@keyframes draw-line {
+/* Hartmann animated underline - draws from left to right */
+@keyframes underline-draw {
   0% {
-    stroke-dashoffset: 400;
+    transform: scaleX(0);
   }
   100% {
-    stroke-dashoffset: 0;
+    transform: scaleX(1);
   }
 }
 
-.animate-draw-line {
-  stroke-dasharray: 400;
-  animation: draw-line 2s ease-in-out forwards;
+.animate-underline-draw {
+  animation: underline-draw 1.5s ease-out forwards;
 }
 
 @layer base {
