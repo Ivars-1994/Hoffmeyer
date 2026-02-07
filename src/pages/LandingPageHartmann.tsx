@@ -5,6 +5,7 @@ import HartmannService from '@/components/hartmann/HartmannService';
 import HartmannTestimonials from '@/components/hartmann/HartmannTestimonials';
 import HartmannServices from '@/components/hartmann/HartmannServices';
 import HartmannProcess from '@/components/hartmann/HartmannProcess';
+import HartmannCertifications from '@/components/hartmann/HartmannCertifications';
 import HartmannContact from '@/components/hartmann/HartmannContact';
 import HartmannFooter from '@/components/hartmann/HartmannFooter';
 
@@ -27,6 +28,7 @@ const LandingPageHartmann = () => {
         <HartmannTestimonials />
         <HartmannServices />
         <HartmannProcess />
+        <HartmannCertifications />
         <HartmannContact />
         <HartmannFooter />
       </div>

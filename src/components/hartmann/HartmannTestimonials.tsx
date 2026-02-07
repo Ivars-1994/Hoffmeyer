@@ -1,6 +1,6 @@
 import { Star } from 'lucide-react';
 
-// Platform logos as inline SVGs for pixel-perfect match
+// Platform logos
 const GoogleLogo = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5">
     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -27,56 +27,63 @@ const testimonials = [
     name: "Max Lehmann",
     platform: "Google",
     platformLogo: GoogleLogo,
-    avatar: "ML",
+    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Max-Lehmann-Google-Bewertung.webp",
+    stars: 5,
     text: "Das Wespennest war wirklich innerhalb von 1 Stunde nach dem Anruf weg!! Andere Kammerjäger wollten mir erst in 3 Tagen helfen!! SUPER IMMER WIEDER GERN!!"
   },
   {
     name: "Heike O.",
     platform: "MyHammer",
     platformLogo: MyHammerLogo,
-    avatar: "HO",
+    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Heike-O-MyHammer-Bewertung.webp",
+    stars: 5,
     text: "Wir hatten bei uns im Keller Mäuse, die uns schon länger Ärger verursacht haben. Nicht nur die Bekämpfung, sondern auch die Nachkontrolle verlief einwandfrei. Kann ich wärmstens empfehlen."
   },
   {
     name: "Treckster8310",
     platform: "Google",
     platformLogo: GoogleLogo,
-    avatar: "T",
+    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Treckster-Google-Bewertung.webp",
+    stars: 5,
     text: "Silberfische im Badezimmer und Flur weg. Preis war gut. Beratung war gut. Rechnung bekommt der Vermieter 🤣🤣"
   },
   {
     name: "Klaus W.",
     platform: "Trustpilot",
     platformLogo: TrustpilotLogo,
-    avatar: "KW",
+    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Klaus-W-Trustpilot-Bewertung.webp",
+    stars: 5,
     text: "Als Hotelier bekommt man Gäste aus der ganzen Welt. Was diese mit ins Zimmer bringen, können wir nicht kontrollieren. Was wir kontrollieren können, ist die Beseitigung. Bettwanzen waren am selben Tag vollständig weg!"
   },
   {
     name: "Hassan Gebäudereinigung",
     platform: "Trustpilot",
     platformLogo: TrustpilotLogo,
-    avatar: "HG",
+    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Hassan-Trustpilot-Bewertung.webp",
+    stars: 5,
     text: "Wir arbeiten schon länger zusammen und wollten uns für die Beratung und schnelle Hilfe bedanken. Wir empfehlen Kammerjäger Hartmann jedem weiter."
   },
   {
     name: "Nicole Bauer",
     platform: "Google",
     platformLogo: GoogleLogo,
-    avatar: "NB",
+    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Nicole-Bauer-Google-Bewertung.webp",
+    stars: 5,
     text: "Ich hatte Schaben bei mir am Balkon und in der Küche. Die Jungen haben mir gezeigt, von wo diese in meine Wohnung kamen und wie ich das lösen konnte. Seit 4 Wochen keine Schaben mehr!"
   },
   {
     name: "Katarina Weis",
     platform: "MyHammer",
     platformLogo: MyHammerLogo,
-    avatar: "KW",
+    photo: "https://kammerjaeger-hartmann.de/wp-content/uploads/2026/01/Kammerjaeger-Hartmann-Katarina-Weis-MyHammer-Bewertung.webp",
+    stars: 4,
     text: "Preis-Leistung war super. Das Team kam 1 Stunde zu spät, waren aber dennoch nett und haben die Ameisen wirklich komplett beseitigen können."
   }
 ];
 
 const HartmannTestimonials = () => {
   return (
-    <section className="bg-[#003311] py-16 px-4 md:px-8 overflow-hidden">
+    <section className="bg-white py-16 px-4 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Scrollable testimonials */}
         <div 
@@ -88,27 +95,34 @@ const HartmannTestimonials = () => {
             return (
               <div 
                 key={index}
-                className="flex-shrink-0 w-80 bg-[#003311] border border-[#006622] rounded-2xl p-6"
+                className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm"
               >
-                <div className="flex items-start gap-4 mb-4">
-                  {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#006622] to-[#004d1a] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-                    {testimonial.avatar}
-                  </div>
+                <div className="flex items-start gap-3 mb-3">
+                  {/* Profile Photo */}
+                  <img 
+                    src={testimonial.photo} 
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+                    loading="lazy"
+                  />
                   <div className="flex-1 min-w-0">
-                    <div className="text-white font-semibold truncate">{testimonial.name}</div>
-                    <div className="flex mt-1">
+                    <div className="text-[#1a1a1a] font-semibold truncate">{testimonial.name}</div>
+                    <div className="flex mt-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-[#FFD700] fill-[#FFD700]" />
+                        <Star 
+                          key={i} 
+                          className={`w-4 h-4 ${i < testimonial.stars ? 'text-[#FFD700] fill-[#FFD700]' : 'text-gray-300 fill-gray-300'}`} 
+                        />
                       ))}
                     </div>
+                    <div className="text-sm text-green-600 mt-0.5">{testimonial.platform}</div>
                   </div>
                   {/* Platform Logo */}
                   <div className="flex-shrink-0">
                     <PlatformLogo />
                   </div>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">{testimonial.text}</p>
+                <p className="text-gray-700 text-sm leading-relaxed">{testimonial.text}</p>
               </div>
             );
           })}
@@ -123,10 +137,10 @@ const HartmannTestimonials = () => {
             Anfrage Senden
           </a>
           <a 
-            href="tel:015792305928"
-            className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-[#003311] transition-colors"
+            href="tel:015792453526"
+            className="flex items-center justify-center gap-2 bg-[#003311] border-2 border-[#003311] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#004d1a] transition-colors"
           >
-            01579 2305 928
+            01579 2453 526
           </a>
         </div>
       </div>
