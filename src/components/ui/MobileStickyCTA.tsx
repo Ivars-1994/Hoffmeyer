@@ -50,7 +50,13 @@ const MobileStickyCTA = () => {
 
         {/* Text */}
         <div className="flex-1 text-left">
-           <div className="text-xs font-semibold text-[#003311]/80">Jetzt verfügbar</div>
+           <div className="flex items-center gap-1.5 text-xs font-semibold text-[#003311]/80">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+              </span>
+              Jetzt verfügbar
+            </div>
           <div className="text-xl font-bold text-[#003311] leading-tight">Sofort anrufen</div>
         </div>
       </a>

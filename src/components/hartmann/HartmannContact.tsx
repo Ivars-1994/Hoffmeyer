@@ -137,11 +137,11 @@ const HartmannContact = () => {
                 <span>01579 2453 526</span>
               </a>
               <a 
-                href="mailto:info.kammerjaegerhoffmeyer@gmail.com" 
+                href="mailto:info@sbk-hoffmeyer.de" 
                 className="flex items-center gap-3 text-gray-300 hover:text-[#c9a227] transition-colors"
               >
                 <Mail className="w-5 h-5 text-[#c9a227]" />
-                <span>info.kammerjaegerhoffmeyer@gmail.com</span>
+                <span>info@sbk-hoffmeyer.de</span>
               </a>
             </div>
 
