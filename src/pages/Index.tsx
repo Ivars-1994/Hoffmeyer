@@ -117,24 +117,46 @@ const Index = () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 5000);
         
-        const response = await fetch(`/.netlify/functions/resolve-id?id=${encodeURIComponent(sanitizedLocId)}`, {
+        const response = await fetch('/data/stadt_map.json', {
           signal: controller.signal
         });
         clearTimeout(timeoutId);
         
         if (response.ok) {
-          const data = await response.json();
+          const stadtMap = await response.json();
+          const value = stadtMap[sanitizedLocId];
+          
+          if (!value) return;
           
           const existingCityData = sessionStorage.getItem('cityData');
-          if (existingCityData) {
-            return;
+          if (existingCityData) return;
+          
+          // Check if value is a PLZ (4-5 digits) or direct city name
+          const val = String(value).trim();
+          const isPlz = /^\d{4,5}$/.test(val);
+          
+          if (isPlz) {
+            const plz = val.length === 4 ? '0' + val : val;
+            try {
+              const plzResp = await fetch(`https://openplzapi.org/de/Localities?postalCode=${encodeURIComponent(plz)}`);
+              if (plzResp.ok) {
+                const plzData = await plzResp.json();
+                const stadt = plzData?.[0]?.name;
+                if (stadt) {
+                  const newCityData = { name: stadt, plz };
+                  setCityData(newCityData);
+                  sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
+                  window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
+                }
+              }
+            } catch { /* ignore */ }
+          } else {
+            const cityName = val.charAt(0).toUpperCase() + val.slice(1);
+            const newCityData = { name: cityName, plz: '00000' };
+            setCityData(newCityData);
+            sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
+            window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
           }
-          
-          const newCityData = { name: data.stadt, plz: data.plz };
-          setCityData(newCityData);
-          
-          sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
-          window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
         }
       } catch {
         // Silently fail - not critical for page function

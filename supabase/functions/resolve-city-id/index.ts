@@ -4,6 +4,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 const ALLOWED_ORIGINS = [
   'https://kammerjaeger-hoffmeyer.de',
   'https://www.kammerjaeger-hoffmeyer.de',
+  'https://hoffmeyer.lovable.app',
   'http://localhost:5173'
 ];
 
