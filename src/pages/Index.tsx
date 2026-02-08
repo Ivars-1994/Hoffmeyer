@@ -1,32 +1,19 @@
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import Hero from '../components/home/Hero';
-import PhoneButton from '../components/ui/PhoneButton';
-import WhatsAppButton from '../components/ui/WhatsAppButton';
-import MobileStickyCTA from '../components/ui/MobileStickyCTA';
 import { Helmet } from 'react-helmet-async';
-import SectionCTA from '../components/ui/SectionCTA';
-import MovingLogoBanner from '../components/home/MovingLogoBanner';
-import CityWelcomeBanner from '../components/home/CityWelcomeBanner';
-import FeaturedImage from '../components/home/FeaturedImage';
-// SeoKeywords entfernt - versteckter Text ist ein Google Spam-Signal
+import HartmannNavbar from '@/components/hartmann/HartmannNavbar';
+import HartmannHero from '@/components/hartmann/HartmannHero';
+import HartmannService from '@/components/hartmann/HartmannService';
+import HartmannTestimonials from '@/components/hartmann/HartmannTestimonials';
+import HartmannServices from '@/components/hartmann/HartmannServices';
+import HartmannProcess from '@/components/hartmann/HartmannProcess';
+import HartmannCertifications from '@/components/hartmann/HartmannCertifications';
+import HartmannContact from '@/components/hartmann/HartmannContact';
+import HartmannFooter from '@/components/hartmann/HartmannFooter';
+import MobileStickyCTA from '../components/ui/MobileStickyCTA';
 import { CityData } from '../utils/cityDetection';
 import { getServiceConfig } from '../utils/serviceConfig';
-import { 
-  LazyCertifications, 
-  LazyReviews, 
-  LazyPaymentOptions, 
-  LazyContact, 
-  LazyAboutUs,
-  LazyProcessSteps,
-  LazyGeneralFAQ,
-  LazyServices
-} from '../components/LazyComponents';
-import TrustBadges from '../components/ui/TrustBadges';
-
 
 // Declare gtag as a global function
 declare global {
@@ -73,14 +60,12 @@ const Index = () => {
   useEffect(() => {
     // Priorität 1: Direkter city Parameter (aber nur wenn es eine echte Stadt ist)
     if (cityParam) {
-      // Google Ads Platzhalter abfangen - diese sollen NICHT als Stadt verwendet werden
       const isGoogleAdsPlaceholder = cityParam.toLowerCase().includes('location') || 
                                    cityParam.includes('{') || 
                                    cityParam.includes('}') || 
                                    cityParam.toLowerCase() === 'locationcity';
       
       if (!isGoogleAdsPlaceholder) {
-        // Echte Stadt erkannt
         const cleanedCity = cityParam.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,"").substring(0,40).trim();
         const cityName = cleanedCity.charAt(0).toUpperCase() + cleanedCity.slice(1).toLowerCase();
         const newCityData = { name: cityName, plz: "00000" };
@@ -97,17 +82,14 @@ const Index = () => {
     // Priorität 2: Stadt aus kw Parameter extrahieren
     if (kwParam) {
       const searchTerm = decodeURIComponent(kwParam).replace(/\+/g, " ");
-      // Extrahiere die Stadt (meist das letzte Wort nach "kammerjaeger" etc.)
       const words = searchTerm.split(" ");
-      let cityName = words[words.length - 1]; // Letztes Wort ist meist die Stadt
+      let cityName = words[words.length - 1];
       
-      // Prüfe ob das letzte Wort eine echte Stadt sein könnte
       const isValidCity = cityName.length >= 3 && 
                          !/^(entfernen|bekämpfen|hilfe|service|kosten|preise|notdienst|24h|sofort|schädlingsbekämpfung|kammerjäger|wespen|ratten|bettwanzen|mäuse|ungeziefer|schädling|desinfektion)$/i.test(cityName) &&
                          /^[a-zA-ZäöüÄÖÜß]+$/.test(cityName);
       
       if (isValidCity) {
-        // Ersten Buchstaben groß schreiben
         cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
         
         const newCityData = { name: cityName, plz: "00000" };
@@ -125,17 +107,15 @@ const Index = () => {
       return;
     }
     
-    // Validate locId - must be numeric
     const sanitizedLocId = locId.replace(/[^0-9]/g, '').substring(0, 15);
     if (!sanitizedLocId || sanitizedLocId.length < 5) {
       return;
     }
     
-    // Non-blocking city detection
     const fetchCityFromFunction = async () => {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
         
         const response = await fetch(`/.netlify/functions/resolve-id?id=${encodeURIComponent(sanitizedLocId)}`, {
           signal: controller.signal
@@ -145,7 +125,6 @@ const Index = () => {
         if (response.ok) {
           const data = await response.json();
           
-          // Prüfe ob bereits eine Stadt aus kw extrahiert wurde
           const existingCityData = sessionStorage.getItem('cityData');
           if (existingCityData) {
             return;
@@ -154,10 +133,7 @@ const Index = () => {
           const newCityData = { name: data.stadt, plz: data.plz };
           setCityData(newCityData);
           
-          // Speichere in sessionStorage für andere Komponenten
           sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
-          
-          // Dispatch Event für andere Komponenten
           window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
         }
       } catch {
@@ -165,14 +141,12 @@ const Index = () => {
       }
     };
     
-    // Don't block rendering - run after paint
     setTimeout(fetchCityFromFunction, 100);
   }, [cityParam, kwParam, locId]);
 
   
   // Einheitliche Stadt-Prioritäts-Logik für alle Komponenten
   const getDisplayCityName = () => {
-    // Priorität 1: kw-Parameter (wird in 'cityData' gespeichert)
     const storedFromKw = sessionStorage.getItem('cityData');
     if (storedFromKw) {
       try {
@@ -183,12 +157,10 @@ const Index = () => {
       }
     }
     
-    // Priorität 2: Current state (falls kw nicht verfügbar)
     if (cityData?.name) {
       return cityData.name;
     }
     
-    // Priorität 3: lcid-Parameter (wird in 'detectedCityData' gespeichert)
     const storedFromLcid = sessionStorage.getItem('detectedCityData');
     if (storedFromLcid) {
       try {
@@ -203,9 +175,6 @@ const Index = () => {
   };
   
   const cityName = getDisplayCityName();
-
-  console.log("=== FINALE STADT DATEN ===");
-  console.log("City Name:", cityName);
 
   // Dynamic Meta Tags for Hash URLs (SEO)
   useEffect(() => {
@@ -250,7 +219,6 @@ const Index = () => {
       if (hash && SERVICE_TITLES[hash]) {
         document.title = SERVICE_TITLES[hash].title;
         
-        // Update meta description
         let metaDescription = document.querySelector('meta[name="description"]');
         if (!metaDescription) {
           metaDescription = document.createElement('meta');
@@ -258,10 +226,7 @@ const Index = () => {
           document.head.appendChild(metaDescription);
         }
         metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
-        
-        // Meta tags updated for hash
       } else {
-        // Reset to default
         document.title = `Kammerjäger Hoffmeyer | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
       }
     };
@@ -272,7 +237,6 @@ const Index = () => {
     return () => window.removeEventListener("hashchange", updateMetaTags);
   }, [cityName]);
 
-  // Dynamic title and description based on service route
   const pageTitle = serviceConfig 
     ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Hoffmeyer`
     : `Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung in ${cityName}`;
@@ -285,7 +249,6 @@ const Index = () => {
     ? `https://kammerjaeger-hoffmeyer.de/svc/${serviceConfig.slug}`
     : 'https://kammerjaeger-hoffmeyer.de/';
 
-  // Service-specific Schema.org markup
   const serviceSchema = serviceConfig ? {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -325,72 +288,16 @@ const Index = () => {
         )}
       </Helmet>
       
-      
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
-        <Navbar />
-        
-        <main className="flex-grow pt-[83px] md:pt-28">
-          {/* Critical above-the-fold content loads first */}
-          <Hero cityName={cityName} serviceConfig={serviceConfig} />
-          <CityWelcomeBanner cityName={cityName} />
-          <MovingLogoBanner />
-          <FeaturedImage cityName={cityName} defaultCity="Ihrer Stadt" />
-          
-          {/* Below-the-fold content is lazy loaded */}
-          <Suspense fallback={<div className="h-20 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
-            <LazyAboutUs />
-          </Suspense>
-          
-          {/* Trust Badges - Zertifizierungen Bild */}
-          <TrustBadges />
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Schnelle Hilfe benötigt? Rufen Sie uns an!" />
-          
-          {/* Prozess-Ablauf */}
-          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
-            <LazyProcessSteps />
-          </Suspense>
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Bereit für den ersten Schritt?" />
-          
-          {/* Zertifizierungen */}
-          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
-            <LazyCertifications />
-          </Suspense>
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Professionelle Beratung gewünscht?" />
-          
-          {/* Services - Full version with anchor IDs for SEO */}
-          <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
-            <LazyServices cityName={cityName} />
-          </Suspense>
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Schädlingsproblem? Wir helfen sofort!" />
-          
-          {/* Kundenbewertungen */}
-          <Suspense fallback={<div className="h-40 bg-muted/20 animate-pulse" />}>
-            <LazyReviews cityName={cityName} />
-          </Suspense>
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Überzeugt? Kontaktieren Sie uns!" />
-          
-          {/* Zahlungsmöglichkeiten */}
-          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
-            <LazyPaymentOptions />
-          </Suspense>
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Fragen zu unseren Zahlungsoptionen?" />
-          
-          <Suspense fallback={<div className="h-40 bg-muted/20 animate-pulse" />}>
-            <LazyContact />
-          </Suspense>
-          
-          {/* FAQ Section with SEO-optimized Schema.org markup */}
-          <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse rounded-lg mx-4" />}>
-            <LazyGeneralFAQ cityName={cityName} />
-          </Suspense>
-          <SectionCTA phoneNumber={PHONE_NUMBER} text="Noch Fragen? Jetzt kostenlos anrufen!" />
-          
-          {/* SEO Keywords entfernt - versteckter Text ist ein Google Spam-Signal */}
-        </main>
-        
-        <Footer />
-        
-        <PhoneButton phoneNumber={PHONE_NUMBER} variant="fixed" />
+      <div className="min-h-screen bg-[#003311]">
+        <HartmannNavbar />
+        <HartmannHero />
+        <HartmannService />
+        <HartmannTestimonials />
+        <HartmannServices />
+        <HartmannProcess />
+        <HartmannCertifications />
+        <HartmannContact />
+        <HartmannFooter />
         <MobileStickyCTA />
       </div>
     </>
