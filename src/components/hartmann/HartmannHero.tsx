@@ -4,7 +4,11 @@ import schaedlingImg from '@/assets/hartmann/schaedlingsbekaempfung.webp';
 import schabenImg from '@/assets/hartmann/schabenbekaempfung.webp';
 import maeuseImg from '@/assets/hartmann/maeusebekaempfung.webp';
 
-const HartmannHero = () => {
+interface HartmannHeroProps {
+  cityName?: string;
+}
+
+const HartmannHero = ({ cityName = "Ihrer Stadt" }: HartmannHeroProps) => {
   return (
     <section className="bg-[#003311] py-12 md:py-20 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
@@ -17,7 +21,7 @@ const HartmannHero = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Kammerjäger<br />
               <span className="relative inline-block">
-                Ihrer Stadt
+                {cityName}
                 <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-[#c9a227] origin-left animate-underline-draw"></span>
               </span>
             </h1>

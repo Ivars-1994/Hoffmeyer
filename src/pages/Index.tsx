@@ -290,7 +290,7 @@ const Index = () => {
       
       <div className="min-h-screen bg-[#003311]">
         <HartmannNavbar />
-        <HartmannHero />
+        <HartmannHero cityName={cityName} />
         <HartmannService />
         <HartmannTestimonials />
         <HartmannServices />
