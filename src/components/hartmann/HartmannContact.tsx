@@ -17,7 +17,7 @@ const HartmannContact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/xovwepvz", {
+      const response = await fetch("https://formspree.io/f/mnjbnqqq", {
         method: "POST",
         headers: {
           "Accept": "application/json",
