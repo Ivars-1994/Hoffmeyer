@@ -58,44 +58,20 @@ export async function detectCity(): Promise<CityData> {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
       
-      const response = await fetch('/data/stadt_map.json', { signal: controller.signal });
+      const response = await fetch(`/.netlify/functions/resolve-id?id=${encodeURIComponent(sanitizedLocId)}`, { signal: controller.signal });
       clearTimeout(timeoutId);
       
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       
-      const stadtMap = await response.json();
-      const value = stadtMap[sanitizedLocId];
-      
-      if (value) {
-        const val = String(value).trim();
-        const isPlz = /^\d{4,5}$/.test(val);
-        
-        if (isPlz) {
-          const plz = val.length === 4 ? '0' + val : val;
-          try {
-            const plzResp = await fetch(`https://openplzapi.org/de/Localities?postalCode=${encodeURIComponent(plz)}`);
-            if (plzResp.ok) {
-              const plzData = await plzResp.json();
-              const stadt = plzData?.[0]?.name;
-              if (stadt) {
-                const capitalizedCity = stadt.charAt(0).toUpperCase() + stadt.slice(1).toLowerCase();
-                const cityData = { name: capitalizedCity, plz };
-                debugLog("Stadt über PLZ erkannt:", capitalizedCity);
-                sessionStorage.setItem("cityName", capitalizedCity);
-                sessionStorage.setItem("cityPlz", plz);
-                sessionStorage.setItem("cityData", JSON.stringify(cityData));
-                return cityData;
-              }
-            }
-          } catch { /* ignore */ }
-        } else {
-          const capitalizedCity = val.charAt(0).toUpperCase() + val.slice(1);
-          const cityData = { name: capitalizedCity, plz: "00000" };
-          debugLog("Stadt direkt erkannt:", capitalizedCity);
-          sessionStorage.setItem("cityName", capitalizedCity);
-          sessionStorage.setItem("cityData", JSON.stringify(cityData));
-          return cityData;
-        }
+      const data = await response.json();
+      if (data.stadt) {
+        const capitalizedCity = data.stadt.charAt(0).toUpperCase() + data.stadt.slice(1);
+        const plz = data.plz || "00000";
+        const cityData = { name: capitalizedCity, plz };
+        debugLog("Stadt über Netlify Function erkannt:", capitalizedCity);
+        sessionStorage.setItem("cityName", capitalizedCity);
+        sessionStorage.setItem("cityData", JSON.stringify(cityData));
+        return cityData;
       }
     } catch (error) {
       debugLog("Stadt-Map Laden fehlgeschlagen");
