@@ -8,7 +8,7 @@ import Certifications from '../components/home/Certifications';
 import Reviews from '../components/home/Reviews';
 import Contact from '../components/home/Contact';
 import PhoneButton from '../components/ui/PhoneButton';
-import WhatsAppButton from '../components/ui/WhatsAppButton';
+
 import PaymentOptions from '../components/home/PaymentOptions';
 import { Helmet } from 'react-helmet-async';
 import SectionCTA from '../components/ui/SectionCTA';
@@ -183,7 +183,6 @@ const cityList = [
         <Footer />
         
         <PhoneButton phoneNumber={PHONE_NUMBER} variant="fixed" />
-        <WhatsAppButton phoneNumber={PHONE_NUMBER} variant="fixed" />
       </div>
     </>
   );
