@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, Star } from 'lucide-react';
 import PhoneButton from '../ui/PhoneButton';
-import WhatsAppButton from '../ui/WhatsAppButton';
+
 import Logo from '../ui/Logo';
 import MoneyBackBadge from '../ui/MoneyBackBadge';
 import EmergencyWaspBadge from '../ui/EmergencyWaspBadge';
@@ -76,9 +76,6 @@ const HeroContent = ({
             <PhoneButton phoneNumber={PHONE_NUMBER} size="default" className="bg-[#DC2626] hover:bg-[#B91C1C] text-white text-lg font-bold py-4 px-8 shadow-xl mobile-button-boost animate-pulse-subtle" linkText="JETZT ANRUFEN" />
           </div>
           
-          <div>
-            <WhatsAppButton phoneNumber={PHONE_NUMBER} size="default" className="bg-green-600 hover:bg-green-700 text-base py-3 shadow-lg mobile-button-boost" />
-          </div>
         </div>
         
         <div className="flex justify-center md:justify-start">

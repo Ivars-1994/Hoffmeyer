@@ -1,7 +1,7 @@
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PhoneButton from '../components/ui/PhoneButton';
-import WhatsAppButton from '../components/ui/WhatsAppButton';
+
 import { Helmet } from 'react-helmet-async';
 import { Phone, Clock, Shield, MapPin, CheckCircle, Star, Award, Users, Truck, BadgeCheck } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
