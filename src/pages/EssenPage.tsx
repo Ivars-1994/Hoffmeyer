@@ -317,7 +317,7 @@ const EssenPage = () => {
                     <Phone className="w-5 h-5" />
                     Jetzt anrufen: 0152 1212 4199
                   </a>
-                  <WhatsAppButton phoneNumber={PHONE_NUMBER} size="lg" message="Hallo, ich benötige einen Kammerjäger in Essen." />
+                  
                 </div>
               </div>
             </div>
@@ -576,12 +576,8 @@ const EssenPage = () => {
                   <Phone className="w-5 h-5" />
                   0152 1212 4199
                 </a>
-                <WhatsAppButton 
-                  phoneNumber={PHONE_NUMBER} 
-                  size="lg" 
-                  message="Hallo, ich benötige dringend einen Kammerjäger in Essen."
-                  className="bg-success hover:bg-success/90"
-                />
+
+
               </div>
             </div>
           </section>
@@ -590,7 +586,7 @@ const EssenPage = () => {
         <Footer />
 
         <PhoneButton phoneNumber={PHONE_NUMBER} variant="fixed" />
-        <WhatsAppButton phoneNumber={PHONE_NUMBER} variant="fixed" />
+        
       </div>
     </>
   );
