@@ -1,85 +1,70 @@
 
-# Plan: Hartmann Landing Page 1:1 in Lovable nachbauen
 
-## Ziel
-Eine pixelgenaue Kopie der WordPress-Seite `https://kammerjaeger-hartmann.de/lp/` als React-Komponente unter der Route `/lp/` erstellen.
+## PageSpeed Optimierung: von 74 auf 90+
 
-## Design-Analyse der Hartmann-Seite
+### Problem
 
-### Farbschema
-- Hintergrund: Dunkelgrün (#004d00 / #003d00)
-- Akzentfarbe: Gold/Orange für Buttons und Highlights
-- Text: Weiß auf dunklem Hintergrund
+Mobile PageSpeed ist 74 (FCP 3.6s, LCP 4.9s). Hauptursachen:
 
-### Sektionen (in Reihenfolge)
-1. **Navbar** - Logo links, Navigation mittig, Telefon-Button rechts (grüner Rahmen)
-2. **Hero** - Links: Tagline, H1, Text, Sterne-Bewertung, 2 CTA-Buttons, 4 USP-Icons | Rechts: 2x2 Bildgrid mit gerundeten Ecken
-3. **Service-Banner** - "Unser einwandfreier Service" mit Bild rechts
-4. **Testimonials** - Horizontaler Slider mit Bewertungskarten (Name, Sterne, Plattform, Text)
-5. **Leistungen** - Grid mit Service-Karten (Notdienst, Ratten, Wespen, Mäuse, Bettwanzen, Schaben, Marder, Ameisen, Käfer)
-6. **Ablauf** - 3 Schritte (Kontakt, Termin, Bekämpfung)
-7. **Zertifizierungen** - Bild mit Logos
-8. **Kontakt** - Formular links, Google Maps rechts
-9. **Footer** - Kontaktinfos, Garantie, Copyright
+1. **GTM laedt synchron im `<head>`** (Zeile 27-31) -- blockiert First Paint komplett
+2. **Google Ads gtag laedt synchron im `<head>`** (Zeile 63) -- weiterer Render-Blocker
+3. **Unnoetige preconnect-Links** zu Google Fonts (Zeile 39-40) -- Projekt nutzt keine Google Fonts
+4. **112 console.log-Aufrufe** in 8 Dateien -- unnoetige Arbeit im Production-Build
+5. **backdrop-filter/blur** an 6+ Stellen in CSS -- teuer auf Mobile-GPUs
+6. **Kein Code-Splitting** fuer Seiten -- alle Routes werden sofort geladen
 
-## Technische Umsetzung
+---
 
-### Neue Dateien
-| Datei | Zweck |
-|-------|-------|
-| `src/pages/LandingPageHartmann.tsx` | Hauptseite mit allen Sektionen |
-| `src/components/hartmann/HartmannNavbar.tsx` | Grüne Navbar mit Hartmann-Logo |
-| `src/components/hartmann/HartmannHero.tsx` | Hero mit 2x2 Grid und USPs |
-| `src/components/hartmann/HartmannTestimonials.tsx` | Bewertungs-Slider |
-| `src/components/hartmann/HartmannServices.tsx` | Service-Karten Grid |
-| `src/components/hartmann/HartmannProcess.tsx` | 3-Schritte Ablauf |
-| `src/components/hartmann/HartmannContact.tsx` | Formular + Map |
-| `src/components/hartmann/HartmannFooter.tsx` | Footer |
+### Aenderungen
 
-### Routing
-Route `/lp/` wird in `App.tsx` hinzugefügt und zeigt `LandingPageHartmann`
+#### Datei 1: `index.html`
 
-### Styling-Ansatz
-- Eigene Tailwind-Klassen für Hartmann-Farbschema (dunkelgrün, gold)
-- CSS-Variablen für konsistente Farben
-- Responsive Design wie Original (Mobile-First)
+**Alle Third-Party-Scripts aus dem `<head>` entfernen und verzoegert laden:**
 
-### Assets
-- Hartmann-Logo (muss hochgeladen werden oder als SVG nachgebaut)
-- Bilder aus WordPress (werden als URLs referenziert oder durch Platzhalter ersetzt)
-- Icons (Lucide React Icons)
+- GTM-Script (Zeile 27-31) entfernen, stattdessen per `setTimeout(fn, 3000)` im `<body>` laden
+- Google Ads gtag (Zeile 63) entfernen, ebenfalls verzoegert laden
+- FingerprintJS-Block (Zeile 86-121) in denselben verzoegerten Block verschieben
+- preconnect zu fonts.googleapis.com und fonts.gstatic.com entfernen (Zeile 39-40)
+- dns-prefetch zu google-analytics.com entfernen (Zeile 42, nicht genutzt)
+- Favicon von externer URL auf lokale Datei umstellen (Zeile 35)
+- Alle Scripts in einen einzigen `setTimeout`-Block nach 3 Sekunden zusammenfassen
 
-## Wichtige Details
+**Ergebnis:** `<head>` enthaelt nur Meta-Tags und das App-Bundle -- kein einziges Third-Party-Script blockiert den Render.
 
-### Telefonnummer
-Die Hartmann-Seite verwendet: **01579 2305 928**
-(Wird 1:1 übernommen wie gewünscht)
+#### Datei 2: `src/index.css`
 
-### Testimonials
-7 Bewertungen mit Namen, Plattform (Google, MyHammer, Trustpilot) und Text
+- `backdrop-filter: blur(...)` durch einfache `background` mit hoeherem Opacity ersetzen (6 Stellen)
+- Konkret: `.glass-card`, `.glass-card-strong`, `.glass-navbar`, `.glass-footer`, `.glass-card-hover`, `.glass-btn` -- jeweils `backdrop-filter` entfernen und `background` auf volle Opacity setzen
 
-### USP-Icons
-- Uhr-Icon: 30-60 Min Reaktionszeit
-- Checkmark: Garantie 100% Zufrieden
-- Schild: Festpreise Transparent
-- 24-Badge: 24/7 Hotline
+#### Datei 3: `src/main.tsx`
 
-## Zeitaufwand
-- Geschätzt 4-6 Nachrichten für vollständige Implementierung
-- Hero + Navbar zuerst (kritisch für erste Eindruck)
-- Dann Sektionen von oben nach unten
+- `reportWebVitals`-Funktion und `handleRouteChange` console.log entfernen (Zeile 7-43)
+- Vereinfachen auf: Root erstellen, App rendern
 
-## Offene Punkte
+#### Datei 4: `src/components/home/HeroContent.tsx`
 
-### Bilder
-Die WordPress-Bilder können direkt verlinkt werden, aber für Produktion sollten eigene Bilder verwendet werden. Soll ich:
-- Temporär die WordPress-URLs nutzen?
-- Platzhalter-Bilder verwenden die du später ersetzt?
+- console.log entfernen (Zeile 18)
 
-### Logo
-Das Hartmann-Logo muss entweder:
-- Als Datei hochgeladen werden
-- Als SVG nachgebaut werden
+#### Datei 5: `src/components/home/Hero.tsx`
 
-### Kontaktformular
-Soll das Formular funktional sein (E-Mail senden) oder nur als Design-Demo?
+- console.log entfernen (Zeile 16)
+
+#### Datei 6: `src/components/home/Reviews.tsx`
+
+- Alle console.log-Aufrufe entfernen
+
+#### Datei 7: `src/App.tsx`
+
+- Seiten per `React.lazy()` laden (Impressum, Datenschutz, AGB, CityPage, LandingPageHartmann, NotFound)
+- `Suspense` wrapper mit leerem Fallback hinzufuegen
+- Nur `Index` bleibt direkt importiert (Hauptseite)
+
+---
+
+### Erwartetes Ergebnis
+
+- FCP verbessert sich um ~1-2s (keine Render-Blocker mehr)
+- LCP verbessert sich durch weniger GPU-Last (kein backdrop-filter)
+- Kleineres initiales Bundle durch Code-Splitting
+- Sauberere Console ohne Debug-Logs
+
