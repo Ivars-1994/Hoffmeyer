@@ -130,9 +130,8 @@
   /* Glassmorphism Card System */
   .card-base {
     @apply rounded-2xl border transition-all duration-300;
-    background: hsla(var(--glass-bg), var(--glass-bg-opacity));
+    background: hsla(var(--glass-bg), 0.95);
     border-color: hsla(var(--glass-border), var(--glass-border-opacity));
-    backdrop-filter: blur(var(--blur-amount)) saturate(180%);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
   }
 
@@ -142,36 +141,31 @@
 
   .glass-card {
     @apply rounded-2xl border transition-all duration-300;
-    background: hsla(var(--glass-bg), 0.75);
+    background: hsla(var(--glass-bg), 0.95);
     border-color: hsla(var(--glass-border), 0.5);
-    backdrop-filter: blur(20px) saturate(180%);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   }
 
   .glass-navbar {
     @apply transition-all duration-300;
-    background: hsla(var(--glass-bg), 0.8);
-    backdrop-filter: blur(20px) saturate(180%);
+    background: hsla(var(--glass-bg), 0.97);
     border-bottom: 1px solid hsla(var(--glass-border), 0.3);
     box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.06);
   }
 
   .glass-footer {
     background: linear-gradient(to bottom, hsla(var(--primary), 0.95), hsla(var(--primary), 1));
-    backdrop-filter: blur(10px);
   }
 
   .glass-button {
     @apply transition-all duration-300;
-    background: hsla(var(--glass-bg), 0.6);
-    backdrop-filter: blur(10px);
+    background: hsla(var(--glass-bg), 0.92);
     border: 1px solid hsla(var(--glass-border), 0.4);
   }
 
   .glass-badge {
     @apply transition-all duration-200;
-    background: hsla(var(--glass-bg), 0.85);
-    backdrop-filter: blur(12px);
+    background: hsla(var(--glass-bg), 0.95);
     border: 1px solid hsla(var(--glass-border), 0.5);
   }
 

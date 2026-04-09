@@ -13,7 +13,7 @@ interface HeroProps {
 }
 
 const Hero = ({ cityName, serviceConfig }: HeroProps) => {
-  console.log("Hero: Render mit cityName:", cityName, "serviceConfig:", serviceConfig);
+  
 
   const structuredData = {
     "@context": "https://schema.org",
