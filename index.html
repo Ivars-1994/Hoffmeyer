@@ -1,45 +1,13 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <!-- Critical tracking only - defer non-critical -->
-    <script>
-      (function () {
-        // Detect react-snap/Puppeteer prerendering
-        var isPrerender =
-          typeof window !== 'undefined' &&
-          (window.snapSaveState || (navigator.userAgent||'').indexOf('HeadlessChrome') !== -1);
-
-        if (isPrerender) return; // Skip all third-party scripts during prerender
-
-        // Load tracking scripts after page load
-        window.addEventListener('load', function() {
-          // ClickCease
-          const clickcease = document.createElement('script');
-          clickcease.src = 'https://www.clickcease.com/monitor/stat.js';
-          clickcease.async = true;
-          document.head.appendChild(clickcease);
-        });
-      })();
-    </script>
-    <!-- End optimized tracking -->
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WMDZJ4LZ');</script>
-    <!-- End Google Tag Manager -->
-
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/gpt-engineer-file-uploads/RGNrUiCO8OSY6dTY5nIhAM8knOY2/uploads/1758198999847-7DDE7FDF-DF6F-434B-B456-927EBCE0806E.png">
+    <link rel="icon" type="image/png" href="/lovable-uploads/4ae74c53-cd9c-47d4-ba9e-e38058eef4e3.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Performance Optimizations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    
     <title>Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung</title>
     <meta name="description" content="Kammerjäger Hoffmeyer - Schnelle & diskrete Schädlingsbekämpfung. 24/7 Notdienst. IHK-zertifiziert. Faire Preise. ✓ Wespen ✓ Bettwanzen ✓ Ungeziefer">
     <meta name="keywords" content="Kammerjäger, Schädlingsbekämpfung, Ungeziefer, Wespen, Bettwanzen, Notdienst">
@@ -48,140 +16,34 @@
     <link rel="canonical" href="https://kammerjaeger-hoffmeyer.de/" />
     
     <!-- Open Graph -->
-    
-    
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kammerjaeger-hoffmeyer.de" />
     <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/RGNrUiCO8OSY6dTY5nIhAM8knOY2/social-images/social-1760649666250-Käfer im Schutzschild Logo.png">
+    <meta property="og:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung">
+    <meta property="og:description" content="Kammerjäger Hoffmeyer - Schnelle &amp; diskrete Schädlingsbekämpfung. 24/7 Notdienst. IHK-zertifiziert. Faire Preise. ✓ Wespen ✓ Bettwanzen ✓ Ungeziefer">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    
-    
-
-    <!-- Google Ads Conversion Tracking -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17399576460"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17399576460');
-      
-      // Conversion tracking function
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-17399576460/l7ZeCJ-hl50bElzv4ehA',
-          'event_callback': callback
-        });
-        return false;
-      }
-    </script>
-
-    <!-- Fingerprint2 - Delayed load for better performance -->
-    <script>
-      (function () {
-        // Skip during prerender
-        var isPrerender =
-          typeof window !== 'undefined' &&
-          (window.snapSaveState || (navigator.userAgent||'').indexOf('HeadlessChrome') !== -1);
-        
-        if (isPrerender) return;
-
-        // Delay fingerprint loading even more to not block critical rendering
-        setTimeout(function() {
-          const script = document.createElement('script');
-          script.src = 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js';
-          script.async = true;
-          script.onload = function() {
-            FingerprintJS.load()
-              .then(fp => fp.get())
-              .then(result => {
-                const visitorId = result.visitorId;
-                if (typeof gtag !== 'undefined') {
-                  gtag('config', 'AW-17399576460', {
-                    'custom_map': {'dimension1': 'fp_visitor_id'}
-                  });
-                  gtag('event', 'page_view', {
-                    'fp_visitor_id': visitorId
-                  });
-                }
-              })
-              .catch(error => {
-                console.error("Error getting Fingerprint visitor ID:", error);
-              });
-          };
-          document.head.appendChild(script);
-        }, 3000); // Load after 3 seconds
-      })();
-    </script>
-    <!-- Engagement tracking moved to body to avoid duplicates -->
-    <meta property="og:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung">
-  <meta name="twitter:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung">
-  <meta property="og:description" content="Kammerjäger Hoffmeyer - Schnelle &amp; diskrete Schädlingsbekämpfung. 24/7 Notdienst. IHK-zertifiziert. Faire Preise. ✓ Wespen ✓ Bettwanzen ✓ Ungeziefer">
-  <meta name="twitter:description" content="Kammerjäger Hoffmeyer - Schnelle &amp; diskrete Schädlingsbekämpfung. 24/7 Notdienst. IHK-zertifiziert. Faire Preise. ✓ Wespen ✓ Bettwanzen ✓ Ungeziefer">
-  <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/RGNrUiCO8OSY6dTY5nIhAM8knOY2/social-images/social-1760649666250-Käfer im Schutzschild Logo.png">
-</head>
+    <meta name="twitter:title" content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung">
+    <meta name="twitter:description" content="Kammerjäger Hoffmeyer - Schnelle &amp; diskrete Schädlingsbekämpfung. 24/7 Notdienst. IHK-zertifiziert. Faire Preise. ✓ Wespen ✓ Bettwanzen ✓ Ungeziefer">
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/RGNrUiCO8OSY6dTY5nIhAM8knOY2/social-images/social-1760649666250-Käfer im Schutzschild Logo.png">
+  </head>
 
   <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMDZJ4LZ"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     
     <!-- ClickCease.com tracking (noscript) -->
     <noscript>
       <a href='https://www.clickcease.com' rel='nofollow'><img src='https://monitor.clickcease.com' alt='ClickCease'/></a>
     </noscript>
-    <!-- End ClickCease.com tracking -->
     
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Google Ads Conversion: Verweildauer 30 Sekunden -->
-    <script>
-    (function() {
-      if (window.verweildauerSent) return;
-      window.verweildauerSent = true;
-      setTimeout(function() {
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-17399576460/_PkeCNqP6akbElzv4ehA',
-            'event_category': 'Engagement',
-            'event_label': 'Verweildauer_30Sek'
-          });
-        }
-      }, 30000);
-    })();
-    </script>
-
-    <!-- Google Ads Conversion: Scrolltiefe 50% -->
-    <script>
-    (function() {
-      if (window.scrollListenerAdded) return;
-      window.scrollListenerAdded = true;
-      window.addEventListener('scroll', function() {
-        var scrollDepth = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
-        if(scrollDepth >= 0.5 && !window.scrollConversionSent) {
-          window.scrollConversionSent = true;
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'conversion', {
-              'send_to': 'AW-17399576460/1BWZCO-K66kbElzv4ehA',
-              'event_category': 'Engagement',
-              'event_label': 'Scrolltiefe_50'
-            });
-          }
-        }
-      });
-    })();
-    </script>
-
     <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json">
     {
@@ -215,6 +77,97 @@
         ]
       }
     }
+    </script>
+
+    <!-- Deferred Third-Party Scripts: GTM, gtag, ClickCease, FingerprintJS, Engagement -->
+    <script>
+    (function() {
+      var isPrerender = typeof window !== 'undefined' &&
+        (window.snapSaveState || (navigator.userAgent||'').indexOf('HeadlessChrome') !== -1);
+      if (isPrerender) return;
+
+      setTimeout(function() {
+        // GTM
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WMDZJ4LZ');
+
+        // Google Ads gtag
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17399576460';
+        document.head.appendChild(gtagScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'AW-17399576460');
+
+        // Conversion tracking function
+        window.gtag_report_conversion = function(url) {
+          var callback = function () {
+            if (typeof(url) != 'undefined') { window.location = url; }
+          };
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17399576460/l7ZeCJ-hl50bElzv4ehA',
+            'event_callback': callback
+          });
+          return false;
+        };
+
+        // ClickCease
+        var clickcease = document.createElement('script');
+        clickcease.src = 'https://www.clickcease.com/monitor/stat.js';
+        clickcease.async = true;
+        document.head.appendChild(clickcease);
+
+        // FingerprintJS
+        var fpScript = document.createElement('script');
+        fpScript.src = 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js';
+        fpScript.async = true;
+        fpScript.onload = function() {
+          FingerprintJS.load()
+            .then(function(fp) { return fp.get(); })
+            .then(function(result) {
+              if (typeof gtag !== 'undefined') {
+                gtag('config', 'AW-17399576460', { 'custom_map': {'dimension1': 'fp_visitor_id'} });
+                gtag('event', 'page_view', { 'fp_visitor_id': result.visitorId });
+              }
+            })
+            .catch(function() {});
+        };
+        document.head.appendChild(fpScript);
+
+        // Engagement: Verweildauer 30s
+        setTimeout(function() {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-17399576460/_PkeCNqP6akbElzv4ehA',
+              'event_category': 'Engagement',
+              'event_label': 'Verweildauer_30Sek'
+            });
+          }
+        }, 27000); // 30s total (3s delay + 27s)
+
+        // Engagement: Scrolltiefe 50%
+        window.addEventListener('scroll', function scrollHandler() {
+          var scrollDepth = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+          if (scrollDepth >= 0.5) {
+            window.removeEventListener('scroll', scrollHandler);
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'conversion', {
+                'send_to': 'AW-17399576460/1BWZCO-K66kbElzv4ehA',
+                'event_category': 'Engagement',
+                'event_label': 'Scrolltiefe_50'
+              });
+            }
+          }
+        });
+      }, 3000);
+    })();
     </script>
     
   </body>

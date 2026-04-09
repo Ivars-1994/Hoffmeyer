@@ -65,7 +65,7 @@ const Reviews = ({ cityName }: ReviewsProps) => {
       try {
         return JSON.parse(storedFromKw);
       } catch (e) {
-        console.error("Error parsing cityData from sessionStorage:", e);
+        // parse error
       }
     }
     
@@ -75,7 +75,7 @@ const Reviews = ({ cityName }: ReviewsProps) => {
       try {
         return JSON.parse(stored);
       } catch (e) {
-        console.log('Error parsing stored city data:', e);
+        // parse error
       }
     }
     return getCityFromParams();
@@ -89,14 +89,8 @@ const Reviews = ({ cityName }: ReviewsProps) => {
     }
     
     const handleCityDetected = (event: CustomEvent) => {
-      console.log("📝 REVIEWS - Stadt-Event empfangen:", event.detail);
-      
-      // Prüfe ob bereits eine Stadt aus kw gesetzt ist
       const existingKwCity = sessionStorage.getItem('cityData');
-      if (existingKwCity) {
-        console.log("📝 REVIEWS - kw-Stadt bereits gesetzt, ignoriere Event");
-        return;
-      }
+      if (existingKwCity) return;
       
       setCityInfo(event.detail);
     };
@@ -109,13 +103,8 @@ const Reviews = ({ cityName }: ReviewsProps) => {
   }, [cityName]);
   
   useEffect(() => {
-    console.log("Reviews: Verwende erkannte Stadt:", cityInfo);
-    
-    // Aktualisiere DOM-Elemente auch hier
     updateDynamicCityTags(cityInfo);
   }, [cityInfo]);
-  
-  console.log("📝 REVIEWS - Empfange Stadt:", cityInfo.name);
   
   // Alle Bewertungen verwenden jetzt die erkannte Stadt
   const reviews = defaultReviews.map((review, index) => ({
