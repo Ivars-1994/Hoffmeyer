@@ -99,16 +99,16 @@ const HartmannHero = ({ cityName = "Ihrer Stadt" }: HartmannHeroProps) => {
             
             <div className="grid grid-cols-2 gap-4 mt-8">
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img src={wespenImg} alt="Wespenbekämpfung" className="w-full h-full object-cover" loading="eager" />
+                <img src={wespenImg} alt="Wespenbekämpfung" width="400" height="267" className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img src={schaedlingImg} alt="Schädlingsbekämpfung" className="w-full h-full object-cover" loading="eager" />
+                <img src={schaedlingImg} alt="Schädlingsbekämpfung" width="400" height="267" className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img src={schabenImg} alt="Schabenbekämpfung" className="w-full h-full object-cover" loading="lazy" />
+                <img src={schabenImg} alt="Schabenbekämpfung" width="400" height="267" className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
               <div className="aspect-[3/2] rounded-2xl overflow-hidden">
-                <img src={maeuseImg} alt="Mäusebekämpfung" className="w-full h-full object-cover" loading="lazy" />
+                <img src={maeuseImg} alt="Mäusebekämpfung" width="400" height="267" className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
             </div>
 
