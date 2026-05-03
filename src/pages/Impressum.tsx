@@ -30,7 +30,7 @@ const Impressum = () => {
 
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Kontakt</h2>
-                <p>Telefon: <a href="tel:+4915792453526" className="text-[#c9a227] hover:underline">+49 1579 2453 526</a></p>
+                <p>Telefon: <a href="tel:+4915792507705" className="text-[#c9a227] hover:underline">+49 1579 2507705</a></p>
                 <p>E-Mail: <a href="mailto:info@sbk-hoffmeyer.de" className="text-[#c9a227] hover:underline">info@sbk-hoffmeyer.de</a></p>
               </section>
 

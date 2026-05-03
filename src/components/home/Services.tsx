@@ -6,7 +6,7 @@ import { ExternalLink } from 'lucide-react';
 import PhoneButton from '@/components/ui/PhoneButton';
 import { CheckCircle2, Clock, Euro, Shield } from 'lucide-react';
 
-const PHONE_NUMBER = "+49 1579 2453526";
+const PHONE_NUMBER = "+49 1579 2507705";
 
 const services = [
   {
