@@ -19,7 +19,7 @@ import { useParams } from 'react-router-dom';
 // SeoKeywords entfernt - versteckter Text ist ein Google Spam-Signal
 import { detectAndUpdateCity, CityData } from '../utils/cityDetection';
 
-const PHONE_NUMBER = "+4915792453526";
+const PHONE_NUMBER = "+4915792507705";
 
 // Erweiterte Liste deutscher Städte für die Erkennung
 const cityList = [

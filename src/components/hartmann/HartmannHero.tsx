@@ -42,11 +42,11 @@ const HartmannHero = ({ cityName = "Ihrer Stadt" }: HartmannHeroProps) => {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a 
-                href="tel:015792453526"
+                href="tel:015792507705"
                 className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#004d1a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
               >
                 <Phone size={20} />
-                01579 2453 526
+                01579 2507705
               </a>
               <a 
                 href="#kontakt"

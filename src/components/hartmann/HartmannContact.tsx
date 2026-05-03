@@ -1,6 +1,6 @@
 import { Phone } from 'lucide-react';
 
-const PHONE_NUMBER = "+4915792453526";
+const PHONE_NUMBER = "+4915792507705";
 
 const HartmannContact = () => {
   const handlePhoneClick = () => {
@@ -27,7 +27,7 @@ const HartmannContact = () => {
           className="inline-flex items-center gap-4 bg-[#c9a227] text-[#003311] px-10 py-6 rounded-2xl font-bold text-2xl md:text-3xl hover:bg-[#d4b13a] transition-all shadow-2xl hover:scale-[1.03]"
         >
           <Phone className="w-8 h-8 md:w-10 md:h-10" strokeWidth={2.5} />
-          01579 2453 526
+          01579 2507705
         </a>
 
         <div className="mt-8 grid sm:grid-cols-3 gap-4">
