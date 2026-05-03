@@ -170,7 +170,7 @@ const Index = () => {
       }
     }
     
-    return "Ihrer Stadt";
+    return "Rothschild";
   };
   
   const cityName = getDisplayCityName();
