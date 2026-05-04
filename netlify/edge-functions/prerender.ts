@@ -195,8 +195,6 @@ return context.next();
 
 }
 
-const url = new URL(request.url);
-
 const prerenderUrl = `https://service.prerender.io/${url.href}`;
 
 console.log(`[Prerender] Bot erkannt, leite weiter: ${url.href}`);
