@@ -36,7 +36,7 @@ const MobileStickyCTA = () => {
         <div className="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border-3 border-white shadow-lg">
           <img 
             src="/lovable-uploads/norbert-wolframm.jpg"
-            alt="Kammerjäger Hoffmeyer Experte"
+            alt="Kammerjäger Rothschild Experte"
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"

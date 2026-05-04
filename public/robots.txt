@@ -7,4 +7,4 @@ Allow: /
 User-agent: AdsBot-Google-Mobile
 Allow: /
 
-Sitemap: https://kammerjaeger-hoffmeyer.de/sitemap.xml
+Sitemap: https://kammerjaeger-rothschild.de/sitemap.xml

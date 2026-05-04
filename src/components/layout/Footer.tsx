@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PHONE_NUMBER = "+4915792507705";
-const EMAIL = "info.kammerjaegerhoffmeyer@gmail.com";
+const EMAIL = "info.kammerjaegerrothschild@gmail.com";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -54,7 +54,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
           {/* Contact Information */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-white">Kammerjäger Hoffmeyer</h3>
+            <h3 className="text-xl font-bold mb-6 text-white">Kammerjäger Rothschild</h3>
             <ul className="space-y-4 text-sm md:text-base text-primary-foreground/90">
               <li className="flex items-start">
                 <Phone className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5 text-white" />
@@ -111,7 +111,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 pb-20 md:pb-0">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-primary-foreground/80">
             <p className="text-sm text-center md:text-left">
-              © {currentYear} Kammerjäger Hoffmeyer. Alle Rechte vorbehalten.
+              © {currentYear} Kammerjäger Rothschild. Alle Rechte vorbehalten.
             </p>
             <div className="text-sm text-center md:text-left">
               <span>IHK zertifizierte Schädlingsbekämpfung</span>

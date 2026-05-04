@@ -13,10 +13,10 @@ const LandingPageHartmann = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Hoffmeyer | 24/7 Schädlingsbekämpfung | Tel: 01579 2507705</title>
+        <title>Kammerjäger Rothschild | 24/7 Schädlingsbekämpfung | Tel: 01579 2507705</title>
         <meta 
           name="description" 
-          content="Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung seit 1998. 24/7 Notdienst, 30-60 Min. Reaktionszeit. Ratten, Wespen, Mäuse, Bettwanzen. Jetzt anrufen!" 
+          content="Kammerjäger Rothschild - Professionelle Schädlingsbekämpfung seit 1998. 24/7 Notdienst, 30-60 Min. Reaktionszeit. Ratten, Wespen, Mäuse, Bettwanzen. Jetzt anrufen!" 
         />
         <meta name="robots" content="index, follow" />
       </Helmet>
