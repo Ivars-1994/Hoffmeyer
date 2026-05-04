@@ -1,4 +1,4 @@
-# SEO-Optimierung Setup für Kammerjäger Hoffmeyer
+# SEO-Optimierung Setup für Kammerjäger Rothschild
 
 ## ✅ Was wurde implementiert?
 
@@ -90,9 +90,9 @@ npm run build
 Nach dem Deployment:
 
 1. **URL-Prüfung Tool**
-   - Prüfe: `https://kammerjaeger-hoffmeyer.de`
-   - Prüfe: `https://kammerjaeger-hoffmeyer.de/#wespen`
-   - Prüfe: `https://kammerjaeger-hoffmeyer.de/#bettwanzen`
+   - Prüfe: `https://kammerjaeger-rothschild.de`
+   - Prüfe: `https://kammerjaeger-rothschild.de/#wespen`
+   - Prüfe: `https://kammerjaeger-rothschild.de/#bettwanzen`
 
 2. **Sitemap einreichen**
    - Erstelle eine Sitemap mit allen Hash-URLs

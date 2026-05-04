@@ -61,8 +61,8 @@ const Datenschutz = () => {
   return (
     <>
       <Helmet>
-        <title>Datenschutzerklärung - Kammerjäger Hoffmeyer</title>
-        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Hoffmeyer in ${cityInfo.city}.`} />
+        <title>Datenschutzerklärung - Kammerjäger Rothschild</title>
+        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Rothschild in ${cityInfo.city}.`} />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
@@ -75,12 +75,12 @@ const Datenschutz = () => {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Verantwortlicher</h2>
               <div className="space-y-2">
-                <p>Kammerjäger Hoffmeyer</p>
+                <p>Kammerjäger Rothschild</p>
                 <p>Hauptstraße 26–36</p>
                 <p>{cityInfo.city}</p>
                 <p>Deutschland</p>
                 <p>Telefon: <a href="tel:+4915792507705" className="call-link text-[#9b87f5] hover:underline">+49 1579 2507705</a></p>
-                <p>E-Mail: <a href="mailto:info.kammerjaegerhoffmeyer.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerhoffmeyer.de</a></p>
+                <p>E-Mail: <a href="mailto:info.kammerjaegerrothschild.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerrothschild.de</a></p>
               </div>
             </section>
             

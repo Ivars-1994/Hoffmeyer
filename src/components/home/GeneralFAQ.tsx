@@ -7,11 +7,11 @@ const GeneralFAQ = ({ cityName }: { cityName?: string }) => {
   const faqs = [
     {
       question: `Was kostet ein Kammerjäger in ${city}?`,
-      answer: `Die Kosten für einen Kammerjäger in ${city} variieren je nach Schädlingsart und Befallsgrad. Bei Kammerjäger Hoffmeyer bieten wir transparente Preise und kostenlose Anfahrt. Kontaktieren Sie uns für ein unverbindliches Angebot.`
+      answer: `Die Kosten für einen Kammerjäger in ${city} variieren je nach Schädlingsart und Befallsgrad. Bei Kammerjäger Rothschild bieten wir transparente Preise und kostenlose Anfahrt. Kontaktieren Sie uns für ein unverbindliches Angebot.`
     },
     {
       question: `Wie schnell kommt der Kammerjäger in ${city}?`,
-      answer: `Kammerjäger Hoffmeyer bietet einen 24/7 Notdienst in ${city}. In dringenden Fällen sind wir innerhalb von 30-60 Minuten vor Ort. Bei regulären Anfragen vereinbaren wir kurzfristige Termine nach Ihren Wünschen.`
+      answer: `Kammerjäger Rothschild bietet einen 24/7 Notdienst in ${city}. In dringenden Fällen sind wir innerhalb von 30-60 Minuten vor Ort. Bei regulären Anfragen vereinbaren wir kurzfristige Termine nach Ihren Wünschen.`
     },
     {
       question: `Wespennest entfernen - Wie läuft das ab?`,
@@ -27,7 +27,7 @@ const GeneralFAQ = ({ cityName }: { cityName?: string }) => {
     },
     {
       question: `Marder vertreiben - Schadet das den Tieren?`,
-      answer: `Nein, unsere Marder-Abwehr ist tierschonend. Wir setzen auf Vergrämungsmittel und professionelle Abdichtung Ihres Dachbodens. Kammerjäger Hoffmeyer arbeitet nach den neuesten tierschutzrechtlichen Standards.`
+      answer: `Nein, unsere Marder-Abwehr ist tierschonend. Wir setzen auf Vergrämungsmittel und professionelle Abdichtung Ihres Dachbodens. Kammerjäger Rothschild arbeitet nach den neuesten tierschutzrechtlichen Standards.`
     },
     {
       question: `Mäuse bekämpfen - Wie lange dauert das?`,
@@ -43,7 +43,7 @@ const GeneralFAQ = ({ cityName }: { cityName?: string }) => {
     },
     {
       question: `Sind Ihre Mittel zur Schädlingsbekämpfung sicher?`,
-      answer: `Ja, alle von Kammerjäger Hoffmeyer verwendeten Mittel sind zugelassen und für Menschen sowie Haustiere unbedenklich bei sachgemäßer Anwendung. Wir halten uns streng an gesetzliche Vorgaben und informieren Sie detailliert über alle Maßnahmen.`
+      answer: `Ja, alle von Kammerjäger Rothschild verwendeten Mittel sind zugelassen und für Menschen sowie Haustiere unbedenklich bei sachgemäßer Anwendung. Wir halten uns streng an gesetzliche Vorgaben und informieren Sie detailliert über alle Maßnahmen.`
     }
   ];
 

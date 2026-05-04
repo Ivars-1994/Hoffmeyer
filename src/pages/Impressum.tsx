@@ -9,8 +9,8 @@ const Impressum = () => {
   return (
     <>
       <Helmet>
-        <title>Impressum - Kammerjäger Hoffmeyer</title>
-        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Hoffmeyer." />
+        <title>Impressum - Kammerjäger Rothschild</title>
+        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Rothschild." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#003311]">
@@ -23,7 +23,7 @@ const Impressum = () => {
             <div className="space-y-8 text-gray-300">
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Angaben gemäß § 5 TMG</h2>
-                <p>Kammerjäger Hoffmeyer</p>
+                <p>Kammerjäger Rothschild</p>
                 <p>Hauptstraße 26–28</p>
                 <p>Deutschland</p>
               </section>
@@ -31,7 +31,7 @@ const Impressum = () => {
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Kontakt</h2>
                 <p>Telefon: <a href="tel:+4915792507705" className="text-[#c9a227] hover:underline">+49 1579 2507705</a></p>
-                <p>E-Mail: <a href="mailto:info@sbk-hoffmeyer.de" className="text-[#c9a227] hover:underline">info@sbk-hoffmeyer.de</a></p>
+                <p>E-Mail: <a href="mailto:info@sbk-rothschild.de" className="text-[#c9a227] hover:underline">info@sbk-rothschild.de</a></p>
               </section>
 
               <section>

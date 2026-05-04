@@ -18,12 +18,12 @@ const Hero = ({ cityName, serviceConfig }: HeroProps) => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Kammerjäger Hoffmeyer",
+    "name": "Kammerjäger Rothschild",
     "description": serviceConfig 
       ? `${serviceConfig.schemaServiceType} in ${cityName}. 24/7 Notdienst verfügbar.`
       : `Professionelle Schädlingsbekämpfung mit IHK-zertifizierten Experten in ${cityName}. 24/7 Notdienst verfügbar.`,
     "telephone": PHONE_NUMBER,
-    "url": "https://kammerjaeger-hoffmeyer.de",
+    "url": "https://kammerjaeger-rothschild.de",
     "image": "/lovable-uploads/4ae74c53-cd9c-47d4-ba9e-e38058eef4e3.png",
     "address": {
       "@type": "PostalAddress",

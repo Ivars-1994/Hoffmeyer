@@ -179,35 +179,35 @@ const Index = () => {
   useEffect(() => {
     const SERVICE_TITLES: Record<string, { title: string; description: string }> = {
       wespen: {
-        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Hoffmeyer",
+        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Rothschild",
         description: "Professionelle Wespenbekämpfung ✓ Schnelle Entfernung von Wespennestern ✓ IHK-zertifiziert ✓ Kostenlose Anfahrt ✓ 30-60 Min vor Ort"
       },
       bettwanzen: {
-        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Hoffmeyer",
+        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Rothschild",
         description: "Effektive Bettwanzenbekämpfung ✓ Wärmebehandlung & Insektizide ✓ Diskret & gründlich ✓ Nachkontrolle inklusive ✓ 24/7 Notdienst"
       },
       ratten: {
-        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Hoffmeyer",
+        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Rothschild",
         description: "Professionelle Rattenbekämpfung ✓ Gesicherte Köderstationen ✓ Hygienische Entsorgung ✓ Präventionsberatung ✓ Kostenlose Anfahrt"
       },
       marder: {
-        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Hoffmeyer",
+        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Rothschild",
         description: "Tierschonende Marderabwehr ✓ Gebäudeabdichtung ✓ Geruchsneutralisation ✓ Langfristiger Schutz ✓ 24/7 verfügbar"
       },
       maeuse: {
-        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Hoffmeyer",
+        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Rothschild",
         description: "Effektive Mäusebekämpfung ✓ Befallsanalyse ✓ Köderstationen & Fallen ✓ Abdichtung ✓ Kostenlose Erstberatung"
       },
       silberfische: {
-        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Hoffmeyer",
+        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Rothschild",
         description: "Nachhaltige Silberfischbekämpfung ✓ Ursachenanalyse ✓ Feuchtigkeitsberatung ✓ Gründliche Behandlung ✓ Langfristige Lösung"
       },
       kakerlaken: {
-        title: "Kakerlaken vernichten | Professionell | Kammerjäger Hoffmeyer",
+        title: "Kakerlaken vernichten | Professionell | Kammerjäger Rothschild",
         description: "Schnelle Schabenbekämpfung ✓ Gel-Köder & Sprühbehandlung ✓ Hygiene-Beratung ✓ Mehrfachbehandlung ✓ Diskret & zuverlässig"
       },
       floehe: {
-        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Hoffmeyer",
+        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Rothschild",
         description: "Gründliche Flohbekämpfung ✓ Umgebungsbehandlung ✓ Wachstumsregulatoren ✓ Haustierfreundlich ✓ Nachbehandlung inklusive"
       }
     };
@@ -226,7 +226,7 @@ const Index = () => {
         }
         metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
       } else {
-        document.title = `Kammerjäger Hoffmeyer | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
+        document.title = `Kammerjäger Rothschild | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
       }
     };
 
@@ -237,16 +237,16 @@ const Index = () => {
   }, [cityName]);
 
   const pageTitle = serviceConfig 
-    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Hoffmeyer`
-    : `Kammerjäger Hoffmeyer - Professionelle Schädlingsbekämpfung in ${cityName}`;
+    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Rothschild`
+    : `Kammerjäger Rothschild - Professionelle Schädlingsbekämpfung in ${cityName}`;
   
   const pageDescription = serviceConfig 
     ? `${serviceConfig.metaDescription} Schnelle Hilfe in ${cityName}.`
     : `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
   
   const canonicalUrl = serviceConfig 
-    ? `https://kammerjaeger-hoffmeyer.de/svc/${serviceConfig.slug}`
-    : 'https://kammerjaeger-hoffmeyer.de/';
+    ? `https://kammerjaeger-rothschild.de/svc/${serviceConfig.slug}`
+    : 'https://kammerjaeger-rothschild.de/';
 
   const serviceSchema = serviceConfig ? {
     "@context": "https://schema.org",
@@ -254,9 +254,9 @@ const Index = () => {
     "serviceType": serviceConfig.schemaServiceType,
     "provider": {
       "@type": "ProfessionalService",
-      "name": "Kammerjäger Hoffmeyer",
+      "name": "Kammerjäger Rothschild",
       "telephone": PHONE_NUMBER,
-      "url": "https://kammerjaeger-hoffmeyer.de",
+      "url": "https://kammerjaeger-rothschild.de",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "DE",
