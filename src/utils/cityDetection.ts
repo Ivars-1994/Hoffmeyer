@@ -7,6 +7,10 @@ export interface CityData {
   plz: string;
 }
 
+const KNOWN_LOCATION_IDS: Record<string, CityData> = {
+  "9043934": { name: "Essen", plz: "45141" },
+};
+
 // Helper für Development-only Logging
 const isDev = import.meta.env.DEV;
 const debugLog = (...args: unknown[]) => {
@@ -50,6 +54,13 @@ export async function detectCity(): Promise<CityData> {
     if (!sanitizedLocId || sanitizedLocId.length < 5) {
       debugLog("Ungültige Location ID");
       return { name: "Ihrer Stadt", plz: "00000" };
+    }
+
+    const knownCity = KNOWN_LOCATION_IDS[sanitizedLocId];
+    if (knownCity) {
+      sessionStorage.setItem("cityName", knownCity.name);
+      sessionStorage.setItem("cityData", JSON.stringify(knownCity));
+      return knownCity;
     }
     
     try {
