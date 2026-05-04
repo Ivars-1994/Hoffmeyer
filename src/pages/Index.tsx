@@ -127,11 +127,10 @@ const Index = () => {
           
           if (!data.stadt) return;
           
-          const existingCityData = sessionStorage.getItem('cityData');
-          if (existingCityData) return;
-          
           const newCityData = { name: data.stadt, plz: data.plz || '00000' };
           setCityData(newCityData);
+          sessionStorage.setItem('cityData', JSON.stringify(newCityData));
+          sessionStorage.setItem('cityName', data.stadt);
           sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
           window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
         }
@@ -275,7 +274,7 @@ const Index = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
         <link rel="canonical" href={canonicalUrl} />
         {serviceConfig && (
           <meta name="keywords" content={serviceConfig.keywords.join(', ')} />
