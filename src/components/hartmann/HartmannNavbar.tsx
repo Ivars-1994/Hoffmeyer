@@ -1,7 +1,11 @@
 import { Phone, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
-const HartmannNavbar = () => {
+interface HartmannNavbarProps {
+  brandName?: string;
+}
+
+const HartmannNavbar = ({ brandName = 'HOFFMEYER' }: HartmannNavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -19,7 +23,7 @@ const HartmannNavbar = () => {
             </svg>
           </div>
           <div className="text-white">
-            <div className="font-bold text-xl tracking-wider">HOFFMEYER</div>
+            <div className="font-bold text-xl tracking-wider">{brandName}</div>
             <div className="text-xs text-gray-300 tracking-wide">Kammerjäger Seit 98'</div>
           </div>
         </a>
