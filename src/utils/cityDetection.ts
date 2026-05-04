@@ -23,7 +23,7 @@ export async function detectCity(): Promise<CityData> {
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city"); // Neuer direkter city Parameter
   const kw = urlParams.get("kw") || urlParams.get("utm_term");
-  const locId = urlParams.get("mslocid") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
+  const locId = urlParams.get("loc_physical_ms") || urlParams.get("mslocid") || urlParams.get("lcid") || urlParams.get("city_id") || urlParams.get("loc");
 
   // Priorität 0: Geolocation (wenn Consent vorhanden und keine URL-Parameter)
   if (!cityParam && !kw && !locId && hasGeolocationConsent()) {
@@ -117,7 +117,7 @@ export function getCityFromParams(): CityData {
   // NICHT aus sessionStorage laden - immer frisch ermitteln
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city");
-  const hasLocationId = urlParams.get("mslocid") || urlParams.get("kw") || urlParams.get("utm_term") || urlParams.get("loc_physical_ms") || urlParams.get("city_id") || urlParams.get("loc");
+  const hasLocationId = urlParams.get("loc_physical_ms") || urlParams.get("mslocid") || urlParams.get("lcid") || urlParams.get("kw") || urlParams.get("utm_term") || urlParams.get("city_id") || urlParams.get("loc");
   
   // Priorität 1: city Parameter
   if (cityParam) {
