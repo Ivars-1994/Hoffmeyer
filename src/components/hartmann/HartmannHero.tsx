@@ -6,9 +6,10 @@ import maeuseImg from '@/assets/hartmann/maeusebekaempfung.webp';
 
 interface HartmannHeroProps {
   cityName?: string;
+  brandName?: string;
 }
 
-const HartmannHero = ({ cityName = "Ihrer Stadt" }: HartmannHeroProps) => {
+const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Hoffmeyer" }: HartmannHeroProps) => {
   return (
     <section className="bg-[#003311] py-12 md:py-20 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
@@ -26,7 +27,7 @@ const HartmannHero = ({ cityName = "Ihrer Stadt" }: HartmannHeroProps) => {
               </span>
             </h1>
             <p className="text-gray-200 text-lg mb-6 leading-relaxed">
-              Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger Hoffmeyer Ihr Partner! 
+              Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger {brandName} Ihr Partner! 
               Wir helfen Ihnen sofort bei jedem Schädlingsbefall weiter. Rufen Sie uns jetzt 
               an oder senden Sie eine Anfrage.
             </p>
