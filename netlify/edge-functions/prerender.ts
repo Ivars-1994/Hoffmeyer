@@ -146,23 +146,43 @@ function shouldPrerender(request: Request): boolean {
 
 export default async function handler(request: Request, context: Context) {
 
-// Nur GET-Anfragen vorrendern
+  // Nur GET-Anfragen vorrendern
+  if (request.method !== 'GET') {
+    return context.next();
+  }
 
-if (request.method !== 'GET') {
+  const url = new URL(request.url);
 
-return context.next();
+  // Statische Homepage auf / direkt ausliefern (Edge-Functions laufen vor Redirects)
+  if (url.pathname === '/' || url.pathname === '') {
+    // Bots dürfen weiterhin durch den Prerender-Flow laufen
+    if (!shouldPrerender(request)) {
+      try {
+        const staticUrl = new URL('/static-home.html', url.origin);
+        const staticResp = await fetch(staticUrl.href, {
+          headers: { 'x-internal-static-fetch': '1' },
+        });
+        if (staticResp.ok) {
+          const html = await staticResp.text();
+          return new Response(html, {
+            status: 200,
+            headers: {
+              'Content-Type': 'text/html; charset=utf-8',
+              'Cache-Control': 'public, max-age=0, must-revalidate',
+              'X-Static-Home': 'true',
+            },
+          });
+        }
+      } catch (e) {
+        console.error('[StaticHome] Fehler:', e);
+      }
+    }
+  }
 
-
-}
-
-// Prüfe ob Prerender notwendig ist
-
-if (!shouldPrerender(request)) {
-
-return context.next();
-
-
-}
+  // Prüfe ob Prerender notwendig ist
+  if (!shouldPrerender(request)) {
+    return context.next();
+  }
 
 const prerenderToken = Deno.env.get('PRERENDER_TOKEN');
 
