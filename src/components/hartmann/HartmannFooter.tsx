@@ -25,7 +25,7 @@ const HartmannFooter = ({
                 </svg>
               </div>
               <div className="text-white">
-                <div className="font-bold text-lg tracking-wider">HOFFMEYER</div>
+                <div className="font-bold text-lg tracking-wider">{brandName}</div>
                 <div className="text-xs text-gray-400">Kammerjäger Seit 98'</div>
               </div>
             </div>
@@ -46,11 +46,11 @@ const HartmannFooter = ({
                 <span>01579 2507705</span>
               </a>
               <a 
-                href="mailto:info@hoffmeyer-schaedlingsbekaempfung.de" 
+                href={`mailto:${email}`}
                 className="flex items-center gap-2 text-gray-400 hover:text-[#c9a227] transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>info@hoffmeyer-schaedlingsbekaempfung.de</span>
+                <span>{email}</span>
               </a>
             </div>
           </div>
