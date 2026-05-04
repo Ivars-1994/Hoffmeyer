@@ -1,8 +1,8 @@
 const HartmannService = () => {
   return (
-    <section id="service" className="bg-[#003311] py-16 px-4 md:px-8">
+    <section id="service" className="bg-[#003311] pt-6 pb-12 md:py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

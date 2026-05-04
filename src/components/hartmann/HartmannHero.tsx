@@ -11,7 +11,7 @@ interface HartmannHeroProps {
 
 const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Rothschild" }: HartmannHeroProps) => {
   return (
-    <section className="bg-[#003311] py-12 md:py-20 px-4 md:px-8">
+    <section className="bg-[#003311] pt-8 pb-6 md:py-20 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -41,7 +41,7 @@ const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Rothschild" }: Ha
               <span className="text-white">4.7 aus 500+ Bewertungen</span>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 mb-2 lg:mb-10">
               <a 
                 href="tel:015792507705"
                 className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#004d1a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
