@@ -288,7 +288,7 @@ const Index = () => {
       </Helmet>
       
       <div className="min-h-screen bg-[#003311]">
-        <HartmannNavbar />
+        <HartmannNavbar brandName="ROTHSCHILD" />
         <HartmannHero cityName={cityName} />
         <HartmannService />
         <HartmannTestimonials />
@@ -296,7 +296,7 @@ const Index = () => {
         <HartmannProcess />
         <HartmannCertifications />
         <HartmannContact />
-        <HartmannFooter />
+        <HartmannFooter brandName="ROTHSCHILD" email="Info@kammerjaeger-rothschild.de" />
         <MobileStickyCTA />
       </div>
     </>
