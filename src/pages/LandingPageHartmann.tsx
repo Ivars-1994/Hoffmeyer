@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import HartmannNavbar from '@/components/hartmann/HartmannNavbar';
 import HartmannHero from '@/components/hartmann/HartmannHero';
+import { detectAndUpdateCity, getCityFromParams } from '@/utils/cityDetection';
 import HartmannService from '@/components/hartmann/HartmannService';
 import HartmannTestimonials from '@/components/hartmann/HartmannTestimonials';
 import HartmannServices from '@/components/hartmann/HartmannServices';
@@ -10,6 +12,20 @@ import HartmannContact from '@/components/hartmann/HartmannContact';
 import HartmannFooter from '@/components/hartmann/HartmannFooter';
 
 const LandingPageHartmann = () => {
+  const [cityName, setCityName] = useState<string>(() => getCityFromParams().name);
+
+  useEffect(() => {
+    detectAndUpdateCity().then((data) => {
+      if (data?.name) setCityName(data.name);
+    });
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.name) setCityName(detail.name);
+    };
+    window.addEventListener('cityDetected', handler);
+    return () => window.removeEventListener('cityDetected', handler);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -23,7 +39,7 @@ const LandingPageHartmann = () => {
       
       <div className="min-h-screen bg-[#003311]">
         <HartmannNavbar />
-        <HartmannHero />
+        <HartmannHero cityName={cityName} />
         <HartmannService />
         <HartmannTestimonials />
         <HartmannServices />
