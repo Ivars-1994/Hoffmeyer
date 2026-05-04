@@ -31,7 +31,7 @@ const Index = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get("city");
   const kwParam = urlParams.get("kw");
-  const locId = urlParams.get("lcid") || urlParams.get("loc") || urlParams.get("city_id") || urlParams.get("loc_physical_ms");
+  const locId = urlParams.get("loc_physical_ms") || urlParams.get("mslocid") || urlParams.get("lcid") || urlParams.get("loc") || urlParams.get("city_id");
   
   // Get service config if on a service route
   const serviceConfig = serviceSlug ? getServiceConfig(serviceSlug) : null;
@@ -111,6 +111,16 @@ const Index = () => {
     if (!sanitizedLocId || sanitizedLocId.length < 5) {
       return;
     }
+
+    if (sanitizedLocId === '9043934') {
+      const newCityData = { name: 'Essen', plz: '45141' };
+      setCityData(newCityData);
+      sessionStorage.setItem('cityData', JSON.stringify(newCityData));
+      sessionStorage.setItem('cityName', newCityData.name);
+      sessionStorage.setItem('detectedCityData', JSON.stringify(newCityData));
+      window.dispatchEvent(new CustomEvent('cityDetected', { detail: newCityData }));
+      return;
+    }
     
     const fetchCityFromFunction = async () => {
       try {
@@ -118,7 +128,8 @@ const Index = () => {
         const timeoutId = setTimeout(() => controller.abort(), 5000);
         
         const response = await fetch(`/.netlify/functions/resolve-id?id=${encodeURIComponent(sanitizedLocId)}`, {
-          signal: controller.signal
+          signal: controller.signal,
+          cache: 'no-store'
         });
         clearTimeout(timeoutId);
         
