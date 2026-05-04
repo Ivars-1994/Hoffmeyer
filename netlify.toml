@@ -10,6 +10,12 @@
   path = "/*"
   function = "prerender"
 
+# Statische Homepage auf / (Rewrite, URL bleibt /)
+[[redirects]]
+  from = "/"
+  to = "/static-home.html"
+  status = 200
+
 # Statische Seiten ZUERST (werden direkt ausgeliefert, nicht durch SPA)
 [[redirects]]
   from = "/kammerjaeger-essen"
