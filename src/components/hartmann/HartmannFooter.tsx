@@ -69,7 +69,7 @@ const HartmannFooter = ({
         <div className="pt-8 border-t border-[#006622]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Kammerjäger Hoffmeyer. Alle Rechte vorbehalten.
+              © {new Date().getFullYear()} Kammerjäger {brandName.charAt(0) + brandName.slice(1).toLowerCase()}. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6">
               <a href="/impressum" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">
