@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 <meta name="theme-color" content="#003311" />
 
 
@@ -48,8 +48,8 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,sans-serif;background:#003311;color:#fff;line-height:1.5}
+html{scroll-behavior:smooth;width:100%;max-width:100%;overflow-x:hidden;background:#003311;overscroll-behavior-x:none;-webkit-text-size-adjust:100%;touch-action:pan-y}
+body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y;font-family:Inter,system-ui,sans-serif;background:#003311;color:#fff;line-height:1.5}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
@@ -478,28 +478,59 @@ body{padding-bottom:64px}
     } catch(e){}
   }
 
+  function storedFallback(){
+    try {
+      var stored = sessionStorage.getItem('cityName');
+      if(stored) setCity(stored);
+    } catch(e){}
+  }
+
+  function resolveLocationId(locId){
+    var id = (locId || '').replace(/[^0-9]/g,'').substring(0,15);
+    if(!id || id.length < 5){ storedFallback(); return; }
+    fetch('/.netlify/functions/resolve-id?id=' + encodeURIComponent(id), {cache:'no-store'})
+      .then(function(resp){ return resp.ok ? resp.json() : null; })
+      .then(function(data){
+        if(data && data.stadt) setCity(data.stadt);
+        else storedFallback();
+      })
+      .catch(storedFallback);
+  }
+
   // 1) URL param ?city=
   var cityParam = qp('city');
   var blocked = /location|\{|\}/i.test(cityParam);
   if(cityParam && !blocked){ setCity(cityParam); }
   else {
-    // 2) extract from kw param last word
-    var kw = qp('kw');
-    if(kw){
-      var words = decodeURIComponent(kw).replace(/\+/g,' ').split(' ');
-      var last = words[words.length-1];
-      if(last && last.length >= 3 && /^[a-zA-ZäöüÄÖÜß]+$/.test(last) &&
-         !/^(entfernen|bek(ä|ae)mpfen|hilfe|service|kosten|preise|notdienst|24h|sofort|sch(ä|ae)dlingsbek(ä|ae)mpfung|kammerj(ä|ae)ger|wespen|ratten|bettwanzen|m(ä|ae)use|ungeziefer|sch(ä|ae)dling|desinfektion)$/i.test(last)){
-        setCity(last);
-      }
+    // 2) Google Ads location ID: loc_physical_ms=9043934 -> Essen
+    var locId = qp('loc_physical_ms') || qp('mslocid') || qp('lcid') || qp('city_id') || qp('loc');
+    if(locId){
+      resolveLocationId(locId);
     } else {
-      // 3) sessionStorage from earlier visit
-      try {
-        var stored = sessionStorage.getItem('cityName');
-        if(stored) setCity(stored);
-      } catch(e){}
+      // 3) extract from kw param last word
+      var kw = qp('kw');
+      if(kw){
+        var words = decodeURIComponent(kw).replace(/\+/g,' ').split(' ');
+        var last = words[words.length-1];
+        if(last && last.length >= 3 && /^[a-zA-ZäöüÄÖÜß]+$/.test(last) &&
+           !/^(entfernen|bek(ä|ae)mpfen|hilfe|service|kosten|preise|notdienst|24h|sofort|sch(ä|ae)dlingsbek(ä|ae)mpfung|kammerj(ä|ae)ger|wespen|ratten|bettwanzen|m(ä|ae)use|ungeziefer|sch(ä|ae)dling|desinfektion)$/i.test(last)){
+          setCity(last);
+        } else {
+          storedFallback();
+        }
+      } else {
+        storedFallback();
+      }
     }
   }
+
+  // Prevent iOS pinch zoom and sideways page drift inside the document
+  ['gesturestart','gesturechange','gestureend'].forEach(function(ev){
+    document.addEventListener(ev, function(e){ e.preventDefault(); }, {passive:false});
+  });
+  document.addEventListener('touchmove', function(e){
+    if(e.touches && e.touches.length > 1) e.preventDefault();
+  }, {passive:false});
 
   // === Deferred tracking (3s or first interaction) ===
   var loaded = false;
