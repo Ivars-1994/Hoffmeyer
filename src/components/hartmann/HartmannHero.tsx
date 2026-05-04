@@ -27,7 +27,7 @@ const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Hoffmeyer" }: Har
               </span>
             </h1>
             <p className="text-gray-200 text-lg mb-6 leading-relaxed">
-              Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger Hoffmeyer Ihr Partner! 
+              Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger {brandName} Ihr Partner! 
               Wir helfen Ihnen sofort bei jedem Schädlingsbefall weiter. Rufen Sie uns jetzt 
               an oder senden Sie eine Anfrage.
             </p>
