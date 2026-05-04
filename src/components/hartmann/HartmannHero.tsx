@@ -6,9 +6,10 @@ import maeuseImg from '@/assets/hartmann/maeusebekaempfung.webp';
 
 interface HartmannHeroProps {
   cityName?: string;
+  brandName?: string;
 }
 
-const HartmannHero = ({ cityName = "Ihrer Stadt" }: HartmannHeroProps) => {
+const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Hoffmeyer" }: HartmannHeroProps) => {
   return (
     <section className="bg-[#003311] py-12 md:py-20 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
