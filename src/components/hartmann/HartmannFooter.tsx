@@ -1,6 +1,14 @@
 import { Phone, Mail } from 'lucide-react';
 
-const HartmannFooter = () => {
+interface HartmannFooterProps {
+  brandName?: string;
+  email?: string;
+}
+
+const HartmannFooter = ({
+  brandName = 'HOFFMEYER',
+  email = 'info@hoffmeyer-schaedlingsbekaempfung.de',
+}: HartmannFooterProps) => {
   return (
     <footer className="bg-[#003311] border-t border-[#004d1a] py-12 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
