@@ -488,6 +488,7 @@ body{padding-bottom:64px}
   function resolveLocationId(locId){
     var id = (locId || '').replace(/[^0-9]/g,'').substring(0,15);
     if(!id || id.length < 5){ storedFallback(); return; }
+    if(id === '9043934'){ setCity('Essen'); return; }
     fetch('/.netlify/functions/resolve-id?id=' + encodeURIComponent(id), {cache:'no-store'})
       .then(function(resp){ return resp.ok ? resp.json() : null; })
       .then(function(data){
