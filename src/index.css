@@ -20,14 +20,16 @@
 
 /* Prevent horizontal scroll & overflow on all viewports */
 html, body {
+  width: 100%;
   overflow-x: hidden;
-  max-width: 100vw;
-  touch-action: pan-x pan-y;
+  max-width: 100%;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
   -webkit-text-size-adjust: 100%;
 }
 #root {
   overflow-x: hidden;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 @layer base {
