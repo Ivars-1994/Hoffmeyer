@@ -18,6 +18,18 @@
   animation: underline-draw 1.5s ease-out forwards;
 }
 
+/* Prevent horizontal scroll & overflow on all viewports */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+}
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 @layer base {
   :root {
     /* Base Colors - Apple-inspired */
