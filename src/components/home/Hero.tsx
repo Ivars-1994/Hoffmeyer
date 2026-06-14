@@ -5,7 +5,7 @@ import HeroContent from './HeroContent';
 import HeroFeatures from './HeroFeatures';
 import { ServiceConfig } from '../../utils/serviceConfig';
 
-const PHONE_NUMBER = "+4915792507705";
+const PHONE_NUMBER = "+4915792507706";
 
 interface HeroProps {
   cityName: string;
@@ -18,7 +18,7 @@ const Hero = ({ cityName, serviceConfig }: HeroProps) => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Kammerjäger Rothschild",
+    "name": "Kammerjäger Löwenstein",
     "description": serviceConfig 
       ? `${serviceConfig.schemaServiceType} in ${cityName}. 24/7 Notdienst verfügbar.`
       : `Professionelle Schädlingsbekämpfung mit IHK-zertifizierten Experten in ${cityName}. 24/7 Notdienst verfügbar.`,

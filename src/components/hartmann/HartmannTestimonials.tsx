@@ -69,7 +69,7 @@ const testimonials = [
     platformLogo: TrustpilotLogo,
     bg: "bg-purple-600",
     stars: 5,
-    text: "Wir arbeiten schon länger zusammen und wollten uns für die Beratung und schnelle Hilfe bedanken. Wir empfehlen Kammerjäger Rothschild jedem weiter."
+    text: "Wir arbeiten schon länger zusammen und wollten uns für die Beratung und schnelle Hilfe bedanken. Wir empfehlen Kammerjäger Löwenstein jedem weiter."
   },
   {
     name: "Nicole Bauer",
@@ -136,10 +136,10 @@ const HartmannTestimonials = () => {
             Anfrage Senden
           </a>
           <a 
-            href="tel:015792507705"
+            href="tel:015792507706"
             className="flex items-center justify-center gap-2 bg-[#003311] border-2 border-[#003311] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#004d1a] transition-colors"
           >
-            01579 2507705
+            01579 2507706
           </a>
         </div>
       </div>

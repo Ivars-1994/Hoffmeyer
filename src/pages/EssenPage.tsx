@@ -85,7 +85,7 @@ const FAQ_DATA = [
   },
   {
     question: 'Kammerjäger Essen Kosten – gibt es versteckte Gebühren?',
-    answer: 'Nein, bei Kammerjäger Rothschild in Essen gibt es keine versteckten Kosten. Sie erhalten vor Arbeitsbeginn einen verbindlichen Festpreis. Die Anfahrt innerhalb von Essen ist in den meisten Fällen bereits inklusive.'
+    answer: 'Nein, bei Kammerjäger Löwenstein in Essen gibt es keine versteckten Kosten. Sie erhalten vor Arbeitsbeginn einen verbindlichen Festpreis. Die Anfahrt innerhalb von Essen ist in den meisten Fällen bereits inklusive.'
   },
   {
     question: 'Arbeiten Sie auch am Wochenende und an Feiertagen in Essen?',
@@ -125,7 +125,7 @@ const EssenPage = () => {
       {
         "@type": "LocalBusiness",
         "@id": "https://kammerjaeger-rothschild.de/#firma",
-        "name": "Kammerjäger Rothschild",
+        "name": "Kammerjäger Löwenstein",
         "url": "https://kammerjaeger-rothschild.de/",
         "image": "https://kammerjaeger-rothschild.de/lovable-uploads/rothschild-logo.png",
         "telephone": "+4915212124199",
@@ -133,7 +133,7 @@ const EssenPage = () => {
         "priceRange": "€€",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Rothschild Schädlingsbekämpfung",
+          "streetAddress": "Löwenstein Schädlingsbekämpfung",
           "postalCode": "45127",
           "addressLocality": "Essen",
           "addressRegion": "NW",
@@ -247,7 +247,7 @@ const EssenPage = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Rothschild</title>
+        <title>Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Löwenstein</title>
         <meta name="description" content="Kammerjäger in Essen gesucht? IHK-zertifizierte Schädlingsbekämpfung, 24h-Notdienst, schnelle Hilfe in 30–60 Min vor Ort. Jetzt anrufen & Schädlinge professionell beseitigen lassen." />
         <meta name="keywords" content="Kammerjäger Essen, Schädlingsbekämpfung Essen, Kammerjäger Notdienst Essen, Wespen Essen, Bettwanzen Essen, Ratten Essen, Mäuse Essen, Schädlingsbekämpfer Essen" />
         <link rel="canonical" href="https://kammerjaeger-rothschild.de/kammerjaeger-essen" />
@@ -540,7 +540,7 @@ const EssenPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                   {[
                     { name: 'M. Schmidt', location: 'Essen-Rüttenscheid', text: 'Wespennest wurde noch am gleichen Tag entfernt. Sehr professionell und freundlich. Klare Empfehlung!', rating: 5 },
-                    { name: 'K. Weber', location: 'Essen-Stadtmitte', text: 'Bettwanzen im Hotel – Rothschild war innerhalb einer Stunde da und hat das Problem diskret gelöst. Top Service!', rating: 5 },
+                    { name: 'K. Weber', location: 'Essen-Stadtmitte', text: 'Bettwanzen im Hotel – Löwenstein war innerhalb einer Stunde da und hat das Problem diskret gelöst. Top Service!', rating: 5 },
                     { name: 'T. Müller', location: 'Essen-Steele', text: 'Mäuse im Keller. Schnelle Reaktion, faire Preise und nachhaltige Lösung. Sehr zufrieden!', rating: 5 }
                   ].map((review, index) => (
                     <div key={index} className="bg-background rounded-xl p-6 shadow-md">

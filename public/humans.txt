@@ -1,8 +1,8 @@
 /* TEAM */
 Geschäftsführer: Norbert Wolframm
-Unternehmen: Kammerjäger Rothschild
+Unternehmen: Kammerjäger Löwenstein
 Standort: Essen, Nordrhein-Westfalen, Deutschland
-Telefon: 01579 2507705
+Telefon: 01579 2507706
 
 /* SITE */
 Letzte Aktualisierung: 2025-01-21
