@@ -19,7 +19,7 @@ export async function getCityFromGeolocation(): Promise<CityData | null> {
           
           const response = await fetch(url, {
             headers: {
-              'User-Agent': 'Rothschild-Kammerjaeger/1.0'
+              'User-Agent': 'Löwenstein-Kammerjaeger/1.0'
             }
           });
           

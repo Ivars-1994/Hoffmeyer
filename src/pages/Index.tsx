@@ -22,7 +22,7 @@ declare global {
   }
 }
 
-const PHONE_NUMBER = "+4915792507705";
+const PHONE_NUMBER = "+4915792507706";
 
 const Index = () => {
   const { service: serviceSlug } = useParams<{ service?: string }>();
@@ -189,35 +189,35 @@ const Index = () => {
   useEffect(() => {
     const SERVICE_TITLES: Record<string, { title: string; description: string }> = {
       wespen: {
-        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Rothschild",
+        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Löwenstein",
         description: "Professionelle Wespenbekämpfung ✓ Schnelle Entfernung von Wespennestern ✓ IHK-zertifiziert ✓ Kostenlose Anfahrt ✓ 30-60 Min vor Ort"
       },
       bettwanzen: {
-        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Rothschild",
+        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Löwenstein",
         description: "Effektive Bettwanzenbekämpfung ✓ Wärmebehandlung & Insektizide ✓ Diskret & gründlich ✓ Nachkontrolle inklusive ✓ 24/7 Notdienst"
       },
       ratten: {
-        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Rothschild",
+        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Löwenstein",
         description: "Professionelle Rattenbekämpfung ✓ Gesicherte Köderstationen ✓ Hygienische Entsorgung ✓ Präventionsberatung ✓ Kostenlose Anfahrt"
       },
       marder: {
-        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Rothschild",
+        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Löwenstein",
         description: "Tierschonende Marderabwehr ✓ Gebäudeabdichtung ✓ Geruchsneutralisation ✓ Langfristiger Schutz ✓ 24/7 verfügbar"
       },
       maeuse: {
-        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Rothschild",
+        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Löwenstein",
         description: "Effektive Mäusebekämpfung ✓ Befallsanalyse ✓ Köderstationen & Fallen ✓ Abdichtung ✓ Kostenlose Erstberatung"
       },
       silberfische: {
-        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Rothschild",
+        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Löwenstein",
         description: "Nachhaltige Silberfischbekämpfung ✓ Ursachenanalyse ✓ Feuchtigkeitsberatung ✓ Gründliche Behandlung ✓ Langfristige Lösung"
       },
       kakerlaken: {
-        title: "Kakerlaken vernichten | Professionell | Kammerjäger Rothschild",
+        title: "Kakerlaken vernichten | Professionell | Kammerjäger Löwenstein",
         description: "Schnelle Schabenbekämpfung ✓ Gel-Köder & Sprühbehandlung ✓ Hygiene-Beratung ✓ Mehrfachbehandlung ✓ Diskret & zuverlässig"
       },
       floehe: {
-        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Rothschild",
+        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Löwenstein",
         description: "Gründliche Flohbekämpfung ✓ Umgebungsbehandlung ✓ Wachstumsregulatoren ✓ Haustierfreundlich ✓ Nachbehandlung inklusive"
       }
     };
@@ -236,7 +236,7 @@ const Index = () => {
         }
         metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
       } else {
-        document.title = `Kammerjäger Rothschild | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
+        document.title = `Kammerjäger Löwenstein | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
       }
     };
 
@@ -247,8 +247,8 @@ const Index = () => {
   }, [cityName]);
 
   const pageTitle = serviceConfig 
-    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Rothschild`
-    : `Kammerjäger Rothschild - Professionelle Schädlingsbekämpfung in ${cityName}`;
+    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Löwenstein`
+    : `Kammerjäger Löwenstein - Professionelle Schädlingsbekämpfung in ${cityName}`;
   
   const pageDescription = serviceConfig 
     ? `${serviceConfig.metaDescription} Schnelle Hilfe in ${cityName}.`
@@ -264,7 +264,7 @@ const Index = () => {
     "serviceType": serviceConfig.schemaServiceType,
     "provider": {
       "@type": "ProfessionalService",
-      "name": "Kammerjäger Rothschild",
+      "name": "Kammerjäger Löwenstein",
       "telephone": PHONE_NUMBER,
       "url": "https://kammerjaeger-rothschild.de",
       "address": {
@@ -298,15 +298,15 @@ const Index = () => {
       </Helmet>
       
       <div className="min-h-screen bg-[#003311]">
-        <HartmannNavbar brandName="ROTHSCHILD" />
-        <HartmannHero cityName={cityName} brandName="Rothschild" />
+        <HartmannNavbar brandName="LÖWENSTEIN" />
+        <HartmannHero cityName={cityName} brandName="Löwenstein" />
         <HartmannService />
         <HartmannTestimonials />
         <HartmannServices />
         <HartmannProcess />
         <HartmannCertifications />
         <HartmannContact />
-        <HartmannFooter brandName="ROTHSCHILD" email="Info@kammerjaeger-rothschild.de" />
+        <HartmannFooter brandName="LÖWENSTEIN" email="Info@kammerjaeger-rothschild.de" />
         <MobileStickyCTA />
       </div>
     </>

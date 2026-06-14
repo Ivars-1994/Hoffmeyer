@@ -1,4 +1,4 @@
-# SEO-Optimierung Setup für Kammerjäger Rothschild
+# SEO-Optimierung Setup für Kammerjäger Löwenstein
 
 ## ✅ Was wurde implementiert?
 
