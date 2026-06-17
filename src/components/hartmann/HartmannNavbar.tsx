@@ -38,11 +38,11 @@ const HartmannNavbar = ({ brandName = 'LÖWENSTEIN' }: HartmannNavbarProps) => {
 
         {/* Phone Button */}
         <a 
-          href="tel:015792507706" 
+          href="tel:015792523663" 
           className="hidden md:flex items-center gap-2 border-2 border-[#c9a227] text-white px-5 py-2.5 rounded-lg hover:bg-[#c9a227] hover:text-[#004d1a] transition-all font-semibold"
         >
           <Phone size={18} />
-          <span>01579 2507706</span>
+          <span>01579 2523663</span>
         </a>
 
         {/* Mobile Menu Button */}
@@ -63,11 +63,11 @@ const HartmannNavbar = ({ brandName = 'LÖWENSTEIN' }: HartmannNavbarProps) => {
             <a href="#leistungen" className="text-white hover:text-[#c9a227] transition-colors">Leistungen</a>
             <a href="#kontakt" className="text-white hover:text-[#c9a227] transition-colors">Kontakt</a>
             <a 
-              href="tel:015792507706" 
+              href="tel:015792523663" 
               className="flex items-center gap-2 border-2 border-[#c9a227] text-white px-4 py-3 rounded-lg justify-center"
             >
               <Phone size={18} />
-              <span className="font-semibold">01579 2507706</span>
+              <span className="font-semibold">01579 2523663</span>
             </a>
           </div>
         </div>

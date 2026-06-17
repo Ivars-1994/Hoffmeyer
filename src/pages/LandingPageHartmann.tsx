@@ -29,7 +29,7 @@ const LandingPageHartmann = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Löwenstein | 24/7 Schädlingsbekämpfung | Tel: 01579 2507706</title>
+        <title>Kammerjäger Löwenstein | 24/7 Schädlingsbekämpfung | Tel: 01579 2523663</title>
         <meta 
           name="description" 
           content="Kammerjäger Löwenstein - Professionelle Schädlingsbekämpfung seit 1998. 24/7 Notdienst, 30-60 Min. Reaktionszeit. Ratten, Wespen, Mäuse, Bettwanzen. Jetzt anrufen!" 
