@@ -43,11 +43,11 @@ const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Löwenstein" }: H
 
             <div className="flex flex-col sm:flex-row gap-4 mb-2 lg:mb-10">
               <a 
-                href="tel:015792507706"
+                href="tel:015792523663"
                 className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#004d1a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
               >
                 <Phone size={20} />
-                01579 2507706
+                01579 2523663
               </a>
               <a 
                 href="#kontakt"
