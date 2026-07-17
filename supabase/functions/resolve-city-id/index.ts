@@ -2,8 +2,8 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
-  'https://kammerjaeger-rothschild.de',
-  'https://www.kammerjaeger-rothschild.de',
+  'https://kammerjaeger-loewenstein.de',
+  'https://www.kammerjaeger-loewenstein.de',
   'https://rothschild.lovable.app',
   'http://localhost:5173'
 ];

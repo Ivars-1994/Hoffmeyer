@@ -255,8 +255,8 @@ const Index = () => {
     : `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
   
   const canonicalUrl = serviceConfig 
-    ? `https://kammerjaeger-rothschild.de/svc/${serviceConfig.slug}`
-    : 'https://kammerjaeger-rothschild.de/';
+    ? `https://kammerjaeger-loewenstein.de/svc/${serviceConfig.slug}`
+    : 'https://kammerjaeger-loewenstein.de/';
 
   const serviceSchema = serviceConfig ? {
     "@context": "https://schema.org",
@@ -266,7 +266,7 @@ const Index = () => {
       "@type": "ProfessionalService",
       "name": "Kammerjäger Löwenstein",
       "telephone": PHONE_NUMBER,
-      "url": "https://kammerjaeger-rothschild.de",
+      "url": "https://kammerjaeger-loewenstein.de",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "DE",
@@ -306,7 +306,7 @@ const Index = () => {
         <HartmannProcess />
         <HartmannCertifications />
         <HartmannContact />
-        <HartmannFooter brandName="LÖWENSTEIN" email="Info@kammerjaeger-rothschild.de" />
+        <HartmannFooter brandName="LÖWENSTEIN" email="Info@kammerjaeger-loewenstein.de" />
         <MobileStickyCTA />
       </div>
     </>
