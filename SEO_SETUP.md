@@ -90,9 +90,9 @@ npm run build
 Nach dem Deployment:
 
 1. **URL-Prüfung Tool**
-   - Prüfe: `https://kammerjaeger-rothschild.de`
-   - Prüfe: `https://kammerjaeger-rothschild.de/#wespen`
-   - Prüfe: `https://kammerjaeger-rothschild.de/#bettwanzen`
+   - Prüfe: `https://kammerjaeger-loewenstein.de`
+   - Prüfe: `https://kammerjaeger-loewenstein.de/#wespen`
+   - Prüfe: `https://kammerjaeger-loewenstein.de/#bettwanzen`
 
 2. **Sitemap einreichen**
    - Erstelle eine Sitemap mit allen Hash-URLs
