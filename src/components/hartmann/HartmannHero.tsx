@@ -1,4 +1,6 @@
 import { Phone, Clock, CheckCircle, Shield, Star } from 'lucide-react';
+import PromoBanner from '@/components/ui/PromoBanner';
+import WespenNotdienstBadge from '@/components/ui/WespenNotdienstBadge';
 import wespenImg from '@/assets/hartmann/wespenbekaempfung.webp';
 import schaedlingImg from '@/assets/hartmann/schaedlingsbekaempfung.webp';
 import schabenImg from '@/assets/hartmann/schabenbekaempfung.webp';
