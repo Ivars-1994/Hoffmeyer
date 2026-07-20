@@ -13,11 +13,15 @@ interface HartmannHeroProps {
 
 const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Löwenstein" }: HartmannHeroProps) => {
   return (
-    <section className="bg-[#003311] pt-8 pb-6 md:py-20 px-4 md:px-8">
+    <section className="bg-[#003311] pt-0 pb-6 md:py-20 px-4 md:px-8">
+      <PromoBanner className="-mx-4 md:-mx-8 mb-6 md:mb-8" />
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start mb-3">
+              <WespenNotdienstBadge />
+            </div>
             <p className="text-[#c9a227] italic text-lg mb-4">
               Schädlingsbekämpfung Seit 1998 
             </p>
