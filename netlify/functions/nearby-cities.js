@@ -73,6 +73,42 @@ function localityMatches(row, normalizedCity) {
   return rowName === normalizedCity || municipalityName === normalizedCity;
 }
 
+async function openplzByName(name) {
+  try {
+    const r = await fetchWithTimeout(
+      `https://openplzapi.org/de/Localities?name=${encodeURIComponent(name)}`, {}, 2500,
+    );
+    if (!r.ok) return null;
+    const d = await r.json();
+    const rows = Array.isArray(d) ? d : [];
+    if (!rows.length) return null;
+    const wanted = normalizePlaceName(name);
+    const exactRows = rows.filter((row) => localityMatches(row, wanted));
+    const hit =
+      exactRows.find((row) =>
+        /,\s*(Stadt|Kreisstadt|Landeshauptstadt)$/i.test(String(row?.municipality?.name || '')),
+      ) || exactRows[0] || rows[0] || null;
+    return hit?.name ? hit : null;
+  } catch { return null; }
+}
+
+async function nominatimCanonical(name) {
+  try {
+    const r = await fetchWithTimeout(
+      `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=de&addressdetails=1&q=${encodeURIComponent(name + ', Deutschland')}`,
+      { headers: { 'User-Agent': 'loewenstein-wespen/1.0 (kammerjaeger-loewenstein.de)' } },
+      5000,
+    );
+    if (!r.ok) return null;
+    const d = await r.json();
+    const hit = d?.[0];
+    if (!hit) return null;
+    const addr = hit.address || {};
+    const canonical = addr.city || addr.town || addr.village || addr.municipality || hit.name;
+    return canonical || null;
+  } catch { return null; }
+}
+
 async function lookupLocality(city, plz) {
   if (plz && /^\d{5}$/.test(plz)) {
     try {
@@ -87,22 +123,14 @@ async function lookupLocality(city, plz) {
     } catch {}
   }
   if (city) {
-    try {
-      const r = await fetchWithTimeout(
-        `https://openplzapi.org/de/Localities?name=${encodeURIComponent(city)}`, {}, 2500,
-      );
-      if (r.ok) {
-        const d = await r.json();
-        const rows = Array.isArray(d) ? d : [];
-        const wanted = normalizePlaceName(city);
-        const exactRows = rows.filter((row) => localityMatches(row, wanted));
-        const hit =
-          exactRows.find((row) =>
-            /,\s*(Stadt|Kreisstadt|Landeshauptstadt)$/i.test(String(row?.municipality?.name || '')),
-          ) || exactRows[0] || null;
-        if (hit?.name) return hit;
-      }
-    } catch {}
+    const direct = await openplzByName(city);
+    if (direct) return direct;
+    // Fallback: canonicalize via Nominatim (fixes missing umlauts like Duren -> Düren)
+    const canonical = await nominatimCanonical(city);
+    if (canonical && canonical.toLowerCase() !== String(city).toLowerCase()) {
+      const viaCanonical = await openplzByName(canonical);
+      if (viaCanonical) return viaCanonical;
+    }
   }
   return null;
 }
