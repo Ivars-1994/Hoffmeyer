@@ -217,6 +217,29 @@ body{padding-bottom:64px}
 
 /* utility icons */
 .i-phone{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* === EINSATZGEBIET === */
+.einsatz{padding:4rem 0;border-top:1px solid #c9a22733}
+.einsatz-grid{display:grid;gap:2rem;align-items:start}
+@media(min-width:1024px){.einsatz-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+.einsatz-label{color:#c9a227;text-transform:uppercase;letter-spacing:.1em;font-size:.85rem;font-weight:700;margin-bottom:.75rem}
+.einsatz h2{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:700;margin-bottom:1rem;line-height:1.2}
+.einsatz p{color:#e5e5e5;font-size:1.05rem;line-height:1.6;margin-bottom:1rem}
+.einsatz-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.einsatz-tag{display:inline-flex;align-items:center;gap:.35rem;background:#004422;border:1px solid #c9a22766;padding:.4rem .8rem;border-radius:9999px;font-size:.85rem;color:#fff}
+.einsatz-tag svg{width:14px;height:14px;stroke:#c9a227;fill:none;stroke-width:2}
+.einsatz-box{background:#00442299;border:1px solid #c9a2274d;border-radius:1rem;padding:1.5rem}
+.einsatz-box h3{font-size:1.25rem;font-weight:700;margin-bottom:1rem;color:#fff}
+.einsatz-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+@media(min-width:640px){.einsatz-list{grid-template-columns:repeat(3,1fr)}}
+.einsatz-list li{display:flex;align-items:center;gap:.4rem;color:#fff;font-size:.9rem}
+.einsatz-list svg{width:16px;height:16px;stroke:#c9a227;fill:none;stroke-width:2;flex-shrink:0}
+.einsatz-list .km{color:#ffffff99;font-size:.75rem;margin-left:.2rem}
+.einsatz-skeleton{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+@media(min-width:640px){.einsatz-skeleton{grid-template-columns:repeat(3,1fr)}}
+.einsatz-skeleton span{height:1.5rem;background:#ffffff1a;border-radius:.25rem;animation:pulse 1.5s infinite}
+.einsatz-note{color:#ffffffb3;font-size:.85rem;margin-top:1rem;line-height:1.5}
+.font-medium{font-weight:500}
 </style>
 </head>
 <body>
@@ -410,6 +433,36 @@ body{padding-bottom:64px}
   </div>
 </section>
 
+<!-- ============ EINSATZGEBIET ============ -->
+<section class="einsatz" id="einsatzgebiet">
+  <div class="container einsatz-grid">
+    <div>
+      <p class="einsatz-label">Einsatzgebiet</p>
+      <h2>Wir kommen zu Ihnen – kostenfrei in <span id="einsatzCity">Ihrer Stadt</span> + 50 km.</h2>
+      <p>In unserem Kern-Einsatzgebiet fällt keine Anfahrtspauschale an. Sie zahlen nur den Einsatz – transparent und versicherungskonform.</p>
+      <div class="einsatz-tags" id="einsatzTags">
+        <span class="einsatz-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span id="tagCity">Ihrer Stadt</span></span>
+        <span class="einsatz-tag">50 km Radius</span>
+      </div>
+      <a href="tel:015792523663" class="btn-primary" data-conv="phone">
+        <svg class="i-phone" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Jetzt anrufen · 01579 2523663
+      </a>
+      <p class="einsatz-note">Außerhalb der 50 km? Rufen Sie trotzdem an – wir finden eine faire Lösung.</p>
+    </div>
+    <div class="einsatz-box">
+      <h3 id="einsatzBoxTitle">Einsatzgebiet im 50-km-Radius</h3>
+      <div class="einsatz-skeleton" id="einsatzSkeleton" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <ul class="einsatz-list" id="einsatzList" style="display:none"></ul>
+      <p class="einsatz-note" id="einsatzFallback" style="display:none">Rufen Sie uns an – wir prüfen Ihren Ort sofort und geben Ihnen eine ehrliche Einschätzung zu Ankunftszeit und Kosten.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section class="cnt" id="kontakt">
   <div class="container">
@@ -598,6 +651,85 @@ body{padding-bottom:64px}
       window.dataLayer.push({event:'phone_click', phone:'01579 2523663'});
     }
   });
+
+  // === Einsatzgebiet nearby cities ===
+  (function(){
+    var cityName = '';
+    try { cityName = sessionStorage.getItem('cityName') || ''; } catch(e){}
+    var cityData = null;
+    try { cityData = JSON.parse(sessionStorage.getItem('cityData') || '{}'); } catch(e){}
+    var displayName = (cityData && cityData.name) ? cityData.name : cityName;
+    if(!displayName) displayName = 'Ihrer Stadt';
+    if(displayName && displayName !== 'Ihrer Stadt'){
+      var eCity = document.getElementById('einsatzCity');
+      var tagCity = document.getElementById('tagCity');
+      var boxTitle = document.getElementById('einsatzBoxTitle');
+      if(eCity) eCity.textContent = displayName;
+      if(tagCity) tagCity.textContent = displayName;
+      if(boxTitle) boxTitle.textContent = 'Top 20 Nachbarorte rund um ' + displayName;
+    }
+
+    var root = document.getElementById('einsatzgebiet');
+    var skeleton = document.getElementById('einsatzSkeleton');
+    var list = document.getElementById('einsatzList');
+    var fallback = document.getElementById('einsatzFallback');
+    if(!root || !list || displayName === 'Ihrer Stadt'){
+      if(skeleton) skeleton.style.display='none';
+      if(fallback) fallback.style.display='block';
+      return;
+    }
+
+    function loadCities(){
+      var params = 'city=' + encodeURIComponent(displayName) + '&radius=50&limit=20&v=2';
+      var fast = params + '&fast=1';
+      fetch('/.netlify/functions/nearby-cities?' + fast, {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(data){ if(data && data.cities && data.cities.length){ render(data); } })
+        .catch(function(){});
+
+      fetch('/.netlify/functions/nearby-cities?' + params, {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(data){
+          if(data && data.cities && data.cities.length){ render(data); }
+          else { if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; }
+        })
+        .catch(function(){ if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; });
+    }
+
+    function render(data){
+      if(!list) return;
+      list.innerHTML = '';
+      for(var i = 0; i < data.cities.length; i++){
+        var c = data.cities[i];
+        var li = document.createElement('li');
+        li.innerHTML = '<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+        var span = document.createElement('span');
+        span.className = 'font-medium';
+        span.textContent = c.name;
+        li.appendChild(span);
+        if(typeof c.km === 'number' && c.km > 0){
+          var kmSpan = document.createElement('span');
+          kmSpan.className = 'km';
+          kmSpan.textContent = ' · ' + c.km + ' km';
+          li.appendChild(kmSpan);
+        }
+        list.appendChild(li);
+      }
+      list.style.display = 'grid';
+      if(skeleton) skeleton.style.display='none';
+      if(fallback) fallback.style.display='none';
+      var note = root.querySelector('.einsatz-box .einsatz-note');
+      if(note && data.origin){
+        note.textContent = '… und alle weiteren Orte im 50-km-Radius um ' + data.origin + '. Wespennest entfernen, Hornissennest umsiedeln, Bienen fachgerecht – meist noch am selben Tag.';
+      }
+    }
+
+    var obs = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+      for(var i=0;i<entries.length;i++){ if(entries[i].isIntersecting){ loadCities(); obs.disconnect(); break; } }
+    }, {rootMargin:'600px 0px'}) : null;
+    if(obs) obs.observe(root);
+    else loadCities();
+  })();
 })();
 </script>
 </body>
