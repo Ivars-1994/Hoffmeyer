@@ -529,7 +529,7 @@ body{padding-bottom:64px}
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   // === City detection (URL params + sessionStorage) ===
-  function qp(n){ var v = new URLSearchParams(location.search).get(n); return v ? v.trim() : ''; }
+  function qp(n){ try{ var sp=new URLSearchParams(location.search); var lc=String(n).toLowerCase(); var it=sp.entries(); var e=it.next(); while(!e.done){ if(String(e.value[0]).toLowerCase()===lc){ return (e.value[1]||'').trim(); } e=it.next(); } }catch(err){} return ''; }
   function clean(raw){ return raw.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,'').substring(0,40).replace(/\s+/g,' ').trim(); }
   function tc(s){ return s.replace(/\w\S*/g, function(t){ return t.charAt(0).toUpperCase()+t.slice(1).toLowerCase(); }); }
 
