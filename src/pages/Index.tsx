@@ -307,6 +307,7 @@ const Index = () => {
         <HartmannProcess />
         <HartmannCertifications />
         <HartmannContact />
+        <Einsatzgebiet />
         <HartmannFooter brandName="LÖWENSTEIN" email="Info@kammerjaeger-loewenstein.de" />
         <MobileStickyCTA />
       </div>
