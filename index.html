@@ -217,6 +217,29 @@ body{padding-bottom:64px}
 
 /* utility icons */
 .i-phone{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* === EINSATZGEBIET === */
+.einsatz{padding:4rem 0;border-top:1px solid #c9a22733}
+.einsatz-grid{display:grid;gap:2rem;align-items:start}
+@media(min-width:1024px){.einsatz-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+.einsatz-label{color:#c9a227;text-transform:uppercase;letter-spacing:.1em;font-size:.85rem;font-weight:700;margin-bottom:.75rem}
+.einsatz h2{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:700;margin-bottom:1rem;line-height:1.2}
+.einsatz p{color:#e5e5e5;font-size:1.05rem;line-height:1.6;margin-bottom:1rem}
+.einsatz-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.einsatz-tag{display:inline-flex;align-items:center;gap:.35rem;background:#004422;border:1px solid #c9a22766;padding:.4rem .8rem;border-radius:9999px;font-size:.85rem;color:#fff}
+.einsatz-tag svg{width:14px;height:14px;stroke:#c9a227;fill:none;stroke-width:2}
+.einsatz-box{background:#00442299;border:1px solid #c9a2274d;border-radius:1rem;padding:1.5rem}
+.einsatz-box h3{font-size:1.25rem;font-weight:700;margin-bottom:1rem;color:#fff}
+.einsatz-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+@media(min-width:640px){.einsatz-list{grid-template-columns:repeat(3,1fr)}}
+.einsatz-list li{display:flex;align-items:center;gap:.4rem;color:#fff;font-size:.9rem}
+.einsatz-list svg{width:16px;height:16px;stroke:#c9a227;fill:none;stroke-width:2;flex-shrink:0}
+.einsatz-list .km{color:#ffffff99;font-size:.75rem;margin-left:.2rem}
+.einsatz-skeleton{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+@media(min-width:640px){.einsatz-skeleton{grid-template-columns:repeat(3,1fr)}}
+.einsatz-skeleton span{height:1.5rem;background:#ffffff1a;border-radius:.25rem;animation:pulse 1.5s infinite}
+.einsatz-note{color:#ffffffb3;font-size:.85rem;margin-top:1rem;line-height:1.5}
+.font-medium{font-weight:500}
 </style>
 </head>
 <body>
