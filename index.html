@@ -651,6 +651,77 @@ body{padding-bottom:64px}
       window.dataLayer.push({event:'phone_click', phone:'01579 2523663'});
     }
   });
+
+  // === Einsatzgebiet nearby cities ===
+  (function(){
+    var cityName = '';
+    try { cityName = sessionStorage.getItem('cityName') || ''; } catch(e){}
+    var cityData = null;
+    try { cityData = JSON.parse(sessionStorage.getItem('cityData') || '{}'); } catch(e){}
+    var displayName = (cityData && cityData.name) ? cityData.name : cityName;
+    if(!displayName) displayName = 'Ihrer Stadt';
+    if(displayName && displayName !== 'Ihrer Stadt'){
+      var eCity = document.getElementById('einsatzCity');
+      var tagCity = document.getElementById('tagCity');
+      var boxTitle = document.getElementById('einsatzBoxTitle');
+      if(eCity) eCity.textContent = displayName;
+      if(tagCity) tagCity.textContent = displayName;
+      if(boxTitle) boxTitle.textContent = 'Top 20 Nachbarorte rund um ' + displayName;
+    }
+
+    var root = document.getElementById('einsatzgebiet');
+    var skeleton = document.getElementById('einsatzSkeleton');
+    var list = document.getElementById('einsatzList');
+    var fallback = document.getElementById('einsatzFallback');
+    if(!root || !list || displayName === 'Ihrer Stadt'){
+      if(skeleton) skeleton.style.display='none';
+      if(fallback) fallback.style.display='block';
+      return;
+    }
+
+    function loadCities(){
+      var params = 'city=' + encodeURIComponent(displayName) + '&radius=50&limit=20&v=2';
+      var fast = params + '&fast=1';
+      fetch('/.netlify/functions/nearby-cities?' + fast, {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(data){ if(data && data.cities && data.cities.length){ render(data); } })
+        .catch(function(){});
+
+      fetch('/.netlify/functions/nearby-cities?' + params, {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(data){
+          if(data && data.cities && data.cities.length){ render(data); }
+          else { if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; }
+        })
+        .catch(function(){ if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; });
+    }
+
+    function render(data){
+      if(!list) return;
+      var html = '';
+      for(var i = 0; i < data.cities.length; i++){
+        var c = data.cities[i];
+        var km = typeof c.km === 'number' && c.km > 0 ? ' <span class="km">· ' + c.km + ' km</span>' : '';
+        html += '<li><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-medium">' + escapeHtml(c.name) + '</span>' + km + '</li>';
+      }
+      list.innerHTML = html;
+      list.style.display = 'grid';
+      if(skeleton) skeleton.style.display='none';
+      if(fallback) fallback.style.display='none';
+      var note = root.querySelector('.einsatz-box .einsatz-note');
+      if(note && data.origin){
+        note.textContent = '… und alle weiteren Orte im 50-km-Radius um ' + data.origin + '. Wespennest entfernen, Hornissennest umsiedeln, Bienen fachgerecht – meist noch am selben Tag.';
+      }
+    }
+
+    function escapeHtml(t){ return t.replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\':'&#39;'}[m]; }); }
+
+    var obs = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+      for(var i=0;i<entries.length;i++){ if(entries[i].isIntersecting){ loadCities(); obs.disconnect(); break; } }
+    }, {rootMargin:'600px 0px'}) : null;
+    if(obs) obs.observe(root);
+    else loadCities();
+  })();
 })();
 </script>
 </body>
