@@ -21,9 +21,14 @@ export async function detectCity(): Promise<CityData> {
   debugLog("Stadt-Erkennung gestartet");
   
   const urlParams = new URLSearchParams(window.location.search);
-  const cityParam = urlParams.get("city"); // Neuer direkter city Parameter
-  const kw = urlParams.get("kw") || urlParams.get("utm_term");
-  const locId = urlParams.get("loc_physical_ms") || urlParams.get("mslocid") || urlParams.get("lcid") || urlParams.get("city_id") || urlParams.get("loc");
+  const getCI = (name: string): string | null => {
+    const lc = name.toLowerCase();
+    for (const [k, v] of urlParams.entries()) if (k.toLowerCase() === lc) return v;
+    return null;
+  };
+  const cityParam = getCI("city"); // Neuer direkter city Parameter
+  const kw = getCI("kw") || getCI("utm_term");
+  const locId = getCI("loc_physical_ms") || getCI("mslocid") || getCI("lcid") || getCI("city_id") || getCI("loc");
 
   // Priorität 0: Geolocation (wenn Consent vorhanden und keine URL-Parameter)
   if (!cityParam && !kw && !locId && hasGeolocationConsent()) {
