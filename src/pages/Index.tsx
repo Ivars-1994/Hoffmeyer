@@ -30,9 +30,14 @@ const Index = () => {
   
   // Extrahiere URL-Parameter für Stadt-Erkennung
   const urlParams = new URLSearchParams(window.location.search);
-  const cityParam = urlParams.get("city");
-  const kwParam = urlParams.get("kw");
-  const locId = urlParams.get("loc_physical_ms") || urlParams.get("mslocid") || urlParams.get("lcid") || urlParams.get("loc") || urlParams.get("city_id");
+  const getCI = (name: string): string | null => {
+    const lc = name.toLowerCase();
+    for (const [k, v] of urlParams.entries()) if (k.toLowerCase() === lc) return v;
+    return null;
+  };
+  const cityParam = getCI("city");
+  const kwParam = getCI("kw");
+  const locId = getCI("loc_physical_ms") || getCI("mslocid") || getCI("lcid") || getCI("loc") || getCI("city_id");
   
   // Get service config if on a service route
   const serviceConfig = serviceSlug ? getServiceConfig(serviceSlug) : null;
