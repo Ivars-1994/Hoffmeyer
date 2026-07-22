@@ -698,13 +698,23 @@ body{padding-bottom:64px}
 
     function render(data){
       if(!list) return;
-      var html = '';
+      list.innerHTML = '';
       for(var i = 0; i < data.cities.length; i++){
         var c = data.cities[i];
-        var km = typeof c.km === 'number' && c.km > 0 ? ' <span class="km">· ' + c.km + ' km</span>' : '';
-        html += '<li><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-medium">' + escapeHtml(c.name) + '</span>' + km + '</li>';
+        var li = document.createElement('li');
+        li.innerHTML = '<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+        var span = document.createElement('span');
+        span.className = 'font-medium';
+        span.textContent = c.name;
+        li.appendChild(span);
+        if(typeof c.km === 'number' && c.km > 0){
+          var kmSpan = document.createElement('span');
+          kmSpan.className = 'km';
+          kmSpan.textContent = ' · ' + c.km + ' km';
+          li.appendChild(kmSpan);
+        }
+        list.appendChild(li);
       }
-      list.innerHTML = html;
       list.style.display = 'grid';
       if(skeleton) skeleton.style.display='none';
       if(fallback) fallback.style.display='none';
@@ -713,8 +723,6 @@ body{padding-bottom:64px}
         note.textContent = '… und alle weiteren Orte im 50-km-Radius um ' + data.origin + '. Wespennest entfernen, Hornissennest umsiedeln, Bienen fachgerecht – meist noch am selben Tag.';
       }
     }
-
-    function escapeHtml(t){ return t.replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\':'&#39;'}[m]; }); }
 
     var obs = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
       for(var i=0;i<entries.length;i++){ if(entries[i].isIntersecting){ loadCities(); obs.disconnect(); break; } }
