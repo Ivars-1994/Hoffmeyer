@@ -11,6 +11,7 @@ import HartmannProcess from '@/components/hartmann/HartmannProcess';
 import HartmannCertifications from '@/components/hartmann/HartmannCertifications';
 import HartmannContact from '@/components/hartmann/HartmannContact';
 import HartmannFooter from '@/components/hartmann/HartmannFooter';
+import Einsatzgebiet from '@/components/hartmann/Einsatzgebiet';
 import MobileStickyCTA from '../components/ui/MobileStickyCTA';
 import { CityData } from '../utils/cityDetection';
 import { getServiceConfig } from '../utils/serviceConfig';
@@ -306,6 +307,7 @@ const Index = () => {
         <HartmannProcess />
         <HartmannCertifications />
         <HartmannContact />
+        <Einsatzgebiet />
         <HartmannFooter brandName="LÖWENSTEIN" email="Info@kammerjaeger-loewenstein.de" />
         <MobileStickyCTA />
       </div>
