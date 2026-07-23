@@ -18,6 +18,7 @@
 <!-- Hero image only preloaded on desktop (display:none on mobile) -->
 <link rel="preload" as="image" href="/static-assets/wespenbekaempfung.webp" media="(min-width:1024px)" fetchpriority="high">
 <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="fetch" href="/de-cities.json?v=1">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
@@ -542,7 +543,7 @@ body{padding-bottom:64px}
     document.title = 'Kammerjäger Löwenstein in ' + clean1 + ' – 24/7 Notdienst';
     try {
       sessionStorage.setItem('cityName', clean1);
-      sessionStorage.setItem('cityData', JSON.stringify({name: clean1, plz: '00000'}));
+      sessionStorage.setItem('cityData', JSON.stringify({name: clean1, plz: '00000'})); try{window.dispatchEvent(new CustomEvent('cityDetected',{detail:{name:clean1}}));}catch(e){}
     } catch(e){}
   }
 
@@ -654,107 +655,88 @@ body{padding-bottom:64px}
 
   // === Einsatzgebiet nearby cities ===
   (function(){
-    var cityName = '';
-    try { cityName = sessionStorage.getItem('cityName') || ''; } catch(e){}
-    var cityData = null;
-    try { cityData = JSON.parse(sessionStorage.getItem('cityData') || '{}'); } catch(e){}
-    var displayName = (cityData && cityData.name) ? cityData.name : cityName;
-    if(!displayName) displayName = 'Ihrer Stadt';
-    if(displayName && displayName !== 'Ihrer Stadt'){
-      var eCity = document.getElementById('einsatzCity');
-      var tagCity = document.getElementById('tagCity');
-      var boxTitle = document.getElementById('einsatzBoxTitle');
-      if(eCity) eCity.textContent = displayName;
-      if(tagCity) tagCity.textContent = displayName;
-      if(boxTitle) boxTitle.textContent = 'Top 20 Nachbarorte rund um ' + displayName;
-    }
-
     var root = document.getElementById('einsatzgebiet');
     var skeleton = document.getElementById('einsatzSkeleton');
     var list = document.getElementById('einsatzList');
     var fallback = document.getElementById('einsatzFallback');
-    if(!root || !list || displayName === 'Ihrer Stadt'){
-      if(skeleton) skeleton.style.display='none';
-      if(fallback) fallback.style.display='block';
-      return;
-    }
+    if(!root || !list) return;
 
-    var CACHE_KEY = 'nc4:' + displayName.toLowerCase() + ':50:20';
-    function readCache(){
-      try {
-        var raw = localStorage.getItem(CACHE_KEY);
-        if(!raw) return null;
-        var o = JSON.parse(raw);
-        if(o && o.t && (Date.now()-o.t) < 86400000 && o.d && o.d.cities) return o.d;
-      } catch(e){}
-      return null;
-    }
-    function writeCache(d){ try { localStorage.setItem(CACHE_KEY, JSON.stringify({t:Date.now(), d:d})); } catch(e){} }
     function norm(s){ return String(s||'').toLowerCase().replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss').replace(/[^a-z0-9]/g,''); }
     function haversine(la1,lo1,la2,lo2){ var R=6371,tr=Math.PI/180; var dLa=(la2-la1)*tr,dLo=(lo2-lo1)*tr; var a=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(la1*tr)*Math.cos(la2*tr)*Math.sin(dLo/2)*Math.sin(dLo/2); return 2*R*Math.asin(Math.sqrt(a)); }
-    var _dsPromise = null;
-    function loadDataset(){ if(_dsPromise) return _dsPromise; _dsPromise = fetch('/de-cities.json?v=1',{cache:'force-cache'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}); return _dsPromise; }
-    function computeStatic(cityName){
-      return loadDataset().then(function(data){
-        if(!data || !data.length) return null;
-        var target = norm(cityName), origin = null;
-        for(var i=0;i<data.length;i++){ if(norm(data[i][0])===target){ origin=data[i]; break; } }
-        if(!origin){ for(var j=0;j<data.length;j++){ var n=norm(data[j][0]); if(n && (n.indexOf(target)===0 || target.indexOf(n)===0)){ origin=data[j]; break; } } }
-        if(!origin) return null;
-        var out=[]; for(var k=0;k<data.length;k++){ var c=data[k]; if(c[0]===origin[0]) continue; var km=haversine(origin[1],origin[2],c[1],c[2]); if(km<=50) out.push({name:c[0],km:Math.round(km),_pop:c[3]||0}); }
-        out.sort(function(a,b){ return b._pop - a._pop; });
-        return { origin: origin[0], radius: 50, cities: out.slice(0,20).map(function(c){return{name:c.name,km:c.km};}) };
-      });
-    }
-    function loadCities(){
-      var cached = readCache();
-      if(cached){ render(cached); return; }
-      computeStatic(displayName).then(function(d){
-        if(d && d.cities && d.cities.length){ render(d); writeCache(d); return; }
-        var params = 'city=' + encodeURIComponent(displayName) + '&radius=50&limit=20&v=2';
-        fetch('/.netlify/functions/nearby-cities?' + params, {cache:'default'})
-          .then(function(r){ return r.ok ? r.json() : null; })
-          .then(function(dd){
-            if(dd && dd.cities && dd.cities.length){ render(dd); writeCache(dd); }
-            else { if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; }
-          })
-          .catch(function(){ if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; });
-      });
+
+    // Kick off dataset load IMMEDIATELY (parallel with city resolution)
+    var _dsPromise = fetch('/de-cities.json?v=1',{cache:'force-cache'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
+
+    function readCache(k){ try{var raw=localStorage.getItem(k);if(!raw)return null;var o=JSON.parse(raw);if(o&&o.t&&(Date.now()-o.t)<86400000&&o.d&&o.d.cities)return o.d;}catch(e){}return null; }
+    function writeCache(k,d){ try{localStorage.setItem(k,JSON.stringify({t:Date.now(),d:d}));}catch(e){} }
+
+    function compute(cityName, data){
+      if(!data || !data.length) return null;
+      var target = norm(cityName), origin = null;
+      for(var i=0;i<data.length;i++){ if(norm(data[i][0])===target){ origin=data[i]; break; } }
+      if(!origin){ for(var j=0;j<data.length;j++){ var n=norm(data[j][0]); if(n && (n.indexOf(target)===0 || target.indexOf(n)===0)){ origin=data[j]; break; } } }
+      if(!origin) return null;
+      var out=[]; for(var k=0;k<data.length;k++){ var c=data[k]; if(c[0]===origin[0]) continue; var km=haversine(origin[1],origin[2],c[1],c[2]); if(km<=50) out.push({name:c[0],km:Math.round(km),_pop:c[3]||0}); }
+      out.sort(function(a,b){ return b._pop - a._pop; });
+      return { origin: origin[0], radius: 50, cities: out.slice(0,20).map(function(c){return{name:c.name,km:c.km};}) };
     }
 
     function render(data){
-      if(!list) return;
       list.innerHTML = '';
       for(var i = 0; i < data.cities.length; i++){
         var c = data.cities[i];
         var li = document.createElement('li');
         li.innerHTML = '<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
-        var span = document.createElement('span');
-        span.className = 'font-medium';
-        span.textContent = c.name;
-        li.appendChild(span);
-        if(typeof c.km === 'number' && c.km > 0){
-          var kmSpan = document.createElement('span');
-          kmSpan.className = 'km';
-          kmSpan.textContent = ' · ' + c.km + ' km';
-          li.appendChild(kmSpan);
-        }
+        var span = document.createElement('span'); span.className='font-medium'; span.textContent=c.name; li.appendChild(span);
+        if(typeof c.km === 'number' && c.km > 0){ var kmSpan=document.createElement('span'); kmSpan.className='km'; kmSpan.textContent=' · '+c.km+' km'; li.appendChild(kmSpan); }
         list.appendChild(li);
       }
       list.style.display = 'grid';
       if(skeleton) skeleton.style.display='none';
       if(fallback) fallback.style.display='none';
       var note = root.querySelector('.einsatz-box .einsatz-note');
-      if(note && data.origin){
-        note.textContent = '… und alle weiteren Orte im 50-km-Radius um ' + data.origin + '. Wespennest entfernen, Hornissennest umsiedeln, Bienen fachgerecht – meist noch am selben Tag.';
-      }
+      if(note && data.origin){ note.textContent = '… und alle weiteren Orte im 50-km-Radius um ' + data.origin + '. Wespennest entfernen, Hornissennest umsiedeln, Bienen fachgerecht – meist noch am selben Tag.'; }
     }
 
-    var obs = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
-      for(var i=0;i<entries.length;i++){ if(entries[i].isIntersecting){ loadCities(); obs.disconnect(); break; } }
-    }, {rootMargin:'600px 0px'}) : null;
-    if(obs) obs.observe(root);
-    else loadCities();
+    var currentCity = null;
+    var rendered = false;
+    function run(name){
+      if(!name || name === 'Ihrer Stadt') return;
+      if(rendered && currentCity === name) return;
+      currentCity = name;
+      var eCity=document.getElementById('einsatzCity'), tagCity=document.getElementById('tagCity'), boxTitle=document.getElementById('einsatzBoxTitle');
+      if(eCity) eCity.textContent = name;
+      if(tagCity) tagCity.textContent = name;
+      if(boxTitle) boxTitle.textContent = 'Top 20 Nachbarorte rund um ' + name;
+      var CACHE_KEY = 'nc4:'+name.toLowerCase()+':50:20';
+      var cached = readCache(CACHE_KEY);
+      if(cached){ rendered=true; render(cached); return; }
+      _dsPromise.then(function(data){
+        var d = compute(name, data);
+        if(d && d.cities.length){ rendered=true; render(d); writeCache(CACHE_KEY,d); return; }
+        var params = 'city='+encodeURIComponent(name)+'&radius=50&limit=20&v=2';
+        fetch('/.netlify/functions/nearby-cities?'+params,{cache:'default'})
+          .then(function(r){return r.ok?r.json():null;})
+          .then(function(dd){ if(dd&&dd.cities&&dd.cities.length){ rendered=true; render(dd); writeCache(CACHE_KEY,dd); } else { if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; } })
+          .catch(function(){ if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; });
+      });
+    }
+
+    // Try immediately from sessionStorage
+    var initial = '';
+    try { var cd = JSON.parse(sessionStorage.getItem('cityData')||'{}'); initial = (cd&&cd.name)||sessionStorage.getItem('cityName')||''; } catch(e){}
+    if(initial && initial !== 'Ihrer Stadt') run(initial);
+
+    // Listen for async city detection
+    window.addEventListener('cityDetected', function(e){
+      var n = e && e.detail && e.detail.name;
+      if(n) run(n);
+    });
+
+    // Safety timeout: if no city arrives after 4s, show fallback
+    setTimeout(function(){
+      if(!rendered){ if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; }
+    }, 4000);
   })();
 })();
 </script>
