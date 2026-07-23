@@ -542,7 +542,7 @@ body{padding-bottom:64px}
     document.title = 'Kammerjäger Löwenstein in ' + clean1 + ' – 24/7 Notdienst';
     try {
       sessionStorage.setItem('cityName', clean1);
-      sessionStorage.setItem('cityData', JSON.stringify({name: clean1, plz: '00000'}));
+      sessionStorage.setItem('cityData', JSON.stringify({name: clean1, plz: '00000'})); try{window.dispatchEvent(new CustomEvent('cityDetected',{detail:{name:clean1}}));}catch(e){}
     } catch(e){}
   }
 
