@@ -57,25 +57,67 @@ const Einsatzgebiet = () => {
     if (!inView) return;
     if (!city.name || city.name === 'Ihrer Stadt') { setState('error'); return; }
     const ctrl = new AbortController();
+    const cacheKey = `nc4:${city.name.toLowerCase()}:50:20`;
+
+    // 24h localStorage cache
+    try {
+      const raw = localStorage.getItem(cacheKey);
+      if (raw) {
+        const o = JSON.parse(raw);
+        if (o?.t && Date.now() - o.t < 86400000 && o.d?.cities?.length) {
+          setData(o.d); setState('ok'); return;
+        }
+      }
+    } catch {}
+
     setState('loading');
 
-    const params = new URLSearchParams({ city: city.name, radius: '50', limit: '20', v: '2' });
-    if (city.plz && city.plz !== '00000') params.set('plz', city.plz);
+    const norm = (s: string) => s.toLowerCase()
+      .replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss')
+      .replace(/[^a-z0-9]/g,'');
+    const hav = (la1: number, lo1: number, la2: number, lo2: number) => {
+      const R = 6371, tr = Math.PI/180;
+      const dLa = (la2-la1)*tr, dLo = (lo2-lo1)*tr;
+      const a = Math.sin(dLa/2)**2 + Math.cos(la1*tr)*Math.cos(la2*tr)*Math.sin(dLo/2)**2;
+      return 2*R*Math.asin(Math.sqrt(a));
+    };
 
-    const fastParams = new URLSearchParams(params);
-    fastParams.set('fast', '1');
+    const writeCache = (d: Resp) => { try { localStorage.setItem(cacheKey, JSON.stringify({t:Date.now(), d})); } catch {} };
 
-    fetch(`${API_BASE}?${fastParams.toString()}`, { signal: ctrl.signal, cache: 'no-store' })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('http'))))
-      .then((json: Resp) => {
-        if (json.cities?.length) { setData(json); setState('ok'); }
+    // Client-side compute from static dataset
+    fetch('/de-cities.json?v=1', { cache: 'force-cache', signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((ds: [string, number, number, number][] | null) => {
+        if (ds?.length) {
+          const target = norm(city.name);
+          let origin = ds.find((r) => norm(r[0]) === target)
+            || ds.find((r) => { const n = norm(r[0]); return n && (n.startsWith(target) || target.startsWith(n)); });
+          if (origin) {
+            const items = ds
+              .filter((c) => c[0] !== origin![0])
+              .map((c) => ({ name: c[0], km: Math.round(hav(origin![1], origin![2], c[1], c[2])), pop: c[3] || 0 }))
+              .filter((x) => x.km <= 50)
+              .sort((a, b) => b.pop - a.pop)
+              .slice(0, 20)
+              .map(({ name, km }) => ({ name, km }));
+            if (items.length) {
+              const d: Resp = { origin: origin[0], radiusKm: 50, cities: items };
+              setData(d); setState('ok'); writeCache(d); return;
+            }
+          }
+        }
+        // Fallback: server API
+        const params = new URLSearchParams({ city: city.name, radius: '50', limit: '20', v: '2' });
+        if (city.plz && city.plz !== '00000') params.set('plz', city.plz);
+        fetch(`${API_BASE}?${params.toString()}`, { signal: ctrl.signal, cache: 'default' })
+          .then((r) => (r.ok ? r.json() : Promise.reject(new Error('http'))))
+          .then((json: Resp) => {
+            if (json.cities?.length) { setData(json); setState('ok'); writeCache(json); }
+            else setState('error');
+          })
+          .catch(() => setState('error'));
       })
-      .catch(() => undefined);
-
-    fetch(`${API_BASE}?${params.toString()}`, { signal: ctrl.signal, cache: 'no-store' })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('http'))))
-      .then((json: Resp) => { setData(json); setState(json.cities?.length ? 'ok' : 'error'); })
-      .catch(() => setState((s) => (s === 'ok' ? 'ok' : 'error')));
+      .catch(() => setState('error'));
 
     return () => ctrl.abort();
   }, [inView, city.name, city.plz]);

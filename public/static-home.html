@@ -679,21 +679,47 @@ body{padding-bottom:64px}
       return;
     }
 
+    var CACHE_KEY = 'nc4:' + displayName.toLowerCase() + ':50:20';
+    function readCache(){
+      try {
+        var raw = localStorage.getItem(CACHE_KEY);
+        if(!raw) return null;
+        var o = JSON.parse(raw);
+        if(o && o.t && (Date.now()-o.t) < 86400000 && o.d && o.d.cities) return o.d;
+      } catch(e){}
+      return null;
+    }
+    function writeCache(d){ try { localStorage.setItem(CACHE_KEY, JSON.stringify({t:Date.now(), d:d})); } catch(e){} }
+    function norm(s){ return String(s||'').toLowerCase().replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss').replace(/[^a-z0-9]/g,''); }
+    function haversine(la1,lo1,la2,lo2){ var R=6371,tr=Math.PI/180; var dLa=(la2-la1)*tr,dLo=(lo2-lo1)*tr; var a=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(la1*tr)*Math.cos(la2*tr)*Math.sin(dLo/2)*Math.sin(dLo/2); return 2*R*Math.asin(Math.sqrt(a)); }
+    var _dsPromise = null;
+    function loadDataset(){ if(_dsPromise) return _dsPromise; _dsPromise = fetch('/de-cities.json?v=1',{cache:'force-cache'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}); return _dsPromise; }
+    function computeStatic(cityName){
+      return loadDataset().then(function(data){
+        if(!data || !data.length) return null;
+        var target = norm(cityName), origin = null;
+        for(var i=0;i<data.length;i++){ if(norm(data[i][0])===target){ origin=data[i]; break; } }
+        if(!origin){ for(var j=0;j<data.length;j++){ var n=norm(data[j][0]); if(n && (n.indexOf(target)===0 || target.indexOf(n)===0)){ origin=data[j]; break; } } }
+        if(!origin) return null;
+        var out=[]; for(var k=0;k<data.length;k++){ var c=data[k]; if(c[0]===origin[0]) continue; var km=haversine(origin[1],origin[2],c[1],c[2]); if(km<=50) out.push({name:c[0],km:Math.round(km),_pop:c[3]||0}); }
+        out.sort(function(a,b){ return b._pop - a._pop; });
+        return { origin: origin[0], radius: 50, cities: out.slice(0,20).map(function(c){return{name:c.name,km:c.km};}) };
+      });
+    }
     function loadCities(){
-      var params = 'city=' + encodeURIComponent(displayName) + '&radius=50&limit=20&v=2';
-      var fast = params + '&fast=1';
-      fetch('/.netlify/functions/nearby-cities?' + fast, {cache:'no-store'})
-        .then(function(r){ return r.ok ? r.json() : null; })
-        .then(function(data){ if(data && data.cities && data.cities.length){ render(data); } })
-        .catch(function(){});
-
-      fetch('/.netlify/functions/nearby-cities?' + params, {cache:'no-store'})
-        .then(function(r){ return r.ok ? r.json() : null; })
-        .then(function(data){
-          if(data && data.cities && data.cities.length){ render(data); }
-          else { if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; }
-        })
-        .catch(function(){ if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; });
+      var cached = readCache();
+      if(cached){ render(cached); return; }
+      computeStatic(displayName).then(function(d){
+        if(d && d.cities && d.cities.length){ render(d); writeCache(d); return; }
+        var params = 'city=' + encodeURIComponent(displayName) + '&radius=50&limit=20&v=2';
+        fetch('/.netlify/functions/nearby-cities?' + params, {cache:'default'})
+          .then(function(r){ return r.ok ? r.json() : null; })
+          .then(function(dd){
+            if(dd && dd.cities && dd.cities.length){ render(dd); writeCache(dd); }
+            else { if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; }
+          })
+          .catch(function(){ if(skeleton) skeleton.style.display='none'; if(fallback) fallback.style.display='block'; });
+      });
     }
 
     function render(data){
