@@ -785,6 +785,20 @@ body{padding-bottom:64px}
     }
   });
 
+  // === Live availability (next slot) ===
+  (function(){
+    function updateSlot(){
+      var el = document.getElementById('liveAvailText'); if(!el) return;
+      var d = new Date(), h = d.getHours();
+      if(h >= 20 || h < 6){ el.textContent = 'Notdienst aktiv · Rückruf in < 15 Min'; return; }
+      var t = new Date(d.getTime() + 45*60000);
+      var m = Math.ceil(t.getMinutes()/5)*5; if(m===60){ t.setHours(t.getHours()+1); m=0; }
+      var hh = String(t.getHours()).padStart(2,'0'), mm = String(m).padStart(2,'0');
+      el.textContent = 'Aktuell frei · nächster Termin heute ca. ' + hh + ':' + mm + ' Uhr';
+    }
+    updateSlot(); setInterval(updateSlot, 60000);
+  })();
+
   // === Einsatzgebiet nearby cities ===
   (function(){
     var root = document.getElementById('einsatzgebiet');
