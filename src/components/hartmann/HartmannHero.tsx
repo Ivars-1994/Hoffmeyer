@@ -11,7 +11,7 @@ interface HartmannHeroProps {
   brandName?: string;
 }
 
-const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Löwenstein" }: HartmannHeroProps) => {
+const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Löwenstein" }: HartmannHeroProps) => {
   return (
     <section className="bg-[#003311] pt-0 pb-6 md:py-20 px-4 md:px-8">
       <PromoBanner className="-mx-4 md:-mx-8 mb-6 md:mb-8" />
@@ -44,7 +44,7 @@ const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Löwenstein" }: H
                   <Star key={i} className="w-5 h-5 text-[#FFD700] fill-[#FFD700]" />
                 ))}
               </div>
-              <span className="text-white">4.7 aus 500+ Bewertungen</span>
+              <span className="text-white">4.7 aus 850+ Bewertungen</span>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-2 lg:mb-10">
@@ -55,13 +55,8 @@ const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Löwenstein" }: H
                 <Phone size={20} />
                 01579 2523663
               </a>
-              <a 
-                href="#kontakt"
-                className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-[#004d1a] transition-colors"
-              >
-                Anfrage Senden
-              </a>
             </div>
+
 
             <div className="hidden md:grid grid-cols-4 gap-6 pt-8 border-t border-[#006622]">
               <div className="text-center">
