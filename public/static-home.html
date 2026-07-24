@@ -670,6 +670,8 @@ body{padding-bottom:64px}
     if(!clean1 || clean1.length < 2) return;
     var el = document.getElementById('cityName');
     if(el) el.textContent = clean1;
+    var sub = document.getElementById('heroSubline');
+    if(sub) sub.textContent = '24/7 in ' + clean1 + ' – heute noch für Sie da';
     document.title = 'Kammerjäger Löwenstein in ' + clean1 + ' – 24/7 Notdienst';
     try {
       sessionStorage.setItem('cityName', clean1);
