@@ -241,6 +241,62 @@ body{padding-bottom:64px}
 .einsatz-skeleton span{height:1.5rem;background:#ffffff1a;border-radius:.25rem;animation:pulse 1.5s infinite}
 .einsatz-note{color:#ffffffb3;font-size:.85rem;margin-top:1rem;line-height:1.5}
 .font-medium{font-weight:500}
+
+/* === HERO SUBLINE === */
+.hero-subline{color:#c9a227;font-size:1rem;font-weight:600;margin-top:-.5rem;margin-bottom:1.25rem;text-align:center;letter-spacing:.01em}
+@media(min-width:1024px){.hero-subline{text-align:left}}
+
+/* === TRUST CHIPS === */
+.trust-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:0 0 1.5rem}
+@media(min-width:1024px){.trust-chips{justify-content:flex-start}}
+.trust-chip{display:inline-flex;align-items:center;gap:.4rem;background:#00441fcc;border:1px solid #c9a22766;color:#f5efd8;padding:.4rem .7rem;border-radius:9999px;font-size:.78rem;font-weight:600;line-height:1}
+.trust-chip svg{width:12px;height:12px;stroke:#c9a227;fill:none;stroke-width:3;flex-shrink:0}
+
+/* === GOOGLE REVIEW WIDGET === */
+.google-rev{display:inline-flex;align-items:center;gap:.75rem;background:#ffffff;color:#1a1a1a;padding:.55rem .9rem;border-radius:.75rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .15s}
+.google-rev:hover{transform:translateY(-1px)}
+.google-rev .g-logo{width:22px;height:22px;flex-shrink:0}
+.google-rev .g-num{font-weight:700;font-size:1rem;color:#1a1a1a}
+.google-rev .g-stars{color:#f5b400;letter-spacing:.05em;font-size:.95rem}
+.google-rev .g-txt{font-size:.78rem;color:#5f6368}
+
+/* === RISK REVERSAL BADGE === */
+.risk-badge{display:inline-flex;align-items:center;gap:.5rem;background:#00441f;border:1px solid #c9a227;color:#f5efd8;padding:.55rem 1rem;border-radius:9999px;font-size:.85rem;font-weight:600;margin:-.5rem 0 1.25rem}
+.risk-badge svg{width:16px;height:16px;stroke:#c9a227;fill:none;stroke-width:2;flex-shrink:0}
+
+/* === LIVE AVAILABILITY === */
+.live-avail{display:inline-flex;align-items:center;gap:.6rem;background:#022b12;border:1px solid #16a34a66;color:#a7f3c8;padding:.5rem .9rem;border-radius:9999px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem}
+.live-avail .dot{width:9px;height:9px;background:#16a34a;border-radius:50%;box-shadow:0 0 0 0 rgba(22,163,74,.7);animation:liveDot 1.8s infinite}
+@keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(22,163,74,.7)}70%{box-shadow:0 0 0 8px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+
+/* === OWNER CARD === */
+.owner{padding:4rem 0;background:#003311;border-top:1px solid #c9a22733;border-bottom:1px solid #c9a22733}
+.owner-grid{display:grid;gap:2rem;align-items:center}
+@media(min-width:768px){.owner-grid{grid-template-columns:280px 1fr;gap:3rem}}
+.owner-photo{position:relative;width:220px;height:220px;margin:0 auto;border-radius:50%;overflow:hidden;border:4px solid #c9a227;box-shadow:0 15px 40px rgba(0,0,0,.35)}
+@media(min-width:768px){.owner-photo{width:260px;height:260px;margin:0}}
+.owner-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.owner-photo .seal{position:absolute;bottom:-6px;right:-6px;background:#c9a227;color:#003311;font-size:.65rem;font-weight:800;padding:.4rem .55rem;border-radius:9999px;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.owner-kicker{color:#c9a227;text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;font-weight:700;margin-bottom:.6rem}
+.owner h2{font-size:clamp(1.6rem,3vw,2.15rem);font-weight:700;margin-bottom:.35rem;line-height:1.15}
+.owner-role{color:#cfd8d2;font-size:.95rem;margin-bottom:1.25rem}
+.owner-quote{color:#f5efd8;font-size:1.05rem;line-height:1.55;font-style:italic;padding-left:1rem;border-left:3px solid #c9a227;margin-bottom:1.25rem}
+.owner-sign{font-family:"Brush Script MT","Segoe Script",cursive;font-style:italic;font-size:1.8rem;color:#c9a227;margin-bottom:1.5rem;line-height:1}
+.owner-cta{display:inline-flex;align-items:center;gap:.6rem;background:#c9a227;color:#003311;padding:.9rem 1.5rem;border-radius:.6rem;font-weight:700;font-size:1rem;transition:background .2s}
+.owner-cta:hover{background:#d4b13a}
+.owner-cta svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5}
+
+/* === TRUST BADGES GRID (Wave 2) === */
+.badges-wrap{padding:3rem 0}
+.badges-title{text-align:center;color:#c9a227;text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;font-weight:700;margin-bottom:1.5rem}
+.badges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(min-width:768px){.badges-grid{grid-template-columns:repeat(6,1fr);gap:1.25rem}}
+.badge-chip{background:#004422;border:1px solid #c9a22766;border-radius:.9rem;padding:1.1rem .6rem;text-align:center;transition:border-color .2s,transform .2s}
+.badge-chip:hover{border-color:#c9a227;transform:translateY(-2px)}
+.badge-chip .b-ico{width:44px;height:44px;margin:0 auto .55rem;color:#c9a227;display:flex;align-items:center;justify-content:center}
+.badge-chip .b-ico svg{width:100%;height:100%;stroke:#c9a227;fill:none;stroke-width:2}
+.badge-chip .b-name{font-size:.72rem;font-weight:700;color:#f5efd8;letter-spacing:.03em;line-height:1.2}
+.badge-chip .b-sub{font-size:.62rem;color:#cfd8d2aa;margin-top:.2rem}
 </style>
 </head>
 <body>
