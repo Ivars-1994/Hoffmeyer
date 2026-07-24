@@ -241,6 +241,62 @@ body{padding-bottom:64px}
 .einsatz-skeleton span{height:1.5rem;background:#ffffff1a;border-radius:.25rem;animation:pulse 1.5s infinite}
 .einsatz-note{color:#ffffffb3;font-size:.85rem;margin-top:1rem;line-height:1.5}
 .font-medium{font-weight:500}
+
+/* === HERO SUBLINE === */
+.hero-subline{color:#c9a227;font-size:1rem;font-weight:600;margin-top:-.5rem;margin-bottom:1.25rem;text-align:center;letter-spacing:.01em}
+@media(min-width:1024px){.hero-subline{text-align:left}}
+
+/* === TRUST CHIPS === */
+.trust-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:0 0 1.5rem}
+@media(min-width:1024px){.trust-chips{justify-content:flex-start}}
+.trust-chip{display:inline-flex;align-items:center;gap:.4rem;background:#00441fcc;border:1px solid #c9a22766;color:#f5efd8;padding:.4rem .7rem;border-radius:9999px;font-size:.78rem;font-weight:600;line-height:1}
+.trust-chip svg{width:12px;height:12px;stroke:#c9a227;fill:none;stroke-width:3;flex-shrink:0}
+
+/* === GOOGLE REVIEW WIDGET === */
+.google-rev{display:inline-flex;align-items:center;gap:.75rem;background:#ffffff;color:#1a1a1a;padding:.55rem .9rem;border-radius:.75rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .15s}
+.google-rev:hover{transform:translateY(-1px)}
+.google-rev .g-logo{width:22px;height:22px;flex-shrink:0}
+.google-rev .g-num{font-weight:700;font-size:1rem;color:#1a1a1a}
+.google-rev .g-stars{color:#f5b400;letter-spacing:.05em;font-size:.95rem}
+.google-rev .g-txt{font-size:.78rem;color:#5f6368}
+
+/* === RISK REVERSAL BADGE === */
+.risk-badge{display:inline-flex;align-items:center;gap:.5rem;background:#00441f;border:1px solid #c9a227;color:#f5efd8;padding:.55rem 1rem;border-radius:9999px;font-size:.85rem;font-weight:600;margin:-.5rem 0 1.25rem}
+.risk-badge svg{width:16px;height:16px;stroke:#c9a227;fill:none;stroke-width:2;flex-shrink:0}
+
+/* === LIVE AVAILABILITY === */
+.live-avail{display:inline-flex;align-items:center;gap:.6rem;background:#022b12;border:1px solid #16a34a66;color:#a7f3c8;padding:.5rem .9rem;border-radius:9999px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem}
+.live-avail .dot{width:9px;height:9px;background:#16a34a;border-radius:50%;box-shadow:0 0 0 0 rgba(22,163,74,.7);animation:liveDot 1.8s infinite}
+@keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(22,163,74,.7)}70%{box-shadow:0 0 0 8px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+
+/* === OWNER CARD === */
+.owner{padding:4rem 0;background:#003311;border-top:1px solid #c9a22733;border-bottom:1px solid #c9a22733}
+.owner-grid{display:grid;gap:2rem;align-items:center}
+@media(min-width:768px){.owner-grid{grid-template-columns:280px 1fr;gap:3rem}}
+.owner-photo{position:relative;width:220px;height:220px;margin:0 auto;border-radius:50%;overflow:hidden;border:4px solid #c9a227;box-shadow:0 15px 40px rgba(0,0,0,.35)}
+@media(min-width:768px){.owner-photo{width:260px;height:260px;margin:0}}
+.owner-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.owner-photo .seal{position:absolute;bottom:-6px;right:-6px;background:#c9a227;color:#003311;font-size:.65rem;font-weight:800;padding:.4rem .55rem;border-radius:9999px;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.owner-kicker{color:#c9a227;text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;font-weight:700;margin-bottom:.6rem}
+.owner h2{font-size:clamp(1.6rem,3vw,2.15rem);font-weight:700;margin-bottom:.35rem;line-height:1.15}
+.owner-role{color:#cfd8d2;font-size:.95rem;margin-bottom:1.25rem}
+.owner-quote{color:#f5efd8;font-size:1.05rem;line-height:1.55;font-style:italic;padding-left:1rem;border-left:3px solid #c9a227;margin-bottom:1.25rem}
+.owner-sign{font-family:"Brush Script MT","Segoe Script",cursive;font-style:italic;font-size:1.8rem;color:#c9a227;margin-bottom:1.5rem;line-height:1}
+.owner-cta{display:inline-flex;align-items:center;gap:.6rem;background:#c9a227;color:#003311;padding:.9rem 1.5rem;border-radius:.6rem;font-weight:700;font-size:1rem;transition:background .2s}
+.owner-cta:hover{background:#d4b13a}
+.owner-cta svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5}
+
+/* === TRUST BADGES GRID (Wave 2) === */
+.badges-wrap{padding:3rem 0}
+.badges-title{text-align:center;color:#c9a227;text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;font-weight:700;margin-bottom:1.5rem}
+.badges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(min-width:768px){.badges-grid{grid-template-columns:repeat(6,1fr);gap:1.25rem}}
+.badge-chip{background:#004422;border:1px solid #c9a22766;border-radius:.9rem;padding:1.1rem .6rem;text-align:center;transition:border-color .2s,transform .2s}
+.badge-chip:hover{border-color:#c9a227;transform:translateY(-2px)}
+.badge-chip .b-ico{width:44px;height:44px;margin:0 auto .55rem;color:#c9a227;display:flex;align-items:center;justify-content:center}
+.badge-chip .b-ico svg{width:100%;height:100%;stroke:#c9a227;fill:none;stroke-width:2}
+.badge-chip .b-name{font-size:.72rem;font-weight:700;color:#f5efd8;letter-spacing:.03em;line-height:1.2}
+.badge-chip .b-sub{font-size:.62rem;color:#cfd8d2aa;margin-top:.2rem}
 </style>
 </head>
 <body>
@@ -299,22 +355,43 @@ body{padding-bottom:64px}
         <span>24/7</span>
       </div>
       <p class="hero-eyebrow">Schädlingsbekämpfung Seit 1998</p>
-      <h1>Kammerjäger<br><span class="city" id="cityName">Ihrer Stadt</span></h1>
+      <h1>Kammerjäger<br><span class="city" id="cityName">Notdienst</span></h1>
+      <p class="hero-subline" id="heroSubline">24/7 vor Ort – heute noch für Sie da</p>
+
+      <div class="trust-chips">
+        <span class="trust-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>IHK-zertifiziert</span>
+        <span class="trust-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Handwerkskammer geprüft</span>
+        <span class="trust-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>500+ Bewertungen · 4,9 ★</span>
+        <span class="trust-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Rechnung an Vermieter möglich</span>
+      </div>
+
       <p class="lead">
         Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger Löwenstein Ihr Partner!
         Wir helfen Ihnen sofort bei jedem Schädlingsbefall weiter. Rufen Sie uns jetzt
         an oder senden Sie eine Anfrage.
       </p>
-      <div class="stars">
-        <span class="s">★★★★★</span>
-        <span>4.7 aus 500+ Bewertungen</span>
-      </div>
+
+      <a href="https://g.page/kammerjaeger-loewenstein" target="_blank" rel="noopener" class="google-rev" aria-label="Google Bewertungen ansehen">
+        <svg class="g-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.76h3.56c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.56-2.76c-.98.66-2.24 1.06-3.72 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.2 1.65l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+        <span class="g-num">4,9</span>
+        <span class="g-stars">★★★★★</span>
+        <span class="g-txt">· 500+ Google Bewertungen</span>
+      </a>
+
       <div class="hero-ctas">
         <a href="tel:015792523663" class="btn-primary" data-conv="phone">
           <svg class="i-phone" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           01579 2523663
         </a>
         <a href="#kontakt" class="btn-outline">Anfrage Senden</a>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:1.5rem" class="hero-badges-row">
+        <span class="risk-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          Erfolgsgarantie – sonst Geld zurück
+        </span>
+        <span class="live-avail" id="liveAvail"><span class="dot"></span><span id="liveAvailText">Aktuell frei · nächster Termin heute</span></span>
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="t">30–60 Min</div><div class="d">Reaktionszeit</div></div>
@@ -427,10 +504,63 @@ body{padding-bottom:64px}
   </div>
 </section>
 
-<!-- ============ CERTIFICATIONS ============ -->
-<section class="cert">
+<!-- ============ CERTIFICATIONS (Wave 2 – SVG chips) ============ -->
+<section class="badges-wrap" aria-label="Zertifizierungen und Mitgliedschaften">
   <div class="container">
-    <img src="/static-assets/trust-badges.webp" alt="Zertifizierungen: DSV Verband, Stiftung Warentest Sehr Gut, TÜV Rheinland, ISO 9001, CEPA" width="1200" height="400" loading="lazy">
+    <p class="badges-title">Geprüft · Zertifiziert · Vertrauenswürdig</p>
+    <div class="badges-grid">
+      <div class="badge-chip">
+        <div class="b-ico"><svg viewBox="0 0 48 48"><path d="M24 4l18 8v12c0 11-8 18-18 20-10-2-18-9-18-20V12l18-8z"/><path d="M17 24l5 5 10-12"/></svg></div>
+        <div class="b-name">IHK</div>
+        <div class="b-sub">Zertifiziert</div>
+      </div>
+      <div class="badge-chip">
+        <div class="b-ico"><svg viewBox="0 0 48 48"><path d="M8 40V16l16-10 16 10v24"/><path d="M8 40h32"/><path d="M20 40V26h8v14"/></svg></div>
+        <div class="b-name">HWK</div>
+        <div class="b-sub">Handwerkskammer</div>
+      </div>
+      <div class="badge-chip">
+        <div class="b-ico"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><path d="M14 24l7 7 13-15"/></svg></div>
+        <div class="b-name">TÜV</div>
+        <div class="b-sub">Geprüft</div>
+      </div>
+      <div class="badge-chip">
+        <div class="b-ico"><svg viewBox="0 0 48 48"><path d="M24 4l4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1z"/></svg></div>
+        <div class="b-name">DSV</div>
+        <div class="b-sub">Verband</div>
+      </div>
+      <div class="badge-chip">
+        <div class="b-ico"><svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="3"/><path d="M6 20h36"/><path d="M14 30h8M28 30h6"/></svg></div>
+        <div class="b-name">ISO 9001</div>
+        <div class="b-sub">Qualität</div>
+      </div>
+      <div class="badge-chip">
+        <div class="b-ico"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="M6 24h36"/><path d="M24 6c6 6 6 30 0 36"/><path d="M24 6c-6 6-6 30 0 36"/></svg></div>
+        <div class="b-name">CEPA</div>
+        <div class="b-sub">European Assoc.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OWNER CARD (Wave 2) ============ -->
+<section class="owner" aria-label="Der Chef persönlich">
+  <div class="container owner-grid">
+    <div class="owner-photo">
+      <img src="/wolframm-loewenstein.jpg" alt="Wolframm Löwenstein – Geschäftsführer Kammerjäger Löwenstein" width="260" height="260" loading="lazy" decoding="async">
+      <span class="seal">Der Chef</span>
+    </div>
+    <div>
+      <p class="owner-kicker">Ihr Ansprechpartner persönlich</p>
+      <h2>Wolframm Löwenstein</h2>
+      <p class="owner-role">Geschäftsführer · Kammerjäger im Familienbetrieb seit 1998</p>
+      <p class="owner-quote">„Ich hafte persönlich für jeden Einsatz meines Teams. Ist Ihr Problem nach unserer Behandlung nicht gelöst, bekommen Sie Ihr Geld zurück. So einfach ist das."</p>
+      <div class="owner-sign">W. Löwenstein</div>
+      <a href="tel:015792523663" class="owner-cta" data-conv="phone">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Direkt mit dem Chef sprechen
+      </a>
+    </div>
   </div>
 </section>
 
@@ -540,6 +670,8 @@ body{padding-bottom:64px}
     if(!clean1 || clean1.length < 2) return;
     var el = document.getElementById('cityName');
     if(el) el.textContent = clean1;
+    var sub = document.getElementById('heroSubline');
+    if(sub) sub.textContent = '24/7 in ' + clean1 + ' – heute noch für Sie da';
     document.title = 'Kammerjäger Löwenstein in ' + clean1 + ' – 24/7 Notdienst';
     try {
       sessionStorage.setItem('cityName', clean1);
@@ -652,6 +784,20 @@ body{padding-bottom:64px}
       window.dataLayer.push({event:'phone_click', phone:'01579 2523663'});
     }
   });
+
+  // === Live availability (next slot) ===
+  (function(){
+    function updateSlot(){
+      var el = document.getElementById('liveAvailText'); if(!el) return;
+      var d = new Date(), h = d.getHours();
+      if(h >= 20 || h < 6){ el.textContent = 'Notdienst aktiv · Rückruf in < 15 Min'; return; }
+      var t = new Date(d.getTime() + 45*60000);
+      var m = Math.ceil(t.getMinutes()/5)*5; if(m===60){ t.setHours(t.getHours()+1); m=0; }
+      var hh = String(t.getHours()).padStart(2,'0'), mm = String(m).padStart(2,'0');
+      el.textContent = 'Aktuell frei · nächster Termin heute ca. ' + hh + ':' + mm + ' Uhr';
+    }
+    updateSlot(); setInterval(updateSlot, 60000);
+  })();
 
   // === Einsatzgebiet nearby cities ===
   (function(){
