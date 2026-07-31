@@ -11,7 +11,7 @@ interface HartmannHeroProps {
   brandName?: string;
 }
 
-const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Löwenstein" }: HartmannHeroProps) => {
+const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Oppenheimer" }: HartmannHeroProps) => {
   return (
     <section className="bg-[#003311] pt-0 pb-6 md:py-20 px-4 md:px-8">
       <PromoBanner className="-mx-4 md:-mx-8 mb-6 md:mb-8" />

@@ -55,7 +55,7 @@ async function nominatim(q) {
   try {
     const r = await fetchWithTimeout(
       `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=de&q=${encodeURIComponent(q)}`,
-      { headers: { 'User-Agent': 'loewenstein-wespen/1.0 (kammerjaeger-loewenstein.de)' } },
+      { headers: { 'User-Agent': 'oppenheimer-wespen/1.0 (kammerjaeger-oppenheimer.de)' } },
       6000,
     );
     if (!r.ok) return null;
@@ -96,7 +96,7 @@ async function nominatimCanonical(name) {
   try {
     const r = await fetchWithTimeout(
       `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=de&addressdetails=1&q=${encodeURIComponent(name + ', Deutschland')}`,
-      { headers: { 'User-Agent': 'loewenstein-wespen/1.0 (kammerjaeger-loewenstein.de)' } },
+      { headers: { 'User-Agent': 'oppenheimer-wespen/1.0 (kammerjaeger-oppenheimer.de)' } },
       5000,
     );
     if (!r.ok) return null;
@@ -202,7 +202,7 @@ out center tags 500;`;
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
           Accept: 'application/json',
-          'User-Agent': 'loewenstein-wespen/1.0 (kammerjaeger-loewenstein.de)',
+          'User-Agent': 'oppenheimer-wespen/1.0 (kammerjaeger-oppenheimer.de)',
         },
         body: new URLSearchParams({ data: query }).toString(),
       }, 10000);

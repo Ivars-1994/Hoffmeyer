@@ -4,8 +4,8 @@ const fs = require("fs");
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
-  'https://kammerjaeger-loewenstein.de',
-  'https://www.kammerjaeger-loewenstein.de',
+  'https://kammerjaeger-oppenheimer.de',
+  'https://www.kammerjaeger-oppenheimer.de',
   'http://localhost:5173',
   'http://localhost:8888'
 ];

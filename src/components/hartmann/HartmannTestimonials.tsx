@@ -69,7 +69,7 @@ const testimonials = [
     platformLogo: TrustpilotLogo,
     bg: "bg-purple-600",
     stars: 5,
-    text: "Wir arbeiten schon länger zusammen und wollten uns für die Beratung und schnelle Hilfe bedanken. Wir empfehlen Kammerjäger Löwenstein jedem weiter."
+    text: "Wir arbeiten schon länger zusammen und wollten uns für die Beratung und schnelle Hilfe bedanken. Wir empfehlen Kammerjäger Oppenheimer jedem weiter."
   },
   {
     name: "Nicole Bauer",

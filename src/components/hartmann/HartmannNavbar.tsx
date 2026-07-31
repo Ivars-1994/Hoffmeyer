@@ -5,7 +5,7 @@ interface HartmannNavbarProps {
   brandName?: string;
 }
 
-const HartmannNavbar = ({ brandName = 'LÖWENSTEIN' }: HartmannNavbarProps) => {
+const HartmannNavbar = ({ brandName = 'OPPENHEIMER' }: HartmannNavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
