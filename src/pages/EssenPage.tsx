@@ -85,7 +85,7 @@ const FAQ_DATA = [
   },
   {
     question: 'Kammerjäger Essen Kosten – gibt es versteckte Gebühren?',
-    answer: 'Nein, bei Kammerjäger Löwenstein in Essen gibt es keine versteckten Kosten. Sie erhalten vor Arbeitsbeginn einen verbindlichen Festpreis. Die Anfahrt innerhalb von Essen ist in den meisten Fällen bereits inklusive.'
+    answer: 'Nein, bei Kammerjäger Oppenheimer in Essen gibt es keine versteckten Kosten. Sie erhalten vor Arbeitsbeginn einen verbindlichen Festpreis. Die Anfahrt innerhalb von Essen ist in den meisten Fällen bereits inklusive.'
   },
   {
     question: 'Arbeiten Sie auch am Wochenende und an Feiertagen in Essen?',
@@ -124,16 +124,16 @@ const EssenPage = () => {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://kammerjaeger-loewenstein.de/#firma",
-        "name": "Kammerjäger Löwenstein",
-        "url": "https://kammerjaeger-loewenstein.de/",
-        "image": "https://kammerjaeger-loewenstein.de/lovable-uploads/rothschild-logo.png",
+        "@id": "https://kammerjaeger-oppenheimer.de/#firma",
+        "name": "Kammerjäger Oppenheimer",
+        "url": "https://kammerjaeger-oppenheimer.de/",
+        "image": "https://kammerjaeger-oppenheimer.de/lovable-uploads/rothschild-logo.png",
         "telephone": "+4915212124199",
         "email": "info.kammerjaegerrothschild@gmail.com",
         "priceRange": "€€",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Löwenstein Schädlingsbekämpfung",
+          "streetAddress": "Oppenheimer Schädlingsbekämpfung",
           "postalCode": "45127",
           "addressLocality": "Essen",
           "addressRegion": "NW",
@@ -192,15 +192,15 @@ const EssenPage = () => {
       },
       {
         "@type": "Service",
-        "@id": "https://kammerjaeger-loewenstein.de/kammerjaeger-essen/#service",
+        "@id": "https://kammerjaeger-oppenheimer.de/kammerjaeger-essen/#service",
         "name": "Schädlingsbekämpfung in Essen",
         "serviceType": "Kammerjäger Essen, Schädlingsbekämpfung Essen, 24h Notdienst",
-        "provider": { "@id": "https://kammerjaeger-loewenstein.de/#firma" },
+        "provider": { "@id": "https://kammerjaeger-oppenheimer.de/#firma" },
         "areaServed": {
           "@type": "City",
           "name": "Essen"
         },
-        "url": "https://kammerjaeger-loewenstein.de/kammerjaeger-essen",
+        "url": "https://kammerjaeger-oppenheimer.de/kammerjaeger-essen",
         "description": "IHK-zertifizierter Kammerjäger in Essen mit 24/7 Notdienst, schneller Anfahrt in 30–60 Minuten und professioneller Schädlingsbekämpfung für Privat- und Geschäftskunden.",
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -214,7 +214,7 @@ const EssenPage = () => {
       },
       {
         "@type": "FAQPage",
-        "@id": "https://kammerjaeger-loewenstein.de/kammerjaeger-essen/#faq",
+        "@id": "https://kammerjaeger-oppenheimer.de/kammerjaeger-essen/#faq",
         "mainEntity": FAQ_DATA.map(faq => ({
           "@type": "Question",
           "name": faq.question,
@@ -231,13 +231,13 @@ const EssenPage = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://kammerjaeger-loewenstein.de/"
+            "item": "https://kammerjaeger-oppenheimer.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Kammerjäger Essen",
-            "item": "https://kammerjaeger-loewenstein.de/kammerjaeger-essen"
+            "item": "https://kammerjaeger-oppenheimer.de/kammerjaeger-essen"
           }
         ]
       }
@@ -247,13 +247,13 @@ const EssenPage = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Löwenstein</title>
+        <title>Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Oppenheimer</title>
         <meta name="description" content="Kammerjäger in Essen gesucht? IHK-zertifizierte Schädlingsbekämpfung, 24h-Notdienst, schnelle Hilfe in 30–60 Min vor Ort. Jetzt anrufen & Schädlinge professionell beseitigen lassen." />
         <meta name="keywords" content="Kammerjäger Essen, Schädlingsbekämpfung Essen, Kammerjäger Notdienst Essen, Wespen Essen, Bettwanzen Essen, Ratten Essen, Mäuse Essen, Schädlingsbekämpfer Essen" />
-        <link rel="canonical" href="https://kammerjaeger-loewenstein.de/kammerjaeger-essen" />
+        <link rel="canonical" href="https://kammerjaeger-oppenheimer.de/kammerjaeger-essen" />
         <meta property="og:title" content="Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst" />
         <meta property="og:description" content="IHK-zertifizierte Schädlingsbekämpfung in Essen. 24/7 Notdienst, 30-60 Min vor Ort. Wespen, Ratten, Bettwanzen & mehr." />
-        <meta property="og:url" content="https://kammerjaeger-loewenstein.de/kammerjaeger-essen" />
+        <meta property="og:url" content="https://kammerjaeger-oppenheimer.de/kammerjaeger-essen" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="de_DE" />
         <meta name="geo.region" content="DE-NW" />
@@ -540,7 +540,7 @@ const EssenPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                   {[
                     { name: 'M. Schmidt', location: 'Essen-Rüttenscheid', text: 'Wespennest wurde noch am gleichen Tag entfernt. Sehr professionell und freundlich. Klare Empfehlung!', rating: 5 },
-                    { name: 'K. Weber', location: 'Essen-Stadtmitte', text: 'Bettwanzen im Hotel – Löwenstein war innerhalb einer Stunde da und hat das Problem diskret gelöst. Top Service!', rating: 5 },
+                    { name: 'K. Weber', location: 'Essen-Stadtmitte', text: 'Bettwanzen im Hotel – Oppenheimer war innerhalb einer Stunde da und hat das Problem diskret gelöst. Top Service!', rating: 5 },
                     { name: 'T. Müller', location: 'Essen-Steele', text: 'Mäuse im Keller. Schnelle Reaktion, faire Preise und nachhaltige Lösung. Sehr zufrieden!', rating: 5 }
                   ].map((review, index) => (
                     <div key={index} className="bg-background rounded-xl p-6 shadow-md">

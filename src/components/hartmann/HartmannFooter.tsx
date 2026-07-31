@@ -6,8 +6,8 @@ interface HartmannFooterProps {
 }
 
 const HartmannFooter = ({
-  brandName = 'LÖWENSTEIN',
-  email = 'info@kammerjaeger-loewenstein.de',
+  brandName = 'OPPENHEIMER',
+  email = 'info@kammerjaeger-oppenheimer.de',
 }: HartmannFooterProps) => {
   return (
     <footer className="bg-[#003311] border-t border-[#004d1a] py-12 px-4 md:px-8">

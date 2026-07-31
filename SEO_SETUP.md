@@ -1,4 +1,4 @@
-# SEO-Optimierung Setup für Kammerjäger Löwenstein
+# SEO-Optimierung Setup für Kammerjäger Oppenheimer
 
 ## ✅ Was wurde implementiert?
 
@@ -90,9 +90,9 @@ npm run build
 Nach dem Deployment:
 
 1. **URL-Prüfung Tool**
-   - Prüfe: `https://kammerjaeger-loewenstein.de`
-   - Prüfe: `https://kammerjaeger-loewenstein.de/#wespen`
-   - Prüfe: `https://kammerjaeger-loewenstein.de/#bettwanzen`
+   - Prüfe: `https://kammerjaeger-oppenheimer.de`
+   - Prüfe: `https://kammerjaeger-oppenheimer.de/#wespen`
+   - Prüfe: `https://kammerjaeger-oppenheimer.de/#bettwanzen`
 
 2. **Sitemap einreichen**
    - Erstelle eine Sitemap mit allen Hash-URLs

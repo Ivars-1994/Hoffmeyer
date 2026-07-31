@@ -61,8 +61,8 @@ const Datenschutz = () => {
   return (
     <>
       <Helmet>
-        <title>Datenschutzerklärung - Kammerjäger Löwenstein</title>
-        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Löwenstein in ${cityInfo.city}.`} />
+        <title>Datenschutzerklärung - Kammerjäger Oppenheimer</title>
+        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Oppenheimer in ${cityInfo.city}.`} />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
@@ -75,7 +75,7 @@ const Datenschutz = () => {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Verantwortlicher</h2>
               <div className="space-y-2">
-                <p>Kammerjäger Löwenstein</p>
+                <p>Kammerjäger Oppenheimer</p>
                 <p>Hauptstraße 26–36</p>
                 <p>{cityInfo.city}</p>
                 <p>Deutschland</p>

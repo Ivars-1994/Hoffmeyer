@@ -98,9 +98,9 @@ scp -r dist/* user@server:/var/www/kammerjaeger-rothschild/
 
 ### 1. URL-Tests
 Teste diese URLs:
-- `https://kammerjaeger-loewenstein.de`
-- `https://kammerjaeger-loewenstein.de/#wespen`
-- `https://kammerjaeger-loewenstein.de/#bettwanzen`
+- `https://kammerjaeger-oppenheimer.de`
+- `https://kammerjaeger-oppenheimer.de/#wespen`
+- `https://kammerjaeger-oppenheimer.de/#bettwanzen`
 - etc.
 
 ### 2. Google Search Console

@@ -26,7 +26,7 @@ Dateien: `index.html`, `public/index.html`, `public/static-home.html` (identisch
     if(!clean1 || clean1.length < 2) return;
     var el = document.getElementById('cityName');
     if(el) el.textContent = clean1;
-    document.title = 'Kammerjäger Löwenstein in ' + clean1 + ' – 24/7 Notdienst';
+    document.title = 'Kammerjäger Oppenheimer in ' + clean1 + ' – 24/7 Notdienst';
     try {
       sessionStorage.setItem('cityName', clean1);
       sessionStorage.setItem('cityData', JSON.stringify({name: clean1, plz: '00000'}));
@@ -93,8 +93,8 @@ const path = require("path");
 const fs = require("fs");
 
 const ALLOWED_ORIGINS = [
-  'https://kammerjaeger-loewenstein.de',
-  'https://www.kammerjaeger-loewenstein.de',
+  'https://kammerjaeger-oppenheimer.de',
+  'https://www.kammerjaeger-oppenheimer.de',
   'http://localhost:5173',
   'http://localhost:8888'
 ];
@@ -332,7 +332,7 @@ const Index = () => {
   const cityName = getDisplayCityName();
 
   return (
-    <HartmannHero cityName={cityName} brandName="Löwenstein" />
+    <HartmannHero cityName={cityName} brandName="Oppenheimer" />
   );
 };
 ```
@@ -437,7 +437,7 @@ interface HartmannHeroProps {
   brandName?: string;
 }
 
-const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Löwenstein" }: HartmannHeroProps) => {
+const HartmannHero = ({ cityName = "Ihrer Stadt", brandName = "Oppenheimer" }: HartmannHeroProps) => {
   return (
     <section className="bg-[#003311] pt-8 pb-6 md:py-20 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
