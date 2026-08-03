@@ -1,6 +1,10 @@
-// netlify/functions/resolve-id.js
-const path = require("path");
-const fs = require("fs");
+// netlify/functions/resolve-id.js (ESM – package.json hat "type": "module")
+import path from "node:path";
+import fs from "node:fs";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
