@@ -694,10 +694,7 @@ body{padding-bottom:64px}
     } catch(e){}
   }
 
-  function resolveLocationId(locId){
-    var id = (locId || '').replace(/[^0-9]/g,'').substring(0,15);
-    if(!id || id.length < 5){ storedFallback(); return; }
-    if(id === '9043934'){ setCity('Essen'); return; }
+  function resolveViaFunction(id){
     fetch('/.netlify/functions/resolve-id?id=' + encodeURIComponent(id), {cache:'no-store'})
       .then(function(resp){ return resp.ok ? resp.json() : null; })
       .then(function(data){
@@ -705,6 +702,21 @@ body{padding-bottom:64px}
         else storedFallback();
       })
       .catch(storedFallback);
+  }
+
+  function resolveLocationId(locId){
+    var id = (locId || '').replace(/[^0-9]/g,'').substring(0,15);
+    if(!id || id.length < 5){ storedFallback(); return; }
+    if(id === '9043934'){ setCity('Essen'); return; }
+    // 1) Statische Map (funktioniert ohne Server/Function)
+    fetch('/data/stadt_map.json', {cache:'force-cache'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(map){
+        var val = map && map[id] ? String(map[id]).trim() : '';
+        if(val && !/^\d+$/.test(val)){ setCity(val); return; }
+        resolveViaFunction(id);
+      })
+      .catch(function(){ resolveViaFunction(id); });
   }
 
   // 1) URL param ?city=
