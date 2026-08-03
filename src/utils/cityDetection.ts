@@ -67,8 +67,26 @@ export async function detectCity(): Promise<CityData> {
       sessionStorage.setItem("cityData", JSON.stringify(knownCity));
       return knownCity;
     }
-    
+
+    // Priorität 2a: statische Map (funktioniert ohne Netlify Function)
     try {
+      const mapRes = await fetch("/data/stadt_map.json", { cache: "force-cache" });
+      if (mapRes.ok) {
+        const map = await mapRes.json();
+        const val = map?.[sanitizedLocId] ? String(map[sanitizedLocId]).trim() : "";
+        if (val && !/^\d+$/.test(val)) {
+          const cityData = { name: val.charAt(0).toUpperCase() + val.slice(1), plz: "00000" };
+          sessionStorage.setItem("cityName", cityData.name);
+          sessionStorage.setItem("cityData", JSON.stringify(cityData));
+          return cityData;
+        }
+      }
+    } catch (e) {
+      debugLog("Statische Stadt-Map nicht verfügbar");
+    }
+
+    try {
+
       debugLog("Lade Stadt-Map für ID:", sanitizedLocId);
       
       const controller = new AbortController();
