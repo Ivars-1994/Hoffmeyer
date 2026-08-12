@@ -4,8 +4,8 @@ import { Phone, MapPin, CheckCircle } from 'lucide-react';
 type NearbyCity = { name: string; km?: number | null };
 type Resp = { origin: string; radiusKm: number; cities: NearbyCity[]; source?: 'district' | 'radius' };
 
-const PHONE_DISPLAY = '01579 2523663';
-const CALL = 'tel:015792523663';
+const PHONE_DISPLAY = '01579 2513976';
+const CALL = 'tel:015792513976';
 const API_BASE = '/.netlify/functions/nearby-cities';
 
 function readCity(): { name: string; plz: string } {

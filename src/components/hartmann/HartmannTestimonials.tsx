@@ -136,10 +136,10 @@ const HartmannTestimonials = () => {
             Anfrage Senden
           </a>
           <a 
-            href="tel:015792523663"
+            href="tel:015792513976"
             className="flex items-center justify-center gap-2 bg-[#003311] border-2 border-[#003311] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#004d1a] transition-colors"
           >
-            01579 2523663
+            01579 2513976
           </a>
         </div>
       </div>

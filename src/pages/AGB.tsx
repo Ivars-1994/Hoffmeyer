@@ -76,7 +76,7 @@ const AGB = () => {
                 <p>Kammerjäger Oppenheimer</p>
                 <p>Hauptstraße 26–36, {cityInfo.city}</p>
                 <p>E-Mail: <a href="mailto:info.kammerjaegerrothschild.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerrothschild.de</a></p>
-                <p>Telefon: <a href="tel:+4915792523663" className="call-link text-[#9b87f5] hover:underline">+49 1579 2523663</a></p>
+                <p>Telefon: <a href="tel:+4915792513976" className="call-link text-[#9b87f5] hover:underline">+49 1579 2513976</a></p>
               </div>
             </section>
             
