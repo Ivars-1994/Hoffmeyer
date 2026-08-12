@@ -5,7 +5,7 @@ import HeroContent from './HeroContent';
 import HeroFeatures from './HeroFeatures';
 import { ServiceConfig } from '../../utils/serviceConfig';
 
-const PHONE_NUMBER = "+4915792523663";
+const PHONE_NUMBER = "+4915792513976";
 
 interface HeroProps {
   cityName: string;
