@@ -23,7 +23,7 @@ declare global {
   }
 }
 
-const PHONE_NUMBER = "+4915792394636";
+const PHONE_NUMBER = "+4915792674280";
 
 const Index = () => {
   const { service: serviceSlug } = useParams<{ service?: string }>();

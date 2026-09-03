@@ -29,7 +29,7 @@ const LandingPageHartmann = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Oppenheimer | 24/7 Schädlingsbekämpfung | Tel: 01579 2394636</title>
+        <title>Kammerjäger Oppenheimer | 24/7 Schädlingsbekämpfung | Tel: 01579 2674280</title>
         <meta 
           name="description" 
           content="Kammerjäger Oppenheimer - Professionelle Schädlingsbekämpfung seit 1998. 24/7 Notdienst, 30-60 Min. Reaktionszeit. Ratten, Wespen, Mäuse, Bettwanzen. Jetzt anrufen!" 
