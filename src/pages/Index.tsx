@@ -303,7 +303,7 @@ const Index = () => {
         )}
       </Helmet>
       
-      <div className="min-h-screen bg-[#064A2A]">
+      <div className="min-h-screen bg-[#003311]">
         <HartmannNavbar brandName="KELLERMANN" />
         <HartmannHero cityName={cityName} brandName="Kellermann" />
         <HartmannService />
