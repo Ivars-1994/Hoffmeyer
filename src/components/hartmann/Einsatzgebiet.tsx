@@ -136,7 +136,7 @@ const Einsatzgebiet = () => {
               <>Wir kommen zu Ihnen – kostenfrei im 50-km-Radius.</>
             )}
           </h2>
-          <p className="text-gray-200 text-lg mb-6 leading-relaxed">
+          <p className="text-white/90 text-lg mb-6 leading-relaxed">
             In unserem Kern-Einsatzgebiet fällt keine Anfahrtspauschale an.
             Sie zahlen nur den Einsatz – transparent und versicherungskonform.
           </p>
