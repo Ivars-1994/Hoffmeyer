@@ -91,16 +91,16 @@ vercel --prod
 ### Eigener Server
 ```bash
 # dist/ Ordner auf Server kopieren
-scp -r dist/* user@server:/var/www/kammerjaeger-rothschild/
+scp -r dist/* user@server:/var/www/kammerjaeger-kellermann/
 ```
 
 ## ✅ Nach dem Deployment
 
 ### 1. URL-Tests
 Teste diese URLs:
-- `https://kammerjaeger-oppenheimer.de`
-- `https://kammerjaeger-oppenheimer.de/#wespen`
-- `https://kammerjaeger-oppenheimer.de/#bettwanzen`
+- `https://kammerjaeger-kellermann.de`
+- `https://kammerjaeger-kellermann.de/#wespen`
+- `https://kammerjaeger-kellermann.de/#bettwanzen`
 - etc.
 
 ### 2. Google Search Console

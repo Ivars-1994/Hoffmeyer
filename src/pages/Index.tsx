@@ -23,7 +23,7 @@ declare global {
   }
 }
 
-const PHONE_NUMBER = "+4915792674280";
+const PHONE_NUMBER = "+4915792492770";
 
 const Index = () => {
   const { service: serviceSlug } = useParams<{ service?: string }>();
@@ -195,35 +195,35 @@ const Index = () => {
   useEffect(() => {
     const SERVICE_TITLES: Record<string, { title: string; description: string }> = {
       wespen: {
-        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Oppenheimer",
+        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Kellermann",
         description: "Professionelle Wespenbekämpfung ✓ Schnelle Entfernung von Wespennestern ✓ IHK-zertifiziert ✓ Kostenlose Anfahrt ✓ 30-60 Min vor Ort"
       },
       bettwanzen: {
-        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Oppenheimer",
+        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Kellermann",
         description: "Effektive Bettwanzenbekämpfung ✓ Wärmebehandlung & Insektizide ✓ Diskret & gründlich ✓ Nachkontrolle inklusive ✓ 24/7 Notdienst"
       },
       ratten: {
-        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Oppenheimer",
+        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Kellermann",
         description: "Professionelle Rattenbekämpfung ✓ Gesicherte Köderstationen ✓ Hygienische Entsorgung ✓ Präventionsberatung ✓ Kostenlose Anfahrt"
       },
       marder: {
-        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Oppenheimer",
+        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Kellermann",
         description: "Tierschonende Marderabwehr ✓ Gebäudeabdichtung ✓ Geruchsneutralisation ✓ Langfristiger Schutz ✓ 24/7 verfügbar"
       },
       maeuse: {
-        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Oppenheimer",
+        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Kellermann",
         description: "Effektive Mäusebekämpfung ✓ Befallsanalyse ✓ Köderstationen & Fallen ✓ Abdichtung ✓ Kostenlose Erstberatung"
       },
       silberfische: {
-        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Oppenheimer",
+        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Kellermann",
         description: "Nachhaltige Silberfischbekämpfung ✓ Ursachenanalyse ✓ Feuchtigkeitsberatung ✓ Gründliche Behandlung ✓ Langfristige Lösung"
       },
       kakerlaken: {
-        title: "Kakerlaken vernichten | Professionell | Kammerjäger Oppenheimer",
+        title: "Kakerlaken vernichten | Professionell | Kammerjäger Kellermann",
         description: "Schnelle Schabenbekämpfung ✓ Gel-Köder & Sprühbehandlung ✓ Hygiene-Beratung ✓ Mehrfachbehandlung ✓ Diskret & zuverlässig"
       },
       floehe: {
-        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Oppenheimer",
+        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Kellermann",
         description: "Gründliche Flohbekämpfung ✓ Umgebungsbehandlung ✓ Wachstumsregulatoren ✓ Haustierfreundlich ✓ Nachbehandlung inklusive"
       }
     };
@@ -242,7 +242,7 @@ const Index = () => {
         }
         metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
       } else {
-        document.title = `Kammerjäger Oppenheimer | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
+        document.title = `Kammerjäger Kellermann | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
       }
     };
 
@@ -253,16 +253,16 @@ const Index = () => {
   }, [cityName]);
 
   const pageTitle = serviceConfig 
-    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Oppenheimer`
-    : `Kammerjäger Oppenheimer - Professionelle Schädlingsbekämpfung in ${cityName}`;
+    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Kellermann`
+    : `Kammerjäger Kellermann - Professionelle Schädlingsbekämpfung in ${cityName}`;
   
   const pageDescription = serviceConfig 
     ? `${serviceConfig.metaDescription} Schnelle Hilfe in ${cityName}.`
     : `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
   
   const canonicalUrl = serviceConfig 
-    ? `https://kammerjaeger-oppenheimer.de/svc/${serviceConfig.slug}`
-    : 'https://kammerjaeger-oppenheimer.de/';
+    ? `https://kammerjaeger-kellermann.de/svc/${serviceConfig.slug}`
+    : 'https://kammerjaeger-kellermann.de/';
 
   const serviceSchema = serviceConfig ? {
     "@context": "https://schema.org",
@@ -270,9 +270,9 @@ const Index = () => {
     "serviceType": serviceConfig.schemaServiceType,
     "provider": {
       "@type": "ProfessionalService",
-      "name": "Kammerjäger Oppenheimer",
+      "name": "Kammerjäger Kellermann",
       "telephone": PHONE_NUMBER,
-      "url": "https://kammerjaeger-oppenheimer.de",
+      "url": "https://kammerjaeger-kellermann.de",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "DE",
@@ -304,8 +304,8 @@ const Index = () => {
       </Helmet>
       
       <div className="min-h-screen bg-[#003311]">
-        <HartmannNavbar brandName="OPPENHEIMER" />
-        <HartmannHero cityName={cityName} brandName="Oppenheimer" />
+        <HartmannNavbar brandName="KELLERMANN" />
+        <HartmannHero cityName={cityName} brandName="Kellermann" />
         <HartmannService />
         <HartmannTestimonials />
         <HartmannServices />
@@ -313,7 +313,7 @@ const Index = () => {
         <HartmannCertifications />
         <HartmannContact />
         <Einsatzgebiet />
-        <HartmannFooter brandName="OPPENHEIMER" email="Info@kammerjaeger-oppenheimer.de" />
+        <HartmannFooter brandName="KELLERMANN" email="Info@kammerjaeger-kellermann.de" />
         <MobileStickyCTA />
       </div>
     </>

@@ -5,7 +5,7 @@ import HeroContent from './HeroContent';
 import HeroFeatures from './HeroFeatures';
 import { ServiceConfig } from '../../utils/serviceConfig';
 
-const PHONE_NUMBER = "+4915792674280";
+const PHONE_NUMBER = "+4915792492770";
 
 interface HeroProps {
   cityName: string;
@@ -18,12 +18,12 @@ const Hero = ({ cityName, serviceConfig }: HeroProps) => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Kammerjäger Oppenheimer",
+    "name": "Kammerjäger Kellermann",
     "description": serviceConfig 
       ? `${serviceConfig.schemaServiceType} in ${cityName}. 24/7 Notdienst verfügbar.`
       : `Professionelle Schädlingsbekämpfung mit IHK-zertifizierten Experten in ${cityName}. 24/7 Notdienst verfügbar.`,
     "telephone": PHONE_NUMBER,
-    "url": "https://kammerjaeger-oppenheimer.de",
+    "url": "https://kammerjaeger-kellermann.de",
     "image": "/lovable-uploads/4ae74c53-cd9c-47d4-ba9e-e38058eef4e3.png",
     "address": {
       "@type": "PostalAddress",

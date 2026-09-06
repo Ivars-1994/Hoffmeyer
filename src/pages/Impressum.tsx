@@ -9,8 +9,8 @@ const Impressum = () => {
   return (
     <>
       <Helmet>
-        <title>Impressum - Kammerjäger Oppenheimer</title>
-        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Oppenheimer." />
+        <title>Impressum - Kammerjäger Kellermann</title>
+        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Kellermann." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#003311]">
@@ -23,15 +23,15 @@ const Impressum = () => {
             <div className="space-y-8 text-gray-300">
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Angaben gemäß § 5 TMG</h2>
-                <p>Kammerjäger Oppenheimer</p>
+                <p>Kammerjäger Kellermann</p>
                 <p>Hauptstraße 26–28</p>
                 <p>Deutschland</p>
               </section>
 
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Kontakt</h2>
-                <p>Telefon: <a href="tel:+4915792674280" className="text-[#c9a227] hover:underline">+49 1579 2674280</a></p>
-                <p>E-Mail: <a href="mailto:info@kammerjaeger-oppenheimer.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-oppenheimer.de</a></p>
+                <p>Telefon: <a href="tel:+4915792492770" className="text-[#c9a227] hover:underline">+49 01579 2492770</a></p>
+                <p>E-Mail: <a href="mailto:info@kammerjaeger-kellermann.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-kellermann.de</a></p>
               </section>
 
               <section>

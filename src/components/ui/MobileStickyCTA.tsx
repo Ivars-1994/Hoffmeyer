@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const PHONE_NUMBER = "+49 1579 2674280";
+const PHONE_NUMBER = "+49 01579 2492770";
 
 const MobileStickyCTA = () => {
   const isMobile = useIsMobile();
@@ -35,8 +35,8 @@ const MobileStickyCTA = () => {
         {/* Profile Image - lazy loaded */}
         <div className="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border-3 border-white shadow-lg">
           <img 
-            src="/lovable-uploads/norbert-wolframm.jpg"
-            alt="Kammerjäger Oppenheimer Experte"
+            src="/lovable-uploads/wolframm-kellermann.jpg"
+            alt="Kammerjäger Kellermann Experte"
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
