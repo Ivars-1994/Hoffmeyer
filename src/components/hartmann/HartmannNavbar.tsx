@@ -24,7 +24,7 @@ const HartmannNavbar = ({ brandName = 'KELLERMANN' }: HartmannNavbarProps) => {
           </div>
           <div className="text-white">
             <div className="font-bold text-xl tracking-wider">{brandName}</div>
-            <div className="text-xs text-white/80 tracking-wide">Kammerjäger Seit 98'</div>
+            <div className="text-xs text-gray-300 tracking-wide">Kammerjäger Seit 98'</div>
           </div>
         </a>
 

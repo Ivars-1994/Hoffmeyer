@@ -32,7 +32,7 @@ const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }:
                 <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-[#c9a227] origin-left animate-underline-draw"></span>
               </span>
             </h1>
-            <p className="text-white/90 text-lg mb-6 leading-relaxed">
+            <p className="text-gray-200 text-lg mb-6 leading-relaxed">
               Wenn Sie einen Schädlingsbefall haben, ist Kammerjäger {brandName} Ihr Partner! 
               Wir helfen Ihnen sofort bei jedem Schädlingsbefall weiter. Rufen Sie uns jetzt 
               an oder senden Sie eine Anfrage.
@@ -64,28 +64,28 @@ const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }:
                   <Clock className="w-7 h-7 text-[#c9a227]" />
                 </div>
                 <div className="text-white font-bold text-sm">30-60 Min</div>
-                <div className="text-white/70 text-xs">Reaktionszeit</div>
+                <div className="text-gray-400 text-xs">Reaktionszeit</div>
               </div>
               <div className="text-center">
                 <div className="w-14 h-14 mx-auto mb-2 border-2 border-[#c9a227] rounded-full flex items-center justify-center">
                   <CheckCircle className="w-7 h-7 text-[#c9a227]" />
                 </div>
                 <div className="text-white font-bold text-sm">Garantie</div>
-                <div className="text-white/70 text-xs">100% Zufrieden</div>
+                <div className="text-gray-400 text-xs">100% Zufrieden</div>
               </div>
               <div className="text-center">
                 <div className="w-14 h-14 mx-auto mb-2 border-2 border-[#c9a227] rounded-full flex items-center justify-center">
                   <Shield className="w-7 h-7 text-[#c9a227]" />
                 </div>
                 <div className="text-white font-bold text-sm">Festpreise</div>
-                <div className="text-white/70 text-xs">Transparent</div>
+                <div className="text-gray-400 text-xs">Transparent</div>
               </div>
               <div className="text-center">
                 <div className="w-14 h-14 mx-auto mb-2 border-2 border-[#c9a227] rounded-full flex items-center justify-center">
                   <div className="text-[#c9a227] font-bold text-sm">24</div>
                 </div>
                 <div className="text-white font-bold text-sm">24/7 Hotline</div>
-                <div className="text-white/70 text-xs">Immer da</div>
+                <div className="text-gray-400 text-xs">Immer da</div>
               </div>
             </div>
           </div>
