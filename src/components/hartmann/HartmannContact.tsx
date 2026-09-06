@@ -14,7 +14,7 @@ const HartmannContact = () => {
   };
 
   return (
-    <section id="kontakt" className="bg-[#003311] py-16 px-4 md:px-8">
+    <section id="kontakt" className="bg-[#0B4D2F] py-16 px-4 md:px-8">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
           Schädlingsproblem? Rufen Sie uns jetzt an!
@@ -24,7 +24,7 @@ const HartmannContact = () => {
         <a
           href={`tel:${PHONE_NUMBER}`}
           onClick={handlePhoneClick}
-          className="inline-flex items-center gap-4 bg-[#c9a227] text-[#003311] px-10 py-6 rounded-2xl font-bold text-2xl md:text-3xl hover:bg-[#d4b13a] transition-all shadow-2xl hover:scale-[1.03]"
+          className="inline-flex items-center gap-4 bg-[#c9a227] text-[#0B4D2F] px-10 py-6 rounded-2xl font-bold text-2xl md:text-3xl hover:bg-[#d4b13a] transition-all shadow-2xl hover:scale-[1.03]"
         >
           <Phone className="w-8 h-8 md:w-10 md:h-10" strokeWidth={2.5} />
           01579 2492770
