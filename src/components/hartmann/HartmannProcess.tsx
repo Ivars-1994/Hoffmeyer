@@ -37,7 +37,7 @@ const HartmannProcess = () => {
                   <Icon className="w-8 h-8 text-[#c9a227]" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
-                <p className="text-white/80 leading-relaxed">{step.description}</p>
+                <p className="text-gray-300 leading-relaxed">{step.description}</p>
               </div>
             );
           })}

@@ -148,7 +148,7 @@ const HartmannServices = () => {
         {/* Second row header */}
         <div className="text-center mb-8">
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Noch am selben Tag</h3>
-          <p className="text-white/80">Mo. - Fr.</p>
+          <p className="text-gray-300">Mo. - Fr.</p>
         </div>
 
         {/* Second row - 6 cards */}

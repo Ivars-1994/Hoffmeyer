@@ -129,16 +129,7 @@ html, body {
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.1;
+    font-family: 'Inter', sans-serif;
   }
 
   /* Layout & Spacing - More airy Apple style */
@@ -194,26 +185,20 @@ html, body {
 
   /* Typography Hierarchy - Apple-inspired */
   .section-heading {
-    @apply text-4xl sm:text-5xl md:text-6xl font-bold mb-6 md:mb-8 text-primary;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.1;
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold mb-6 md:mb-8 text-primary leading-tight;
+    letter-spacing: -0.02em;
+    font-weight: 700;
   }
   
   .section-subheading {
     @apply text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-10 md:mb-16 max-w-4xl mx-auto;
     line-height: 1.5;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .card-heading {
-    @apply text-2xl sm:text-3xl text-primary mb-4;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.1;
+    @apply text-2xl sm:text-3xl font-semibold text-primary mb-4;
+    letter-spacing: -0.01em;
   }
 
   .highlight-text {

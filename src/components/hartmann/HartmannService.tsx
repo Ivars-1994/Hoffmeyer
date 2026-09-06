@@ -8,7 +8,7 @@ const HartmannService = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Unser einwandfreier<br />Service
             </h2>
-            <div className="text-white/90 space-y-4 leading-relaxed">
+            <div className="text-gray-200 space-y-4 leading-relaxed">
               <p>
                 Seit über <strong className="text-white">20 Jahren</strong> bekämpfen wir nachhaltig alle Schädlinge 
                 in Ihrer Stadt und Umgebung. Durch unsere <strong className="text-white">Partner</strong> und unsere 
