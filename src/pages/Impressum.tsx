@@ -20,7 +20,7 @@ const Impressum = () => {
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl font-bold mb-10 text-white">Impressum</h1>
             
-            <div className="space-y-8 text-gray-300">
+            <div className="space-y-8 text-white/80">
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Angaben gemäß § 5 TMG</h2>
                 <p>Kammerjäger Kellermann</p>

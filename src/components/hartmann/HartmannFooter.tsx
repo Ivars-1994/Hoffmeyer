@@ -26,10 +26,10 @@ const HartmannFooter = ({
               </div>
               <div className="text-white">
                 <div className="font-bold text-lg tracking-wider">{brandName}</div>
-                <div className="text-xs text-gray-400">Kammerjäger Seit 98'</div>
+                <div className="text-xs text-white/70">Kammerjäger Seit 98'</div>
               </div>
             </div>
-            <p className="text-gray-400 text-sm">
+            <p className="text-white/70 text-sm">
               Professionelle Schädlingsbekämpfung seit über 20 Jahren.
             </p>
           </div>
@@ -40,14 +40,14 @@ const HartmannFooter = ({
             <div className="space-y-3">
               <a 
                 href="tel:+4915792492770" 
-                className="flex items-center gap-2 text-gray-400 hover:text-[#c9a227] transition-colors"
+                className="flex items-center gap-2 text-white/70 hover:text-[#c9a227] transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 <span>01579 2492770</span>
               </a>
               <a 
                 href={`mailto:${email}`}
-                className="flex items-center gap-2 text-gray-400 hover:text-[#c9a227] transition-colors"
+                className="flex items-center gap-2 text-white/70 hover:text-[#c9a227] transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span>{email}</span>
@@ -58,7 +58,7 @@ const HartmannFooter = ({
           {/* Guarantee */}
           <div>
             <h4 className="text-white font-bold mb-4">Unsere Garantie</h4>
-            <p className="text-gray-400 text-sm">
+            <p className="text-white/70 text-sm">
               100% Zufriedenheitsgarantie auf alle unsere Dienstleistungen. 
               Schnelle Hilfe innerhalb von 30-60 Minuten.
             </p>
@@ -68,17 +68,17 @@ const HartmannFooter = ({
         {/* Copyright */}
         <div className="pt-8 border-t border-[#006622]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
+            <p className="text-white/60 text-sm">
               © {new Date().getFullYear()} Kammerjäger {brandName.charAt(0) + brandName.slice(1).toLowerCase()}. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6">
-              <a href="/impressum" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">
+              <a href="/impressum" className="text-white/60 hover:text-[#c9a227] text-sm transition-colors">
                 Impressum
               </a>
-              <a href="/datenschutz" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">
+              <a href="/datenschutz" className="text-white/60 hover:text-[#c9a227] text-sm transition-colors">
                 Datenschutz
               </a>
-              <a href="/agb" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">
+              <a href="/agb" className="text-white/60 hover:text-[#c9a227] text-sm transition-colors">
                 AGB
               </a>
             </div>
