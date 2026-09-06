@@ -13,7 +13,7 @@ interface HartmannHeroProps {
 
 const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }: HartmannHeroProps) => {
   return (
-    <section className="bg-[#0B4D2F] pt-0 pb-6 md:py-20 px-4 md:px-8">
+    <section className="bg-[#064A2A] pt-0 pb-6 md:py-20 px-4 md:px-8">
       <PromoBanner className="-mx-4 md:-mx-8 mb-6 md:mb-8" />
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -93,7 +93,7 @@ const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }:
           {/* Right Content - Image Grid */}
           <div className="relative hidden lg:block">
             <div className="absolute -top-2 right-0 z-10">
-              <div className="bg-[#0B4D2F] border border-[#c9a227] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
+              <div className="bg-[#064A2A] border border-[#c9a227] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 24/7 Notdienst – Jetzt verfügbar
               </div>
@@ -115,7 +115,7 @@ const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }:
             </div>
 
             <div className="absolute -bottom-4 left-4 z-10">
-              <div className="bg-[#0B4D2F] border border-[#c9a227] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
+              <div className="bg-[#064A2A] border border-[#c9a227] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full" />
                 Heute noch Termine frei
               </div>

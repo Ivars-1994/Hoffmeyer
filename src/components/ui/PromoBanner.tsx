@@ -13,7 +13,7 @@ const PromoBanner = ({
 }: PromoBannerProps) => {
   return (
     <div className={cn(
-      'w-full bg-[#c9a227] text-[#0B4D2F] py-2.5 px-4 text-center font-bold text-sm sm:text-base flex items-center justify-center gap-2',
+      'w-full bg-[#c9a227] text-[#064A2A] py-2.5 px-4 text-center font-bold text-sm sm:text-base flex items-center justify-center gap-2',
       className
     )}>
       <Truck className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
