@@ -91,7 +91,7 @@ const testimonials = [
 
 const HartmannTestimonials = () => {
   return (
-    <section className="bg-[#0B4D2F] py-16 px-4 md:px-8 overflow-hidden">
+    <section className="bg-[#064A2A] py-16 px-4 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div 
           className="flex gap-6 overflow-x-auto pb-4" 
@@ -131,13 +131,13 @@ const HartmannTestimonials = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
           <a 
             href="#kontakt"
-            className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#0B4D2F] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
+            className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#064A2A] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
           >
             Anfrage Senden
           </a>
           <a 
             href="tel:+4915792492770"
-            className="flex items-center justify-center gap-2 bg-[#0B4D2F] border-2 border-[#0B4D2F] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#004d1a] transition-colors"
+            className="flex items-center justify-center gap-2 bg-[#064A2A] border-2 border-[#064A2A] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#004d1a] transition-colors"
           >
             01579 2492770
           </a>

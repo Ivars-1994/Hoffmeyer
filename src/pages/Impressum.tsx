@@ -13,7 +13,7 @@ const Impressum = () => {
         <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Kellermann." />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-[#0B4D2F]">
+      <div className="min-h-screen flex flex-col bg-[#064A2A]">
         <HartmannNavbar />
         
         <main className="flex-grow py-16 px-4 md:px-8">

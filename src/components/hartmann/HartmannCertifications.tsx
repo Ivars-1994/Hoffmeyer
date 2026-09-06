@@ -2,7 +2,7 @@ import trustBadgesImage from '@/assets/trust-badges-optimized.webp';
 
 const HartmannCertifications = () => {
   return (
-    <section className="bg-[#0B4D2F] py-12 px-4 md:px-8">
+    <section className="bg-[#064A2A] py-12 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
         <img 
           src={trustBadgesImage}
