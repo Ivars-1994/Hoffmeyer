@@ -125,7 +125,7 @@ const Einsatzgebiet = () => {
   const hasCity = city.name && city.name !== 'Ihrer Stadt';
 
   return (
-    <section ref={rootRef} className="bg-[#064A2A] py-16 px-4 md:px-8 border-t border-[#c9a227]/20">
+    <section ref={rootRef} className="bg-[#003311] py-16 px-4 md:px-8 border-t border-[#c9a227]/20">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
         <div>
           <p className="text-[#c9a227] uppercase tracking-widest text-sm font-semibold mb-3">Einsatzgebiet</p>
@@ -156,7 +156,7 @@ const Einsatzgebiet = () => {
 
           <a
             href={CALL}
-            className="inline-flex items-center gap-3 bg-[#c9a227] text-[#064A2A] font-bold px-6 py-4 rounded-lg hover:bg-[#b8931f] transition-colors shadow-lg"
+            className="inline-flex items-center gap-3 bg-[#c9a227] text-[#003311] font-bold px-6 py-4 rounded-lg hover:bg-[#b8931f] transition-colors shadow-lg"
             onClick={() => {
               if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
                 window.gtag('event', 'conversion', { send_to: 'phone_click' });
@@ -206,7 +206,7 @@ const Einsatzgebiet = () => {
               </p>
               <a
                 href={CALL}
-                className="inline-flex items-center gap-2 bg-[#c9a227] text-[#064A2A] font-bold px-5 py-3 rounded-lg hover:bg-[#b8931f] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#c9a227] text-[#003311] font-bold px-5 py-3 rounded-lg hover:bg-[#b8931f] transition-colors"
               >
                 <Phone className="w-5 h-5" />
                 Jetzt anrufen · {PHONE_DISPLAY}
