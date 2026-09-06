@@ -5,7 +5,7 @@ type NearbyCity = { name: string; km?: number | null };
 type Resp = { origin: string; radiusKm: number; cities: NearbyCity[]; source?: 'district' | 'radius' };
 
 const PHONE_DISPLAY = '01579 2492770';
-const CALL = 'tel:01579 2492770';
+const CALL = 'tel:+4915792492770';
 const API_BASE = '/.netlify/functions/nearby-cities';
 
 function readCity(): { name: string; plz: string } {

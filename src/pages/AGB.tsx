@@ -76,7 +76,7 @@ const AGB = () => {
                 <p>Kammerjäger Kellermann</p>
                 <p>Hauptstraße 26–36, {cityInfo.city}</p>
                 <p>E-Mail: <a href="mailto:info.kammerjaegerkellermann.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerkellermann.de</a></p>
-                <p>Telefon: <a href="tel:+4901579 2492770" className="call-link text-[#9b87f5] hover:underline">+49 01579 2492770</a></p>
+                <p>Telefon: <a href="tel:+4915792492770" className="call-link text-[#9b87f5] hover:underline">+49 01579 2492770</a></p>
               </div>
             </section>
             

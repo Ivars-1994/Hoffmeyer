@@ -30,7 +30,7 @@ const Impressum = () => {
 
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Kontakt</h2>
-                <p>Telefon: <a href="tel:+4901579 2492770" className="text-[#c9a227] hover:underline">+49 01579 2492770</a></p>
+                <p>Telefon: <a href="tel:+4915792492770" className="text-[#c9a227] hover:underline">+49 01579 2492770</a></p>
                 <p>E-Mail: <a href="mailto:info@kammerjaeger-kellermann.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-kellermann.de</a></p>
               </section>
 
