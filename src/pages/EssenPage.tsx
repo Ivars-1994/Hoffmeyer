@@ -7,7 +7,7 @@ import { Phone, Clock, Shield, MapPin, CheckCircle, Star, Award, Users, Truck, B
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import AnimatedSection from '../components/ui/AnimatedSection';
 
-const PHONE_NUMBER = "+4915212124199";
+const PHONE_NUMBER = "+4915792492770";
 
 // Essener Stadtteile für lokale Relevanz
 const STADTTEILE = [
@@ -128,7 +128,7 @@ const EssenPage = () => {
         "name": "Kammerjäger Kellermann",
         "url": "https://kammerjaeger-kellermann.de/",
         "image": "https://kammerjaeger-kellermann.de/lovable-uploads/kellermann-logo.png",
-        "telephone": "+4915212124199",
+        "telephone": "+4915792492770",
         "email": "info.kammerjaegerkellermann@gmail.com",
         "priceRange": "€€",
         "address": {

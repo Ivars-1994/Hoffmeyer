@@ -7,7 +7,7 @@ import WhatsAppButton from '../components/ui/WhatsAppButton';
 import { useParams, useLocation } from 'react-router-dom';
 import { getCityFromParams } from '../utils/cityDetection';
 
-const PHONE_NUMBER = "+4915212124199";
+const PHONE_NUMBER = "+4915792492770";
 const DEFAULT_CITY = "Hagen";
 
 const AGB = () => {
