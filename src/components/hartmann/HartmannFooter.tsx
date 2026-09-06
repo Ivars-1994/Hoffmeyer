@@ -6,8 +6,8 @@ interface HartmannFooterProps {
 }
 
 const HartmannFooter = ({
-  brandName = 'OPPENHEIMER',
-  email = 'info@kammerjaeger-oppenheimer.de',
+  brandName = 'KELLERMANN',
+  email = 'info@kammerjaeger-kellermann.de',
 }: HartmannFooterProps) => {
   return (
     <footer className="bg-[#003311] border-t border-[#004d1a] py-12 px-4 md:px-8">
@@ -39,11 +39,11 @@ const HartmannFooter = ({
             <h4 className="text-white font-bold mb-4">Kontakt</h4>
             <div className="space-y-3">
               <a 
-                href="tel:015792674280" 
+                href="tel:01579 2492770" 
                 className="flex items-center gap-2 text-gray-400 hover:text-[#c9a227] transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                <span>01579 2674280</span>
+                <span>01579 2492770</span>
               </a>
               <a 
                 href={`mailto:${email}`}

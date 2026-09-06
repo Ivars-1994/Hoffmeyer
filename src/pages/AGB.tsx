@@ -60,8 +60,8 @@ const AGB = () => {
   return (
     <>
       <Helmet>
-        <title>Allgemeine Geschäftsbedingungen - Kammerjäger Oppenheimer</title>
-        <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Oppenheimer in ${cityInfo.city}.`} />
+        <title>Allgemeine Geschäftsbedingungen - Kammerjäger Kellermann</title>
+        <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Kellermann in ${cityInfo.city}.`} />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
@@ -73,17 +73,17 @@ const AGB = () => {
             
             <section className="mb-8">
               <div className="space-y-2 mb-6">
-                <p>Kammerjäger Oppenheimer</p>
+                <p>Kammerjäger Kellermann</p>
                 <p>Hauptstraße 26–36, {cityInfo.city}</p>
-                <p>E-Mail: <a href="mailto:info.kammerjaegerrothschild.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerrothschild.de</a></p>
-                <p>Telefon: <a href="tel:+4915792674280" className="call-link text-[#9b87f5] hover:underline">+49 1579 2674280</a></p>
+                <p>E-Mail: <a href="mailto:info.kammerjaegerkellermann.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerkellermann.de</a></p>
+                <p>Telefon: <a href="tel:+4901579 2492770" className="call-link text-[#9b87f5] hover:underline">+49 01579 2492770</a></p>
               </div>
             </section>
             
             <section className="mb-6">
               <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§1 Geltungsbereich</h2>
               <p className="text-gray-700">
-                Diese AGB gelten für alle Verträge über Dienstleistungen im Bereich der Schädlingsbekämpfung, die zwischen Kammerjäger Oppenheimer (nachfolgend „Dienstleister") und Kunden (Verbraucher und Unternehmer) abgeschlossen werden.
+                Diese AGB gelten für alle Verträge über Dienstleistungen im Bereich der Schädlingsbekämpfung, die zwischen Kammerjäger Kellermann (nachfolgend „Dienstleister") und Kunden (Verbraucher und Unternehmer) abgeschlossen werden.
               </p>
             </section>
             
