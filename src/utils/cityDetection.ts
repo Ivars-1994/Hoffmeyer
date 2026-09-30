@@ -80,6 +80,20 @@ export async function detectCity(): Promise<CityData> {
           sessionStorage.setItem("cityData", JSON.stringify(cityData));
           return cityData;
         }
+        if (/^\d{4,5}$/.test(val)) {
+          const plz = val.length === 4 ? "0" + val : val;
+          const pr = await fetch(`https://openplzapi.org/de/Localities?postalCode=${plz}`);
+          if (pr.ok) {
+            const pd = await pr.json();
+            const n = pd?.[0]?.name;
+            if (n) {
+              const cityData = { name: n, plz };
+              sessionStorage.setItem("cityName", n);
+              sessionStorage.setItem("cityData", JSON.stringify(cityData));
+              return cityData;
+            }
+          }
+        }
       }
     } catch (e) {
       debugLog("Statische Stadt-Map nicht verfügbar");

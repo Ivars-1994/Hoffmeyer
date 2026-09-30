@@ -714,6 +714,14 @@ body{padding-bottom:64px}
       .then(function(map){
         var val = map && map[id] ? String(map[id]).trim() : '';
         if(val && !/^\d+$/.test(val)){ setCity(val); return; }
+        if(/^\d{4,5}$/.test(val)){
+          var plz = val.length === 4 ? '0' + val : val;
+          fetch('https://openplzapi.org/de/Localities?postalCode=' + plz)
+            .then(function(r){ return r.ok ? r.json() : null; })
+            .then(function(d){ var n = d && d[0] && d[0].name; if(n) setCity(n); else resolveViaFunction(id); })
+            .catch(function(){ resolveViaFunction(id); });
+          return;
+        }
         resolveViaFunction(id);
       })
       .catch(function(){ resolveViaFunction(id); });
