@@ -14,7 +14,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Wespenbekämpfung",
     h1: "Wespennest entfernen",
     metaTitle: "Wespenbekämpfung & Wespennest entfernen",
-    metaDescription: "Professionelle Wespenbekämpfung & Wespennest entfernen. Sofortige Hilfe bei Wespen. IHK-zertifiziert. ☎ +49 1521 2124199",
+    metaDescription: "Professionelle Wespenbekämpfung & Wespennest entfernen. Sofortige Hilfe bei Wespen. IHK-zertifiziert. ☎ +4915114310957",
     keywords: ["wespenbekämpfung", "wespennest entfernen", "wespen entfernen", "hornissennest entfernen"],
     schemaServiceType: "Wespenbekämpfung"
   },
@@ -23,7 +23,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Rattenbekämpfung",
     h1: "Ratten bekämpfen",
     metaTitle: "Rattenbekämpfung – Ratten im Garten bekämpfen",
-    metaDescription: "Ratten bekämpfen im Garten & Haus. Professionelle Rattenbekämpfung. Ratten vertreiben & loswerden. ☎ +49 1521 2124199",
+    metaDescription: "Ratten bekämpfen im Garten & Haus. Professionelle Rattenbekämpfung. Ratten vertreiben & loswerden. ☎ +4915114310957",
     keywords: ["ratten bekämpfen", "ratten im garten", "rattenbekämpfung", "ratten vertreiben", "ratten loswerden"],
     schemaServiceType: "Rattenbekämpfung"
   },
@@ -32,7 +32,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Marderabwehr",
     h1: "Marder bekämpfen",
     metaTitle: "Marderabwehr – Marder im Dachboden vertreiben",
-    metaDescription: "Marder bekämpfen & vertreiben. Professionelle Marderabwehr für Dachboden & Auto. Marder loswerden. ☎ +49 1521 2124199",
+    metaDescription: "Marder bekämpfen & vertreiben. Professionelle Marderabwehr für Dachboden & Auto. Marder loswerden. ☎ +4915114310957",
     keywords: ["marderabwehr", "marder bekämpfen", "marder im dachboden", "marder vertreiben", "marder loswerden"],
     schemaServiceType: "Marderabwehr"
   },
@@ -41,7 +41,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Bettwanzen bekämpfen",
     h1: "Bettwanzen loswerden",
     metaTitle: "Bettwanzen bekämpfen & loswerden – Profi-Hilfe",
-    metaDescription: "Bettwanzen bekämpfen, entfernen & loswerden. Professionelle Bettwanzenbekämpfung. Diskret & effektiv. ☎ +49 1521 2124199",
+    metaDescription: "Bettwanzen bekämpfen, entfernen & loswerden. Professionelle Bettwanzenbekämpfung. Diskret & effektiv. ☎ +4915114310957",
     keywords: ["bettwanzen bekämpfen", "bettwanzen loswerden", "bettwanzen entfernen", "bettwanzen vertreiben"],
     schemaServiceType: "Bettwanzenbekämpfung"
   },
@@ -50,7 +50,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Kakerlaken bekämpfen",
     h1: "Kakerlaken & Schaben bekämpfen",
     metaTitle: "Kakerlaken bekämpfen – Schädlingsbekämpfung",
-    metaDescription: "Kakerlaken & Schaben bekämpfen. Professionelle Schabenbekämpfung. Schnelle Hilfe. ☎ +49 1521 2124199",
+    metaDescription: "Kakerlaken & Schaben bekämpfen. Professionelle Schabenbekämpfung. Schnelle Hilfe. ☎ +4915114310957",
     keywords: ["kakerlaken bekämpfen", "schaben bekämpfen", "schädlingsbekämpfung"],
     schemaServiceType: "Kakerlakenbekämpfung"
   },
@@ -59,7 +59,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Ameisen bekämpfen",
     h1: "Ameisen & Flugameisen loswerden",
     metaTitle: "Ameisen bekämpfen – Ameisen vertreiben & loswerden",
-    metaDescription: "Ameisen vertreiben & bekämpfen. Flugameisen loswerden. Professionelle Ameisenbekämpfung. ☎ +49 1521 2124199",
+    metaDescription: "Ameisen vertreiben & bekämpfen. Flugameisen loswerden. Professionelle Ameisenbekämpfung. ☎ +4915114310957",
     keywords: ["ameisen vertreiben", "ameisen loswerden", "flugameisen loswerden"],
     schemaServiceType: "Ameisenbekämpfung"
   },
@@ -68,7 +68,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Silberfische bekämpfen",
     h1: "Silberfische bekämpfen",
     metaTitle: "Silberfische bekämpfen – Professionelle Hilfe",
-    metaDescription: "Silberfische bekämpfen. Professionelle Schädlingsbekämpfung gegen Silberfischchen. ☎ +49 1521 2124199",
+    metaDescription: "Silberfische bekämpfen. Professionelle Schädlingsbekämpfung gegen Silberfischchen. ☎ +4915114310957",
     keywords: ["silberfische bekämpfen"],
     schemaServiceType: "Silberfischbekämpfung"
   },
@@ -77,7 +77,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Flöhe bekämpfen",
     h1: "Flöhe bekämpfen",
     metaTitle: "Flöhe bekämpfen – Professionelle Flohbekämpfung",
-    metaDescription: "Flöhe bekämpfen. Professionelle Hilfe gegen Flohbefall. Schnell & zuverlässig. ☎ +49 1521 2124199",
+    metaDescription: "Flöhe bekämpfen. Professionelle Hilfe gegen Flohbefall. Schnell & zuverlässig. ☎ +4915114310957",
     keywords: ["flöhe bekämpfen"],
     schemaServiceType: "Flohbekämpfung"
   },
@@ -86,7 +86,7 @@ export const serviceConfigs: Record<string, ServiceConfig> = {
     title: "Mäuse bekämpfen",
     h1: "Mäuse bekämpfen & vertreiben",
     metaTitle: "Mäuse bekämpfen – Mäuse vertreiben",
-    metaDescription: "Mäuse bekämpfen & vertreiben. Professionelle Mäusebekämpfung für Haus & Garten. ☎ +49 1521 2124199",
+    metaDescription: "Mäuse bekämpfen & vertreiben. Professionelle Mäusebekämpfung für Haus & Garten. ☎ +4915114310957",
     keywords: ["mäuse bekämpfen", "mäuse vertreiben"],
     schemaServiceType: "Mäusebekämpfung"
   }

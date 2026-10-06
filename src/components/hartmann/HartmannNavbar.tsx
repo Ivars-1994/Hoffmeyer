@@ -38,11 +38,11 @@ const HartmannNavbar = ({ brandName = 'KELLERMANN' }: HartmannNavbarProps) => {
 
         {/* Phone Button */}
         <a 
-          href="tel:+4915792492770" 
+          href="tel:+4915114310957" 
           className="hidden md:flex items-center gap-2 border-2 border-[#c9a227] text-white px-5 py-2.5 rounded-lg hover:bg-[#c9a227] hover:text-[#004d1a] transition-all font-semibold"
         >
           <Phone size={18} />
-          <span>01579 2492770</span>
+          <span>01511 4310957</span>
         </a>
 
         {/* Mobile Menu Button */}
@@ -63,11 +63,11 @@ const HartmannNavbar = ({ brandName = 'KELLERMANN' }: HartmannNavbarProps) => {
             <a href="#leistungen" className="text-white hover:text-[#c9a227] transition-colors">Leistungen</a>
             <a href="#kontakt" className="text-white hover:text-[#c9a227] transition-colors">Kontakt</a>
             <a 
-              href="tel:+4915792492770" 
+              href="tel:+4915114310957" 
               className="flex items-center gap-2 border-2 border-[#c9a227] text-white px-4 py-3 rounded-lg justify-center"
             >
               <Phone size={18} />
-              <span className="font-semibold">01579 2492770</span>
+              <span className="font-semibold">01511 4310957</span>
             </a>
           </div>
         </div>

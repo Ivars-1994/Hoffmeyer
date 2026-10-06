@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const PHONE_NUMBER = "+49 01579 2492770";
+const PHONE_NUMBER = "+49 01511 4310957";
 
 const MobileStickyCTA = () => {
   const isMobile = useIsMobile();

@@ -29,7 +29,7 @@ const LandingPageHartmann = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Kellermann | 24/7 Schädlingsbekämpfung | Tel: 01579 2492770</title>
+        <title>Kammerjäger Kellermann | 24/7 Schädlingsbekämpfung | Tel: 01511 4310957</title>
         <meta 
           name="description" 
           content="Kammerjäger Kellermann - Professionelle Schädlingsbekämpfung seit 1998. 24/7 Notdienst, 30-60 Min. Reaktionszeit. Ratten, Wespen, Mäuse, Bettwanzen. Jetzt anrufen!" 

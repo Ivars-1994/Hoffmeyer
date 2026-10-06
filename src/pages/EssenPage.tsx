@@ -7,7 +7,7 @@ import { Phone, Clock, Shield, MapPin, CheckCircle, Star, Award, Users, Truck, B
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import AnimatedSection from '../components/ui/AnimatedSection';
 
-const PHONE_NUMBER = "+4915792492770";
+const PHONE_NUMBER = "+4915114310957";
 
 // Essener Stadtteile für lokale Relevanz
 const STADTTEILE = [
@@ -128,7 +128,7 @@ const EssenPage = () => {
         "name": "Kammerjäger Kellermann",
         "url": "https://kammerjaeger-kellermann.de/",
         "image": "https://kammerjaeger-kellermann.de/lovable-uploads/kellermann-logo.png",
-        "telephone": "+4915792492770",
+        "telephone": "+4915114310957",
         "email": "info.kammerjaegerkellermann@gmail.com",
         "priceRange": "€€",
         "address": {
@@ -315,7 +315,7 @@ const EssenPage = () => {
                     className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-bold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
                   >
                     <Phone className="w-5 h-5" />
-                    Jetzt anrufen: 0152 1212 4199
+                    Jetzt anrufen: 01511 4310957
                   </a>
                   
                 </div>
@@ -466,7 +466,7 @@ const EssenPage = () => {
                 className="inline-flex items-center justify-center gap-2 bg-background text-foreground px-8 py-4 rounded-lg text-lg font-bold hover:bg-background/90 transition-all shadow-lg"
               >
                 <Phone className="w-5 h-5" />
-                0152 1212 4199
+                01511 4310957
               </a>
             </div>
           </section>
@@ -574,7 +574,7 @@ const EssenPage = () => {
                   className="inline-flex items-center justify-center gap-2 bg-white text-primary px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/90 transition-all shadow-lg"
                 >
                   <Phone className="w-5 h-5" />
-                  0152 1212 4199
+                  01511 4310957
                 </a>
 
 

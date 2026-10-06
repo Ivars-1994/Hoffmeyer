@@ -49,11 +49,11 @@ const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }:
 
             <div className="flex flex-col sm:flex-row gap-4 mb-2 lg:mb-10">
               <a 
-                href="tel:+4915792492770"
+                href="tel:+4915114310957"
                 className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#004d1a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
               >
                 <Phone size={20} />
-                01579 2492770
+                01511 4310957
               </a>
             </div>
 
