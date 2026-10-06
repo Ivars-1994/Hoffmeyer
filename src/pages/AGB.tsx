@@ -7,7 +7,7 @@ import WhatsAppButton from '../components/ui/WhatsAppButton';
 import { useParams, useLocation } from 'react-router-dom';
 import { getCityFromParams } from '../utils/cityDetection';
 
-const PHONE_NUMBER = "+4915792492770";
+const PHONE_NUMBER = "+4915114310957";
 const DEFAULT_CITY = "Hagen";
 
 const AGB = () => {
@@ -76,7 +76,7 @@ const AGB = () => {
                 <p>Kammerjäger Kellermann</p>
                 <p>Hauptstraße 26–36, {cityInfo.city}</p>
                 <p>E-Mail: <a href="mailto:info.kammerjaegerkellermann.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerkellermann.de</a></p>
-                <p>Telefon: <a href="tel:+4915792492770" className="call-link text-[#9b87f5] hover:underline">+49 01579 2492770</a></p>
+                <p>Telefon: <a href="tel:+4915114310957" className="call-link text-[#9b87f5] hover:underline">+49 01511 4310957</a></p>
               </div>
             </section>
             
