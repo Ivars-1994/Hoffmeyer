@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PHONE_NUMBER = "+491781196025";
-const EMAIL = "info.kammerjaegerbismarck@gmail.com";
+const EMAIL = "info@kammerjaeger-bismarck.de";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
