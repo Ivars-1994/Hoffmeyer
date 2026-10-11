@@ -129,7 +129,7 @@ const EssenPage = () => {
         "url": "https://kammerjaeger-bismarck.de/",
         "image": "https://kammerjaeger-bismarck.de/lovable-uploads/bismarck-logo.png",
         "telephone": "+491781196025",
-        "email": "info.kammerjaegerbismarck@gmail.com",
+        "email": "info@kammerjaeger-bismarck.de",
         "priceRange": "€€",
         "address": {
           "@type": "PostalAddress",
