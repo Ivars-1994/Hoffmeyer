@@ -54,8 +54,13 @@ test('brand is spelled Bismarck with ck on every page and asset name', () => {
 });
 
 
-test('no legacy tracking container or direct conversion integration remains active', () => {
+test('only the new GTM-NPG6WGFF container is active; no legacy tracking remains', () => {
+  const htmlFiles = contents.filter(file => file.path.endsWith('.html'));
+  for (const { path, text } of htmlFiles) {
+    // New container present exactly twice per page (head script + body noscript).
+    assert.equal(text.match(/GTM-NPG6WGFF/g)?.length ?? 0, 2, path);
+  }
   for (const { path, text } of contents) {
-    assert.doesNotMatch(text, /GTM-[A-Z0-9]+|AW-\d+|googletagmanager\.com|google-analytics\.com|clickcease\.com|window\.gtag|window\.dataLayer/i, path);
+    assert.doesNotMatch(text, /GTM-(?!NPG6WGFF)[A-Z0-9]+|AW-\d+|google-analytics\.com|clickcease\.com|window\.gtag/i, path);
   }
 });
