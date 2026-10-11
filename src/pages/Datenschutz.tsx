@@ -8,7 +8,7 @@ import WhatsAppButton from '../components/ui/WhatsAppButton';
 import { useParams, useLocation } from 'react-router-dom';
 import { getCityFromParams } from '../utils/cityDetection';
 
-const PHONE_NUMBER = "+4915114310957";
+const PHONE_NUMBER = "+491781196025";
 const DEFAULT_CITY = "Hagen";
 
 const Datenschutz = () => {
@@ -61,8 +61,8 @@ const Datenschutz = () => {
   return (
     <>
       <Helmet>
-        <title>Datenschutzerklärung - Kammerjäger Kellermann</title>
-        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Kellermann in ${cityInfo.city}.`} />
+        <title>Datenschutzerklärung - Kammerjäger Bismark</title>
+        <meta name="description" content={`Datenschutzerklärung für die Dienstleistungen von Kammerjäger Bismark in ${cityInfo.city}.`} />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
@@ -75,12 +75,12 @@ const Datenschutz = () => {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mb-4 text-[#1A1F2C]">Verantwortlicher</h2>
               <div className="space-y-2">
-                <p>Kammerjäger Kellermann</p>
+                <p>Kammerjäger Bismark</p>
                 <p>Hauptstraße 26–36</p>
                 <p>{cityInfo.city}</p>
                 <p>Deutschland</p>
-                <p>Telefon: <a href="tel:+4915114310957" className="call-link text-[#9b87f5] hover:underline">+49 01511 4310957</a></p>
-                <p>E-Mail: <a href="mailto:info.kammerjaegerkellermann.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerkellermann.de</a></p>
+                <p>Telefon: <a href="tel:+491781196025" className="call-link text-[#9b87f5] hover:underline">+491781196025</a></p>
+                <p>E-Mail: <a href="mailto:info.kammerjaegerbismark.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerbismark.de</a></p>
               </div>
             </section>
             

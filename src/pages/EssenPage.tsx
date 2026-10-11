@@ -7,7 +7,7 @@ import { Phone, Clock, Shield, MapPin, CheckCircle, Star, Award, Users, Truck, B
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import AnimatedSection from '../components/ui/AnimatedSection';
 
-const PHONE_NUMBER = "+4915114310957";
+const PHONE_NUMBER = "+491781196025";
 
 // Essener Stadtteile für lokale Relevanz
 const STADTTEILE = [
@@ -85,7 +85,7 @@ const FAQ_DATA = [
   },
   {
     question: 'Kammerjäger Essen Kosten – gibt es versteckte Gebühren?',
-    answer: 'Nein, bei Kammerjäger Kellermann in Essen gibt es keine versteckten Kosten. Sie erhalten vor Arbeitsbeginn einen verbindlichen Festpreis. Die Anfahrt innerhalb von Essen ist in den meisten Fällen bereits inklusive.'
+    answer: 'Nein, bei Kammerjäger Bismark in Essen gibt es keine versteckten Kosten. Sie erhalten vor Arbeitsbeginn einen verbindlichen Festpreis. Die Anfahrt innerhalb von Essen ist in den meisten Fällen bereits inklusive.'
   },
   {
     question: 'Arbeiten Sie auch am Wochenende und an Feiertagen in Essen?',
@@ -124,16 +124,16 @@ const EssenPage = () => {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://kammerjaeger-kellermann.de/#firma",
-        "name": "Kammerjäger Kellermann",
-        "url": "https://kammerjaeger-kellermann.de/",
-        "image": "https://kammerjaeger-kellermann.de/lovable-uploads/kellermann-logo.png",
-        "telephone": "+4915114310957",
-        "email": "info.kammerjaegerkellermann@gmail.com",
+        "@id": "https://kammerjaeger-bismark.de/#firma",
+        "name": "Kammerjäger Bismark",
+        "url": "https://kammerjaeger-bismark.de/",
+        "image": "https://kammerjaeger-bismark.de/lovable-uploads/bismark-logo.png",
+        "telephone": "+491781196025",
+        "email": "info.kammerjaegerbismark@gmail.com",
         "priceRange": "€€",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Kellermann Schädlingsbekämpfung",
+          "streetAddress": "Bismark Schädlingsbekämpfung",
           "postalCode": "45127",
           "addressLocality": "Essen",
           "addressRegion": "NW",
@@ -192,15 +192,15 @@ const EssenPage = () => {
       },
       {
         "@type": "Service",
-        "@id": "https://kammerjaeger-kellermann.de/kammerjaeger-essen/#service",
+        "@id": "https://kammerjaeger-bismark.de/kammerjaeger-essen/#service",
         "name": "Schädlingsbekämpfung in Essen",
         "serviceType": "Kammerjäger Essen, Schädlingsbekämpfung Essen, 24h Notdienst",
-        "provider": { "@id": "https://kammerjaeger-kellermann.de/#firma" },
+        "provider": { "@id": "https://kammerjaeger-bismark.de/#firma" },
         "areaServed": {
           "@type": "City",
           "name": "Essen"
         },
-        "url": "https://kammerjaeger-kellermann.de/kammerjaeger-essen",
+        "url": "https://kammerjaeger-bismark.de/kammerjaeger-essen",
         "description": "IHK-zertifizierter Kammerjäger in Essen mit 24/7 Notdienst, schneller Anfahrt in 30–60 Minuten und professioneller Schädlingsbekämpfung für Privat- und Geschäftskunden.",
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -214,7 +214,7 @@ const EssenPage = () => {
       },
       {
         "@type": "FAQPage",
-        "@id": "https://kammerjaeger-kellermann.de/kammerjaeger-essen/#faq",
+        "@id": "https://kammerjaeger-bismark.de/kammerjaeger-essen/#faq",
         "mainEntity": FAQ_DATA.map(faq => ({
           "@type": "Question",
           "name": faq.question,
@@ -231,13 +231,13 @@ const EssenPage = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Startseite",
-            "item": "https://kammerjaeger-kellermann.de/"
+            "item": "https://kammerjaeger-bismark.de/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Kammerjäger Essen",
-            "item": "https://kammerjaeger-kellermann.de/kammerjaeger-essen"
+            "item": "https://kammerjaeger-bismark.de/kammerjaeger-essen"
           }
         ]
       }
@@ -247,13 +247,13 @@ const EssenPage = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Kellermann</title>
+        <title>Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst – Bismark</title>
         <meta name="description" content="Kammerjäger in Essen gesucht? IHK-zertifizierte Schädlingsbekämpfung, 24h-Notdienst, schnelle Hilfe in 30–60 Min vor Ort. Jetzt anrufen & Schädlinge professionell beseitigen lassen." />
         <meta name="keywords" content="Kammerjäger Essen, Schädlingsbekämpfung Essen, Kammerjäger Notdienst Essen, Wespen Essen, Bettwanzen Essen, Ratten Essen, Mäuse Essen, Schädlingsbekämpfer Essen" />
-        <link rel="canonical" href="https://kammerjaeger-kellermann.de/kammerjaeger-essen" />
+        <link rel="canonical" href="https://kammerjaeger-bismark.de/kammerjaeger-essen" />
         <meta property="og:title" content="Kammerjäger Essen | Schädlingsbekämpfung & 24h Notdienst" />
         <meta property="og:description" content="IHK-zertifizierte Schädlingsbekämpfung in Essen. 24/7 Notdienst, 30-60 Min vor Ort. Wespen, Ratten, Bettwanzen & mehr." />
-        <meta property="og:url" content="https://kammerjaeger-kellermann.de/kammerjaeger-essen" />
+        <meta property="og:url" content="https://kammerjaeger-bismark.de/kammerjaeger-essen" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="de_DE" />
         <meta name="geo.region" content="DE-NW" />
@@ -315,7 +315,7 @@ const EssenPage = () => {
                     className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-bold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
                   >
                     <Phone className="w-5 h-5" />
-                    Jetzt anrufen: 01511 4310957
+                    Jetzt anrufen: 0178 1196025
                   </a>
                   
                 </div>
@@ -466,7 +466,7 @@ const EssenPage = () => {
                 className="inline-flex items-center justify-center gap-2 bg-background text-foreground px-8 py-4 rounded-lg text-lg font-bold hover:bg-background/90 transition-all shadow-lg"
               >
                 <Phone className="w-5 h-5" />
-                01511 4310957
+                0178 1196025
               </a>
             </div>
           </section>
@@ -540,7 +540,7 @@ const EssenPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                   {[
                     { name: 'M. Schmidt', location: 'Essen-Rüttenscheid', text: 'Wespennest wurde noch am gleichen Tag entfernt. Sehr professionell und freundlich. Klare Empfehlung!', rating: 5 },
-                    { name: 'K. Weber', location: 'Essen-Stadtmitte', text: 'Bettwanzen im Hotel – Kellermann war innerhalb einer Stunde da und hat das Problem diskret gelöst. Top Service!', rating: 5 },
+                    { name: 'K. Weber', location: 'Essen-Stadtmitte', text: 'Bettwanzen im Hotel – Bismark war innerhalb einer Stunde da und hat das Problem diskret gelöst. Top Service!', rating: 5 },
                     { name: 'T. Müller', location: 'Essen-Steele', text: 'Mäuse im Keller. Schnelle Reaktion, faire Preise und nachhaltige Lösung. Sehr zufrieden!', rating: 5 }
                   ].map((review, index) => (
                     <div key={index} className="bg-background rounded-xl p-6 shadow-md">
@@ -574,7 +574,7 @@ const EssenPage = () => {
                   className="inline-flex items-center justify-center gap-2 bg-white text-primary px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/90 transition-all shadow-lg"
                 >
                   <Phone className="w-5 h-5" />
-                  01511 4310957
+                  0178 1196025
                 </a>
 
 

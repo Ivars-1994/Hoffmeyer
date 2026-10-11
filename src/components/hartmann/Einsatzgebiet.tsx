@@ -4,8 +4,8 @@ import { Phone, MapPin, CheckCircle } from 'lucide-react';
 type NearbyCity = { name: string; km?: number | null };
 type Resp = { origin: string; radiusKm: number; cities: NearbyCity[]; source?: 'district' | 'radius' };
 
-const PHONE_DISPLAY = '01511 4310957';
-const CALL = 'tel:+4915114310957';
+const PHONE_DISPLAY = '0178 1196025';
+const CALL = 'tel:+491781196025';
 const API_BASE = '/.netlify/functions/nearby-cities';
 
 function readCity(): { name: string; plz: string } {
@@ -157,11 +157,6 @@ const Einsatzgebiet = () => {
           <a
             href={CALL}
             className="inline-flex items-center gap-3 bg-[#c9a227] text-[#003311] font-bold px-6 py-4 rounded-lg hover:bg-[#b8931f] transition-colors shadow-lg"
-            onClick={() => {
-              if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-                window.gtag('event', 'conversion', { send_to: 'phone_click' });
-              }
-            }}
           >
             <Phone className="w-5 h-5" />
             Jetzt anrufen · {PHONE_DISPLAY}

@@ -9,8 +9,8 @@ const Impressum = () => {
   return (
     <>
       <Helmet>
-        <title>Impressum - Kammerjäger Kellermann</title>
-        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Kellermann." />
+        <title>Impressum - Kammerjäger Bismark</title>
+        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Bismark." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#003311]">
@@ -23,15 +23,15 @@ const Impressum = () => {
             <div className="space-y-8 text-gray-300">
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Angaben gemäß § 5 TMG</h2>
-                <p>Kammerjäger Kellermann</p>
+                <p>Kammerjäger Bismark</p>
                 <p>Hauptstraße 26–28</p>
                 <p>Deutschland</p>
               </section>
 
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Kontakt</h2>
-                <p>Telefon: <a href="tel:+4915114310957" className="text-[#c9a227] hover:underline">+49 01511 4310957</a></p>
-                <p>E-Mail: <a href="mailto:info@kammerjaeger-kellermann.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-kellermann.de</a></p>
+                <p>Telefon: <a href="tel:+491781196025" className="text-[#c9a227] hover:underline">+491781196025</a></p>
+                <p>E-Mail: <a href="mailto:info@kammerjaeger-bismark.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-bismark.de</a></p>
               </section>
 
               <section>

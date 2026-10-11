@@ -1,6 +1,6 @@
 
 import React from 'react';
-import norbertImage from '@/assets/wolframm-kellermann.jpg';
+import norbertImage from '@/assets/wolframm-bismark.jpg';
 
 interface FeaturedImageProps {
   cityName: string;
