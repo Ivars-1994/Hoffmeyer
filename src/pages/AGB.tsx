@@ -60,8 +60,8 @@ const AGB = () => {
   return (
     <>
       <Helmet>
-        <title>Allgemeine Geschäftsbedingungen - Kammerjäger Bismark</title>
-        <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Bismark in ${cityInfo.city}.`} />
+        <title>Allgemeine Geschäftsbedingungen - Kammerjäger Bismarck</title>
+        <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Bismarck in ${cityInfo.city}.`} />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
@@ -73,9 +73,9 @@ const AGB = () => {
             
             <section className="mb-8">
               <div className="space-y-2 mb-6">
-                <p>Kammerjäger Bismark</p>
+                <p>Kammerjäger Bismarck</p>
                 <p>Hauptstraße 26–36, {cityInfo.city}</p>
-                <p>E-Mail: <a href="mailto:info.kammerjaegerbismark.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerbismark.de</a></p>
+                <p>E-Mail: <a href="mailto:info.kammerjaegerbismarck.de" className="text-[#9b87f5] hover:underline">info.kammerjaegerbismarck.de</a></p>
                 <p>Telefon: <a href="tel:+491781196025" className="call-link text-[#9b87f5] hover:underline">+491781196025</a></p>
               </div>
             </section>
@@ -83,7 +83,7 @@ const AGB = () => {
             <section className="mb-6">
               <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§1 Geltungsbereich</h2>
               <p className="text-gray-700">
-                Diese AGB gelten für alle Verträge über Dienstleistungen im Bereich der Schädlingsbekämpfung, die zwischen Kammerjäger Bismark (nachfolgend „Dienstleister") und Kunden (Verbraucher und Unternehmer) abgeschlossen werden.
+                Diese AGB gelten für alle Verträge über Dienstleistungen im Bereich der Schädlingsbekämpfung, die zwischen Kammerjäger Bismarck (nachfolgend „Dienstleister") und Kunden (Verbraucher und Unternehmer) abgeschlossen werden.
               </p>
             </section>
             

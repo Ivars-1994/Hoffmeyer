@@ -1,13 +1,13 @@
-# Kammerjäger Bismark - LLMs.txt
-# https://kammerjaeger-bismark.de
+# Kammerjäger Bismarck - LLMs.txt
+# https://kammerjaeger-bismarck.de
 
 ## Beschreibung
-Kammerjäger Bismark ist ein professioneller Schädlingsbekämpfungsdienst mit Sitz in Essen, NRW. 
+Kammerjäger Bismarck ist ein professioneller Schädlingsbekämpfungsdienst mit Sitz in Essen, NRW. 
 Wir bieten 24/7 Notdienst für Wespen, Bettwanzen, Ratten, Mäuse, Schaben, Marder und weitere Schädlinge.
 
 ## Kontakt
 - Telefon: 0178 1196025
-- Website: https://kammerjaeger-bismark.de
+- Website: https://kammerjaeger-bismarck.de
 - Servicegebiet: Essen, Mülheim, Bochum, Duisburg und Umgebung
 
 ## Services

@@ -189,35 +189,35 @@ const Index = () => {
   useEffect(() => {
     const SERVICE_TITLES: Record<string, { title: string; description: string }> = {
       wespen: {
-        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Bismark",
+        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Bismarck",
         description: "Professionelle Wespenbekämpfung ✓ Schnelle Entfernung von Wespennestern ✓ IHK-zertifiziert ✓ Kostenlose Anfahrt ✓ 30-60 Min vor Ort"
       },
       bettwanzen: {
-        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Bismark",
+        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Bismarck",
         description: "Effektive Bettwanzenbekämpfung ✓ Wärmebehandlung & Insektizide ✓ Diskret & gründlich ✓ Nachkontrolle inklusive ✓ 24/7 Notdienst"
       },
       ratten: {
-        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Bismark",
+        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Bismarck",
         description: "Professionelle Rattenbekämpfung ✓ Gesicherte Köderstationen ✓ Hygienische Entsorgung ✓ Präventionsberatung ✓ Kostenlose Anfahrt"
       },
       marder: {
-        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Bismark",
+        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Bismarck",
         description: "Tierschonende Marderabwehr ✓ Gebäudeabdichtung ✓ Geruchsneutralisation ✓ Langfristiger Schutz ✓ 24/7 verfügbar"
       },
       maeuse: {
-        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Bismark",
+        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Bismarck",
         description: "Effektive Mäusebekämpfung ✓ Befallsanalyse ✓ Köderstationen & Fallen ✓ Abdichtung ✓ Kostenlose Erstberatung"
       },
       silberfische: {
-        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Bismark",
+        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Bismarck",
         description: "Nachhaltige Silberfischbekämpfung ✓ Ursachenanalyse ✓ Feuchtigkeitsberatung ✓ Gründliche Behandlung ✓ Langfristige Lösung"
       },
       kakerlaken: {
-        title: "Kakerlaken vernichten | Professionell | Kammerjäger Bismark",
+        title: "Kakerlaken vernichten | Professionell | Kammerjäger Bismarck",
         description: "Schnelle Schabenbekämpfung ✓ Gel-Köder & Sprühbehandlung ✓ Hygiene-Beratung ✓ Mehrfachbehandlung ✓ Diskret & zuverlässig"
       },
       floehe: {
-        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Bismark",
+        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Bismarck",
         description: "Gründliche Flohbekämpfung ✓ Umgebungsbehandlung ✓ Wachstumsregulatoren ✓ Haustierfreundlich ✓ Nachbehandlung inklusive"
       }
     };
@@ -236,7 +236,7 @@ const Index = () => {
         }
         metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
       } else {
-        document.title = `Kammerjäger Bismark | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
+        document.title = `Kammerjäger Bismarck | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
       }
     };
 
@@ -247,16 +247,16 @@ const Index = () => {
   }, [cityName]);
 
   const pageTitle = serviceConfig 
-    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Bismark`
-    : `Kammerjäger Bismark - Professionelle Schädlingsbekämpfung in ${cityName}`;
+    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Bismarck`
+    : `Kammerjäger Bismarck - Professionelle Schädlingsbekämpfung in ${cityName}`;
   
   const pageDescription = serviceConfig 
     ? `${serviceConfig.metaDescription} Schnelle Hilfe in ${cityName}.`
     : `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
   
   const canonicalUrl = serviceConfig 
-    ? `https://kammerjaeger-bismark.de/svc/${serviceConfig.slug}`
-    : 'https://kammerjaeger-bismark.de/';
+    ? `https://kammerjaeger-bismarck.de/svc/${serviceConfig.slug}`
+    : 'https://kammerjaeger-bismarck.de/';
 
   const serviceSchema = serviceConfig ? {
     "@context": "https://schema.org",
@@ -264,9 +264,9 @@ const Index = () => {
     "serviceType": serviceConfig.schemaServiceType,
     "provider": {
       "@type": "ProfessionalService",
-      "name": "Kammerjäger Bismark",
+      "name": "Kammerjäger Bismarck",
       "telephone": PHONE_NUMBER,
-      "url": "https://kammerjaeger-bismark.de",
+      "url": "https://kammerjaeger-bismarck.de",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "DE",
@@ -298,8 +298,8 @@ const Index = () => {
       </Helmet>
       
       <div className="min-h-screen bg-[#003311]">
-        <HartmannNavbar brandName="BISMARK" />
-        <HartmannHero cityName={cityName} brandName="Bismark" />
+        <HartmannNavbar brandName="BISMARCK" />
+        <HartmannHero cityName={cityName} brandName="Bismarck" />
         <HartmannService />
         <HartmannTestimonials />
         <HartmannServices />
@@ -307,7 +307,7 @@ const Index = () => {
         <HartmannCertifications />
         <HartmannContact />
         <Einsatzgebiet />
-        <HartmannFooter brandName="BISMARK" email="Info@kammerjaeger-bismark.de" />
+        <HartmannFooter brandName="BISMARCK" email="Info@kammerjaeger-bismarck.de" />
         <MobileStickyCTA />
       </div>
     </>

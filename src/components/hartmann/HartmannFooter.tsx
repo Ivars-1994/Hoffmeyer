@@ -6,8 +6,8 @@ interface HartmannFooterProps {
 }
 
 const HartmannFooter = ({
-  brandName = 'BISMARK',
-  email = 'info@kammerjaeger-bismark.de',
+  brandName = 'BISMARCK',
+  email = 'info@kammerjaeger-bismarck.de',
 }: HartmannFooterProps) => {
   return (
     <footer className="bg-[#003311] border-t border-[#004d1a] py-12 px-4 md:px-8">

@@ -19,7 +19,7 @@ export async function getCityFromGeolocation(): Promise<CityData | null> {
           
           const response = await fetch(url, {
             headers: {
-              'User-Agent': 'Bismark-Kammerjaeger/1.0'
+              'User-Agent': 'Bismarck-Kammerjaeger/1.0'
             }
           });
           
