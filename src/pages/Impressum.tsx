@@ -9,8 +9,8 @@ const Impressum = () => {
   return (
     <>
       <Helmet>
-        <title>Impressum - Kammerjäger Bismark</title>
-        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Bismark." />
+        <title>Impressum - Kammerjäger Bismarck</title>
+        <meta name="description" content="Impressum und rechtliche Informationen zu Kammerjäger Bismarck." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#003311]">
@@ -23,7 +23,7 @@ const Impressum = () => {
             <div className="space-y-8 text-gray-300">
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Angaben gemäß § 5 TMG</h2>
-                <p>Kammerjäger Bismark</p>
+                <p>Kammerjäger Bismarck</p>
                 <p>Hauptstraße 26–28</p>
                 <p>Deutschland</p>
               </section>
@@ -31,7 +31,7 @@ const Impressum = () => {
               <section>
                 <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">Kontakt</h2>
                 <p>Telefon: <a href="tel:+491781196025" className="text-[#c9a227] hover:underline">+491781196025</a></p>
-                <p>E-Mail: <a href="mailto:info@kammerjaeger-bismark.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-bismark.de</a></p>
+                <p>E-Mail: <a href="mailto:info@kammerjaeger-bismarck.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-bismarck.de</a></p>
               </section>
 
               <section>

@@ -2,9 +2,9 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
-  'https://kammerjaeger-bismark.de',
-  'https://www.kammerjaeger-bismark.de',
-  'https://bismark.lovable.app',
+  'https://kammerjaeger-bismarck.de',
+  'https://www.kammerjaeger-bismarck.de',
+  'https://bismarck.lovable.app',
   'http://localhost:5173'
 ];
 

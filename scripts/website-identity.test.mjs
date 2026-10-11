@@ -31,16 +31,28 @@ test('every static call link uses the requested 01781196025 number', () => {
   }
 });
 
-test('Bismark replaces all prior Kellermann brand references', () => {
+test('Bismarck replaces all prior Kellermann brand references', () => {
   for (const { path, text } of contents) {
     assert.doesNotMatch(text, /kellermann/i, path);
     assert.doesNotMatch(path, /kellermann/i, path);
   }
   const homepage = readFileSync('index.html', 'utf8');
   const identity = JSON.parse(homepage.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] ?? '{}');
-  assert.equal(identity.name, 'Kammerjäger Bismark');
+  assert.equal(identity.name, 'Kammerjäger Bismarck');
   assert.equal(identity.telephone, '+491781196025');
 });
+
+test('brand is spelled Bismarck with ck on every page and asset name', () => {
+  // German town data legitimately contains the place name "Bismark" (Altmark).
+  const townData = /^(public\/de-cities\.json|netlify\/functions\/stadt_map_complete\.json)$/;
+  for (const { path, text } of contents) {
+    if (townData.test(path)) continue;
+    assert.doesNotMatch(text, /bismark(?!c)/i, path);
+    assert.doesNotMatch(path, /bismark(?!c)/i, path);
+  }
+  assert.match(readFileSync('index.html', 'utf8'), /Kammerjäger Bismarck/);
+});
+
 
 test('no legacy tracking container or direct conversion integration remains active', () => {
   for (const { path, text } of contents) {

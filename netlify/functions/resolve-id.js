@@ -8,8 +8,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
-  'https://kammerjaeger-bismark.de',
-  'https://www.kammerjaeger-bismark.de',
+  'https://kammerjaeger-bismarck.de',
+  'https://www.kammerjaeger-bismarck.de',
   'http://localhost:5173',
   'http://localhost:8888'
 ];

@@ -1,4 +1,5 @@
 - [x] Replace phone numbers and all Kellermann brand references across the website.
 - [x] Remove existing tracking containers and legacy conversion integrations.
 - [x] Verify phone links, brand replacement and absence of old tracking.
+- [x] Correct the brand spelling everywhere to Bismarck (with ck), including pages, assets and icons.
 - [ ] Install new GTM container — blocked until user supplies it.

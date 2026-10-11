@@ -1,4 +1,4 @@
-# SEO-Optimierung Setup für Kammerjäger Bismark
+# SEO-Optimierung Setup für Kammerjäger Bismarck
 
 ## ✅ Was wurde implementiert?
 
@@ -90,9 +90,9 @@ npm run build
 Nach dem Deployment:
 
 1. **URL-Prüfung Tool**
-   - Prüfe: `https://kammerjaeger-bismark.de`
-   - Prüfe: `https://kammerjaeger-bismark.de/#wespen`
-   - Prüfe: `https://kammerjaeger-bismark.de/#bettwanzen`
+   - Prüfe: `https://kammerjaeger-bismarck.de`
+   - Prüfe: `https://kammerjaeger-bismarck.de/#wespen`
+   - Prüfe: `https://kammerjaeger-bismarck.de/#bettwanzen`
 
 2. **Sitemap einreichen**
    - Erstelle eine Sitemap mit allen Hash-URLs
