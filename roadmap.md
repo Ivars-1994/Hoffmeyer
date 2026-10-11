@@ -1,4 +1,4 @@
-- [ ] Replace phone numbers and all Kellermann brand references across the website.
-- [ ] Remove existing tracking containers and legacy conversion integrations.
+- [x] Replace phone numbers and all Kellermann brand references across the website.
+- [x] Remove existing tracking containers and legacy conversion integrations.
 - [ ] Verify phone links, brand replacement and absence of old tracking.
 - [ ] Install new GTM container — blocked until user supplies it.
