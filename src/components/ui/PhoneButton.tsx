@@ -19,29 +19,11 @@ const PhoneButton = ({
   linkText = "Jetzt anrufen",
 }: PhoneButtonProps) => {
   // Display the single project number in its readable local format.
-  const displayNumber = phoneNumber.replace(/^\+4915114310957$/, '01511 4310957');
+  const displayNumber = phoneNumber.replace(/^\+491781196025$/, '0178 1196025');
   
   // Keep the href format without spaces
   const formattedNumber = phoneNumber.replace(/\s/g, '');
   
-  const handleClick = () => {
-    // Push to dataLayer for GTM
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
-      (window as any).dataLayer.push({
-        'event': 'phone_click',
-        'phone_number': formattedNumber,
-        'button_variant': variant
-      });
-    }
-    
-    // Fire Google Ads conversion with beacon transport - survives page navigation
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-17399576460/l7ZeCJ-hl50bElzv4ehA',
-        'transport_type': 'beacon'
-      });
-    }
-  };
   
   const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg";
   
@@ -87,7 +69,6 @@ const PhoneButton = ({
           className
         )}
         aria-label={displayNumber}
-        onClick={handleClick}
       >
         <div className="relative">
           <PhoneIncoming size={28} className="text-white" />
@@ -110,7 +91,6 @@ const PhoneButton = ({
         className
       )}
       aria-label={displayNumber}
-      onClick={handleClick}
     >
       <PhoneIncoming 
         size={size === 'sm' ? 14 : size === 'lg' ? 20 : 16}

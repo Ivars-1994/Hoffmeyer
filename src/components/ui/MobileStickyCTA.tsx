@@ -2,23 +2,13 @@ import React from 'react';
 import { Phone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const PHONE_NUMBER = "+49 01511 4310957";
+const PHONE_NUMBER = "+491781196025";
 
 const MobileStickyCTA = () => {
   const isMobile = useIsMobile();
 
   if (!isMobile) return null;
 
-  const handlePhoneClick = () => {
-    // Google Ads Conversion Tracking
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-16772701268/8sOcCOaZk-QZEJHsmuI-',
-        'value': 1.0,
-        'currency': 'EUR'
-      });
-    }
-  };
 
   const formatPhoneForHref = (phone: string) => {
     return phone.replace(/\s/g, '');
@@ -28,15 +18,14 @@ const MobileStickyCTA = () => {
     <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden">
       <a
         href={`tel:${formatPhoneForHref(PHONE_NUMBER)}`}
-        onClick={handlePhoneClick}
         className="flex items-center gap-4 bg-[#c9a227] text-[#003311] px-6 py-5 rounded-3xl shadow-2xl hover:shadow-[#c9a227]/40 transition-all duration-300 hover:scale-[1.02] backdrop-blur-md border border-[#c9a227]/30"
         aria-label="Jetzt verfügbar - Sofort anrufen"
       >
         {/* Profile Image - lazy loaded */}
         <div className="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border-3 border-white shadow-lg">
           <img 
-            src="/lovable-uploads/wolframm-kellermann.jpg"
-            alt="Kammerjäger Kellermann Experte"
+            src="/lovable-uploads/wolframm-bismark.jpg"
+            alt="Kammerjäger Bismark Experte"
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"

@@ -11,7 +11,7 @@ interface HartmannHeroProps {
   brandName?: string;
 }
 
-const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }: HartmannHeroProps) => {
+const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Bismark" }: HartmannHeroProps) => {
   return (
     <section className="bg-[#003311] pt-0 pb-6 md:py-20 px-4 md:px-8">
       <PromoBanner className="-mx-4 md:-mx-8 mb-6 md:mb-8" />
@@ -49,11 +49,11 @@ const HartmannHero = ({ cityName = "des Vertrauens", brandName = "Kellermann" }:
 
             <div className="flex flex-col sm:flex-row gap-4 mb-2 lg:mb-10">
               <a 
-                href="tel:+4915114310957"
+                href="tel:+491781196025"
                 className="flex items-center justify-center gap-2 bg-[#c9a227] text-[#004d1a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#d4b13a] transition-colors"
               >
                 <Phone size={20} />
-                01511 4310957
+                0178 1196025
               </a>
             </div>
 

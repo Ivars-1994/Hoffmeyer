@@ -1,17 +1,8 @@
 import { Phone } from 'lucide-react';
 
-const PHONE_NUMBER = "+4915114310957";
+const PHONE_NUMBER = "+491781196025";
 
 const HartmannContact = () => {
-  const handlePhoneClick = () => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-16772701268/8sOcCOaZk-QZEJHsmuI-',
-        'value': 1.0,
-        'currency': 'EUR'
-      });
-    }
-  };
 
   return (
     <section id="kontakt" className="bg-[#003311] py-16 px-4 md:px-8">
@@ -23,11 +14,10 @@ const HartmannContact = () => {
 
         <a
           href={`tel:${PHONE_NUMBER}`}
-          onClick={handlePhoneClick}
           className="inline-flex items-center gap-4 bg-[#c9a227] text-[#003311] px-10 py-6 rounded-2xl font-bold text-2xl md:text-3xl hover:bg-[#d4b13a] transition-all shadow-2xl hover:scale-[1.03]"
         >
           <Phone className="w-8 h-8 md:w-10 md:h-10" strokeWidth={2.5} />
-          01511 4310957
+          0178 1196025
         </a>
 
         <div className="mt-8 grid sm:grid-cols-3 gap-4">

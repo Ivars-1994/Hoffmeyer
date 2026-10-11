@@ -16,14 +16,8 @@ import MobileStickyCTA from '../components/ui/MobileStickyCTA';
 import { CityData } from '../utils/cityDetection';
 import { getServiceConfig } from '../utils/serviceConfig';
 
-// Declare gtag as a global function
-declare global {
-  interface Window {
-    gtag: (command: string, targetId: string, config?: any) => void;
-  }
-}
 
-const PHONE_NUMBER = "+4915114310957";
+const PHONE_NUMBER = "+491781196025";
 
 const Index = () => {
   const { service: serviceSlug } = useParams<{ service?: string }>();
@@ -195,35 +189,35 @@ const Index = () => {
   useEffect(() => {
     const SERVICE_TITLES: Record<string, { title: string; description: string }> = {
       wespen: {
-        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Kellermann",
+        title: "Wespennest entfernen | 24h Notdienst | Kammerjäger Bismark",
         description: "Professionelle Wespenbekämpfung ✓ Schnelle Entfernung von Wespennestern ✓ IHK-zertifiziert ✓ Kostenlose Anfahrt ✓ 30-60 Min vor Ort"
       },
       bettwanzen: {
-        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Kellermann",
+        title: "Bettwanzen bekämpfen | Soforthilfe | Kammerjäger Bismark",
         description: "Effektive Bettwanzenbekämpfung ✓ Wärmebehandlung & Insektizide ✓ Diskret & gründlich ✓ Nachkontrolle inklusive ✓ 24/7 Notdienst"
       },
       ratten: {
-        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Kellermann",
+        title: "Ratten bekämpfen | Schnell & diskret | Kammerjäger Bismark",
         description: "Professionelle Rattenbekämpfung ✓ Gesicherte Köderstationen ✓ Hygienische Entsorgung ✓ Präventionsberatung ✓ Kostenlose Anfahrt"
       },
       marder: {
-        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Kellermann",
+        title: "Marder vertreiben | Dachboden Schutz | Kammerjäger Bismark",
         description: "Tierschonende Marderabwehr ✓ Gebäudeabdichtung ✓ Geruchsneutralisation ✓ Langfristiger Schutz ✓ 24/7 verfügbar"
       },
       maeuse: {
-        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Kellermann",
+        title: "Mäuse bekämpfen | Hygienisch & sicher | Kammerjäger Bismark",
         description: "Effektive Mäusebekämpfung ✓ Befallsanalyse ✓ Köderstationen & Fallen ✓ Abdichtung ✓ Kostenlose Erstberatung"
       },
       silberfische: {
-        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Kellermann",
+        title: "Silberfische entfernen | Dauerhaft | Kammerjäger Bismark",
         description: "Nachhaltige Silberfischbekämpfung ✓ Ursachenanalyse ✓ Feuchtigkeitsberatung ✓ Gründliche Behandlung ✓ Langfristige Lösung"
       },
       kakerlaken: {
-        title: "Kakerlaken vernichten | Professionell | Kammerjäger Kellermann",
+        title: "Kakerlaken vernichten | Professionell | Kammerjäger Bismark",
         description: "Schnelle Schabenbekämpfung ✓ Gel-Köder & Sprühbehandlung ✓ Hygiene-Beratung ✓ Mehrfachbehandlung ✓ Diskret & zuverlässig"
       },
       floehe: {
-        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Kellermann",
+        title: "Flöhe eliminieren | Für Mensch & Tier sicher | Bismark",
         description: "Gründliche Flohbekämpfung ✓ Umgebungsbehandlung ✓ Wachstumsregulatoren ✓ Haustierfreundlich ✓ Nachbehandlung inklusive"
       }
     };
@@ -242,7 +236,7 @@ const Index = () => {
         }
         metaDescription.setAttribute('content', SERVICE_TITLES[hash].description);
       } else {
-        document.title = `Kammerjäger Kellermann | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
+        document.title = `Kammerjäger Bismark | Professionelle Schädlingsbekämpfung${cityName !== 'Ihrer Stadt' ? ` in ${cityName}` : ''}`;
       }
     };
 
@@ -253,16 +247,16 @@ const Index = () => {
   }, [cityName]);
 
   const pageTitle = serviceConfig 
-    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Kellermann`
-    : `Kammerjäger Kellermann - Professionelle Schädlingsbekämpfung in ${cityName}`;
+    ? `${serviceConfig.metaTitle} ${cityName !== 'Ihrer Stadt' ? `in ${cityName}` : ''} | Kammerjäger Bismark`
+    : `Kammerjäger Bismark - Professionelle Schädlingsbekämpfung in ${cityName}`;
   
   const pageDescription = serviceConfig 
     ? `${serviceConfig.metaDescription} Schnelle Hilfe in ${cityName}.`
     : `Sofortige Hilfe bei Schädlingsbefall in ${cityName}. IHK-zertifizierte Schädlingsbekämpfer für Bettwanzen, Insekten, Ratten und mehr. 24/7 Notdienst & kostenlose Anfahrt.`;
   
   const canonicalUrl = serviceConfig 
-    ? `https://kammerjaeger-kellermann.de/svc/${serviceConfig.slug}`
-    : 'https://kammerjaeger-kellermann.de/';
+    ? `https://kammerjaeger-bismark.de/svc/${serviceConfig.slug}`
+    : 'https://kammerjaeger-bismark.de/';
 
   const serviceSchema = serviceConfig ? {
     "@context": "https://schema.org",
@@ -270,9 +264,9 @@ const Index = () => {
     "serviceType": serviceConfig.schemaServiceType,
     "provider": {
       "@type": "ProfessionalService",
-      "name": "Kammerjäger Kellermann",
+      "name": "Kammerjäger Bismark",
       "telephone": PHONE_NUMBER,
-      "url": "https://kammerjaeger-kellermann.de",
+      "url": "https://kammerjaeger-bismark.de",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "DE",
@@ -304,8 +298,8 @@ const Index = () => {
       </Helmet>
       
       <div className="min-h-screen bg-[#003311]">
-        <HartmannNavbar brandName="KELLERMANN" />
-        <HartmannHero cityName={cityName} brandName="Kellermann" />
+        <HartmannNavbar brandName="BISMARK" />
+        <HartmannHero cityName={cityName} brandName="Bismark" />
         <HartmannService />
         <HartmannTestimonials />
         <HartmannServices />
@@ -313,7 +307,7 @@ const Index = () => {
         <HartmannCertifications />
         <HartmannContact />
         <Einsatzgebiet />
-        <HartmannFooter brandName="KELLERMANN" email="Info@kammerjaeger-kellermann.de" />
+        <HartmannFooter brandName="BISMARK" email="Info@kammerjaeger-bismark.de" />
         <MobileStickyCTA />
       </div>
     </>
