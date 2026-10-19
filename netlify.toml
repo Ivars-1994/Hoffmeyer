@@ -39,6 +39,11 @@
 
 # SPA Fallback für alle anderen Routen
 [[redirects]]
+  from = "/agb"
+  to = "/agb/"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

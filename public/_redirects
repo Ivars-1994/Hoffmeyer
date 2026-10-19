@@ -24,5 +24,7 @@
 /kammerjaeger-bochum    /kammerjaeger-bochum/    301
 /kammerjaeger-duisburg    /kammerjaeger-duisburg/    301
 
+/agb    /agb/    301
+
 # SPA Fallback - NUR für Routen die keine statische Datei haben
 /*    /index.html   200
