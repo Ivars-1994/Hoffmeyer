@@ -59,6 +59,16 @@
   status = 301
 
 [[redirects]]
+  from = "/maeusebekaempfung"
+  to = "/maeusebekaempfung/"
+  status = 301
+
+[[redirects]]
+  from = "/marderbekaempfung"
+  to = "/marderbekaempfung/"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
