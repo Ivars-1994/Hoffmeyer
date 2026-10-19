@@ -8,5 +8,5 @@
 - [x] Verify direct legal pages, phone links, identity tests and unchanged city scripts; folder navigation requires the static host rather than Vite's local fallback.
 - [x] Apply the six requested homepage copy, metadata, call-link and service-destination changes to public homepage copies only.
 - [x] Verify unchanged city scripts, targeted links, mobile rendering and tests.
-- [ ] Create static rat control service template with all seven supplied content sections and homepage parity.
-- [ ] Add canonical, FAQ schema, sitemap and trailing-slash redirect; verify page and city detection.
+- [x] Create static rat control service template with all seven supplied content sections and homepage parity.
+- [x] Add canonical, FAQ schema, sitemap and trailing-slash redirect; verify direct page, FAQ and city detection (folder hosting remains unverified locally).
