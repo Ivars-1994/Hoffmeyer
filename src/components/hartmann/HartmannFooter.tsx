@@ -78,7 +78,7 @@ const HartmannFooter = ({
               <a href="/datenschutz" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">
                 Datenschutz
               </a>
-              <a href="/agb" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">
+              <a href="/agb/" className="text-gray-500 hover:text-[#c9a227] text-sm transition-colors">
                 AGB
               </a>
             </div>
