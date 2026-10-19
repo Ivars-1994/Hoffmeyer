@@ -27,6 +27,7 @@
 /agb    /agb/    301
 /impressum    /impressum/    301
 /datenschutz    /datenschutz/    301
+/rattenbekaempfung    /rattenbekaempfung/    301
 
 # SPA Fallback - NUR für Routen die keine statische Datei haben
 /*    /index.html   200
