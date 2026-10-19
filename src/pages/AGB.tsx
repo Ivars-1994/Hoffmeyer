@@ -1,165 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import PhoneButton from '../components/ui/PhoneButton';
-import WhatsAppButton from '../components/ui/WhatsAppButton';
-import { useParams, useLocation } from 'react-router-dom';
-import { getCityFromParams } from '../utils/cityDetection';
+import HartmannNavbar from '@/components/hartmann/HartmannNavbar';
+import HartmannFooter from '@/components/hartmann/HartmannFooter';
+import MobileStickyCTA from '@/components/ui/MobileStickyCTA';
 
-const PHONE_NUMBER = "+491781196025";
-const DEFAULT_CITY = "Hagen";
+const sections: { title: string; text: string[] }[] = [
+  { title: '§ 1 Geltungsbereich', text: ['Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB“) gelten für alle Aufträge über Leistungen der Schädlingsbekämpfung sowie damit zusammenhängende Leistungen zwischen dem Auftragnehmer und dem Kunden (nachfolgend „Auftraggeber“). Sie gelten gegenüber Verbrauchern (§ 13 BGB) und Unternehmern (§ 14 BGB). Abweichende Bedingungen des Auftraggebers werden nur Vertragsbestandteil, wenn ihnen ausdrücklich in Textform zugestimmt wurde.'] },
+  { title: '§ 2 Vertragsschluss', text: ['Darstellungen auf der Website stellen kein verbindliches Angebot dar. Ein Auftrag kommt durch mündliche, telefonische oder schriftliche Beauftragung durch den Auftraggeber und deren Annahme zustande, spätestens jedoch mit Beginn der Arbeiten vor Ort. Art und Umfang der Leistungen werden vor Beginn der Arbeiten mit dem Auftraggeber abgestimmt.'] },
+  { title: '§ 3 Leistungsumfang', text: ['Geschuldet ist die fachgerechte Ausführung der vereinbarten Leistungen nach den anerkannten Regeln der Technik. Ein bestimmter Erfolg kann nicht in jedem Fall zugesichert werden, insbesondere wenn die Ursache eines Schädlingsbefalls in baulichen Mängeln, offenen Zugängen, Befall aus Nachbarräumen oder mangelnder Hygiene liegt. Stellt sich vor Ort heraus, dass zusätzliche Leistungen erforderlich sind, werden diese erst nach Rücksprache mit dem Auftraggeber ausgeführt.'] },
+  { title: '§ 4 Preise und Zahlung', text: ['Es gelten die vor Beginn der Arbeiten mitgeteilten Preise. Alle Preise gegenüber Verbrauchern verstehen sich inklusive der gesetzlichen Mehrwertsteuer. Zuschläge für Einsätze nachts, an Wochenenden oder Feiertagen werden vorab mitgeteilt. Die Vergütung ist nach Abschluss der Arbeiten ohne Abzug fällig und kann bar, per EC-/Kreditkarte oder nach Rechnungsstellung per Überweisung beglichen werden. Bei Zahlungsverzug gelten die gesetzlichen Bestimmungen.'] },
+  { title: '§ 5 Termine und Anfahrt', text: ['Angaben zu Anfahrts- und Ankunftszeiten sind unverbindliche Richtwerte und können je nach Verkehrslage, Witterung und Auftragslage abweichen. Verzögerungen, die nicht zu vertreten sind, berechtigen nicht zum Schadensersatz.'] },
+  { title: '§ 6 Mitwirkungspflichten des Auftraggebers', text: ['Der Auftraggeber stellt sicher, dass der Einsatzort zum vereinbarten Zeitpunkt zugänglich ist und betroffene Räume, Keller, Dachböden und Schlupfwinkel erreichbar sind. Er weist auf ihm bekannte Besonderheiten (z. B. Haustiere, Kinder, Allergien, frühere Bekämpfungsmaßnahmen) hin. Wird ein Einsatz aus Gründen, die der Auftraggeber zu vertreten hat, vergeblich angefahren, können die entstandenen Anfahrtskosten berechnet werden.'] },
+  { title: '§ 7 Gewährleistung', text: ['Es gelten die gesetzlichen Gewährleistungsrechte. Mängel sind möglichst unverzüglich nach ihrer Feststellung anzuzeigen. Gegenüber Unternehmern beträgt die Gewährleistungsfrist ein Jahr ab Abnahme, soweit gesetzlich zulässig.'] },
+  { title: '§ 8 Haftung', text: ['Für Schäden aus der Verletzung von Leben, Körper oder Gesundheit sowie bei Vorsatz und grober Fahrlässigkeit wird unbeschränkt gehaftet. Bei einfacher Fahrlässigkeit wird nur bei Verletzung einer wesentlichen Vertragspflicht gehaftet, begrenzt auf den vorhersehbaren, vertragstypischen Schaden. Keine Haftung besteht für Schäden, die auf bereits vorhandene Mängel oder einen bereits vor dem Einsatz entstandenen Schädlingsbefall (z. B. Fraßschäden, Verunreinigungen) zurückzuführen sind. Die Haftung nach dem Produkthaftungsgesetz bleibt unberührt.'] },
+  { title: '§ 9 Widerrufsrecht für Verbraucher', text: ['Verbrauchern steht bei außerhalb von Geschäftsräumen oder im Fernabsatz geschlossenen Verträgen ein gesetzliches Widerrufsrecht von vierzehn Tagen ab Vertragsschluss zu. Der Widerruf kann durch eine eindeutige Erklärung per E-Mail oder Brief erfolgen. Verlangt der Verbraucher ausdrücklich, dass mit den Arbeiten vor Ablauf der Widerrufsfrist begonnen wird (z. B. im Notfall), erlischt das Widerrufsrecht mit vollständiger Erbringung der Leistung; bei Widerruf nach Beginn ist Wertersatz für die bis dahin erbrachten Leistungen zu leisten.'] },
+  { title: '§ 10 Leistungsgegenstand und Vermittlungstätigkeit', text: [
+    'Wir sind eine Vermittlungsfirma, die Kundenanfragen an qualifizierte Fachbetriebe in Ihrer Nähe weiterleitet. Kammerjäger Bismarck erbringt selbst keine Schädlingsbekämpfungsleistungen; Gegenstand unserer Tätigkeit ist ausschließlich die Vermittlung. Wir prüfen die eingehenden Anfragen und leiten sie schnell und unkompliziert an einen verfügbaren Fachbetrieb weiter, der die gewünschten Arbeiten – insbesondere die Bekämpfung von Insekten, Nagetieren, Bettwanzen, Wespen sowie Notdienstleistungen – ausführt.',
+    'Ihr Vertragspartner ist ausschließlich der Fachbetrieb, der die Arbeiten bei Ihnen vor Ort ausführt. Dieser setzt sich direkt mit Ihnen in Verbindung, um den Termin, den Leistungsumfang und alles Weitere zu besprechen. Der Vermittlung liegt kein Vertrag über Schädlingsbekämpfungsleistungen zugrunde. Wir schulden dem Kunden ausschließlich die erfolgreiche Weiterleitung der Anfrage an einen geeigneten Fachbetrieb, nicht die Durchführung der Arbeiten selbst. Ein Anspruch auf die Vermittlung eines bestimmten Betriebs oder auf eine bestimmte Ausführungszeit besteht nicht.',
+  ] },
+  { title: '§ 11 Schlussbestimmungen', text: ['Änderungen und Ergänzungen dieser AGB bedürfen der Textform. Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein oder werden, so bleibt die Wirksamkeit der übrigen Bestimmungen unberührt; an die Stelle der unwirksamen Bestimmung tritt eine Regelung, die dem wirtschaftlich Gewollten am nächsten kommt. Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts. Gegenüber Verbrauchern gilt diese Rechtswahl nur, soweit der dadurch gewährte Schutz durch zwingende Bestimmungen des Rechts des Staates, in dem der Verbraucher seinen gewöhnlichen Aufenthalt hat, nicht entzogen wird.'] },
+];
 
-const AGB = () => {
-  const { city: routeCity } = useParams();
-  const location = useLocation();
-  const [cityInfo, setCityInfo] = useState({ city: DEFAULT_CITY });
-  
-  useEffect(() => {
-    const runCityDetection = async () => {
-      console.log("AGB: Stadt-Erkennung wird ausgeführt...");
-      
-      try {
-        // Erst versuchen, Stadt aus URL-Parametern zu erkennen
-        let detectedCityData = getCityFromParams();
-        console.log("AGB: Stadt aus URL-Parametern:", detectedCityData);
-        let detectedCity = detectedCityData.name;
-        
-        // Falls keine Stadt aus URL erkannt wurde, prüfe sessionStorage
-        if (detectedCity === "Ihrer Stadt") {
-          const storedCity = sessionStorage.getItem('cityName');
-          if (storedCity && storedCity !== "Ihrer Stadt") {
-            detectedCity = storedCity;
-            console.log("AGB: Stadt aus sessionStorage übernommen:", detectedCity);
-          }
-        } else {
-          // Stadt in sessionStorage speichern für andere Seiten
-          sessionStorage.setItem('detectedCity', detectedCity);
-        }
-        
-        console.log("AGB: Finale erkannte Stadt:", detectedCity);
-        
-        setCityInfo({ 
-          city: detectedCity
-        });
-      } catch (error) {
-        console.error("AGB: Fehler bei der Stadt-Erkennung:", error);
-        setCityInfo({ city: DEFAULT_CITY });
-      }
-    };
-    
-    // Sofort ausführen
-    runCityDetection();
-    
-    // Und nach Verzögerung nochmals
-    const timeoutId = setTimeout(runCityDetection, 500);
-    
-    return () => clearTimeout(timeoutId);
-  }, [routeCity, location]);
-  
-  return (
-    <>
-      <Helmet>
-        <title>Allgemeine Geschäftsbedingungen - Kammerjäger Bismarck</title>
-        <meta name="description" content={`Allgemeine Geschäftsbedingungen (AGB) für die Dienstleistungen von Kammerjäger Bismarck in ${cityInfo.city}.`} />
-      </Helmet>
-      
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
-        <Navbar />
-        
-        <main className="flex-grow container mx-auto px-4 py-12">
-          <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-8 text-[#1A1F2C]">Allgemeine Geschäftsbedingungen (AGB)</h1>
-            
-            <section className="mb-8">
-              <div className="space-y-2 mb-6">
-                <p>Kammerjäger Bismarck</p>
-                <p>Hauptstraße 26–36, {cityInfo.city}</p>
-                <p>E-Mail: <a href="mailto:info@kammerjaeger-bismarck.de" className="text-[#9b87f5] hover:underline">info@kammerjaeger-bismarck.de</a></p>
-                <p>Telefon: <a href="tel:+491781196025" className="call-link text-[#9b87f5] hover:underline">+491781196025</a></p>
-              </div>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§1 Geltungsbereich</h2>
-              <p className="text-gray-700">
-                Diese AGB gelten für alle Verträge über Dienstleistungen im Bereich der Schädlingsbekämpfung, die zwischen Kammerjäger Bismarck (nachfolgend „Dienstleister") und Kunden (Verbraucher und Unternehmer) abgeschlossen werden.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§2 Leistungen</h2>
-              <p className="text-gray-700">
-                Der Dienstleister bietet die Beseitigung von Schädlingen wie Insekten, Nagetieren, Bettwanzen, Wespen u. Ä. sowie präventive Maßnahmen an. Der genaue Leistungsumfang ergibt sich aus der individuellen Vereinbarung.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§3 Auftragserteilung</h2>
-              <p className="text-gray-700">
-                Die Beauftragung erfolgt telefonisch, per WhatsApp, E-Mail oder über andere Kontaktwege. Mit Annahme des Angebots gilt der Auftrag als verbindlich erteilt.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§4 Preise und Zahlung</h2>
-              <p className="text-gray-700">
-                Die Preise richten sich nach Art, Umfang und Dringlichkeit der Dienstleistung und werden dem Kunden vor Beginn mitgeteilt. Zahlungen erfolgen – sofern nicht anders vereinbart – unmittelbar nach Leistungserbringung in bar oder per Überweisung.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§5 Terminvereinbarung und Stornierung</h2>
-              <p className="text-gray-700">
-                Vereinbarte Termine sind verbindlich. Bei kurzfristiger Stornierung (weniger als 24 Stunden vor dem Termin) kann eine Ausfallpauschale in Rechnung gestellt werden. Bei Nichterscheinen des Kunden behält sich der Dienstleister vor, den vollen Preis zu berechnen.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§6 Haftung</h2>
-              <p className="text-gray-700">
-                Der Dienstleister haftet nur bei Vorsatz oder grober Fahrlässigkeit. Eine Haftung für Folgeschäden durch unsachgemäße Nachbehandlung durch den Kunden ist ausgeschlossen.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§7 Widerrufsrecht</h2>
-              <p className="text-gray-700">
-                Bei Dienstleistungen, die auf ausdrücklichen Wunsch des Kunden kurzfristig (z. B. als Notfall) begonnen werden, erlischt das Widerrufsrecht gemäß § 356 Abs. 4 BGB mit vollständiger Vertragserfüllung.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§8 Datenschutz</h2>
-              <p className="text-gray-700">
-                Die im Rahmen der Auftragsabwicklung erhobenen personenbezogenen Daten werden ausschließlich zur Vertragsabwicklung genutzt und nicht an Dritte weitergegeben. Weitere Infos siehe Datenschutzerklärung.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§9 Gerichtsstand</h2>
-              <p className="text-gray-700">
-                Gerichtsstand ist – soweit gesetzlich zulässig – der Sitz des Dienstleisters.
-              </p>
-            </section>
-            
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold mb-3 text-[#1A1F2C]">§10 Schlussbestimmungen</h2>
-              <p className="text-gray-700">
-                Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein, bleibt die Wirksamkeit der übrigen Regelungen unberührt.
-              </p>
-            </section>
+const AGB = () => (
+  <>
+    <Helmet>
+      <title>Allgemeine Geschäftsbedingungen - Kammerjäger Bismarck</title>
+      <meta name="description" content="Allgemeine Geschäftsbedingungen (AGB) von Kammerjäger Bismarck." />
+    </Helmet>
+    <div className="min-h-screen flex flex-col bg-[#003311]">
+      <HartmannNavbar />
+      <main className="flex-grow py-16 px-4 md:px-8">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold mb-4 text-white">Allgemeine Geschäftsbedingungen</h1>
+          <p className="text-gray-300 mb-10">
+            Kammerjäger Bismarck · Telefon: <a href="tel:+491781196025" className="text-[#c9a227] hover:underline">0178 1196025</a> · E-Mail: <a href="mailto:info@kammerjaeger-bismarck.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-bismarck.de</a>
+          </p>
+          <div className="space-y-8 text-gray-300">
+            {sections.map((s) => (
+              <section key={s.title}>
+                <h2 className="text-lg font-semibold mb-3 text-[#c9a227]">{s.title}</h2>
+                {s.text.map((t, i) => <p key={i} className="mb-3">{t}</p>)}
+              </section>
+            ))}
           </div>
-        </main>
-        
-        <Footer />
-        
-        {/* Fixed Buttons */}
-        <PhoneButton phoneNumber={PHONE_NUMBER} variant="fixed" />
-        <WhatsAppButton phoneNumber={PHONE_NUMBER} variant="fixed" />
-      </div>
-    </>
-  );
-};
+        </div>
+      </main>
+      <HartmannFooter />
+      <MobileStickyCTA />
+    </div>
+  </>
+);
 
 export default AGB;
