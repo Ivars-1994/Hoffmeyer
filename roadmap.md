@@ -2,4 +2,7 @@
 - [x] Remove existing tracking containers and legacy conversion integrations.
 - [x] Verify phone links, brand replacement and absence of old tracking.
 - [x] Correct the brand spelling everywhere to Bismarck (with ck), including pages, assets and icons.
-- [ ] Install new GTM container — blocked until user supplies it.
+- [x] Install the supplied GTM-NPG6WGFF container.
+- [x] Create static Impressum and Datenschutz with existing legal data and tracking disclosures.
+- [x] Normalize static footer links and legal redirects/sitemap URLs without changing src or city detection.
+- [x] Verify direct legal pages, phone links, identity tests and unchanged city scripts; folder navigation requires the static host rather than Vite's local fallback.

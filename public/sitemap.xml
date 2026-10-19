@@ -166,11 +166,11 @@
   
   <!-- Rechtliches -->
   <url>
-    <loc>https://kammerjaeger-bismarck.de/impressum</loc>
+    <loc>https://kammerjaeger-bismarck.de/impressum/</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://kammerjaeger-bismarck.de/datenschutz</loc>
+    <loc>https://kammerjaeger-bismarck.de/datenschutz/</loc>
     <priority>0.3</priority>
   </url>
   <url>
