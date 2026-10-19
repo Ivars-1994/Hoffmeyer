@@ -3,6 +3,6 @@
 - [x] Verify phone links, brand replacement and absence of old tracking.
 - [x] Correct the brand spelling everywhere to Bismarck (with ck), including pages, assets and icons.
 - [x] Install the supplied GTM-NPG6WGFF container.
-- [ ] Create static Impressum and Datenschutz with existing legal data and tracking disclosures.
-- [ ] Normalize static footer links and legal redirects/sitemap URLs without changing src or city detection.
-- [ ] Verify legal navigation, phone links, identity tests and unchanged city scripts.
+- [x] Create static Impressum and Datenschutz with existing legal data and tracking disclosures.
+- [x] Normalize static footer links and legal redirects/sitemap URLs without changing src or city detection.
+- [x] Verify direct legal pages, phone links, identity tests and unchanged city scripts; folder navigation requires the static host rather than Vite's local fallback.
