@@ -10,3 +10,5 @@
 - [x] Verify unchanged city scripts, targeted links, mobile rendering and tests.
 - [x] Create static rat control service template with all seven supplied content sections and homepage parity.
 - [x] Add canonical, FAQ schema, sitemap and trailing-slash redirect; verify direct page, FAQ and city detection (folder hosting remains unverified locally).
+- [ ] Create mouse and marten service pages from the rat template with all seven supplied sections.
+- [ ] Add service cross-links, sitemap and canonical redirects; verify city detection, calls and page rendering.
