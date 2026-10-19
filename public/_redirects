@@ -29,5 +29,8 @@
 /datenschutz    /datenschutz/    301
 /rattenbekaempfung    /rattenbekaempfung/    301
 
+/maeusebekaempfung    /maeusebekaempfung/    301
+/marderbekaempfung    /marderbekaempfung/    301
+
 # SPA Fallback - NUR für Routen die keine statische Datei haben
 /*    /index.html   200
