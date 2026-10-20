@@ -32,5 +32,9 @@
 /maeusebekaempfung    /maeusebekaempfung/    301
 /marderbekaempfung    /marderbekaempfung/    301
 
+/bettwanzenbekaempfung    /bettwanzenbekaempfung/    301
+/wespennest-entfernen    /wespennest-entfernen/    301
+/kakerlakenbekaempfung    /kakerlakenbekaempfung/    301
+
 # SPA Fallback - NUR für Routen die keine statische Datei haben
 /*    /index.html   200
