@@ -14,6 +14,6 @@
 - [x] Add service cross-links, sitemap and canonical redirects; verify city detection, calls, FAQs and desktop/mobile rendering via static index URLs (live folder redirects remain unchecked until deployment).
 - [x] Create the remaining bedbug/flea, wasp/hornet and cockroach/silverfish service pages with all seven supplied sections and unchanged template styling/scripts except city titles.
 - [x] Verify all six services link to each other and from both public homepage copies; tests and mobile/FAQ/city checks pass (live folder redirects unchecked until deployment).
-- [ ] Synchronize homepage copies during builds and redirect /index.html to /.
-- [ ] Change only the homepage detected-city title assignment.
-- [ ] Fix and verify homepage/service accessible names, alternatives and contrast without changing content or city detection.
+- [x] Synchronize homepage copies before and after Vite builds and configure forced /index.html → / 301 redirects (live verification requires deployment).
+- [x] Change only the homepage detected-city title assignment.
+- [x] Verify all images already have alt text; fix measured text contrasts and add accessible labels/decorative SVG attributes; all seven pages pass targeted axe checks, city scripts/calls/GTM/content remain unchanged.
