@@ -1,4 +1,5 @@
 # 301-Redirects für kanonische URLs mit Trailing Slash
+/index.html    /    301!
 /kammerjaeger-essen    /kammerjaeger-essen/    301
 /ratgeber/kammerjaeger-essen-kosten-2025    /ratgeber/kammerjaeger-essen-kosten-2025/    301
 /ratgeber/wespennest-entfernen-essen    /ratgeber/wespennest-entfernen-essen/    301

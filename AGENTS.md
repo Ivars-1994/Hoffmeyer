@@ -6,3 +6,4 @@
 - Run `npm test` for the website identity and tracking reset invariants; these rules cover static call destinations and prevent legacy brand or tracking IDs from returning.
 - Serve global legal pages as standalone HTML under public with trailing-slash footer destinations, because static home and city pages do not inherit React routes.
 - Derive static service pages from the public homepage, preserving its CSS and shared sections and only changing the city script's title assignment, so service templates retain homepage behavior.
+- Treat public/static-home.html as the authoritative homepage; synchronize public/index.html before builds and dist/index.html after Vite, since Vite otherwise overwrites the public copy with the root entry.
