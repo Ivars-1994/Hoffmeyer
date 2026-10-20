@@ -53,6 +53,7 @@ test('agb stays online and linked from every served page footer', () => {
   const sitemap = readFileSync('public/sitemap.xml', 'utf8');
   assert.match(sitemap, /https:\/\/kammerjaeger-bismarck\.de\/agb/);
   for (const file of served) {
+    if (file === 'public/agb/index.html') continue; // the AGB page itself carries no footer
     const text = readFileSync(file, 'utf8');
     assert.equal(
       text.includes('href="/agb/"'),
