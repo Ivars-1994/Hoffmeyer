@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "build:dev": "vite build --mode development",
+    "build": "node scripts/sync-homepage.mjs && tsc && vite build && node scripts/sync-homepage.mjs --dist",
+    "build:dev": "node scripts/sync-homepage.mjs && vite build --mode development && node scripts/sync-homepage.mjs --dist",
     "lint": "eslint .",
     "test": "node --test scripts/*.test.mjs",
     "preview": "vite preview"
