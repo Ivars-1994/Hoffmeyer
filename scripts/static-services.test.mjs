@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const slugs = ['maeusebekaempfung', 'marderbekaempfung'];
+const slugs = ['rattenbekaempfung', 'maeusebekaempfung', 'marderbekaempfung', 'bettwanzenbekaempfung', 'wespennest-entfernen', 'kakerlakenbekaempfung'];
 for (const slug of slugs) {
   test(`${slug} has a canonical trailing-slash redirect before the fallback`, () => {
     const redirects = readFileSync('public/_redirects', 'utf8');
@@ -24,3 +24,9 @@ for (const slug of slugs) {
     assert.deepEqual(destinations.sort(), expected.sort());
   });
 }
+test('both homepage copies link every service page from the services section', () => {
+  for (const file of ['public/index.html', 'public/static-home.html']) {
+    const section = readFileSync(file, 'utf8').match(/<section[^>]*id="leistungen"[\s\S]*?<\/section>/)?.[0] ?? '';
+    for (const slug of slugs) assert.match(section, new RegExp(`href="/${slug}/"`), `${file} ${slug}`);
+  }
+});

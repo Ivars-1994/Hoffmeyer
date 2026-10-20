@@ -119,6 +119,22 @@
   
   <!-- Service-Seiten (Allgemein) -->
   <url>
+    <loc>https://kammerjaeger-bismarck.de/bettwanzenbekaempfung/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://kammerjaeger-bismarck.de/wespennest-entfernen/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://kammerjaeger-bismarck.de/kakerlakenbekaempfung/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
     <loc>https://kammerjaeger-bismarck.de/maeusebekaempfung/</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
