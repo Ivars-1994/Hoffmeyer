@@ -17,3 +17,4 @@
 - [x] Synchronize homepage copies before and after Vite builds and configure forced /index.html → / 301 redirects (live verification requires deployment).
 - [x] Change only the homepage detected-city title assignment.
 - [x] Verify all images already have alt text; fix measured text contrasts and add accessible labels/decorative SVG attributes; all seven pages pass targeted axe checks, city scripts/calls/GTM/content remain unchanged.
+- [x] Take global Impressum and Datenschutz offline (files parked in disabled-legal/), keep AGB online; remove their footer links, redirects and sitemap entries; restore the ten AGB footer links the removal had taken with it; correct the Essen page contact address.
