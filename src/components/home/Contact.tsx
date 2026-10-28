@@ -3,7 +3,7 @@ import AnimatedSection from '../ui/AnimatedSection';
 import { Phone, Clock } from 'lucide-react';
 import PhoneButton from '../ui/PhoneButton';
 
-const PHONE_NUMBER = "+491781196025";
+const PHONE_NUMBER = "+4915888623097";
 
 const Contact = () => {
   return (

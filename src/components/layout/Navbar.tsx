@@ -6,7 +6,7 @@ import WhatsAppButton from '../ui/WhatsAppButton';
 import Logo from '../ui/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Badge } from '@/components/ui/badge';
-const PHONE_NUMBER = "+491781196025";
+const PHONE_NUMBER = "+4915888623097";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
