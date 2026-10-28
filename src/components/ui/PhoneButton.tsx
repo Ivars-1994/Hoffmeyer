@@ -19,7 +19,7 @@ const PhoneButton = ({
   linkText = "Jetzt anrufen",
 }: PhoneButtonProps) => {
   // Display the single project number in its readable local format.
-  const displayNumber = phoneNumber.replace(/^\+491781196025$/, '0178 1196025');
+  const displayNumber = phoneNumber.replace(/^\+4915888623097$/, '015888623097');
   
   // Keep the href format without spaces
   const formattedNumber = phoneNumber.replace(/\s/g, '');

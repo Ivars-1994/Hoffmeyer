@@ -29,7 +29,7 @@ const LandingPageHartmann = () => {
   return (
     <>
       <Helmet>
-        <title>Kammerjäger Bismarck | 24/7 Schädlingsbekämpfung | Tel: 0178 1196025</title>
+        <title>Kammerjäger Bismarck | 24/7 Schädlingsbekämpfung | Tel: 015888623097</title>
         <meta 
           name="description" 
           content="Kammerjäger Bismarck - Professionelle Schädlingsbekämpfung seit 1998. 24/7 Notdienst, 30-60 Min. Reaktionszeit. Ratten, Wespen, Mäuse, Bettwanzen. Jetzt anrufen!" 
