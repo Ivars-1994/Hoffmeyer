@@ -14,19 +14,19 @@ const files = ['index.html', ...filesIn('public'), ...filesIn('src'), ...filesIn
   .filter(path => /\.(html|tsx?|js|json|txt|xml)$/.test(path));
 const contents = files.map(path => ({ path, text: readFileSync(path, 'utf8') }));
 
-test('every static call link uses the requested 015888623097 number', () => {
+test('every static call link uses the requested 0178 119 6025 number', () => {
   let count = 0;
   for (const { path, text } of contents.filter(file => file.path.endsWith('.html'))) {
     for (const match of text.matchAll(/href=["']tel:([^"']+)["']/g)) {
       count++;
-      assert.equal(match[1], '+4915888623097', path);
+      assert.equal(match[1], '+491781196025', path);
     }
   }
   assert.ok(count > 100, 'All static call links must be checked');
   for (const { path, text } of contents) {
     assert.doesNotMatch(text, /0178[\s/-]*1196025|491781196025|01511[\s/-]*4310957|4915114310957/, path);
     for (const match of text.matchAll(/(?:PHONE_NUMBER|CALL)\s*=\s*["']([^"']+)/g)) {
-      assert.ok(['+4915888623097', 'tel:+4915888623097'].includes(match[1]), path);
+      assert.ok(['+491781196025', 'tel:+491781196025'].includes(match[1]), path);
     }
   }
 });
@@ -39,7 +39,7 @@ test('Bismarck replaces all prior Kellermann brand references', () => {
   const homepage = readFileSync('index.html', 'utf8');
   const identity = JSON.parse(homepage.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] ?? '{}');
   assert.equal(identity.name, 'Kammerjäger Bismarck');
-  assert.equal(identity.telephone, '+4915888623097');
+  assert.equal(identity.telephone, '+491781196025');
 });
 
 test('brand is spelled Bismarck with ck on every page and asset name', () => {
