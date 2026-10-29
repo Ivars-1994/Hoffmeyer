@@ -24,7 +24,7 @@ test('every static call link uses the requested 0178 119 6025 number', () => {
   }
   assert.ok(count > 100, 'All static call links must be checked');
   for (const { path, text } of contents) {
-    assert.doesNotMatch(text, /0178[\s/-]*1196025|491781196025|01511[\s/-]*4310957|4915114310957/, path);
+    assert.doesNotMatch(text, /0158[\s/-]*88[\s/-]*62[\s/-]*30[\s/-]*97|4915888623097|01511[\s/-]*4310957|4915114310957/, path);
     for (const match of text.matchAll(/(?:PHONE_NUMBER|CALL)\s*=\s*["']([^"']+)/g)) {
       assert.ok(['+491781196025', 'tel:+491781196025'].includes(match[1]), path);
     }
