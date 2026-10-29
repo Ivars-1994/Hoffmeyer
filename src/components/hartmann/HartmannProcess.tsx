@@ -52,11 +52,11 @@ const HartmannProcess = () => {
             Anfrage Senden
           </a>
           <a 
-            href="tel:+4915888623097"
+            href="tel:+491781196025"
             className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-[#004d1a] transition-colors"
           >
             <Phone size={20} />
-            015888623097
+            0178 119 6025
           </a>
         </div>
       </div>

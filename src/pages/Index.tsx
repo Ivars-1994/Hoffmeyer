@@ -17,7 +17,7 @@ import { CityData } from '../utils/cityDetection';
 import { getServiceConfig } from '../utils/serviceConfig';
 
 
-const PHONE_NUMBER = "+4915888623097";
+const PHONE_NUMBER = "+491781196025";
 
 const Index = () => {
   const { service: serviceSlug } = useParams<{ service?: string }>();

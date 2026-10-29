@@ -33,7 +33,7 @@ const AGB = () => (
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl font-bold mb-4 text-white">Allgemeine Geschäftsbedingungen</h1>
           <p className="text-gray-300 mb-10">
-            Kammerjäger Bismarck · Telefon: <a href="tel:+4915888623097" className="text-[#c9a227] hover:underline">015888623097</a> · E-Mail: <a href="mailto:info@kammerjaeger-bismarck.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-bismarck.de</a>
+            Kammerjäger Bismarck · Telefon: <a href="tel:+491781196025" className="text-[#c9a227] hover:underline">0178 119 6025</a> · E-Mail: <a href="mailto:info@kammerjaeger-bismarck.de" className="text-[#c9a227] hover:underline">info@kammerjaeger-bismarck.de</a>
           </p>
           <div className="space-y-8 text-gray-300">
             {sections.map((s) => (

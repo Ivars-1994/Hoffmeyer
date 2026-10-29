@@ -6,7 +6,7 @@ import Logo from '../ui/Logo';
 import MoneyBackBadge from '../ui/MoneyBackBadge';
 import EmergencyWaspBadge from '../ui/EmergencyWaspBadge';
 import { ServiceConfig } from '../../utils/serviceConfig';
-const PHONE_NUMBER = "+4915888623097";
+const PHONE_NUMBER = "+491781196025";
 interface HeroContentProps {
   cityName: string;
   serviceConfig?: ServiceConfig | null;
