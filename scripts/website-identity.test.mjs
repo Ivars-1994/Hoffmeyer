@@ -59,7 +59,7 @@ test('only the new GTM-NPG6WGFF container is active; no legacy tracking remains'
   for (const { path, text } of htmlFiles) {
     // The telclick fallback script legitimately references the container ID once
     // to detect whether GTM has loaded; exclude it before counting.
-    const withoutFallback = text.replace(/<script>\(function\(\)\{if\(window\.__tcFallback\)[\s\S]*?<\/script>/, '');
+    const withoutFallback = text.replace(/<script>\s*\(function\(\)\{if\(window\.__tcFallback\)[\s\S]*?<\/script>/, '');
     // New container present exactly twice per page (head script + body noscript).
     assert.equal(withoutFallback.match(/GTM-NPG6WGFF/g)?.length ?? 0, 2, path);
   }
