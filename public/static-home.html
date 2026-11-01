@@ -358,10 +358,11 @@
       .svc-steps{list-style:none;counter-reset:s;margin:0 0 1.25rem;display:grid;gap:.6rem}
       .svc-steps li{counter-increment:s;position:relative;padding-left:2.3rem;color:#e5e5e5;line-height:1.5}
       .svc-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:1.7rem;height:1.7rem;border:2px solid #c9a227;border-radius:50%;color:#c9a227;font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center}
-      .sticky-cta{padding-bottom:calc(1rem + env(safe-area-inset-bottom));min-height:56px}
+      .sticky-cta{padding-bottom:calc(1rem + env(safe-area-inset-bottom));min-height:56px;transition:transform .25s ease}
+      .sticky-cta.off{transform:translateY(110%)}
       body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
       .trust-chip,.risk-badge,.live-avail{min-height:32px}
-      @media(prefers-reduced-motion:reduce){.pulse,.live-avail .dot,.sticky-cta .dot{animation:none}}
+      @media(prefers-reduced-motion:reduce){.pulse,.live-avail .dot,.sticky-cta .dot{animation:none}.sticky-cta{transition:none}}
       @media(max-width:767px){
         .hero h1{font-size:1.95rem;line-height:1.12;margin-bottom:.9rem}
         .hero h1 .city::after{display:none}
@@ -382,6 +383,33 @@
         .einsatz-list li{flex-wrap:wrap;font-size:.85rem;row-gap:0}
         .hero-promo{font-size:.84rem;padding:.5rem .6rem;gap:.4rem;line-height:1.3}
         #promoText{text-wrap:balance}
+        .nav-logo svg{width:34px;height:34px}
+        .nav-logo .brand{font-size:1.1rem}
+        .nav-logo .sub{font-size:.66rem}
+        .nav{padding:.5rem 0}
+        .hero p.lead{font-size:1rem;margin-bottom:.9rem}
+        .hero h1{margin-bottom:.8rem}
+        .hero-person{margin-bottom:.7rem}
+        .cta-hint{margin-bottom:1rem}
+        .trust-chips{margin-bottom:.9rem}
+        .google-rev{margin-bottom:.5rem}
+      }
+      /* Handy/Tablet: Button ins erste Bild – Chips und Google-Karte erst nach dem Button */
+      @media(max-width:1023px){
+        .hero-grid>div:first-child{display:flex;flex-direction:column;align-items:stretch}
+        .hero-grid>div:first-child>*{order:20}
+        .hero-grid>div:first-child>.wespen-badge{order:1;align-self:flex-start}
+        .hero-grid>div:first-child>h1{order:2}
+        .hero-grid>div:first-child>.hero-subline{order:3}
+        .hero-grid>div:first-child>p.lead{order:4}
+        .hero-grid>div:first-child>.hero-person{order:5}
+        .hero-grid>div:first-child>.hero-ctas{order:6}
+        .hero-grid>div:first-child>.cta-sure{order:7}
+        .hero-grid>div:first-child>.cta-hint{order:8}
+        .hero-grid>div:first-child>.hero-badges-row{order:9;margin-bottom:1rem!important}
+        .hero-grid>div:first-child>.trust-chips{order:10}
+        .hero-grid>div:first-child>.google-rev{order:11;align-self:flex-start}
+        .hero-grid>div:first-child>.hero-stats{order:12}
       }
       .einsatz-grid>div{min-width:0}
     </style>
@@ -511,7 +539,7 @@
             </div>
 
             <p class="lead" id="heroLead">
-              Schädlingsbefall? Wir sind in 30–60 Min. vor Ort – Festpreis vorab, kostenlose Anfahrt.
+              Schädlingsbefall? In 30–⁠60 Min. vor Ort – Festpreis vorab, kostenlose Anfahrt.
             </p>
 
             <a
@@ -1281,17 +1309,17 @@
 
         // === Thema aus Keyword (kw={keyword} / cq_term) – Paket A 01.11.2026 ===
         var THEMES = [
-          {k:/wanderratt|ratte/, badge:'RATTEN-NOTDIENST', h1:'Rattenbekämpfung in', sub:'Köderstationen & Abdichtung – heute noch vor Ort', lead:'Ratten im Haus, Keller oder Garten? Wir sind in 30–60 Min. da – Festpreis vorab, kostenlose Anfahrt.'},
-          {k:/maus|mäuse|maeuse|m\u00e4use/, badge:'MÄUSE-NOTDIENST', h1:'Mäusebekämpfung in', sub:'Fallen, Köder, Einschlupflöcher dicht – heute noch', lead:'Mäuse in Wohnung, Küche oder Dach? Wir finden die Ursache und beseitigen den Befall – diskret, Festpreis vorab.'},
-          {k:/marder/, badge:'MARDER-ABWEHR', h1:'Marder vertreiben in', sub:'Dachboden & Auto – tierschonend und dauerhaft', lead:'Marder im Dach oder am Auto? Wir vergrämen tierschonend und dichten die Einstiege ab – Festpreis vorab.'},
-          {k:/bettwanz/, badge:'BETTWANZEN-SOFORTHILFE', h1:'Bettwanzen bekämpfen in', sub:'Wärme & Insektizid, diskret, mit Nachkontrolle', lead:'Stiche am Morgen? Wir behandeln diskret und gründlich – Nachkontrolle inklusive, Festpreis vorab.'},
-          {k:/schabe|kakerlak|küchenschabe/, badge:'SCHABEN-NOTDIENST', h1:'Kakerlaken bekämpfen in', sub:'Gel-Köder, Mehrfachbehandlung, hygienisch', lead:'Schaben in Küche oder Gastronomie? Diskreter Einsatz, auch außerhalb der Öffnungszeiten – Festpreis vorab.'},
-          {k:/wespe|hornisse|nest/, badge:'WESPEN-NOTDIENST', h1:'Wespennest entfernen in', sub:'Heute noch – meist in einer Stunde erledigt', lead:'Wespennest am Haus? Wir entfernen fachgerecht, Hornissen siedeln wir um – Festpreis vorab, kostenlose Anfahrt.'},
-          {k:/silberfisch/, badge:'SILBERFISCHE', h1:'Silberfische bekämpfen in', sub:'Ursache finden, dauerhaft beseitigen', lead:'Silberfische im Bad oder Schlafzimmer? Wir finden die Feuchtequelle und beseitigen den Befall dauerhaft – Festpreis vorab.'},
-          {k:/ameise/, badge:'AMEISEN', h1:'Ameisen bekämpfen in', sub:'Nest finden, nachhaltig beseitigen', lead:'Ameisenstraße im Haus? Wir finden das Nest und beseitigen es nachhaltig – Festpreis vorab, kostenlose Anfahrt.'},
-          {k:/floh|flöhe|floehe|fl\u00f6he/, badge:'FLÖHE', h1:'Flöhe bekämpfen in', sub:'Für Mensch und Haustier sicher', lead:'Flöhe in der Wohnung? Wir behandeln Umgebung und Textilien – sicher für Mensch und Haustier, Festpreis vorab.'},
-          {k:/motte/, badge:'MOTTEN', h1:'Motten bekämpfen in', sub:'Kleider- und Lebensmittelmotten dauerhaft los', lead:'Motten im Schrank oder in der Küche? Wir beseitigen Befall und Ursache – Festpreis vorab.'},
-          {k:/taube/, badge:'TAUBENABWEHR', h1:'Taubenabwehr in', sub:'Balkon, Dach & Fassade dauerhaft sichern', lead:'Tauben auf Balkon oder Dach? Wir sichern dauerhaft und reinigen fachgerecht – Festpreis vorab.'}
+          {k:/wanderratt|ratte/, badge:'RATTEN-NOTDIENST', h1:'Rattenbekämpfung in', sub:'Köderstationen & Abdichtung – heute noch vor Ort', lead:'Ratten im Haus, Keller oder Garten? In 30–⁠60 Min. vor Ort – Festpreis vorab.'},
+          {k:/maus|mäuse|maeuse|m\u00e4use/, badge:'MÄUSE-NOTDIENST', h1:'Mäusebekämpfung in', sub:'Fallen, Köder, Einschlupflöcher dicht – heute noch', lead:'Mäuse in Wohnung oder Dach? In 30–⁠60 Min. vor Ort – diskret, Festpreis vorab.'},
+          {k:/marder/, badge:'MARDER-ABWEHR', h1:'Marder vertreiben in', sub:'Dachboden & Auto – tierschonend und dauerhaft', lead:'Marder im Dach oder am Auto? Vergrämen und Einstiege abdichten – Festpreis vorab.'},
+          {k:/bettwanz/, badge:'BETTWANZEN-SOFORTHILFE', h1:'Bettwanzen bekämpfen in', sub:'Wärme & Insektizid, diskret, mit Nachkontrolle', lead:'Stiche am Morgen? Diskret und gründlich, mit Nachkontrolle – Festpreis vorab.'},
+          {k:/schabe|kakerlak|küchenschabe/, badge:'SCHABEN-NOTDIENST', h1:'Kakerlaken bekämpfen in', sub:'Gel-Köder, Mehrfachbehandlung, hygienisch', lead:'Schaben in Küche oder Gastro? Diskreter Einsatz, auch abends – Festpreis vorab.'},
+          {k:/wespe|hornisse|nest/, badge:'WESPEN-NOTDIENST', h1:'Wespennest entfernen in', sub:'Heute noch – meist in einer Stunde erledigt', lead:'Wespennest am Haus? Fachgerecht entfernt, Hornissen umgesiedelt – Festpreis vorab.'},
+          {k:/silberfisch/, badge:'SILBERFISCHE', h1:'Silberfische bekämpfen in', sub:'Ursache finden, dauerhaft beseitigen', lead:'Silberfische im Bad oder Schlafzimmer? Dauerhaft beseitigt – Festpreis vorab.'},
+          {k:/ameise/, badge:'AMEISEN', h1:'Ameisen bekämpfen in', sub:'Nest finden, nachhaltig beseitigen', lead:'Ameisenstraße im Haus? Nest finden und nachhaltig beseitigen – Festpreis vorab.'},
+          {k:/floh|flöhe|floehe|fl\u00f6he/, badge:'FLÖHE', h1:'Flöhe bekämpfen in', sub:'Für Mensch und Haustier sicher', lead:'Flöhe in der Wohnung? Sicher für Mensch und Haustier behandelt – Festpreis vorab.'},
+          {k:/motte/, badge:'MOTTEN', h1:'Motten bekämpfen in', sub:'Kleider- und Lebensmittelmotten dauerhaft los', lead:'Motten im Schrank oder in der Küche? Befall und Ursache beseitigt – Festpreis vorab.'},
+          {k:/taube/, badge:'TAUBENABWEHR', h1:'Taubenabwehr in', sub:'Balkon, Dach & Fassade dauerhaft sichern', lead:'Tauben auf Balkon oder Dach? Dauerhaft sichern und reinigen – Festpreis vorab.'}
         ];
         var THEME_WORDS = /^(vertreiben|loswerden|bek(ä|ae)mpfen|bek(ä|ae)mpfung|vernichten|beseitigen|entfernen|entfernung|befall|nest|dachboden|haus|wohnung|garten|keller|dach|auto|kosten|preis|preise|notdienst|schnell|sofort|g(ü|ue)nstig|firma|n(ä|ae)he|der|die|das|in|im|am|und|f(ü|ue)r|mit|ohne|was|tun|hilft|gegen|hilfe|service|24h|sch(ä|ae)dlingsbek(ä|ae)mpfung|sch(ä|ae)dlingsbek(ä|ae)mpfer|kammerj(ä|ae)ger|wespen|wespe|hornissen|ratten|ratte|wanderratte|bettwanzen|m(ä|ae)use|maus|marder|schaben|kakerlaken|silberfische|ameisen|fl(ö|oe)he|motten|tauben|ungeziefer|sch(ä|ae)dling|sch(ä|ae)dlinge|desinfektion|profi|experte|meister|wer|wie|wo|lebensmittelmotten|kleidermotten|k(ü|ue)che|bad)$/i;
         var currentTheme = null;
@@ -1315,6 +1343,15 @@
           }catch(e){}
         }
         applyTheme(qp('kw') || qp('cq_term') || qp('keyword'));
+
+        // Sticky-Leiste ausblenden, solange der Hero-Button sichtbar ist (kein doppelter Button im ersten Bild)
+        (function(){
+          try{
+            var st = document.querySelector('.sticky-cta'), hb = document.querySelector('.hero-ctas .btn-primary');
+            if(!st || !hb || !('IntersectionObserver' in window)) return;
+            new IntersectionObserver(function(es){ st.classList.toggle('off', !!(es[0] && es[0].isIntersecting)); }, {threshold:0.6}).observe(hb);
+          }catch(e){}
+        })();
 
         function setCity(name){
           if(!name) return;
