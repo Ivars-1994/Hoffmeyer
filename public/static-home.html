@@ -100,8 +100,13 @@
       }
 
       .nav-cta .nav-cta-num{display:none}
-      @media(min-width:420px){.nav-cta .nav-cta-num{display:inline}}
+      @media(min-width:768px){.nav-cta .nav-cta-num{display:inline}}
       .nav-cta{padding:.55rem .9rem;min-height:44px}
+      @media(max-width:767px){
+        .nav-logo{flex-shrink:0;white-space:nowrap}
+        .nav-cta{flex-shrink:0;white-space:nowrap;font-size:.875rem;padding:.55rem .65rem;gap:.35rem}
+        .nav-cta .i-phone{width:18px;height:18px;flex-shrink:0}
+      }
 
       /* === HERO === */
       .hero{padding:0 0 4rem;background:#003311}
