@@ -15,12 +15,12 @@ for (const slug of slugs) {
     assert.ok(netlify.indexOf(rule) < netlify.indexOf('from = "/*"'));
   });
 
-  test(`${slug} links to the five other services without linking to itself`, () => {
+  test(`${slug} links to all five other services through the shared services section`, () => {
     const page = readFileSync(`public/${slug}/index.html`, 'utf8');
-    const section = page.match(/<section[^>]*id="weitere-schaedlinge"[\s\S]*?<\/section>/)?.[0] ?? '';
+    const section = page.match(/<section[^>]*id="leistungen"[\s\S]*?<\/section>/)?.[0] ?? '';
     const destinations = [...section.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
     const expected = ['rattenbekaempfung', 'maeusebekaempfung', 'marderbekaempfung', 'bettwanzenbekaempfung', 'wespennest-entfernen', 'kakerlakenbekaempfung']
-      .filter(other => other !== slug).map(other => `/${other}/`).concat('/');
+      .map(other => `/${other}/`);
     assert.deepEqual(destinations.sort(), expected.sort());
   });
 }
