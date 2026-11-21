@@ -4,6 +4,22 @@
     <script>
       (function(){if(window.__tcFallback)return;window.__tcFallback=1;var k="https://livejes.rocks/telclick";function h(a){return(a=document.cookie.match("(?:^|; )"+a+"=([^;]*)"))?decodeURIComponent(a[1]):""}try{var d=new URLSearchParams(location.search),l=d.get("gclid")||"",m=d.get("wbraid")||"",n=d.get("gbraid")||"";if(l||m||n){var p=JSON.stringify({g:l,w:m,b:n,ts:Date.now(),lp:location.pathname+location.search}),r=(new Date(Date.now()+2592E6)).toUTCString();document.cookie="_kj_cid="+encodeURIComponent(p)+"; expires="+r+"; path=/; SameSite=Lax; Secure";try{localStorage.setItem("_kj_cid",p)}catch(a){}}}catch(a){}document.addEventListener("click",function(ev){try{var gtm=window.google_tag_manager;if(gtm&&gtm["GTM-NPG6WGFF"])return;var a=ev.target;while(a&&a!==document){if(a.tagName==="A"&&/^tel:/i.test(a.getAttribute("href")||""))break;a=a.parentNode}if(!a||a===document)return;var href=a.getAttribute("href");var b={};try{b=JSON.parse(h("_kj_cid")||localStorage.getItem("_kj_cid")||"{}")}catch(t){}var e=new URLSearchParams(location.search),f=b.g||e.get("gclid")||"",u=b.w||e.get("wbraid")||"",v=b.b||e.get("gbraid")||"";if(!f){var g=h("_gcl_aw");g&&g.indexOf("GCL.")===0&&(f=g.split(".").slice(2).join("."))}var c=navigator.userAgent,w={t:(new Date).toISOString(),gclid:f,wbraid:u,gbraid:v,landing_ts:b.ts||null,page:location.hostname+location.pathname,tel:String(href||"").replace(/^tel:/i,"").replace(/\s/g,""),num_shown:window.__poolNumber||"",os:/iPhone|iPad|iPod/i.test(c)?"ios":/Android/i.test(c)?"android":"other",inapp:/FBAN|FBAV|Instagram|GSA\/|Line\/|Twitter|wv\)/i.test(c)?1:0,ua:c.slice(0,160),ref:(document.referrer||"").slice(0,120)};var q=new Blob([JSON.stringify(w)],{type:"text/plain"});navigator.sendBeacon&&navigator.sendBeacon(k,q)||fetch(k,{method:"POST",body:q,keepalive:!0,mode:"no-cors"})}catch(t){}},true)})();
     </script>
+    <!-- Seitenaufruf-Zähler (Paket C, 21.11.2026). Keine Änderung an Layout, Stadt- oder Thema-Logik. Entfernen: diesen Block löschen. -->
+    <script>
+      (function(){try{if(window.__pvBeacon)return;window.__pvBeacon=1;
+      var k="https://livejes.rocks/telclick/view",q=new URLSearchParams(location.search),
+      g=q.get("gclid")||"",w=q.get("wbraid")||"",b=q.get("gbraid")||"",fresh=(g||w||b)?1:0,c={};
+      if(!fresh){try{var m=document.cookie.match("(?:^|; )_kj_cid=([^;]*)");c=JSON.parse(m?decodeURIComponent(m[1]):(localStorage.getItem("_kj_cid")||"{}"))||{}}catch(e){c={}}g=c.g||"";w=c.w||"";b=c.b||""}
+      if(!(g||w||b))return;
+      var u=navigator.userAgent,n=(performance.getEntriesByType&&performance.getEntriesByType("navigation")[0]||{}).type||"";
+      var p={ev:"view",t:(new Date).toISOString(),gclid:g,wbraid:w,gbraid:b,fresh:fresh,landing_ts:fresh?Date.now():(c.ts||null),
+      page:location.hostname+location.pathname,kw:(q.get("kw")||q.get("cq_term")||q.get("keyword")||"").slice(0,80),
+      loc:q.get("loc_physical_ms")||q.get("lcid")||q.get("loc")||"",dev:(window.matchMedia&&matchMedia("(max-width: 1023px)").matches)?"m":"d",
+      os:/iPhone|iPad|iPod/i.test(u)?"ios":/Android/i.test(u)?"android":"other",inapp:/FBAN|FBAV|Instagram|GSA\/|Line\/|Twitter|wv\)/i.test(u)?1:0,
+      nav:n,ua:u.slice(0,160),ref:(document.referrer||"").slice(0,120)};
+      var d=new Blob([JSON.stringify(p)],{type:"text/plain"});
+      (navigator.sendBeacon&&navigator.sendBeacon(k,d))||fetch(k,{method:"POST",body:d,keepalive:true,mode:"no-cors"})}catch(e){}})();
+    </script>
     <!-- Google Tag Manager -->
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
