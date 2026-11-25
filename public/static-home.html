@@ -1375,10 +1375,11 @@
           {k:/wanderratt|ratte/, badge:'RATTEN-NOTDIENST', h1:'Rattenbekämpfung in', sub:'Köderstationen & Abdichtung – heute noch vor Ort', lead:'Ratten im Haus, Keller oder Garten? In 30–⁠60 Min. vor Ort – Festpreis vorab.'},
           {k:/maus|mäuse|maeuse|m\u00e4use/, badge:'MÄUSE-NOTDIENST', h1:'Mäusebekämpfung in', sub:'Fallen, Köder, Einschlupflöcher dicht – heute noch', lead:'Mäuse in Wohnung oder Dach? In 30–⁠60 Min. vor Ort – diskret, Festpreis vorab.'},
           {k:/marder/, badge:'MARDER-ABWEHR', h1:'Marder vertreiben in', sub:'Dachboden & Auto – tierschonend und dauerhaft', lead:'Marder im Dach oder am Auto? Vergrämen und Einstiege abdichten – Festpreis vorab.'},
-          {k:/bettwanz/, badge:'BETTWANZEN-SOFORTHILFE', h1:'Bettwanzen bekämpfen in', sub:'Wärme & Insektizid, diskret, mit Nachkontrolle', lead:'Stiche am Morgen? Diskret und gründlich, mit Nachkontrolle – Festpreis vorab.'},
+          {k:/bettwanz|(^|\s)wanze/, badge:'BETTWANZEN-SOFORTHILFE', h1:'Bettwanzen bekämpfen in', sub:'Wärme & Insektizid, diskret, mit Nachkontrolle', lead:'Stiche am Morgen? Diskret und gründlich, mit Nachkontrolle – Festpreis vorab.'},
           {k:/schabe|kakerlak|küchenschabe/, badge:'SCHABEN-NOTDIENST', h1:'Kakerlaken bekämpfen in', sub:'Gel-Köder, Mehrfachbehandlung, hygienisch', lead:'Schaben in Küche oder Gastro? Diskreter Einsatz, auch abends – Festpreis vorab.'},
-          {k:/wespe|hornisse|nest/, badge:'WESPEN-NOTDIENST', h1:'Wespennest entfernen in', sub:'Heute noch – meist in einer Stunde erledigt', lead:'Wespennest am Haus? Fachgerecht entfernt, Hornissen umgesiedelt – Festpreis vorab.'},
+          {k:/wespe|hornisse|(^|[^a-zäöüß])nest/, badge:'WESPEN-NOTDIENST', h1:'Wespennest entfernen in', sub:'Heute noch – meist in einer Stunde erledigt', lead:'Wespennest am Haus? Fachgerecht entfernt, Hornissen umgesiedelt – Festpreis vorab.'},
           {k:/silberfisch/, badge:'SILBERFISCHE', h1:'Silberfische bekämpfen in', sub:'Ursache finden, dauerhaft beseitigen', lead:'Silberfische im Bad oder Schlafzimmer? Dauerhaft beseitigt – Festpreis vorab.'},
+          {k:/papierfisch/, badge:'PAPIERFISCHCHEN', h1:'Papierfischchen bekämpfen in', sub:'Ursache finden, dauerhaft beseitigen', lead:'Papierfischchen in Wohnung oder Büro? Dauerhaft beseitigt – Festpreis vorab.'},
           {k:/ameise/, badge:'AMEISEN', h1:'Ameisen bekämpfen in', sub:'Nest finden, nachhaltig beseitigen', lead:'Ameisenstraße im Haus? Nest finden und nachhaltig beseitigen – Festpreis vorab.'},
           {k:/floh|flöhe|floehe|fl\u00f6he/, badge:'FLÖHE', h1:'Flöhe bekämpfen in', sub:'Für Mensch und Haustier sicher', lead:'Flöhe in der Wohnung? Sicher für Mensch und Haustier behandelt – Festpreis vorab.'},
           {k:/motte/, badge:'MOTTEN', h1:'Motten bekämpfen in', sub:'Kleider- und Lebensmittelmotten dauerhaft los', lead:'Motten im Schrank oder in der Küche? Befall und Ursache beseitigt – Festpreis vorab.'},
@@ -1390,7 +1391,7 @@
         var BK_GEWERK = /^(kammerj(ä|ae)ger|sch(ä|ae)dlingsbek(ä|ae)mpfung|sch(ä|ae)dlingsbek(ä|ae)mpfer)$/i;
         var BK_FILLER = /^(in|im|bei|f(ü|ue)r|raum|umgebung|kreis|stadt|region)$/i;
         var BK_NOTCITY = /(bek(ä|ae)mpf[a-zäöüß]*|abwehr|entfern[a-zäöüß]*|notdienst|beseitig[a-zäöüß]*|vernicht[a-zäöüß]*|schutz|kontrolle|plage|befall|falle|fallen|mittel|spray|gift|k(ö|oe)der|nest|nester|sch(a|ä)den|erfahrung|erfahrungen|bewertung|bewertungen|gmbh|ohg)$/i;
-        var BK_PESTSTEM = /^(wespen|hornissen|bettwanzen|kakerlaken|silberfisch|ungeziefer|insekten|sch(ä|ae)dling)/i;
+        var BK_PESTSTEM = /^(wespen|hornissen|bettwanzen|kakerlaken|silberfisch|ungeziefer|insekten|sch(ä|ae)dling|papierfisch|wanzen|waschb(ä|ae)r)/i;
         var BK_WORD = /^([a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+)*|-)$/;
         // Stadt aus dem Keyword; liefert {city, rest}
         function parseKw(kwRaw){
@@ -1454,6 +1455,8 @@
         var BK_PK = {city:'', rest:''}, BK_KWCITY = '';
         try { BK_PK = parseKw(qp('kw')); BK_KWCITY = BK_PK.city ? cityShow(BK_PK.city, false) : ''; } catch(e){ BK_PK = {city:'', rest:''}; BK_KWCITY = ''; }
         applyTheme(BK_KWCITY ? BK_PK.rest : (qp('kw') || qp('cq_term') || qp('keyword')));
+        // Prüf-Signal (25.11.2026, vorübergehend): zeigt in der Cloudflare-Auswertung, ob Googles Prüfer die Seite mit Keyword / Standort in der Adresse abruft. Kein Einfluss auf den Inhalt. Entfernen: diese zwei Zeilen löschen.
+        try { if(/AdsBot-Google|Googlebot|Google-InspectionTool/i.test(navigator.userAgent)){ var bkP = function(p){ try { fetch(p, {cache:'no-store'}).catch(function(){}); } catch(e){} }; bkP('/llms.txt'); if(qp('kw') || qp('cq_term') || qp('keyword')) bkP('/humans.txt'); if(qp('loc_physical_ms') || qp('loc')) bkP('/placeholder.svg'); } } catch(e){}
 
         // Sticky-Leiste ausblenden, solange der Hero-Button sichtbar ist (kein doppelter Button im ersten Bild)
         (function(){
