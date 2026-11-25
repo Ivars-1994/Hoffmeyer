@@ -1326,25 +1326,111 @@
 
         // === City detection (URL params + sessionStorage) ===
         function qp(n){ try{ var sp=new URLSearchParams(location.search); var lc=String(n).toLowerCase(); var it=sp.entries(); var e=it.next(); while(!e.done){ if(String(e.value[0]).toLowerCase()===lc){ return (e.value[1]||'').trim(); } e=it.next(); } }catch(err){} return ''; }
-        function clean(raw){ return raw.replace(/[^a-zA-ZäöüÄÖÜß \-]/g,'').substring(0,40).replace(/\s+/g,' ').trim(); }
-        function tc(s){ return s.replace(/\w\S*/g, function(t){ return t.charAt(0).toUpperCase()+t.slice(1).toLowerCase(); }); }
+        // === Ortsnamen-Anzeige, Stadt aus Keyword, Gewerk-Wort – 25.11.2026 ===
+        var BK_SMALL = /^(an|am|auf|bei|dem|den|der|die|im|in|ob|unter|vom|von|vor|vorm|zu|zum|zur|und)$/;
+        var BK_UML_LIST = 'Döbeln|Burgstädt|Mülsen|Schmölln|Zwönitz|Flöha|Wilkau-Haßlau|Lößnitz|Roßwein|Großschirma|Schönheide|Rüsselsheim|Gießen|Bruchköbel|Wörrstadt|Büdingen|Königstein|Mörlenbach|Münzenberg|Langgöns|Flörsheim|Groß-Gerau|Mühlheim|Grävenwiesbach|Wölfersheim|Großkrotzenburg|Hösbach|Mömbris|Bad Homburg vor der Höhe|Alsbach-Hähnlein|Bürstadt|Büttelborn|Groß-Zimmern|Mörfelden-Walldorf|Roßdorf|Rüdesheim|Glashütten|Groß-Umstadt|Großostheim|Königstein im Taunus|Lützelbach|Mömlingen|Ober-Mörlen|Aßlar|Bad König|Weilmünster|Rüdesheim am Rhein|Rüsselsheim am Main|Schöffengrund|Mühlheim am Main|Höchst|Höchst im Odenwald|Rosbach vor der Höhe|Gräfenhausen|Münster Hessen|Großauheim|Fürth Hessen|Königstädten|Weißenfels|Köthen|Gräfenhainichen|Bad Dürrenberg|Markranstädt|Bad Düben|Großpösna|Bad Lauchstädt|Roßlau|Bad Kösen|Böhlen|Hohenmölsen|Großzschocher|Mücheln|Könnern|Saarbrücken|Zweibrücken|Überherrn|Völklingen|Bruchmühlbach-Miesau|Schönenberg-Kübelberg|Püttlingen|Großrosseln|Donauwörth|Nördlingen|Königsbrunn|Neusäß|Schwabmünchen|Pöttmes|Altomünster|Höchstädt|Höchstädt an der Donau|Düsseldorf|Köln|Brühl|Wipperfürth|Jülich|Mönchengladbach|Münster|Mülheim|Niederkrüchten|Düren|Tönisvorst|Hürth|Höxter|Königswinter|Hünxe|Lünen|Sprockhövel|Jüchen|Schöppingen|Brüggen|Südlohn|Wülfrath|Lüdinghausen|Würselen|Lüdenscheid|Bünde|Kürten|Lübbecke|Dülmen|Hückeswagen|Bad Münstereifel|Gütersloh|Anröchte|Dörentrup|Delbrück|Schalksmühle|Bönen|Fröndenberg|Hörstel|Rösrath|Hövelhof|Büren|Rheda-Wiedenbrück|Nümbrecht|Rüthen|Möhnesee|Nörvenich|Hückelhoven|Hüllhorst|Zülpich|Bad Wünnenberg|Waldbröl|Rödinghausen|Vettweiß|Lügde|Leopoldshöhe|Erndtebrück|Preußisch Oldendorf|Hörde|Übach-Palenberg|Köln Mülheim|Bilderstöckchen|Höhenberg|Neubrück|Zündorf|Schüren|Hilgen - Dünweg|Überruhr-Holthausen|Sölderholz|Rombergpark-Lücklemberg|Bövinghausen|Sölde|Röttgen|Angermünde|Französisch Buchholz|Jüterbog|Königs Wusterhausen|Groß Kreutz|Müncheberg|Neukölln|Grünheide|Großbeeren|Schönefeld|Schöneberg|Fürstenwalde|Schöneiche|Köpenick|Dallgow-Döberitz|Niedergörsdorf|Lübars|Grünau|Konradshöhe|Müggelheim|Oberschöneweide|Plänterwald|Weißensee|Alt-Hohenschönhausen|Niederschöneweide|Niederschönhausen|Märkisches Viertel|Neu-Hohenschönhausen|München|Bad Tölz|Unterschleißheim|Grünwald|Oberschleißheim|Höhenkirchen-Siegertsbrunn|Unterföhring|Kirchheim bei München|Ottobrunn bei München|Nürnberg|Fürth|Georgensgmünd|Altdorf bei Nürnberg|Höchstadt|Dinkelsbühl|Röthenbach|Büchenbach|Grafenwöhr|Roßtal|Scheßlitz|Schlüsselfeld|Wassertrüdingen|Röthenbach an der Pegnitz|Höchstadt an der Aisch|Göttingen|Vöhl|Nörten-Hardenberg|Großalmerode|Hannoversch Münden|Bremervörde|Ovelgönne|Scheeßel|Großenkneten|Bösel|Visselhövede|Dötlingen|Würzburg|Künzelsau|Gemünden|Walldürn|Großheubach|Haßfurt|Külsheim|Veitshöchheim|Lauda-Königshofen|Höchberg|Waldbüttelbrunn|Gemünden am Main|Lörrach|Müllheim|Bad Säckingen|Willstätt|Bad Dürrheim|Bräunlingen|Bötzingen|Deißlingen|Löffingen|Stühlingen|Hüfingen|Königsfeld|Wutöschingen|Loßburg|Königsfeld im Schwarzwald|Ühlingen-Birkendorf|Mühlhausen|Sömmerda|Pößneck|Kölleda|Roßleben|Königsee|Hermsdorf Thüringen|Neuhaus Thüringen|Bad Dürkheim|Östringen|Waghäusel|Bühl|Neckargemünd|Wörth am Rhein|Grünstadt|Haßloch|Königsbach-Stein|Niefern-Öschelbronn|Böhl-Iggelheim|Rülzheim|Schömberg|Nußloch|Neulußheim|Hambrücken|Altlußheim|Wörth|Hirschberg an der Bergstraße|Jöhlingen|Weingarten Baden-Württemberg|Haslach Baden-Württemberg|Rheinau Baden-Württemberg|Lichtenau Baden-Württemberg|Mühlhausen Baden-Württemberg|Brühl Baden-Württemberg|Geiselhöring|Kümmersbruck|Waldmünchen|Maxhütte-Haidhof|Vohenstrauß|Kötzting|Wernberg-Köblitz|Großenhain|Löbau|Großräschen|Großröhrsdorf|Großschönau|Nünchritz|Weinböhla|Äußere Neustadt|Löbtau|Öhringen|Göppingen|Böblingen|Schwäbisch Hall|Tübingen|Nürtingen|Schwäbisch Gmünd|Mühlacker|Möglingen|Bönnigheim|Großbottwar|Gärtringen|Köngen|Güglingen|Löchgau|Schönaich|Weil im Schönbuch|Wüstenrot|Markgröningen|Mössingen|Plüderhausen|Möckmühl|Meßstetten|Mittelschöntal|Hemmingen Baden-Württemberg|Illingen Baden-Württemberg|Geislingen Baden-Württemberg|Heerstraße|Bückeburg|Bad Münder|Bad Münder am Deister|Coppenbrügge|Hambühren|Faßberg|Südstadt|Döhren|Mühlenberg|Stöcken|Hänigsen|Eichstätt|Weißenburg|Thalmässing|Weißenburg in Bayern|Wolfenbüttel|Schöningen|Klötze|Müden|Söhlde|Isenbüttel|Königslutter|Schöppenstedt|Königslutter am Elm|Stöckheim|Klein Schwülper|Fürstenfeldbruck|Gröbenzell|Röhrmoos|Peißenberg|Gräfelfing|Pöcking|Schäftlarn|Dießen|Weßling|Dießen am Ammersee|Plön|Neumünster|Eckernförde|Grömitz|Travemünde|Büdelsdorf|Ahrensbök|Glücksburg|Osterrönfeld|Schönkirchen|Süsel|Lütjenburg|Böcklersiedlung-Bugenhagen|Westerrönfeld|Prüm|Güstrow|Grevesmühlen|Warnemünde|Bützow|Kröpeliner-Tor-Vorstadt|Ostseebad Kühlungsborn|Lübeck|Lüneburg|Mölln|Glückstadt|Bienenbüttel|Wellingsbüttel|Brunsbüttel|Barsbüttel|Großhansdorf|Eimsbüttel|Fuhlsbüttel|Eißendorf|Hummelsbüttel|Poppenbüttel|Groß Flottbek|Groß Borstel|Sülldorf|Bad Königshofen|Schlüchtern|Amöneburg|Grünberg|Bad Soden-Salmünster|Wächtersbach|Künzell|Hünfeld|Steinau an der Straße|Bad Brückenau|Großenlüder|Münnerstadt|Bad Königshofen im Grabfeld|Bischofsheim in der Rhön|Füssen|Kempten Allgäu|Obergünzburg|Immenstadt im Allgäu|Günzburg|Böhmenkirch|Münsingen|Süßen|Vöhringen|Weißenhorn|Abtsgmünd|Königsbronn|Hüttlingen|Erbach Baden-Württemberg|Biberach an der Riß|Bad Wörishofen|Türkheim|Kißlegg|Mühldorf|Altötting|Bruckmühl|Großkarolinenfeld|Töging am Inn|Töging|Neuötting|Grafing bei München';
+        var BK_FIX = {munich:'München', cologne:'Köln', nuremberg:'Nürnberg', hanover:'Hannover', brunswick:'Braunschweig', 'baden-wurttemberg':'Baden-Württemberg', thuringen:'Thüringen', bavaria:'Bayern', hesse:'Hessen', saxony:'Sachsen', 'lower saxony':'Niedersachsen', 'north rhine-westphalia':'Nordrhein-Westfalen', 'rhineland-palatinate':'Rheinland-Pfalz', thuringia:'Thüringen', 'saxony-anhalt':'Sachsen-Anhalt', 'mecklenburg-western pomerania':'Mecklenburg-Vorpommern'};
+        function bkFold(s){ return String(s).toLowerCase().replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss'); }
+        (function(){ var a = BK_UML_LIST.split('|'); for(var i=0;i<a.length;i++){ if(a[i]) BK_FIX[bkFold(a[i])] = a[i]; } })();
+        var BK_GENERIC = /^(mitte|innenstadt|zentrum|altstadt|stadtmitte|city|nord|sud|süd|ost|west|(nord|sud|süd|ost|west|sudwest|südwest|sudost|südost|nordwest|nordost)(stadt|viertel|vorstadt)|(ostliche|östliche|westliche|nordliche|nördliche|sudliche|südliche|innere|aussere|äußere) [a-zäöüß]+|bahnhofsvorstadt|bahnhofsviertel|district|stadtbezirk|stadtbezirke|bezirk|stadtteil|region)$/i;
+        var BK_GEN_PART = /^(mitte|innenstadt|zentrum|altstadt|stadtmitte|city|nord|sud|süd|ost|west|innenstadt-(nord|sud|süd|ost|west))$/i;
+        function bkCap(seg){ return seg ? seg.charAt(0).toUpperCase() + seg.slice(1) : seg; }
+        function tc(s){
+          var parts = String(s).toLowerCase().split(' '), out = [];
+          for(var i=0;i<parts.length;i++){
+            var p = parts[i]; if(!p) continue;
+            if(i > 0 && (BK_SMALL.test(p) || /^([a-zäöü]\.)+$/.test(p))){ out.push(p); continue; }
+            var segs = p.split('-'); for(var j=0;j<segs.length;j++){ segs[j] = bkCap(segs[j]); }
+            out.push(segs.join('-'));
+          }
+          return out.join(' ');
+        }
+        function clean(raw){ return String(raw).replace(/[^a-zA-ZäöüÄÖÜß .\-]/g,'').substring(0,40).replace(/\s+/g,' ').trim(); }
+        // Anzeige-Fassung eines Ortsnamens; '' = nicht als Ort anzeigen
+        function cityShow(raw, fromMap){
+          var s = String(raw == null ? '' : raw).replace(/\s+/g,' ').trim();
+          if(!s) return '';
+          s = s.replace(/\s*\([^)]*\)/g,'').replace(/\s+-\s+/g,'-');
+          if(s.indexOf(',') >= 0){ var ab = s.split(','), a = ab[0].trim(), b = (ab[1]||'').trim(); s = (BK_GENERIC.test(a) && b) ? b : a; }
+          if(s.indexOf('/') >= 0) s = s.split('/')[0].trim();
+          s = s.replace(/\s+(Region|District|Kreis)$/i,'');
+          if(/\d/.test(s)) s = s.replace(/\s*\d+.*$/,'').trim();
+          if(fromMap) s = s.replace(/[\s\-]+(I|II|III|IV|V)$/,'').replace(/^County of /i,'');
+          s = clean(s); if(!s) return '';
+          var low = s.toLowerCase();
+          if(fromMap){
+            if(BK_GENERIC.test(low)) return '';
+            // "Stadt-Mitte", "Stadt Innenstadt-ost" → Stadt
+            var m = low.match(/^(.+?)[ \-](mitte|innenstadt|zentrum|altstadt|stadtmitte|city|nord|sud|süd|ost|west|east|north|south)([ \-].*)?$/);
+            if(m && m[1].length >= 3 && !BK_GEN_PART.test(m[1])){ low = m[1]; }
+          }
+          var key = bkFold(low), out;
+          if(fromMap && BK_FIX.hasOwnProperty(key)){ out = BK_FIX[key]; }
+          else {
+            var cut = low.indexOf('-'), head = cut > 0 ? low.substring(0, cut) : '';
+            if(fromMap && head && head.indexOf(' ') < 0 && BK_FIX.hasOwnProperty(bkFold(head))){ out = BK_FIX[bkFold(head)] + tc('x' + low.substring(cut)).substring(1); }
+            else out = tc(low);
+            if(fromMap) out = out.replace(/^Gross(?=[a-zäöüß\-])/, 'Groß');
+          }
+          if(!out || out.length < 2 || out.length > 40) return '';
+          return out;
+        }
 
         // === Thema aus Keyword (kw={keyword} / cq_term) – Paket A 01.11.2026 ===
         var THEMES = [
           {k:/wanderratt|ratte/, badge:'RATTEN-NOTDIENST', h1:'Rattenbekämpfung in', sub:'Köderstationen & Abdichtung – heute noch vor Ort', lead:'Ratten im Haus, Keller oder Garten? In 30–⁠60 Min. vor Ort – Festpreis vorab.'},
           {k:/maus|mäuse|maeuse|m\u00e4use/, badge:'MÄUSE-NOTDIENST', h1:'Mäusebekämpfung in', sub:'Fallen, Köder, Einschlupflöcher dicht – heute noch', lead:'Mäuse in Wohnung oder Dach? In 30–⁠60 Min. vor Ort – diskret, Festpreis vorab.'},
           {k:/marder/, badge:'MARDER-ABWEHR', h1:'Marder vertreiben in', sub:'Dachboden & Auto – tierschonend und dauerhaft', lead:'Marder im Dach oder am Auto? Vergrämen und Einstiege abdichten – Festpreis vorab.'},
-          {k:/bettwanz/, badge:'BETTWANZEN-SOFORTHILFE', h1:'Bettwanzen bekämpfen in', sub:'Wärme & Insektizid, diskret, mit Nachkontrolle', lead:'Stiche am Morgen? Diskret und gründlich, mit Nachkontrolle – Festpreis vorab.'},
+          {k:/bettwanz|(^|\s)wanze/, badge:'BETTWANZEN-SOFORTHILFE', h1:'Bettwanzen bekämpfen in', sub:'Wärme & Insektizid, diskret, mit Nachkontrolle', lead:'Stiche am Morgen? Diskret und gründlich, mit Nachkontrolle – Festpreis vorab.'},
           {k:/schabe|kakerlak|küchenschabe/, badge:'SCHABEN-NOTDIENST', h1:'Kakerlaken bekämpfen in', sub:'Gel-Köder, Mehrfachbehandlung, hygienisch', lead:'Schaben in Küche oder Gastro? Diskreter Einsatz, auch abends – Festpreis vorab.'},
-          {k:/wespe|hornisse|nest/, badge:'WESPEN-NOTDIENST', h1:'Wespennest entfernen in', sub:'Heute noch – meist in einer Stunde erledigt', lead:'Wespennest am Haus? Fachgerecht entfernt, Hornissen umgesiedelt – Festpreis vorab.'},
+          {k:/wespe|hornisse|(^|[^a-zäöüß])nest/, badge:'WESPEN-NOTDIENST', h1:'Wespennest entfernen in', sub:'Heute noch – meist in einer Stunde erledigt', lead:'Wespennest am Haus? Fachgerecht entfernt, Hornissen umgesiedelt – Festpreis vorab.'},
           {k:/silberfisch/, badge:'SILBERFISCHE', h1:'Silberfische bekämpfen in', sub:'Ursache finden, dauerhaft beseitigen', lead:'Silberfische im Bad oder Schlafzimmer? Dauerhaft beseitigt – Festpreis vorab.'},
+          {k:/papierfisch/, badge:'PAPIERFISCHCHEN', h1:'Papierfischchen bekämpfen in', sub:'Ursache finden, dauerhaft beseitigen', lead:'Papierfischchen in Wohnung oder Büro? Dauerhaft beseitigt – Festpreis vorab.'},
           {k:/ameise/, badge:'AMEISEN', h1:'Ameisen bekämpfen in', sub:'Nest finden, nachhaltig beseitigen', lead:'Ameisenstraße im Haus? Nest finden und nachhaltig beseitigen – Festpreis vorab.'},
           {k:/floh|flöhe|floehe|fl\u00f6he/, badge:'FLÖHE', h1:'Flöhe bekämpfen in', sub:'Für Mensch und Haustier sicher', lead:'Flöhe in der Wohnung? Sicher für Mensch und Haustier behandelt – Festpreis vorab.'},
           {k:/motte/, badge:'MOTTEN', h1:'Motten bekämpfen in', sub:'Kleider- und Lebensmittelmotten dauerhaft los', lead:'Motten im Schrank oder in der Küche? Befall und Ursache beseitigt – Festpreis vorab.'},
           {k:/taube/, badge:'TAUBENABWEHR', h1:'Taubenabwehr in', sub:'Balkon, Dach & Fassade dauerhaft sichern', lead:'Tauben auf Balkon oder Dach? Dauerhaft sichern und reinigen – Festpreis vorab.'}
         ];
         var THEME_WORDS = /^(vertreiben|loswerden|bek(ä|ae)mpfen|bek(ä|ae)mpfung|vernichten|beseitigen|entfernen|entfernung|befall|nest|dachboden|haus|wohnung|garten|keller|dach|auto|kosten|preis|preise|notdienst|schnell|sofort|g(ü|ue)nstig|firma|n(ä|ae)he|der|die|das|in|im|am|und|f(ü|ue)r|mit|ohne|was|tun|hilft|gegen|hilfe|service|24h|sch(ä|ae)dlingsbek(ä|ae)mpfung|sch(ä|ae)dlingsbek(ä|ae)mpfer|kammerj(ä|ae)ger|wespen|wespe|hornissen|ratten|ratte|wanderratte|bettwanzen|m(ä|ae)use|maus|marder|schaben|kakerlaken|silberfische|ameisen|fl(ö|oe)he|motten|tauben|ungeziefer|sch(ä|ae)dling|sch(ä|ae)dlinge|desinfektion|profi|experte|meister|wer|wie|wo|lebensmittelmotten|kleidermotten|k(ü|ue)che|bad)$/i;
-        var currentTheme = null;
+        // === Stadt aus Keyword / Gewerk-Wort – 25.11.2026 ===
+        function bkPest(w){ w = String(w).toLowerCase(); for(var i=0;i<THEMES.length;i++){ if(THEMES[i].k.test(w)) return true; } return false; }
+        var BK_GEWERK = /^(kammerj(ä|ae)ger|sch(ä|ae)dlingsbek(ä|ae)mpfung|sch(ä|ae)dlingsbek(ä|ae)mpfer)$/i;
+        var BK_FILLER = /^(in|im|bei|f(ü|ue)r|raum|umgebung|kreis|stadt|region)$/i;
+        var BK_NOTCITY = /(bek(ä|ae)mpf[a-zäöüß]*|abwehr|entfern[a-zäöüß]*|notdienst|beseitig[a-zäöüß]*|vernicht[a-zäöüß]*|schutz|kontrolle|plage|befall|falle|fallen|mittel|spray|gift|k(ö|oe)der|nest|nester|sch(a|ä)den|erfahrung|erfahrungen|bewertung|bewertungen|gmbh|ohg)$/i;
+        var BK_PESTSTEM = /^(wespen|hornissen|bettwanzen|kakerlaken|silberfisch|ungeziefer|insekten|sch(ä|ae)dling|papierfisch|wanzen|waschb(ä|ae)r)/i;
+        var BK_WORD = /^([a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+)*|-)$/;
+        // Stadt aus dem Keyword; liefert {city, rest}
+        function parseKw(kwRaw){
+          var kw = String(kwRaw||'').replace(/\+/g,' ').replace(/\s+/g,' ').trim(), words = kw ? kw.split(' ') : [], none = {city:'', rest: kw};
+          if(!words.length) return none;
+          if(BK_GEWERK.test(words[0]) && words.length >= 2){
+            var cand = words.slice(1);
+            while(cand.length > 1 && BK_FILLER.test(cand[0])) cand.shift();
+            var first = cand[0], lastw = cand[cand.length-1], ok = cand.length <= 5, j;
+            for(j=0;j<cand.length && ok;j++){ if(!BK_WORD.test(cand[j])) ok = false; }
+            var joined = cand.join(' ');
+            if(ok && joined.length >= 3 && joined.length <= 40
+               && !(THEME_WORDS.test(first) && !(/^bad$/i.test(first) && cand.length > 1))
+               && !THEME_WORDS.test(lastw) && !BK_FILLER.test(first) && !BK_NOTCITY.test(lastw)
+               && !(cand.length === 1 && BK_PESTSTEM.test(first))){
+              return {city: joined, rest: words[0]};
+            }
+          }
+          var last = words[words.length-1];
+          if(last && last.length >= 3 && /^[a-zA-ZäöüÄÖÜß]+$/.test(last) && !THEME_WORDS.test(last) && !bkPest(last) && !BK_NOTCITY.test(last) && !BK_PESTSTEM.test(last)){
+            return {city: last, rest: words.slice(0,-1).join(' ')};
+          }
+          return none;
+        }
+        // Gewerk-Wort der Suche: '' = Standard (Kammerjäger)
+        function bkGewerk(basis){
+          basis = String(basis||'').toLowerCase();
+          if(/kammerj(ä|ae)ger/.test(basis)) return '';
+          if(/sch(ä|ae)dlingsbek(ä|ae)mpfer/.test(basis)) return 'Schädlingsbekämpfer';
+          if(/sch(ä|ae)dlingsbek(ä|ae)mpf/.test(basis)) return 'Schädlingsbekämpfung';
+          return '';
+        }
+        var currentTheme = null, currentGewerk = '';
         function applyTheme(kwRaw){
           try{
             var kw = decodeURIComponent(String(kwRaw||'')).replace(/\+/g,' ').toLowerCase();
@@ -1364,7 +1450,9 @@
             var lead = document.getElementById('heroLead'); if(lead) lead.textContent = th.lead;
           }catch(e){}
         }
-        applyTheme(qp('kw') || qp('cq_term') || qp('keyword'));
+        var BK_PK = {city:'', rest:''}, BK_KWCITY = '';
+        try { BK_PK = parseKw(qp('kw')); BK_KWCITY = BK_PK.city ? cityShow(BK_PK.city, false) : ''; } catch(e){ BK_PK = {city:'', rest:''}; BK_KWCITY = ''; }
+        applyTheme(BK_KWCITY ? BK_PK.rest : (qp('kw') || qp('cq_term') || qp('keyword')));
         if(!currentTheme) applyTheme('marder'); // Leistungsseite marderbekaempfung: Thema fest, wenn der Suchbegriff nichts anderes sagt
 
         // Sticky-Leiste ausblenden, solange der Hero-Button sichtbar ist (kein doppelter Button im ersten Bild)
@@ -1376,10 +1464,10 @@
           }catch(e){}
         })();
 
-        function setCity(name){
-          if(!name) return;
-          var clean1 = tc(clean(name));
-          if(!clean1 || clean1.length < 2) return;
+        function setCity(name, fromMap){
+          if(!name) return false;
+          var clean1 = ''; try { clean1 = cityShow(name, fromMap); } catch(e){ clean1 = ''; }
+          if(!clean1 || clean1.length < 2) return false;
           var el = document.getElementById('cityName');
           if(el) el.textContent = clean1;
           var sub = document.getElementById('heroSubline');
@@ -1390,6 +1478,7 @@
             sessionStorage.setItem('cityName', clean1);
             sessionStorage.setItem('cityData', JSON.stringify({name: clean1, plz: '00000'})); try{window.dispatchEvent(new CustomEvent('cityDetected',{detail:{name:clean1}}));}catch(e){}
           } catch(e){}
+          return true;
         }
 
         function storedFallback(){
@@ -1403,8 +1492,7 @@
           fetch('/.netlify/functions/resolve-id?id=' + encodeURIComponent(id), {cache:'no-store'})
             .then(function(resp){ return resp.ok ? resp.json() : null; })
             .then(function(data){
-              if(data && data.stadt) setCity(data.stadt);
-              else storedFallback();
+              if(!(data && data.stadt && setCity(data.stadt, data.typ === 'direct-name'))) storedFallback();
             })
             .catch(storedFallback);
         }
@@ -1418,7 +1506,7 @@
             .then(function(r){ return r.ok ? r.json() : null; })
             .then(function(map){
               var val = map && map[id] ? String(map[id]).trim() : '';
-              if(val && !/^\d+$/.test(val)){ setCity(val); return; }
+              if(val && !/^\d+$/.test(val)){ if(!setCity(val, true)) storedFallback(); return; }
               if(/^\d{4,5}$/.test(val)){
                 var plz = val.length === 4 ? '0' + val : val;
                 fetch('https://openplzapi.org/de/Localities?postalCode=' + plz)
@@ -1443,18 +1531,7 @@
             resolveLocationId(locId);
           } else {
             // 3) extract from kw param last word
-            var kw = qp('kw');
-            if(kw){
-              var words = decodeURIComponent(kw).replace(/\+/g,' ').split(' ');
-              var last = words[words.length-1];
-              if(last && last.length >= 3 && /^[a-zA-ZäöüÄÖÜß]+$/.test(last) && !THEME_WORDS.test(last)){
-                setCity(last);
-              } else {
-                storedFallback();
-              }
-            } else {
-              storedFallback();
-            }
+            if(!(BK_KWCITY && setCity(BK_KWCITY, false))) storedFallback();
           }
         }
 
